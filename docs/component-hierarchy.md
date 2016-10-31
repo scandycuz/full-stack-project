@@ -51,7 +51,7 @@
 |-------|------------|---------------|-------------|
 | "/" | "HomeContainer" | "/campaign-slider" | "App" |
 | "/campaign-slider" | | | "CampaignSliderContainer" |
-| "/search" | | | "SearchContainer" |
+| "/search" | | | "SearchResultsContainer" |
 | "/start-a-campaign" | | | "StartACampaignFormContainer" |
 | "/campaigns/:id/edit" | | | "EditCampaignFormContainer" |
 | "/profiles/:id" | | | "ProfileContainer" |
