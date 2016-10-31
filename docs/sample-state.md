@@ -3,7 +3,9 @@
 {
   currentUser: {
     id: 1,
-    email: "user@gmail.com"
+    email: "user@gmail.com",
+    firstname: "User",
+    last_name: "Smith"
   },
   forms: {
     signUp: {errors: []},
@@ -12,8 +14,9 @@
   },
   profile: {
     user_id : 1,
+    email: "user@gmail.com",
     first_name: "User",
-    last_name: "Albertson",
+    last_name: "Smith",
     country: "United States",
     city: "San Francisco",
     postal_code: "integer",
