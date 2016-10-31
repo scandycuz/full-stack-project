@@ -5,6 +5,8 @@ column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
 email           | string    | not null, indexed, unique
+first_name      | string    | not null, indexed
+last_name       | string    | not null, indexed
 password_digest | string    | not null
 session_token   | string    | not null, indexed, unique
 
@@ -13,6 +15,7 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 user_id     | integer   | not null, foreign key (references user), indexed
+email       | string    | not null
 first_name  | string    | not null
 last_name   | string    | not null
 country     | string    |
