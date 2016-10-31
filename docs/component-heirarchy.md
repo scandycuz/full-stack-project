@@ -45,7 +45,7 @@
 ## Routes
 
 |Path   | IndexRoute | IndexRedirect | Component   |
-|-------|-------------|
+|-------|------------|---------------|-------------|
 | "/" | "HomeContainer" | "CampaignSliderContainer" | "App" |
 | "/search" | | | "SearchContainer" |
 | "/start-a-campaign" | | | "StartACampaignFormContainer" |
