@@ -43,12 +43,14 @@
 
 **CampaignIndex**
  - CampaignIndexItem
+  * GoalProgress
 
 ## Routes
 
 |Path   | IndexRoute | IndexRedirect | Component   |
 |-------|------------|---------------|-------------|
-| "/" | "HomeContainer" | "CampaignSliderContainer" | "App" |
+| "/" | "HomeContainer" | "/campaign-slider" | "App" |
+| "/campaign-slider" | | | "CampaignSliderContainer" |
 | "/search" | | | "SearchContainer" |
 | "/start-a-campaign" | | | "StartACampaignFormContainer" |
 | "/campaigns/:id/edit" | | | "EditCampaignFormContainer" |
@@ -56,6 +58,6 @@
 | "/profiles/:id/campaigns" | | | "ProfileCampaigns" |
 | "/profiles/:id/contributions" | | | "ProfileContributions" |
 | "/profiles/:id/edit" | | | "EditProfile" |
-| "projects/:id" | | | "CampaignShowContainer" |
-| "projects/:id/comments" | | | "CampaignComments" |
-| "projects/:id/backers" | | | "CampaignBackers" |
+| "/projects/:id" | | | "CampaignShowContainer" |
+| "/projects/:id/comments" | | | "CampaignComments" |
+| "/projects/:id/backers" | | | "CampaignBackers" |

@@ -1,4 +1,4 @@
-# API Endpoints
+ # API Endpoints
 
 ## HTML API
 
@@ -32,7 +32,7 @@
   - accepts a string query param to list matching campaigns
 - `POST /api/campaigns`
 - `GET /api/campaigns/:id`
-- `PATCH/api/campaigns/:id`
+- `PATCH /api/campaigns/:id`
 - `DELETE /api/campaigns/:id`
 
 ### Contributions

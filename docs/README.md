@@ -1,1 +1,68 @@
-# full-stack-project
+# StartupGoGo
+
+[Heroku link][heroku]
+
+[Trello link][trello]
+
+[heroku]: https://startupgogo.herokuapp.com/
+[trello]: https://trello.com/b/24JnZV4e/startupgogo
+
+## Minimum Viable Product
+
+StartupGoGo is a web application inspired by IndieGoGo built using Ruby on Rails and React/Redux. By the end of Week 9, this app will, at a minimum, satisfy the
+following criteria with smooth, bug-free navigation, adequate seed data and
+sufficient CSS styling:
+
+- [ ] Hosting on Heroku
+- [ ] New account creation, login, and guest/demo login
+- [ ] Profiles
+- [ ] Campaigns
+- [ ] Contributions
+- [ ] Rewards
+- [ ] Infinite Scroll to Campaign Index
+- [ ] Production README
+
+## Design Docs
+* [View Wireframes][wireframes]
+* [React Components][components]
+* [API endpoints][api-endpoints]
+* [DB schema][schema]
+* [Sample State][sample-state]
+
+[wireframes]: docs/wireframes
+[components]: docs/component-hierarchy.md
+[sample-state]: docs/sample-state.md
+[api-endpoints]: docs/api-endpoints.md
+[schema]: docs/schema.md
+
+## Implementation Timeline
+
+### Phase 1: Backend setup and Front End User Authentication (2 days)
+
+**Objective:** Functioning rails project with front-end Authentication
+
+### Phase 2: Profiles Model, API, and components (2 days)
+
+**Objective:** Profiles are created upon user creation, and can be viewed and edited through the API.
+
+### Phase 3: Campaigns (2 days)
+
+**Objective:** Users can create, view, edit, and destroy their own campaigns, and view other users' campaigns through the API.
+
+### Phase 4: Rewards (1 day)
+
+**objective:** Users can assign rewards to their campaigns, and they can be created, viewed, edited and destroyed through the API.
+
+### Phase 5: Contributions (1 day )
+
+**Objective:** Users can make contributions to campaigns in order to help them reach their goal. Users also receive a corresponding award if they contribute the appropriate amount.
+
+### Phase 6: Add infinite scroll to the Campaign Explore page (1 day, W2 F 6pm)
+
+**Objective:** The Campaign Index element automatically loads additional campaigns when the user near the bottom of the element.
+
+### Bonus Features (TBD)
+- [ ] Carousel Slider on home page
+- [ ] Categories for Campaigns
+- [ ] Category element on home page
+- [ ] Campaign follows

@@ -57,20 +57,4 @@ amount      | integer   | not null
 title       | string    | not null
 description | text      |
 num_claimed | integer   |
-reward_date | date      |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
+reward_date | date      | not_null
