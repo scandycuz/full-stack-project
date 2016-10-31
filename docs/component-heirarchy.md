@@ -21,8 +21,8 @@
 **StartACampaignFormContainer**
  - StartACampaignForm
 
-**CampaignFormContainer**
- - CampaignForm
+**EditCampaignFormContainer**
+ - EditCampaignForm
 
 **ProfileContainer**
  - Profile
@@ -46,19 +46,9 @@
 
 |Path   | IndexRoute | IndexRedirect | Component   |
 |-------|-------------|
-| "/" | "HomeContainer" | "CampaignSlider" | "App" |
+| "/" | "HomeContainer" | "CampaignSliderContainer" | "App" |
 | "/search" | | | "SearchContainer" |
 | "/start-a-campaign" | | | "StartACampaignFormContainer" |
-| "/campaigns/:id/edit" | | | "EditCampaignForm" |
+| "/campaigns/:id/edit" | | | "EditCampaignFormContainer" |
 | "/users/:id" | | | "ProfileContainer" |
 | "projects/:id" | | | "CampaignShowContainer" |
-
-
-
-
-
-
-
-
-
-//
