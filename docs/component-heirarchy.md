@@ -26,12 +26,14 @@
 
 **ProfileContainer**
  - Profile
-  - ProfileTabs
+  - ProfileCampaigns
+  - ProfileContributions
   - EditProfile
 
 **CampaignShowContainer**
  - CampaignShow
-  * CampaignTabs
+  * CampaignComments
+  * CampaignBackers
   * CampaignRewards
 
 **Header**
@@ -50,5 +52,10 @@
 | "/search" | | | "SearchContainer" |
 | "/start-a-campaign" | | | "StartACampaignFormContainer" |
 | "/campaigns/:id/edit" | | | "EditCampaignFormContainer" |
-| "/users/:id" | | | "ProfileContainer" |
+| "/profiles/:id" | | | "ProfileContainer" |
+| "/profiles/:id/campaigns" | | | "ProfileCampaigns" |
+| "/profiles/:id/contributions" | | | "ProfileContributions" |
+| "/profiles/:id/edit" | | | "EditProfile" |
 | "projects/:id" | | | "CampaignShowContainer" |
+| "projects/:id/comments" | | | "CampaignComments" |
+| "projects/:id/backers" | | | "CampaignBackers" |
