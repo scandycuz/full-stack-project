@@ -18,7 +18,6 @@ sufficient CSS styling:
 - [ ] Campaigns
 - [ ] Contributions
 - [ ] Rewards
-- [ ] Infinite Scroll to Campaign Index
 - [ ] Production README
 
 ## Design Docs
@@ -56,13 +55,14 @@ sufficient CSS styling:
 
 **Objective:** Users can make contributions to campaigns in order to help them reach their goal. Users also receive a corresponding award if they contribute the appropriate amount.
 
-### Phase 6: Add infinite scroll to the Campaign Explore page (1 day, W2 F 6pm)
+### Phase 6: Add bonus features (1 day, W2 F 6pm)
 
-**Objective:** The Campaign Index element automatically loads additional campaigns when the user near the bottom of the element.
+**Objective:** Add as many bonus features to the project as possible
 
 ### Bonus Features (TBD)
 - [ ] Carousel Slider on home page
 - [ ] Categories for Campaigns
 - [ ] Category element on home page
+- [ ] Infinite Scroll for Campaign Index component
 - [ ] Campaign follows
 - [ ] Multiple sessions

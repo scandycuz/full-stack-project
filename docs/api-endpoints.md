@@ -19,12 +19,6 @@
 - `POST /api/session`
 - `DELETE /api/session`
 
-### Profiles
-
-- `GET /api/users/:id/profile`
-- `POST /api/users/:id/profile`
-- `PATCH /api/users/:id/profile`
-
 ### Campaigns
 
 - `GET /api/campaigns`
@@ -38,6 +32,14 @@
 ### Contributions
 
 - `POST /api/campaigns/:id/contributions`
+
+### Rewards
+
+- `GET /api/campaigns/:id/rewards`
+- `POST /api/campaigns/:id/rewards`
+- `GET /api/campaigns/:id/rewards/:rewardId`
+- `PATCH /api/campaigns/:id/rewards/rewardId`
+- `DELETE /api/campaigns/:id/rewards/:rewardId`
 
 ### Comments
 

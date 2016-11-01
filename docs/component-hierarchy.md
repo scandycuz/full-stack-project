@@ -32,9 +32,11 @@
 
 **CampaignShowContainer**
  - CampaignShow
-  * CampaignComments
-  * CampaignBackers
+  * CampaignTabs
+  * GoalProgress
+  * ContributeForm
   * CampaignRewards
+   - CampaignReward
 
 **Header**
  - HeaderSearch

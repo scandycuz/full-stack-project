@@ -26,6 +26,7 @@
   }
   campaigns: {
     1: {
+      id: 1,
       user_id: 2,
       title: "Uber for Jetskis",
       goal_amount: 1000,
@@ -35,7 +36,8 @@
     }
   },
   campaign_show: {
-    user_id: 4,
+    id: 1,
+    user_id: 2,
     title: "Uber for Jetskis",
     goal_amount: 1000,
     funds_received: 240
@@ -48,6 +50,7 @@
     campaign_pitch: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     rewards: {
       1: {
+        id: 1,
         amount: 25,
         title: "Be a Pal!",
         description: "Receive a 10% discount on your first Jetskuber!",
@@ -56,14 +59,20 @@
       }
     }
   },
-  contributions: [{
+  contributions: {
     1: {
+      id: 1,
+      user_id: 1,
       campaign_id: 2,
-      reward_id: 12
+      reward_id: 12,
+      amount: 120
     },
     2: {
+      id: 2,
+      user_id: 1,
       campaign_id: 3,
-      reward_id: 24
+      reward_id: 24,
+      amount: 80
     }
   },
   search_query: "jetskis"
