@@ -23,6 +23,7 @@ class UserMenu extends React.Component {
     this.setFormToLogin = this.setFormToLogin.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleDropdown = this.toggleDropdown.bind(this);
   }
 
   openSignupModal() {
@@ -196,7 +197,7 @@ class UserMenu extends React.Component {
 
       return(
         <ul className="signedIn-menu">
-          <li>
+          <li className="dropdown-parent">
             <span className="clickable" onClick={this.toggleDropdown}>
               {currentUser.first_name}&nbsp;
               {currentUser.last_name} &nbsp;
