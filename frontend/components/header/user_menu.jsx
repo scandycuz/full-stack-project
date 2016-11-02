@@ -6,18 +6,6 @@ class UserMenu extends React.Component {
 
   }
 
-  componentDidMount() {
-    return { modalIsOpen: false };
-  }
-
-  openModal() {
-    this.setState({modalIsOpen: true});
-  }
-
-  closeModal() {
-    this.setState({modalIsOpen: false});
-  }
-
   render() {
     let currentUser = this.props.currentUser;
 
