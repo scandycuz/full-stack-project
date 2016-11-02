@@ -23,13 +23,13 @@ class UserMenu extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleDropdown = this.toggleDropdown.bind(this);
-    this.closeModalOnLoggedIn = this.closeModalOnLoggedIn.bind(this);
     this.toggleVisibility = this.toggleVisibility.bind(this);
+    this.handleDemoSubmit = this.handleDemoSubmit.bind(this);
   }
 
   componentDidMount() {
     document.addEventListener("click", (e) => {
-      if (e.target.tagName != "SPAN") {
+      if (e.target.tagName != "SPAN" && e.target.tagName != "I") {
         $('#auth-dropdown').hide();
         $('.dropdown-parent i').css('visibility', 'visible');
       }
@@ -37,7 +37,9 @@ class UserMenu extends React.Component {
   }
 
   componentDidUpdate() {
-    this.closeModalOnLoggedIn();
+    if (this.props.loggedIn && this.state.modalIsOpen === true) {
+      return this.closeModal();
+    }
   }
 
   openSignupModal() {
@@ -58,12 +60,6 @@ class UserMenu extends React.Component {
   setFormToLogin() {
     this.props.receiveErrors([]);
     this.setState({formType: "login"});
-  }
-
-  closeModalOnLoggedIn() {
-    if (this.props.loggedIn) {
-      closeModal();
-    }
   }
 
   openModal() {
@@ -94,6 +90,19 @@ class UserMenu extends React.Component {
     e.preventDefault();
     const user = this.state;
     return this.props.processForm(this.state.formType)({user});
+  }
+
+  handleDemoSubmit(e) {
+    e.preventDefault();
+    const demoUser = {
+      user: {
+        first_name: "Guest",
+        last_name: "User",
+        email: "guestuser@email.com",
+        password: "password"
+      }
+    }
+    return this.props.processForm(this.state.formType)(demoUser);
   }
 
   renderModal() {
@@ -153,7 +162,10 @@ class UserMenu extends React.Component {
                  value={this.state.password}
                  onChange={this.update("password")} />
         </label>
-        <button className="button">{ buttonLabel }</button>
+        <div className="button-container">
+          <button className="button">{ buttonLabel }</button>
+          <button className="button demo-login" onClick={this.handleDemoSubmit}>Guest Login</button>
+        </div>
       </form>
     );
 
@@ -165,6 +177,7 @@ class UserMenu extends React.Component {
           style={customStyles}
           contentLabel="User Auth" >
 
+          <i className="fa fa-times modal-close clickable" aria-hidden="true" onClick={this.closeModal}></i>
           <p>Log in</p>
           {this.renderErrors()}
           {loginForm()}
@@ -183,6 +196,7 @@ class UserMenu extends React.Component {
           style={customStyles}
           contentLabel="User Auth" >
 
+            <i className="fa fa-times modal-close clickable" aria-hidden="true" onClick={this.closeModal}></i>
             <p>Sign up</p>
             {this.renderErrors()}
             {signupForm()}

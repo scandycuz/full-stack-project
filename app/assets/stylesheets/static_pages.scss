@@ -64,6 +64,7 @@ ul {
   letter-spacing: 0.25px;
   border-width: 0;
   cursor: pointer;
+  text-align: center;
 }
 .errors-list {
   text-align: left;
@@ -134,6 +135,21 @@ ul {
   }
   .clickable {
     color: $blue;
+  }
+  .modal-close {
+    color: $black;
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    button:first-child {
+      width: 40%;
+      margin-right: 4%;
+      font-size: 15px;
+    }
+    button:nth-child(2) {
+      width: 56%;
+    }
   }
 }
 
