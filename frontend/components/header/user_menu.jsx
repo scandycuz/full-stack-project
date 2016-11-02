@@ -240,6 +240,7 @@ class UserMenu extends React.Component {
             </span>
             <ul id="auth-dropdown" className="dropdown-menu">
               <li className="clickable" onClick={logoutUser}>Log out</li>
+              <li className="clickable">My Profile</li>
             </ul>
           </li>
         </ul>

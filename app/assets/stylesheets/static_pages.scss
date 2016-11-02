@@ -21,6 +21,10 @@ $light_grey: #eee;
   clear: both;
 }
 
+body {
+  margin-left: 0;
+  margin-right: 0;
+}
 body * {
   box-sizing: border-box;
 }
@@ -41,6 +45,9 @@ ul {
 
 .clickable {
   cursor: pointer;
+  &:hover {
+    color: $red;
+  }
 }
 .light-red {
   color: $light_red;
@@ -116,6 +123,20 @@ ul {
 }
 .signedIn-menu {
   padding-left: 0;
+}
+#auth-dropdown {
+  border: 1px solid $light_grey;
+  background: white;
+  margin-left: -14px;
+  margin-top: 8px;
+  width: 112%;
+  li {
+    border-bottom: 1px solid $light_grey;
+    padding: 0.65em 0.95em;
+    &:last-child {
+      border-bottom-width: 0px;
+    }
+  }
 }
 
 .ReactModal__Content {

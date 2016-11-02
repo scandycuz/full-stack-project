@@ -14,7 +14,7 @@ class Header extends React.Component {
         <div className="siteHeader-content-left">
           <h1>StartupGoGo</h1>
           <ul>
-            <li><a href="#">Explore</a></li>
+            <li><a className="clickable">Explore</a></li>
           </ul>
         </div>
         <div className="siteHeader-content-right">
