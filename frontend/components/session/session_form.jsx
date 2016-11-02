@@ -5,6 +5,8 @@ class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      first_name: "",
+      last_name: "",
       email: "",
       password: ""
     }
@@ -47,12 +49,42 @@ class SessionForm extends React.Component {
   render() {
     const buttonLabel = (this.props.formType === "login") ? "Login" : "Sign up";
 
-    const userForm = () => (
+    const signupForm = () => (
+      <form onSubmit={this.handleSubmit} className="login-form-box">
+        <label> First Name:
+          <input type="text"
+                 className="login-input"
+                 value={this.state.first_name}
+                 onChange={this.update("first_name")}/>
+        </label>
+        <label> Last Name:
+          <input type="text"
+                 className="login-input"
+                 value={this.state.last_name}
+                 onChange={this.update("last_name")}/>
+        </label>
+        <label> Email:
+          <input type="text"
+                 className="login-input"
+                 value={this.state.email}
+                 onChange={this.update("email")}/>
+        </label>
+        <label> Password:
+          <input type="password"
+                 className="login-input"
+                 value={this.state.password}
+                 onChange={this.update("password")} />
+        </label>
+        <button>{ buttonLabel }</button>
+      </form>
+    );
+
+    const loginForm = () => (
       <form onSubmit={this.handleSubmit} className="login-form-box">
         <label> Email:
           <input type="text"
                  className="login-input"
-                 value={this.state.username}
+                 value={this.state.email}
                  onChange={this.update("email")}/>
         </label>
         <label> Password:
@@ -69,7 +101,7 @@ class SessionForm extends React.Component {
       return (
         <div>
           <h4>Login or <Link to="/signup">Sign up</Link></h4>
-          {userForm()}
+          {loginForm()}
           {this.renderErrors()}
         </div>
       );
@@ -77,7 +109,7 @@ class SessionForm extends React.Component {
       return (
         <div>
           <h4>Sign up or <Link to="/login">Login</Link></h4>
-          {userForm()}
+          {signupForm()}
           {this.renderErrors()}
         </div>
       );

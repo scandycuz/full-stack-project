@@ -14,8 +14,6 @@ export const logout = () => ({
 });
 
 export const signup = user => {
-  console.log('signup action');
-  console.log(user);
   return({
     type: SIGNUP,
     user

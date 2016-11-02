@@ -47,3 +47,5 @@ group :production do
   gem 'newrelic_rpm'
   gem 'rails_12factor' # error feedback
 end
+
+gem 'font-awesome-sass', '~> 4.7.0'
