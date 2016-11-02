@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Header from './header';
-import { signup, login, logout } from '../../actions/session_actions';
+import { signup, login, logout, receiveErrors } from '../../actions/session_actions';
 
 const mapStateToProps = ({ session }) => ({
  session,
@@ -12,6 +12,7 @@ const mapStateToProps = ({ session }) => ({
 const mapDispatchToProps = dispatch => {
 
   return {
+    receiveErrors: (errors) => dispatch(receiveErrors(errors)),
     processForm: (type) => {
       const formType = (type === "login") ? login : signup;
       return (user) => {

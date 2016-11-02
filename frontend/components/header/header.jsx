@@ -24,6 +24,7 @@ class Header extends React.Component {
             logout={this.props.logout}
             currentUser={this.props.currentUser}
             loggedIn={this.props.loggedIn}
+            receiveErrors={this.props.receiveErrors}
             errors={this.props.errors} />
         </div>
       </header>

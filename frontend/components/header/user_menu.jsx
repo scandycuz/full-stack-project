@@ -1,6 +1,5 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { Link, withRouter } from 'react-router';
 
 class UserMenu extends React.Component {
   constructor(props) {
@@ -24,6 +23,21 @@ class UserMenu extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.closeModalOnLoggedIn = this.closeModalOnLoggedIn.bind(this);
+    this.toggleVisibility = this.toggleVisibility.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener("click", (e) => {
+      if (e.target.tagName != "SPAN") {
+        $('#auth-dropdown').hide();
+        $('.dropdown-parent i').css('visibility', 'visible');
+      }
+    })
+  }
+
+  componentDidUpdate() {
+    this.closeModalOnLoggedIn();
   }
 
   openSignupModal() {
@@ -37,11 +51,19 @@ class UserMenu extends React.Component {
   }
 
   setFormToSignup() {
+    this.props.receiveErrors([]);
     this.setState({formType: "signup"});
   }
 
   setFormToLogin() {
+    this.props.receiveErrors([]);
     this.setState({formType: "login"});
+  }
+
+  closeModalOnLoggedIn() {
+    if (this.props.loggedIn) {
+      closeModal();
+    }
   }
 
   openModal() {
@@ -70,7 +92,6 @@ class UserMenu extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.closeModal();
     const user = this.state;
     return this.props.processForm(this.state.formType)({user});
   }
@@ -145,8 +166,8 @@ class UserMenu extends React.Component {
           contentLabel="User Auth" >
 
           <p>Log in</p>
-          {loginForm()}
           {this.renderErrors()}
+          {loginForm()}
           <p>
             Already have an account?&nbsp;
             <span className="clickable" onClick={this.setFormToSignup}>Signup</span>
@@ -163,8 +184,8 @@ class UserMenu extends React.Component {
           contentLabel="User Auth" >
 
             <p>Sign up</p>
-            {signupForm()}
             {this.renderErrors()}
+            {signupForm()}
             <p>
               Already have an account?&nbsp;
               <span className="clickable" onClick={this.setFormToLogin}>Login</span>
@@ -174,18 +195,18 @@ class UserMenu extends React.Component {
     }
   }
 
-  toggleDropdown(e) {
-    const toggleVisibility = ($el) => {
-      let	visibility = $el.css('visibility');
-      if (visibility === 'visible') {
-        return $el.css('visibility', 'hidden');
-      } else {
-        return $el.css('visibility', 'visible');
-      }
+  toggleVisibility($el) {
+    let	visibility = $el.css('visibility');
+    if (visibility === 'visible') {
+      return $el.css('visibility', 'hidden');
+    } else {
+      return $el.css('visibility', 'visible');
     }
+  }
 
+  toggleDropdown(e) {
     let $targetEl = $(e.currentTarget);
-    toggleVisibility($targetEl.find("i"));
+    this.toggleVisibility($targetEl.find("i"));
     $targetEl.siblings("#auth-dropdown").toggle(0);
   }
 
