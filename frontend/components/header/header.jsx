@@ -1,6 +1,5 @@
 import React from 'react';
 import UserMenu from './user_menu';
-import Modal from 'react-modal';
 
 class Header extends React.Component {
   constructor(props) {
@@ -9,28 +8,23 @@ class Header extends React.Component {
   }
 
   render() {
-    const customStyles = {
-      content : {
-        top                   : '50%',
-        left                  : '50%',
-        right                 : 'auto',
-        bottom                : 'auto',
-        marginRight           : '-50%',
-        transform             : 'translate(-50%, -50%)'
-      }
-    };
-    
+
     return(
-      <header>
+      <header className="siteHeader">
         <div className="siteHeader-content-left">
           <h1>StartupGoGo</h1>
           <ul>
-            <li>Explore</li>
+            <li><a href="#">Explore</a></li>
           </ul>
         </div>
         <div className="siteHeader-content-right">
-          <a href="#" className="siteHeader-button">Create A Campaign</a>
-          <UserMenu currentUser={this.props.currentUser} />
+          <a href="#" className="siteHeader-button button">Start A Campaign</a>
+          <UserMenu
+            processForm={this.props.processForm}
+            logout={this.props.logout}
+            currentUser={this.props.currentUser}
+            loggedIn={this.props.loggedIn}
+            errors={this.props.errors} />
         </div>
       </header>
     )

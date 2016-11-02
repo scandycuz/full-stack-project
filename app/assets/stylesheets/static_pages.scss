@@ -2,21 +2,143 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// Variables
+
 $work-sans: "work sans", sans-serif;
 $open-sans: "open sans", sans-serif;
 
+$red: #ff383f;
+$light_red: lighten($red,4%);
+$black: #2a2a2a;
+$blue: #188ACC;
+$light_grey: #eee;
+
+// General
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+body * {
+  box-sizing: border-box;
+}
 h1, h2 {
   font-family: $work-sans;
   text-transform: uppercase;
-  color: #ff383f;
+  color: $red;
 }
 h1 {
   font-weight: 700;
 }
-h3, h4, h5, h6, li, button, label, input {
+h3, h4, h5, h6, p, li, button, label, input, a {
   font-family: $open-sans;
+}
+ul {
+  list-style: none;
 }
 
 .clickable {
   cursor: pointer;
 }
+.light-red {
+  color: $light_red;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  padding-left: 0;
+  li {
+    padding: 5px;
+    padding-left: 0;
+  }
+}
+.button {
+  background: $red;
+  color: white !important;
+  padding: 8px 15px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+  border-width: 0;
+  cursor: pointer;
+}
+
+// Header
+
+#siteHeader-container {
+  border-bottom: 1px solid $light_grey;
+  padding-bottom: 8px;
+}
+.siteHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1440px;
+  a, li {
+  color: #222;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1em;
+  }
+}
+.siteHeader-content-left {
+  display: flex;
+  align-items: center;
+}
+.siteHeader-content-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  i {
+    visibility: visible;
+  }
+  & > ul {
+    display: flex;
+    align-items: right;
+    & > li:last-child {
+      margin-left: 30px;
+    }
+  }
+}
+.signedIn-menu {
+  padding-left: 0;
+}
+
+.ReactModal__Content {
+  max-width: 300px;
+  text-align: right;
+  label {
+    text-align: left !important;
+    display: inline-block;
+  }
+  input {
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 4px;
+  }
+  p {
+    text-align: center;
+  }
+  .clickable {
+    color: $blue;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

@@ -11,7 +11,6 @@ const SessionMiddleware = ({ getState, dispatch }) => next => action => {
   const successCallback = user => dispatch(receiveCurrentUser(user));
   const errorCallback = xhr => dispatch(receiveErrors(xhr.responseJSON));
 
-  console.log('hit middleware');
   switch (action.type) {
     case LOGIN:
       login(action.user, successCallback, errorCallback);
