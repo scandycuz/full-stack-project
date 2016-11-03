@@ -1,10 +1,16 @@
 import React from 'react';
 import UserMenu from './user_menu';
+import { Router, Route, IndexRoute, hashHistory, withRouter } from 'react-router';
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
 
+    this.redirectHome = this.redirectHome.bind(this);
+  }
+
+  redirectHome() {
+    this.props.router.push("/");
   }
 
   render() {
@@ -12,7 +18,7 @@ class Header extends React.Component {
     return(
       <header className="siteHeader">
         <div className="siteHeader-content-left">
-          <h1>StartupGoGo</h1>
+          <h1 className="siteLogo" onClick={this.redirectHome}>StartupGoGo</h1>
           <ul>
             <li><a className="clickable">Explore</a></li>
           </ul>
@@ -33,4 +39,4 @@ class Header extends React.Component {
 
 }
 
-export default Header;
+export default withRouter(Header);
