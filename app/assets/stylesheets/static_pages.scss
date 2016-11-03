@@ -12,6 +12,7 @@ $light_red: lighten($red,4%);
 $black: #2a2a2a;
 $blue: #188ACC;
 $light_grey: #c4c4c4;
+$very_light_grey: #eee;
 
 $large_width: 1440px;
 $med_width: 1280px;
@@ -208,7 +209,12 @@ form {
     li {
       margin-right: 3em;
       color: white;
+      opacity: 0.65;
+      &.selected {
+        opacity: 1;
+      }
       &:hover {
+        opacity: 1;
         color: white;
       }
     }
@@ -237,6 +243,17 @@ form {
       }
     }
   }
+}
+
+// Edit Profile
+
+.editProfile-tab {
+  background-color: $very_light_grey;
+  padding: 1em;
+}
+.button-container {
+  width: 100%;
+  text-align: right;
 }
 
 // Media Queries

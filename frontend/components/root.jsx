@@ -9,6 +9,7 @@ import SessionFormContainer from './session/session_form_container';
 import ProfileContainer from './profile/profile_container';
 import ProfileCampaignsContainer from './profile_campaigns/profile_campaigns_container';
 import ProfileContributionsContainer from './profile_contributions/profile_contributions_container';
+import ProfileEditContainer from './profile_edit/profile_edit_container';
 
 const Root = ({ store }) => {
 
@@ -27,6 +28,7 @@ const Root = ({ store }) => {
           <Route path="/profile/:id" component={ProfileContainer}>
             <Route path="/profile/:id/campaigns" component={ProfileCampaignsContainer}/>
             <Route path="/profile/:id/contributions" component={ProfileContributionsContainer}/>
+            <Route path="/profile/:id/edit" component={ProfileEditContainer}/>
           </Route>
         </Route>
       </Router>

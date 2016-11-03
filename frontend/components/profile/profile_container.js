@@ -7,11 +7,13 @@ const mapStateToProps = ({ session }) => ({
 });
 
 const mapDispatchToProps = (dispatch, { location }) => {
-    let currentPathName = location.pathname.split("/").pop();
-    let currentPath = (["Campaigns", "Contributions", "Edit"].includes(currentPathName)) ? currentPathName : 'Profile';
 
     return ({
-      currentPath: currentPath,
+      currentPath: () => {
+        let path = location.pathname.split("/").pop();
+        return (["Campaigns", "Contributions", "Edit"].includes(path)) ? path : 'Profile';
+      },
+      
       receiveErrors: (errors) => dispatch(receiveErrors(errors)),
       logout: () => dispatch(logout())
     })

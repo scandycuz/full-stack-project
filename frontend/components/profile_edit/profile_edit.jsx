@@ -1,41 +1,62 @@
 import React from 'react';
 import { Router, Route, IndexRoute, hashHistory, withRouter } from 'react-router';
 
-class Header extends React.Component {
+class ProfileEdit extends React.Component {
   constructor(props) {
     super(props);
 
-    this.redirectHome = this.redirectHome.bind(this);
+    this.state = {
+      email: "",
+      first_name: "",
+      last_name: "",
+      country: "",
+      city: "",
+      postal_code: "",
+      description: "",
+      about: "",
+      photo_url: ""
+    }
   }
 
-  redirectHome() {
-    this.props.router.push("/");
+  update(property) {
+    return e => this.setState({[property]: e.target.value});
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.updateProfile(this.state);
+  }
+
+  errors() {
+    if (this.props.errors) {
+      return (
+        this.props.errors.map((error) => {
+          return (<li className="error" key={error}>{error}</li>);
+        })
+      );
+    }
   }
 
   render() {
 
     return(
-      <header className="siteHeader">
-        <div className="siteHeader-content-left">
-          <h1 className="siteLogo" onClick={this.redirectHome}>StartupGoGo</h1>
-          <ul>
-            <li><a className="clickable">Explore</a></li>
-          </ul>
-        </div>
-        <div className="siteHeader-content-right">
-          <a href="#" className="siteHeader-button button">Start A Campaign</a>
-          <UserMenu
-            processForm={this.props.processForm}
-            logout={this.props.logout}
-            currentUser={this.props.currentUser}
-            loggedIn={this.props.loggedIn}
-            receiveErrors={this.props.receiveErrors}
-            errors={this.props.errors} />
-        </div>
-      </header>
+      <div className="editProfile-tab">
+        <form className="editProfile-form">
+          <label>Profile image<br/>
+            <input type="file"
+              name="profileImageUrl"
+              accept="image/x-png, image/gif, image/jpeg"
+              value={this.state.photo_url}
+              onChange={this.update('photo_url')}/>
+          </label>
+          <div className="button-container">
+            <button>Save</button>
+          </div>
+        </form>
+      </div>
     )
   }
 
 }
 
-export default withRouter(Header);
+export default withRouter(ProfileEdit);

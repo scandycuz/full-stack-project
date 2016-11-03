@@ -6,16 +6,19 @@ class Profile extends React.Component {
     super(props);
 
     this.state = {
-      selectedTab: this.props.currentPath
+      selectedTab: this.props.currentPath()
     }
     this.getTabClass = this.getTabClass.bind(this);
     this.changeTab = this.changeTab.bind(this);
     this.renderTabList = this.renderTabList.bind(this);
     this.renderProfileTab = this.renderProfileTab.bind(this);
+    this.switchViewEdit = this.switchViewEdit.bind(this);
   }
 
-  getCurrentTabName() {
-    return $('.tabTitleList li.selected').innerHTML;
+  componentDidUpdate() {
+    if (this.props.currentPath() !== this.state.selectedTab) {
+      this.setState({selectedTab: this.props.currentPath() });
+    }
   }
 
   getTabClass(tabName) {
@@ -32,6 +35,16 @@ class Profile extends React.Component {
     this.setState({ selectedTab: tabName });
   }
 
+  switchViewEdit(e) {
+    let tabName = e.currentTarget.textContent.split(" ")[1];
+
+    if (tabName === "Edit") {
+      this.props.router.push(`/profile/${this.props.params.id}/Edit`);
+    } else {
+      this.props.router.push(`/profile/${this.props.params.id}`);
+    }
+  }
+
   renderTabList() {
     const profileTabs = [
       "Profile",
@@ -39,7 +52,9 @@ class Profile extends React.Component {
       "Contributions"
     ]
 
-    if (this.props.currentPath !== "Edit") {
+    let currentPath = this.props.currentPath();
+
+    if (currentPath !== "Edit") {
       return(
         <ul className="tabTitleList">
           {profileTabs.map( (tabName, idx) => (
@@ -47,11 +62,19 @@ class Profile extends React.Component {
           ))}
         </ul>
       )
+    } else {
+      return(
+        <ul className="tabTitleList">
+          <li className="clickable selected">Edit</li>
+        </ul>
+      )
     }
   }
 
   renderProfileTab() {
-    if (this.props.currentPath === "Profile") {
+    let currentPath = this.props.currentPath();
+
+    if (currentPath === "Profile") {
       return (
         <p>Image goes here</p>
       )
@@ -67,8 +90,8 @@ class Profile extends React.Component {
         <div className="profile-bar-container">
           <div className="profile-bar">
             <ul>
-              <li className="clickable"><i className="fa fa-eye" aria-hidden="true"></i> View Profile</li>
-              <li className="clickable"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</li>
+              <li className={this.getTabClass('Profile')} onClick={this.switchViewEdit}><i className="fa fa-eye" aria-hidden="true"></i> View Profile</li>
+              <li className={this.getTabClass('Edit')} onClick={this.switchViewEdit}><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</li>
             </ul>
           </div>
         </div>
