@@ -5,13 +5,13 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log(this.props.currentPath);
-
     this.state = {
       selectedTab: this.props.currentPath
     }
     this.getTabClass = this.getTabClass.bind(this);
     this.changeTab = this.changeTab.bind(this);
+    this.renderTabList = this.renderTabList.bind(this);
+    this.renderProfileTab = this.renderProfileTab.bind(this);
   }
 
   getCurrentTabName() {
@@ -32,13 +32,33 @@ class Profile extends React.Component {
     this.setState({ selectedTab: tabName });
   }
 
-  render() {
-
+  renderTabList() {
     const profileTabs = [
       "Profile",
       "Campaigns",
       "Contributions"
     ]
+
+    if (this.props.currentPath !== "Edit") {
+      return(
+        <ul className="tabTitleList">
+          {profileTabs.map( (tabName, idx) => (
+            <li key={idx} className={this.getTabClass(tabName)} onClick={this.changeTab}>{tabName}</li>
+          ))}
+        </ul>
+      )
+    }
+  }
+
+  renderProfileTab() {
+    if (this.props.currentPath === "Profile") {
+      return (
+        <p>Image goes here</p>
+      )
+    }
+  }
+
+  render() {
 
     const children = this.props.children;
 
@@ -54,12 +74,9 @@ class Profile extends React.Component {
         </div>
         <div className="profile-content">
           <h2>{this.props.currentUser.first_name} {this.props.currentUser.last_name}</h2>
-          <ul className="tabTitleList">
-            {profileTabs.map( (tabName, idx) => (
-              <li key={idx} className={this.getTabClass(tabName)} onClick={this.changeTab}>{tabName}</li>
-            ))}
-          </ul>
+          {this.renderTabList()}
           <div className="profile-tab-content">
+            {this.renderProfileTab()}
             {children}
           </div>
         </div>
