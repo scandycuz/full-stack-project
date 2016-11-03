@@ -88,7 +88,7 @@ class UserMenu extends React.Component {
 		});
   }
 
-  renderErrors() {
+  renderErrors () {
     return(
       <ul className="errors-list">
         {this.props.errors.map((error, index) => (
