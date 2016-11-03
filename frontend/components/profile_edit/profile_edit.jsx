@@ -6,6 +6,7 @@ class ProfileEdit extends React.Component {
     super(props);
 
     this.state = {
+      id: this.props.params.id,
       email: "",
       first_name: "",
       last_name: "",
@@ -16,7 +17,14 @@ class ProfileEdit extends React.Component {
       about: "",
       photo_url: ""
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  // componentDidUpdate() {
+  //   console.log(this.state);
+  //   console.log($("#profile-image-input").val());
+  // }
 
   update(property) {
     return e => this.setState({[property]: e.target.value});
@@ -24,7 +32,13 @@ class ProfileEdit extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.updateProfile(this.state);
+
+    if (this.state.photo_url !== "") {
+      console.log(this.state);
+      this.props.updateProfileWithImage(this.state);
+    } else {
+      this.props.updateProfile(this.state);
+    }
   }
 
   errors() {
@@ -41,12 +55,23 @@ class ProfileEdit extends React.Component {
 
     return(
       <div className="editProfile-tab">
-        <form className="editProfile-form">
+        <form className="editProfile-form" onSubmit={this.handleSubmit}>
+          <label>First Name<br/>
+            <input
+              type="text"
+              value={this.state.first_name}
+              onChange={this.update('first_name')}/>
+          </label><br/>
+          <label>Last Name<br/>
+            <input
+              type="text"
+              value={this.state.last_name}
+              onChange={this.update('last_name')}/>
+          </label><br/>
           <label>Profile image<br/>
-            <input type="file"
-              name="profileImageUrl"
+            <input
+              type="file"
               accept="image/x-png, image/gif, image/jpeg"
-              value={this.state.photo_url}
               onChange={this.update('photo_url')}/>
           </label>
           <div className="button-container">

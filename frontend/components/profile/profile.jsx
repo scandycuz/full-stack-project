@@ -88,14 +88,14 @@ class Profile extends React.Component {
     return(
       <div className="profile">
         <div className="profile-bar-container">
-          <div className="profile-bar">
+          <div className="profile-bar container">
             <ul>
               <li className={this.getTabClass('Profile')} onClick={this.switchViewEdit}><i className="fa fa-eye" aria-hidden="true"></i> View Profile</li>
               <li className={this.getTabClass('Edit')} onClick={this.switchViewEdit}><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</li>
             </ul>
           </div>
         </div>
-        <div className="profile-content">
+        <div className="profile-content container">
           <h2>{this.props.currentUser.first_name} {this.props.currentUser.last_name}</h2>
           {this.renderTabList()}
           <div className="profile-tab-content">

@@ -1,9 +1,8 @@
-export const editProfile = (user, success, error) => {
+export const patchProfile = (profile, success) => {
   $.ajax({
-    url: `api/user/${user.id}`,
-    type: 'PATCH',
-    data: user,
-    success,
-    error
+    url: `api/profiles/${profile.id}`,
+    type: 'POST',
+    data: profile,
+    success
   })
 }

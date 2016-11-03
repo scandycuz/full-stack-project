@@ -1,9 +1,8 @@
-export const uploadImage = (image, success, error) => {
+export const uploadPhoto = (image, success) => {
   $.ajax({
-    url: `api/user/${user.id}`,
-    type: 'PATCH',
-    data: user,
-    success,
-    error
+    url: `/api/images`,
+    type: 'POST',
+    data: {photo_url: image},
+    success
   })
 }

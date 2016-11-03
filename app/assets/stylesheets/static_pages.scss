@@ -56,6 +56,11 @@ form {
   }
 }
 
+.container {
+  max-width: $med_width;
+  padding: 0 30px;
+}
+
 .clickable {
   cursor: pointer;
   &:hover {
@@ -200,7 +205,6 @@ form {
   display: flex;
   justify-content: space-between;
   align-items: left;
-  max-width: $med_width;
   margin: 0 auto;
   ul {
     display: flex;
@@ -221,7 +225,6 @@ form {
   }
 }
 .profile-content {
-  max-width: $med_width;
   margin: 0 auto;
   h2 {
     color: $black;
@@ -232,7 +235,7 @@ form {
     display: flex;
     align-items: left;
     border-bottom: 1px solid $light_grey;
-    padding-left: 4px;
+    padding-left: 0;
     li {
       margin-right: 2em;
       padding-bottom: 10px;
@@ -261,11 +264,9 @@ form {
 @media (max-width: 1340px) {
   $med_width: 1002px;
 
-  .profile-content {
+  .container {
     max-width: $med_width;
-  }
-  .profile-bar {
-    max-width: $med_width;
+    padding: 0 0;
   }
 }
 
