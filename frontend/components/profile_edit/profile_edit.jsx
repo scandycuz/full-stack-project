@@ -21,10 +21,9 @@ class ProfileEdit extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // componentDidUpdate() {
-  //   console.log(this.state);
-  //   console.log($("#profile-image-input").val());
-  // }
+  componentDidMount() {
+    $("#uploadProfileImage").unsigned_cloudinary_upload("startupgogo_profile",{ cloud_name: 'dhh1nask4' });
+  }
 
   update(property) {
     return e => this.setState({[property]: e.target.value});
@@ -34,7 +33,6 @@ class ProfileEdit extends React.Component {
     e.preventDefault();
 
     if (this.state.photo_url !== "") {
-      console.log(this.state);
       this.props.updateProfileWithImage(this.state);
     } else {
       this.props.updateProfile(this.state);
@@ -55,7 +53,10 @@ class ProfileEdit extends React.Component {
 
     return(
       <div className="editProfile-tab">
-        <form className="editProfile-form" onSubmit={this.handleSubmit}>
+
+
+        <form className="editProfile-form">
+
           <label>First Name<br/>
             <input
               type="text"
@@ -69,10 +70,7 @@ class ProfileEdit extends React.Component {
               onChange={this.update('last_name')}/>
           </label><br/>
           <label>Profile image<br/>
-            <input
-              type="file"
-              accept="image/x-png, image/gif, image/jpeg"
-              onChange={this.update('photo_url')}/>
+            <input id="uploadProfileImage" type="file" name="file"/>
           </label>
           <div className="button-container">
             <button>Save</button>
