@@ -6,6 +6,9 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import App from './app';
 import HomeContainer from './home/home_container';
 import SessionFormContainer from './session/session_form_container';
+import ProfileContainer from './profile/profile_container';
+import ProfileCampaignsContainer from './profile_campaigns/profile_campaigns_container';
+import ProfileContributionsContainer from './profile_contributions/profile_contributions_container';
 
 const Root = ({ store }) => {
 
@@ -21,8 +24,10 @@ const Root = ({ store }) => {
     <Provider store={store}>
       <Router history={hashHistory}>
         <Route path="/" component={App}>
-          <Route path="/login" component={SessionFormContainer} />
-          <Route path="/signup" component={SessionFormContainer} />
+          <Route path="/profile/:id" component={ProfileContainer}>
+            <Route path="/profile/:id/campaigns" component={ProfileCampaignsContainer}/>
+            <Route path="/profile/:id/contributions" component={ProfileContributionsContainer}/>
+          </Route>
         </Route>
       </Router>
     </Provider>

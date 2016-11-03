@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import { Router, Route, IndexRoute, hashHistory, withRouter } from 'react-router';
 
 class UserMenu extends React.Component {
   constructor(props) {
@@ -25,6 +26,8 @@ class UserMenu extends React.Component {
     this.toggleDropdown = this.toggleDropdown.bind(this);
     this.toggleVisibility = this.toggleVisibility.bind(this);
     this.handleDemoSubmit = this.handleDemoSubmit.bind(this);
+    this.handleRouterLink = this.handleRouterLink.bind(this);
+    this.redirectIfLoggedOut = this.redirectIfLoggedOut.bind(this);
   }
 
   componentDidMount() {
@@ -34,11 +37,20 @@ class UserMenu extends React.Component {
         $('.dropdown-parent i').css('visibility', 'visible');
       }
     })
+
+    this.redirectIfLoggedOut();
   }
 
   componentDidUpdate() {
     if (this.props.loggedIn && this.state.modalIsOpen === true) {
       return this.closeModal();
+    }
+    this.redirectIfLoggedOut();
+  }
+
+  redirectIfLoggedOut() {
+    if (!this.props.loggedIn) {
+      this.props.router.replace('/');
     }
   }
 
@@ -224,6 +236,13 @@ class UserMenu extends React.Component {
     $targetEl.siblings("#auth-dropdown").toggle(0);
   }
 
+  handleRouterLink(url) {
+    return (e) => {
+      e.preventDefault;
+      this.props.router.push(url);
+    }
+  }
+
   render() {
     let currentUser = this.props.currentUser;
 
@@ -239,8 +258,8 @@ class UserMenu extends React.Component {
               <i className="fa fa-chevron-down clickable" aria-hidden="true"></i>
             </span>
             <ul id="auth-dropdown" className="dropdown-menu">
-              <li className="clickable" onClick={logoutUser}>Log out</li>
-              <li className="clickable">My Profile</li>
+              <li className="clickable" onClick={ logoutUser }>Log out</li>
+              <li className="clickable" onClick={this.handleRouterLink(`profile/${this.props.currentUser.id}`)}>My Profile</li>
             </ul>
           </li>
         </ul>
@@ -258,4 +277,4 @@ class UserMenu extends React.Component {
 
 }
 
-export default UserMenu;
+export default withRouter(UserMenu);
