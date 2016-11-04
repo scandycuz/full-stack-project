@@ -22,7 +22,11 @@ class ProfileEdit extends React.Component {
   }
 
   componentDidMount() {
-    $("#uploadProfileImage").unsigned_cloudinary_upload("startupgogo_profile",{ cloud_name: 'dhh1nask4' });
+    $("#uploadProfileImage").unsigned_cloudinary_upload(
+      "startupgogo_profile",{ cloud_name: 'dhh1nask4' }
+    ).bind('cloudinarydone', (e, data) => {
+      this.setState({ photo_url: data.result.url });
+    });
   }
 
   update(property) {
@@ -39,6 +43,11 @@ class ProfileEdit extends React.Component {
     }
   }
 
+  uploadButtonClick(e) {
+    e.preventDefault();
+    document.getElementById('uploadProfileImage').click();
+  }
+
   errors() {
     if (this.props.errors) {
       return (
@@ -51,32 +60,100 @@ class ProfileEdit extends React.Component {
 
   render() {
 
+    const profileImage = () => {
+      if (this.state.photo_url !== "") {
+        return(
+          <img className="profile-image" src={this.state.photo_url} />
+        )
+      } else {
+        return (
+          <div className="blank-image blank"></div>
+        )
+      }
+    }
+
     return(
-      <div className="editProfile-tab">
-
-
-        <form className="editProfile-form">
-
-          <label>First Name<br/>
-            <input
-              type="text"
-              value={this.state.first_name}
-              onChange={this.update('first_name')}/>
-          </label><br/>
-          <label>Last Name<br/>
-            <input
-              type="text"
-              value={this.state.last_name}
-              onChange={this.update('last_name')}/>
-          </label><br/>
-          <label>Profile image<br/>
-            <input id="uploadProfileImage" type="file" name="file"/>
-          </label>
-          <div className="button-container">
-            <button>Save</button>
+      <form className="editProfile-form group" >
+        <div className="editProfile-tab group">
+          <h3>Basic Info</h3>
+          <div className="grid-6 alpha">
+            <label>First Name<br/>
+              <input
+                type="text"
+                value={this.state.first_name}
+                onChange={this.update('first_name')}/>
+            </label>
           </div>
-        </form>
+          <div className="grid-6 omega">
+            <label>Last Name<br/>
+              <input
+                type="text"
+                value={this.state.last_name}
+                onChange={this.update('last_name')}/>
+            </label>
+          </div>
+          <div className="grid-6 alpha">
+            <label>Email<br/>
+              <input
+                type="text"
+                value={this.state.email}
+                onChange={this.update('email')}/>
+            </label>
+          </div>
+          <div className="grid-6 omega">
+            <label>Country<br/>
+              <input
+                type="text"
+                value={this.state.country}
+                onChange={this.update('country')}/>
+            </label>
+          </div>
+          <div className="grid-6 alpha">
+            <label>City<br/>
+              <input
+                type="text"
+                value={this.state.city}
+                onChange={this.update('city')}/>
+            </label>
+          </div>
+          <div className="grid-6 omega">
+            <label>Postal Code<br/>
+              <input
+                type="text"
+                value={this.state.postal_code}
+                onChange={this.update('postal_code')}/>
+            </label>
+          </div>
       </div>
+
+      <div className="editProfile-tab group">
+          <h3>The Nitty Gritty</h3>
+          <div className="grid-12 alphaomega">
+            <label>Description<br/>
+              <input
+                type="text"
+                value={this.state.description}
+                onChange={this.update('description')}/>
+            </label>
+          </div>
+          <div className="grid-12 alphaomega">
+            <label>About Me<br/>
+              <textarea onChange={this.update('about')} value={this.state.description}>
+              </textarea>
+            </label>
+          </div>
+          <div className="grid-12 alphaomega">
+            <label>Profile image<br/>
+              { profileImage() }
+              <br/><span id="fake-upload-button" className="button" onclick={this.handleImageClick}>Upload Image</span>
+              <input id="uploadProfileImage" type="file" name="file" onChange={this.handleFormChange}/>
+            </label>
+          </div>
+        </div>
+        <div className="button-container">
+          <button className="button">Save</button>
+        </div>
+      </form>
     )
   }
 

@@ -4,6 +4,10 @@
 
 // Variables
 
+.progress_bar {
+  background: green;
+}
+
 $work-sans: "work sans", sans-serif;
 $open-sans: "open sans", sans-serif;
 
@@ -12,7 +16,8 @@ $light_red: lighten($red,4%);
 $black: #2a2a2a;
 $blue: #188ACC;
 $light_grey: #c4c4c4;
-$very_light_grey: #eee;
+$very_light_grey: #f4f4f4;
+$med_grey: #dbdbdb;
 
 $large_width: 1440px;
 $med_width: 1280px;
@@ -53,6 +58,9 @@ form {
   }
   input {
     border: 1px solid $light_grey;
+  }
+  input[type="file"] {
+    border: none;
   }
 }
 
@@ -195,6 +203,16 @@ form {
   }
 }
 
+// Site Content
+
+.siteBody-container {
+  h3 {
+    font-size: 21px;
+    font-family: $open-sans;
+    margin-top: 12px;
+  }
+}
+
 // Profile
 
 .profile-bar-container {
@@ -214,6 +232,7 @@ form {
       margin-right: 3em;
       color: white;
       opacity: 0.65;
+      font-weight: 600;
       &.selected {
         opacity: 1;
       }
@@ -241,6 +260,7 @@ form {
       padding-bottom: 10px;
       padding-left: 5px;
       padding-right: 5px;
+      font-weight: 600;
       &.selected {
         border-bottom: 3px solid $red;
       }
@@ -253,10 +273,60 @@ form {
 .editProfile-tab {
   background-color: $very_light_grey;
   padding: 1em;
+  margin-bottom: 1em;
+  margin-top: 2em;
 }
 .button-container {
   width: 100%;
   text-align: right;
+}
+.blank {
+  background: $med_grey;
+}
+.blank-image {
+  width: 460px;
+  height: 285px;
+}
+.profile-tab-content {
+  .profile-image, .blank-image {
+    width: 460px;
+    height: 285px;
+    display: block;
+    margin-top: 2px;
+    display: inline-block;
+  }
+}
+.editProfile-form {
+  input, label {
+    width: 100%;
+  }
+  input, textarea {
+    padding: 8px 14px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+  }
+  textarea {
+    width: 100%;
+    margin-bottom: 1.6em;
+    height: 18em;
+  }
+  #fake-upload-button {
+    display: inline-block;
+    float: left;
+    margin-top: 6px;
+  }
+  #uploadProfileImage {
+    position: absolute;
+    visibility: hidden;
+    z-index: -999;
+  }
+  .button {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+.editProfile-form {
+  margin-bottom: 2em;
 }
 
 // Media Queries
