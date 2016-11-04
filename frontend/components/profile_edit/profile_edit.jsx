@@ -29,6 +29,10 @@ class ProfileEdit extends React.Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState(nextProps.profile);
+  }
+
   update(property) {
     return e => this.setState({[property]: e.target.value});
   }
@@ -36,11 +40,7 @@ class ProfileEdit extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    if (this.state.photo_url !== "") {
-      this.props.updateProfileWithImage(this.state);
-    } else {
-      this.props.updateProfile(this.state);
-    }
+    this.props.updateProfile({profile: this.state});
   }
 
   uploadButtonClick(e) {
@@ -61,7 +61,7 @@ class ProfileEdit extends React.Component {
   render() {
 
     const profileImage = () => {
-      if (this.state.photo_url !== "") {
+      if (this.state.photo_url !== "" && this.state.photo_url != null) {
         return(
           <img className="profile-image" src={this.state.photo_url} />
         )
@@ -73,7 +73,7 @@ class ProfileEdit extends React.Component {
     }
 
     return(
-      <form className="editProfile-form group" >
+      <form className="editProfile-form group" onSubmit={this.handleSubmit}>
         <div className="editProfile-tab group">
           <h3>Basic Info</h3>
           <div className="grid-6 alpha">
@@ -127,7 +127,7 @@ class ProfileEdit extends React.Component {
       </div>
 
       <div className="editProfile-tab group">
-          <h3>The Nitty Gritty</h3>
+          <h3>Details</h3>
           <div className="grid-12 alphaomega">
             <label>Description<br/>
               <input
@@ -138,7 +138,7 @@ class ProfileEdit extends React.Component {
           </div>
           <div className="grid-12 alphaomega">
             <label>About Me<br/>
-              <textarea onChange={this.update('about')} value={this.state.description}>
+              <textarea onChange={this.update('about')} value={this.state.about}>
               </textarea>
             </label>
           </div>

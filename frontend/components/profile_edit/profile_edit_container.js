@@ -1,19 +1,20 @@
 import { connect } from 'react-redux';
 import ProfileEdit from './profile_edit';
-import { updateProfile,
-         updateProfileWithImage } from '../../actions/profile_actions';
+import { updateProfile, requestSingleProfile } from '../../actions/profile_actions';
+import { fetchSingleProfile } from '../../util/profile_api_util';
 
-const mapStateToProps = () => {
+const mapStateToProps = ({ profile }, ownProps ) => {
   return ({
-    errors: []
+    profile: profile.profile,
+    errors: profile.errors
   })
 };
 
 const mapDispatchToProps = (dispatch, { location }) => {
 
   return({
-    updateProfileWithImage: profile => dispatch(updateProfileWithImage(profile)),
-    updateProfile: profile => dispatch(updateProfile(profile))
+    updateProfile: profile => dispatch(updateProfile(profile)),
+    requestSingleProfile: id => dispatch(requestSingleProfile(id))
   })
 };
 

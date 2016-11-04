@@ -45,7 +45,7 @@ h1, h2 {
 h1 {
   font-weight: 700;
 }
-h3, h4, h5, h6, p, li, button, label, input, a {
+h3, h4, h5, h6, p, li, button, label, input, a, textarea {
   font-family: $open-sans;
 }
 ul {
@@ -309,6 +309,7 @@ form {
     width: 100%;
     margin-bottom: 1.6em;
     height: 18em;
+    font-size: 15px;
   }
   #fake-upload-button {
     display: inline-block;

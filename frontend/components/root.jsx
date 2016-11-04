@@ -11,6 +11,8 @@ import ProfileCampaignsContainer from './profile_campaigns/profile_campaigns_con
 import ProfileContributionsContainer from './profile_contributions/profile_contributions_container';
 import ProfileEditContainer from './profile_edit/profile_edit_container';
 
+import { requestSingleProfile } from '../actions/profile_actions';
+
 const Root = ({ store }) => {
 
   const _redirectIfLoggedIn = (nextState, replace) => {
@@ -21,11 +23,15 @@ const Root = ({ store }) => {
     }
   }
 
+  const requestSingleProfileOnEnter = nextState => {
+		store.dispatch(requestSingleProfile(nextState.params.id));
+  };
+
   return (
     <Provider store={store}>
       <Router history={hashHistory}>
         <Route path="/" component={App}>
-          <Route path="/profile/:id" component={ProfileContainer}>
+          <Route path="/profile/:id" component={ProfileContainer} onEnter={requestSingleProfileOnEnter}>
             <Route path="/profile/:id/campaigns" component={ProfileCampaignsContainer}/>
             <Route path="/profile/:id/contributions" component={ProfileContributionsContainer}/>
             <Route path="/profile/:id/edit" component={ProfileEditContainer}/>
