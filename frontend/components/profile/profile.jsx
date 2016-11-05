@@ -88,7 +88,7 @@ class Profile extends React.Component {
           <div className="grid-4 alpha">
             <img className="small-profile-image" src={small_photo_url} />
           </div>
-          <div className="profile-info grid-8 omega">
+          <div className="profile-info grid-6 omega">
             <ul className="profile-statistics">
               <li><span className="stat-num">0</span> Campaigns</li>
               <li><span className="stat-num">0</span> Contributions</li>
