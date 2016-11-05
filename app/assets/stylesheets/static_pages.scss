@@ -17,7 +17,7 @@ $med_grey: #dbdbdb;
 
 $large_width: 1440px;
 $med_width: 1280px;
-$dark_grey: #555;
+$dark_grey: #444;
 
 // General
 
@@ -419,14 +419,15 @@ form {
 }
 #profile-content {
   padding-top: 2em;
-  padding-right: 2em;
+  padding-right: 4em;
   h3 {
     margin-top: 0.75em;
     font-size: 36px;
     font-weight: 500;
   }
   .profile-info {
-
+    padding-left: 1em;
+    padding-right: 12%;
   }
   .profile-statistics {
     display: flex;
@@ -444,7 +445,11 @@ form {
       font-size: 1.6em;
       margin-right: 6px;
       color: $black;
+      font-family: $work-sans;
     }
+  }
+  img {
+    max-width: 100%;
   }
 }
 

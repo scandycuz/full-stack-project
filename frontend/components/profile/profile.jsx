@@ -80,15 +80,16 @@ class Profile extends React.Component {
 
     if (currentPath === "Profile") {
       let small_photo_url = this.props.profile.small_photo_url;
+      let photo_url = this.props.profile.photo_url;
       let description = this.props.profile.description;
       let about = this.props.profile.about;
 
       return (
         <div id="profile-content" className="group">
-          <div className="grid-4 alpha">
-            <img className="small-profile-image" src={small_photo_url} />
+          <div className="grid-5 alpha">
+            <img src={photo_url} />
           </div>
-          <div className="profile-info grid-6 omega">
+          <div className="profile-info grid-7 omega">
             <ul className="profile-statistics">
               <li><span className="stat-num">0</span> Campaigns</li>
               <li><span className="stat-num">0</span> Contributions</li>

@@ -27,8 +27,7 @@ class ProfileEdit extends React.Component {
     $("#uploadProfileImage").unsigned_cloudinary_upload(
       "startupgogo_profile",{ cloud_name: 'dhh1nask4' }
     ).bind('cloudinarydone', (e, data) => {
-      $(e.target).prev().removeClass('loading');
-      console.log(data.result.eager[0].secure_url);
+      this.props.receivedImage();
       this.setState({ photo_url: data.result.url, small_photo_url: data.result.eager[0].secure_url });
     });
 
@@ -51,7 +50,7 @@ class ProfileEdit extends React.Component {
 
   handleImageClick(e) {
     e.preventDefault();
-    $(e.target).addClass('loading');
+    this.props.uploadImage();
 
     document.getElementById('uploadProfileImage').click();
   }
@@ -78,6 +77,14 @@ class ProfileEdit extends React.Component {
           <div className="blank-image blank"></div>
         )
       }
+    }
+
+    const buttonClass = () => {
+      return (this.props.loading) ? "button loading" : "button";
+    }
+
+    const buttonStatus = () => {
+      return (this.props.loading) ? "disabled" : "enabled";
     }
 
     const submitButtonClass = () => {
@@ -161,7 +168,7 @@ class ProfileEdit extends React.Component {
           <div className="grid-12 alphaomega">
             <label>Profile image<br/>
               { profileImage() }
-              <br/><span id="fake-upload-button" className="button image-button" onClick={this.handleImageClick}>Upload Image</span>
+              <br/><span id="fake-upload-button" className={`${buttonClass()} image-button`} disabled={buttonStatus()} onClick={this.handleImageClick}>Upload Image</span>
               <input id="uploadProfileImage" type="file" name="file" onChange={this.handleFormChange}/>
             </label>
           </div>
