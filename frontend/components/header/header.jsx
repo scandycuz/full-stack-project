@@ -30,7 +30,7 @@ class Header extends React.Component {
             logout={this.props.logout}
             currentUser={this.props.currentUser}
             loggedIn={this.props.loggedIn}
-            receiveErrors={this.props.receiveErrors}
+            receiveSessionErrors={this.props.receiveSessionErrors}
             errors={this.props.errors} />
         </div>
       </header>

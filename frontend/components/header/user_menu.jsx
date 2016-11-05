@@ -65,12 +65,12 @@ class UserMenu extends React.Component {
   }
 
   setFormToSignup() {
-    this.props.receiveErrors([]);
+    this.props.receiveSessionErrors([]);
     this.setState({formType: "signup"});
   }
 
   setFormToLogin() {
-    this.props.receiveErrors([]);
+    this.props.receiveSessionErrors([]);
     this.setState({formType: "login"});
   }
 
