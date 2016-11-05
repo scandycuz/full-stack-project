@@ -15,18 +15,24 @@ class ProfileEdit extends React.Component {
       postal_code: "",
       description: "",
       about: "",
-      photo_url: ""
+      photo_url: "",
+      small_photo_url: ""
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleImageClick = this.handleImageClick.bind(this);
   }
 
   componentDidMount() {
     $("#uploadProfileImage").unsigned_cloudinary_upload(
       "startupgogo_profile",{ cloud_name: 'dhh1nask4' }
     ).bind('cloudinarydone', (e, data) => {
-      this.setState({ photo_url: data.result.url });
+      $(e.target).prev().removeClass('loading');
+      console.log(data.result.eager[0].secure_url);
+      this.setState({ photo_url: data.result.url, small_photo_url: data.result.eager[0].secure_url });
     });
+
+    this.props.requestSingleProfile(this.props.params.id)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,8 +49,10 @@ class ProfileEdit extends React.Component {
     this.props.updateProfile({profile: this.state});
   }
 
-  uploadButtonClick(e) {
+  handleImageClick(e) {
     e.preventDefault();
+    $(e.target).addClass('loading');
+
     document.getElementById('uploadProfileImage').click();
   }
 
@@ -69,6 +77,14 @@ class ProfileEdit extends React.Component {
         return (
           <div className="blank-image blank"></div>
         )
+      }
+    }
+
+    const submitButtonClass = () => {
+      if (this.props.loading) {
+        return 'button loading'
+      } else {
+        return 'button';
       }
     }
 
@@ -145,13 +161,13 @@ class ProfileEdit extends React.Component {
           <div className="grid-12 alphaomega">
             <label>Profile image<br/>
               { profileImage() }
-              <br/><span id="fake-upload-button" className="button" onclick={this.handleImageClick}>Upload Image</span>
+              <br/><span id="fake-upload-button" className="button image-button" onClick={this.handleImageClick}>Upload Image</span>
               <input id="uploadProfileImage" type="file" name="file" onChange={this.handleFormChange}/>
             </label>
           </div>
         </div>
         <div className="button-container">
-          <button className="button">Save</button>
+          <button className={submitButtonClass()}>Save</button>
         </div>
       </form>
     )

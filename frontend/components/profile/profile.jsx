@@ -15,6 +15,10 @@ class Profile extends React.Component {
     this.switchViewEdit = this.switchViewEdit.bind(this);
   }
 
+  componentDidMount() {
+    this.props.requestSingleProfile(this.props.params.id)
+  }
+
   componentDidUpdate() {
     if (this.props.currentPath() !== this.state.selectedTab) {
       this.setState({selectedTab: this.props.currentPath() });
@@ -75,8 +79,24 @@ class Profile extends React.Component {
     let currentPath = this.props.currentPath();
 
     if (currentPath === "Profile") {
+      let small_photo_url = this.props.profile.small_photo_url;
+      let description = this.props.profile.description;
+      let about = this.props.profile.about;
+
       return (
-        <p>Image goes here</p>
+        <div id="profile-content" className="group">
+          <div className="grid-4 alpha">
+            <img className="small-profile-image" src={small_photo_url} />
+          </div>
+          <div className="profile-info grid-8 omega">
+            <ul className="profile-statistics">
+              <li><span className="stat-num">0</span> Campaigns</li>
+              <li><span className="stat-num">0</span> Contributions</li>
+            </ul>
+            <h3>{description}</h3>
+            <p>{about}</p>
+          </div>
+        </div>
       )
     }
   }
@@ -96,7 +116,7 @@ class Profile extends React.Component {
           </div>
         </div>
         <div className="profile-content container">
-          <h2>{this.props.currentUser.first_name} {this.props.currentUser.last_name}</h2>
+          <h2>{this.props.profile.first_name} {this.props.profile.last_name}</h2>
           {this.renderTabList()}
           <div className="profile-tab-content">
             {this.renderProfileTab()}

@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import Profile from './profile';
 
-const mapStateToProps = ({ session }) => ({
-  currentUser: session.currentUser,
-  loggedIn: Boolean(session.currentUser)
+import { requestSingleProfile } from '../../actions/profile_actions';
+
+const mapStateToProps = ({ profile }) => ({
+  profile: profile.profile
 });
 
 const mapDispatchToProps = (dispatch, { location }) => {
@@ -13,9 +14,7 @@ const mapDispatchToProps = (dispatch, { location }) => {
         let path = location.pathname.split("/").pop();
         return (["Campaigns", "Contributions", "Edit"].includes(path)) ? path : 'Profile';
       },
-      
-      receiveErrors: (errors) => dispatch(receiveErrors(errors)),
-      logout: () => dispatch(logout())
+      requestSingleProfile: id => dispatch(requestSingleProfile(id))
     })
 };
 
