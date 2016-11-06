@@ -10,6 +10,9 @@ import ProfileContainer from './profile/profile_container';
 import ProfileCampaignsContainer from './profile_campaigns/profile_campaigns_container';
 import ProfileContributionsContainer from './profile_contributions/profile_contributions_container';
 import ProfileEditContainer from './profile_edit/profile_edit_container';
+import CampaignContainer from './campaign/campaign_container';
+import CampaignShowContainer from './campaign_show/campaign_show_container';
+import CampaignEditContainer from './campaign_edit/campaign_edit_container';
 
 import { requestSingleProfile } from '../actions/profile_actions';
 
@@ -31,6 +34,10 @@ const Root = ({ store }) => {
             <Route path="/profile/:id/campaigns" component={ProfileCampaignsContainer}/>
             <Route path="/profile/:id/contributions" component={ProfileContributionsContainer}/>
             <Route path="/profile/:id/edit" component={ProfileEditContainer}/>
+          </Route>
+          <Route path="/campaigns/:id" component={CampaignContainer}>
+            <IndexRoute component={CampaignShowContainer}/>
+            <Route path="/profile/:id/edit" component={CampaignEditContainer}/>
           </Route>
         </Route>
       </Router>
