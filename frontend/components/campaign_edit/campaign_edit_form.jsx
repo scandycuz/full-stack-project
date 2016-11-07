@@ -10,6 +10,9 @@ class CampaignEditForm extends React.Component {
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.formSection = this.formSection.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSave = this.handleSave.bind(this);
+    this.saveCampaign = this.saveCampaign.bind(this);
   }
 
   componentDidMount() {
@@ -23,12 +26,23 @@ class CampaignEditForm extends React.Component {
     });
   }
 
-  componentDidUpdate() {
-    console.log(this.state);
-  }
-
   componentWillReceiveProps(nextProps) {
-    this.setState(nextProps.campaign);
+    this.setState(
+
+      nextProps.campaign, () => {
+        let endDate = this.state.duration;
+
+        if (endDate) {
+          let endDateArray = endDate.split("/");
+          let endDateTimestamp = endDateArray[1]+","+endDateArray[0]+","+endDateArray[2];
+          endDateTimestamp = new Date(endDateTimestamp).getTime();
+          let durationLeft = endDateTimestamp - new Date();
+          let durationDays =  Math.ceil(durationLeft / (86400000));
+          this.setState({ duration: durationDays });
+        }
+      }
+    );
+
   }
 
   update(property) {
@@ -36,12 +50,31 @@ class CampaignEditForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
 
-    this.props.updateProfile({campaign: this.state});
+  }
+
+  handleSave(e) {
+    e.preventDefault();
+    let duration = parseInt(this.state.duration);
+    let currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + duration);
+    let  dd = currentDate.getDate();
+    let mm = currentDate.getMonth() + 1;
+    let y = currentDate.getFullYear();
+    let formattedDate = `${dd}/${mm}/${y}`;
+
+    this.setState(
+      { duration: formattedDate },
+      this.saveCampaign(this.state)
+    );
+  }
+
+  saveCampaign(state) {
+    this.props.updateCampaign({ campaign: this.state });
   }
 
   formSection(currentPath) {
+
     if (currentPath === "basics") {
 
       const thumbnailImage = () => {
@@ -65,7 +98,7 @@ class CampaignEditForm extends React.Component {
       }
 
       return(
-        <div class="form-section">
+        <div className="form-section">
           <h4>Basics</h4>
           <label>Campaign Title<br/>
             <span className="form-sub-title">What is the title of your startup pitch?</span><br/>
@@ -87,34 +120,51 @@ class CampaignEditForm extends React.Component {
               value={this.state.tagline}
               onChange={this.update('tagline')}/>
           </label><br/>
-          <label>Thumbnail image<br/>
-            { thumbnailImage() }<br />
+        <label>Campaign Thumbnail image<br/>
+            <span className="form-sub-title">Upload a square image to represent your campaign.</span><br/>
+            { thumbnailImage() }<br/>
             <span id="fake-upload-button"
               className={`${buttonClass()} image-button`}
               disabled={buttonStatus()}
               onClick={this.handleImageClick}>Upload Image</span>
             <input id="uploadThumbnailImage"
               type="file"
-              name="file"/>
+              name="file"/><br/>
           </label>
+          <label>Location<br/>
+            <span className="form-sub-title">Where will your startup be based?</span><br/>
+            <input type="text"
+              value={this.state.location}
+              onChange={this.update('location')}/>
+          </label><br/>
+          <label>Duration<br/>
+            <span className="form-sub-title">How many days would you like to run your campaign for?</span><br/>
+            <input type="text"
+              className="campaign-duration-input"
+              value={this.state.duration}
+              onChange={this.update('duration')}/>
+          </label><br/>
+          <div className="form-button-container">
+            <span className="clickable button" onClick={this.handleSave}>Save & Continue</span>
+          </div>
         </div>
       )
     } else if (currentPath === "story") {
-      <h4>Story</h4>
+      return (
+        <h4>Story</h4>
+      )
     }
   }
 
   render() {
-    const currentPath = this.props.currentPath();
 
     return(
       <div className="campaign-edit-form-container container">
         <form onSubmit={this.handleSubmit}>
-          {this.formSection(currentPath)}
+          {this.formSection(this.props.currentPath())}
         </form>
       </div>
     )
-
   }
 }
 

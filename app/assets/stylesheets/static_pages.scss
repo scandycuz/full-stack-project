@@ -484,16 +484,6 @@ input[type="text"] {
     height: 18em;
     font-size: 15px;
   }
-  #fake-upload-button {
-    display: inline-block;
-    float: left;
-    margin-top: 6px;
-  }
-  #uploadProfileImage {
-    position: absolute;
-    visibility: hidden;
-    z-index: -999;
-  }
   .button {
     font-size: 16px;
     font-weight: 600;
@@ -501,6 +491,20 @@ input[type="text"] {
 }
 .editProfile-form {
   margin-bottom: 2em;
+}
+.thumbnail-image {
+  width: 400px;
+  height: 400px;
+}
+#fake-upload-button {
+  display: inline-block;
+  float: none;
+  margin-top: 6px;
+}
+#uploadProfileImage, #uploadThumbnailImage {
+  position: absolute;
+  visibility: hidden;
+  z-index: -999;
 }
 
 // View Profile
@@ -679,6 +683,11 @@ input[type="text"] {
     font-weight: 500;
     margin-top: 0.5em;
   }
+  .button {
+    font-size: 17px;
+    font-weight: 600;
+    font-family: $open-sans;
+  }
   label {
     font-size: 18px;
     .form-sub-title {
@@ -689,20 +698,44 @@ input[type="text"] {
       display: inline-block;
     }
     input[type="text"] {
-      width: 50%;
+      width: 55%;
       padding-left: 12px;
       margin-bottom: 3em;
     }
   }
+  #fake-upload-button {
+    margin-bottom: 3em;
+  }
   .campaign-form-tagline {
-    width: 60% !important;
+    width: 70% !important;
+  }
+  .campaign-duration-input {
+    width: 4em !important;
+    margin-bottom: 0em;
   }
   .currency-symbol {
-    width: 50%;
+    width: 55%;
     input {
       margin-bottom: 0 !important;
     }
   }
+  .campaign-image, .blank-image {
+    width: 400px;
+    height: 400px;
+    display: block;
+    margin-top: 2px;
+    display: inline-block;
+  }
+}
+.form-section {
+  width: 80%;
+}
+.form-button-container {
+  border-top: 1px solid $light_grey;
+  padding: 2em 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 

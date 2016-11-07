@@ -15,8 +15,7 @@ const mapDispatchToProps = (dispatch, { location }) => {
     updateCampaign: campaign => dispatch(updateCampaign(campaign)),
     requestSingleCampaign: id => dispatch(requestSingleCampaign(id)),
     currentPath: () => {
-      let path = location.pathname.split("/").pop();
-      return path;
+      return location.pathname.split("/").pop();
     }
   })
 };
