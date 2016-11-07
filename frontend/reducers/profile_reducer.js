@@ -3,7 +3,19 @@ import { RECEIVE_SINGLE_PROFILE,
 import merge from 'lodash/merge';
 
 const _nullProfile = Object.freeze({
-  profile: {},
+  profile: {
+    user_id: "",
+    title: "",
+    tagline: "",
+    funds_received: 0,
+    goal_amount: 0,
+    card_image_url: "",
+    pitch_image_url: "",
+    campaign_overview: "",
+    campaign_pitch: "",
+    status: "draft",
+    campaigns: {}
+  },
   errors: []
 });
 
@@ -17,9 +29,7 @@ const ProfileReducer = (state = _nullProfile, action) => {
       return newState;
     case RECEIVE_PROFILE_ERRORS:
       const errors = action.errors;
-      return merge({}, _nullProfile, {
-        errors
-      });
+      return merge({}, _nullProfile, { errors });
     default:
       return state;
   }

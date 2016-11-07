@@ -8,6 +8,24 @@ class ProfileCampaigns extends React.Component {
     this.state = {
       currentPath: this.props.currentPath
     }
+
+    this.campaignList = this.campaignList.bind(this);
+  }
+
+  campaignList() {
+    let campaignsArray = [];
+    const campaigns = this.props.campaigns;
+    Object.keys(campaigns).forEach( (key) => {
+      campaignsArray.push(campaigns[key]);
+    })
+
+    return(
+      <ul>
+        {campaignsArray.map( (campaign, idx) => (
+          <li key={idx}>{campaign.title}</li>
+        ))}
+      </ul>
+    )
   }
 
   render() {
@@ -15,6 +33,7 @@ class ProfileCampaigns extends React.Component {
     return(
       <div>
         <h3>Campaigns</h3>
+        {this.campaignList()}
       </div>
     )
   }

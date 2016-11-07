@@ -23,6 +23,7 @@ class Profile extends React.Component {
     if (this.props.currentPath() !== this.state.selectedTab) {
       this.setState({selectedTab: this.props.currentPath() });
     }
+
   }
 
   getTabClass(tabName) {
@@ -30,20 +31,21 @@ class Profile extends React.Component {
   }
 
   changeTab(e) {
-    let tabName = e.target.innerHTML;
-    if (tabName === "Profile") {
+    let tabName = e.target.innerHTML.toLowerCase();
+    if (tabName === "profile") {
       this.props.router.push(`/profile/${this.props.params.id}`);
     } else {
       this.props.router.push(`/profile/${this.props.params.id}/${tabName}`);
     }
+
     this.setState({ selectedTab: tabName });
   }
 
   switchViewEdit(e) {
-    let tabName = e.currentTarget.textContent.split(" ")[1];
+    let tabName = e.currentTarget.textContent.split(" ")[1].toLowerCase();
 
-    if (tabName === "Edit") {
-      this.props.router.push(`/profile/${this.props.params.id}/Edit`);
+    if (tabName === "edit") {
+      this.props.router.push(`/profile/${this.props.params.id}/edit`);
     } else {
       this.props.router.push(`/profile/${this.props.params.id}`);
     }
@@ -58,11 +60,11 @@ class Profile extends React.Component {
 
     let currentPath = this.props.currentPath();
 
-    if (currentPath !== "Edit") {
+    if (currentPath !== "edit") {
       return(
         <ul className="tabTitleList">
           {profileTabs.map( (tabName, idx) => (
-            <li key={idx} className={this.getTabClass(tabName)} onClick={this.changeTab}>{tabName}</li>
+            <li key={idx} className={this.getTabClass(tabName.toLowerCase())} onClick={this.changeTab}>{tabName}</li>
           ))}
         </ul>
       )
@@ -78,7 +80,7 @@ class Profile extends React.Component {
   renderProfileTab() {
     let currentPath = this.props.currentPath();
 
-    if (currentPath === "Profile") {
+    if (currentPath === "profile") {
       let small_photo_url = this.props.profile.small_photo_url;
       let photo_url = this.props.profile.photo_url;
       let description = this.props.profile.description;
@@ -105,21 +107,22 @@ class Profile extends React.Component {
   render() {
 
     const children = this.props.children;
+    const profile = this.props.profile;
 
     return(
       <div className="profile">
-        <div className="profile-bar-container">
-          <div className="profile-bar container">
+        <div className="profile-bar-container bar-container">
+          <div className="profile-bar container bar">
             <ul>
-              <li className={this.getTabClass('Profile')} onClick={this.switchViewEdit}><i className="fa fa-eye" aria-hidden="true"></i> View Profile</li>
-              <li className={this.getTabClass('Edit')} onClick={this.switchViewEdit}><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</li>
+              <li className={this.getTabClass('profile')} onClick={this.switchViewEdit}><i className="fa fa-eye" aria-hidden="true"></i> View Profile</li>
+              <li className={this.getTabClass('edit')} onClick={this.switchViewEdit}><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</li>
             </ul>
           </div>
         </div>
-        <div className="profile-content container">
+        <div className="profile-content content container">
           <h2>{this.props.profile.first_name} {this.props.profile.last_name}</h2>
           {this.renderTabList()}
-          <div className="profile-tab-content">
+          <div className="profile-tab-content tab-content">
             {this.renderProfileTab()}
             {children}
           </div>

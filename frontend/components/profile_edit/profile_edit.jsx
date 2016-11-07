@@ -5,19 +5,7 @@ class ProfileEdit extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      id: this.props.params.id,
-      email: "",
-      first_name: "",
-      last_name: "",
-      country: "",
-      city: "",
-      postal_code: "",
-      description: "",
-      about: "",
-      photo_url: "",
-      small_photo_url: ""
-    }
+    this.state = this.props.profile;
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleImageClick = this.handleImageClick.bind(this);
@@ -27,8 +15,11 @@ class ProfileEdit extends React.Component {
     $("#uploadProfileImage").unsigned_cloudinary_upload(
       "startupgogo_profile",{ cloud_name: 'dhh1nask4' }
     ).bind('cloudinarydone', (e, data) => {
-      this.props.receivedImage();
-      this.setState({ photo_url: data.result.url, small_photo_url: data.result.eager[0].secure_url });
+      // this.props.receiveImage();
+      this.setState({
+        photo_url: data.result.url,
+        small_photo_url: data.result.eager[0].secure_url
+      });
     });
 
     this.props.requestSingleProfile(this.props.params.id)
@@ -50,7 +41,7 @@ class ProfileEdit extends React.Component {
 
   handleImageClick(e) {
     e.preventDefault();
-    this.props.uploadImage();
+    // this.props.uploadImage();
 
     document.getElementById('uploadProfileImage').click();
   }
@@ -167,9 +158,14 @@ class ProfileEdit extends React.Component {
           </div>
           <div className="grid-12 alphaomega">
             <label>Profile image<br/>
-              { profileImage() }
-              <br/><span id="fake-upload-button" className={`${buttonClass()} image-button`} disabled={buttonStatus()} onClick={this.handleImageClick}>Upload Image</span>
-              <input id="uploadProfileImage" type="file" name="file" onChange={this.handleFormChange}/>
+              { profileImage() }<br />
+              <span id="fake-upload-button"
+                className={`${buttonClass()} image-button`}
+                disabled={buttonStatus()}
+                onClick={this.handleImageClick}>Upload Image</span>
+              <input id="uploadProfileImage"
+                type="file"
+                name="file"/>
             </label>
           </div>
         </div>

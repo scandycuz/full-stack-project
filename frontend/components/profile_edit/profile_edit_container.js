@@ -3,12 +3,12 @@ import ProfileEdit from './profile_edit';
 import { updateProfile,
          requestSingleProfile,
          uploadImage,
-         receivedImage } from '../../actions/profile_actions';
-import { fetchingleProfile } from '../../util/profile_api_util';
+         receiveImage } from '../../actions/profile_actions';
 
 const mapStateToProps = ({ profile, loading }, ownProps ) => {
   return ({
     profile: profile.profile,
+    campaigns: profile.profile.campaigns,
     errors: profile.errors,
     loading: loading
   })
@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch, { location }) => {
     updateProfile: profile => dispatch(updateProfile(profile)),
     requestSingleProfile: id => dispatch(requestSingleProfile(id)),
     uploadImage: () => dispatch(uploadImage()),
-    receivedImage: () => dispatch(receivedImage())
+    receiveImage: () => dispatch(receiveImage())
   })
 };
 

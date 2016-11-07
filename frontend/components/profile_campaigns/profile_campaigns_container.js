@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import ProfileCampaigns from './profile_campaigns';
 
-const mapStateToProps = ({session}) => {
+const mapStateToProps = ({ profile }) => {
   return ({
-
+    campaigns: profile.profile.campaigns
   })
 };
 

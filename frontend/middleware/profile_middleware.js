@@ -5,7 +5,6 @@ import { fetchSingleProfile,
          patchProfile } from "../util/profile_api_util.js";
 
 const ProfileMiddleware = ({ getState, dispatch }) => next => action => {
-  // const updateProfileSuccess = data => dispatch(receiveSingleProfile(data));
   const updateProfileSuccess = data => dispatch(receiveSingleProfile(data));
   const logSuccess = data => console.log(data);
 

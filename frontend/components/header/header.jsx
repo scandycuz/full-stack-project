@@ -24,7 +24,7 @@ class Header extends React.Component {
           </ul>
         </div>
         <div className="siteHeader-content-right">
-          <a href="#" className="siteHeader-button button">Pitch Your Startup</a>
+          <a href="#" className="siteHeader-button button">Pitch A Startup</a>
           <UserMenu
             processForm={this.props.processForm}
             logout={this.props.logout}

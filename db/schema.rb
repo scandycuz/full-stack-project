@@ -11,25 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161105232754) do
+ActiveRecord::Schema.define(version: 20161106204954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "campaigns", force: :cascade do |t|
-    t.integer  "user_id",                           null: false
-    t.string   "title",                             null: false
+    t.integer  "user_id",                             null: false
+    t.string   "title",                               null: false
     t.string   "tagline"
     t.integer  "funds_received"
-    t.integer  "goal_amount",                       null: false
+    t.integer  "goal_amount",                         null: false
     t.string   "card_image_url"
     t.string   "pitch_image_url"
     t.string   "pitch_video_url"
     t.text     "campaign_overview"
     t.text     "campaign_pitch"
-    t.boolean  "published",                         default: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "status",            default: "draft"
   end
 
   add_index "campaigns", ["title"], name: "index_campaigns_on_title", using: :btree

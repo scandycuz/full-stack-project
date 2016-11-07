@@ -2,6 +2,7 @@ class Api::ProfilesController < ApplicationController
 
   def show
     @profile = User.find(params[:id])
+    @campaigns = @profile.campaigns
 
     if @profile
       render :show
