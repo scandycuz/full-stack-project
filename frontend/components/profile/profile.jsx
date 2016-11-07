@@ -8,7 +8,7 @@ class Profile extends React.Component {
     this.state = {
       selectedTab: this.props.currentPath()
     }
-    this.getTabClass = this.getTabClass.bind(this);
+    this.tabClass = this.tabClass.bind(this);
     this.changeTab = this.changeTab.bind(this);
     this.renderTabList = this.renderTabList.bind(this);
     this.renderProfileTab = this.renderProfileTab.bind(this);
@@ -23,15 +23,20 @@ class Profile extends React.Component {
     if (this.props.currentPath() !== this.state.selectedTab) {
       this.setState({selectedTab: this.props.currentPath() });
     }
-
   }
 
-  getTabClass(tabName) {
-    return (tabName === this.state.selectedTab) ? "clickable selected" : "clickable";
+  tabClass(tabName) {
+    let currentTabName = tabName.toLowerCase();
+    if (currentTabName === "view") {
+      return (["profile", "campaigns", "contributions"].includes(this.state.selectedTab)) ? "clickable selected" : "clickable";
+    } else {
+      return (currentTabName === this.state.selectedTab) ? "clickable selected" : "clickable";
+    }
   }
 
   changeTab(e) {
     let tabName = e.target.innerHTML.toLowerCase();
+
     if (tabName === "profile") {
       this.props.router.push(`/profile/${this.props.params.id}`);
     } else {
@@ -64,7 +69,9 @@ class Profile extends React.Component {
       return(
         <ul className="tabTitleList">
           {profileTabs.map( (tabName, idx) => (
-            <li key={idx} className={this.getTabClass(tabName.toLowerCase())} onClick={this.changeTab}>{tabName}</li>
+            <li key={idx}
+              className={this.tabClass(tabName)}
+              onClick={this.changeTab}>{tabName}</li>
           ))}
         </ul>
       )
@@ -114,8 +121,8 @@ class Profile extends React.Component {
         <div className="profile-bar-container bar-container">
           <div className="profile-bar container bar">
             <ul>
-              <li className={this.getTabClass('profile')} onClick={this.switchViewEdit}><i className="fa fa-eye" aria-hidden="true"></i> View Profile</li>
-              <li className={this.getTabClass('edit')} onClick={this.switchViewEdit}><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</li>
+              <li className={this.tabClass('view')} onClick={this.switchViewEdit}><i className="fa fa-eye" aria-hidden="true"></i> View Profile</li>
+              <li className={this.tabClass('edit')} onClick={this.switchViewEdit}><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</li>
             </ul>
           </div>
         </div>

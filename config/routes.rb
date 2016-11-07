@@ -5,7 +5,10 @@ Rails.application.routes.draw do
     resource :user, only: [:create, :update]
     resource :session, only: [:create, :destroy, :show]
 
-    resources :profiles, only: [:update, :show]
+    resources :profiles, only: [:update, :show] do
+      resources :campaigns, only: [:index]
+    end
+    
     resources :campaigns, only: [:index, :create, :show, :update, :destroy]
   end
 end

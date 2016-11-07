@@ -1,6 +1,8 @@
 import React from 'react';
 import { Router, Route, IndexRoute, hashHistory, withRouter } from 'react-router';
 
+import CampaignEditForm from './campaign_edit_form';
+
 class CampaignEdit extends React.Component {
   constructor(props) {
     super(props);
@@ -11,10 +13,6 @@ class CampaignEdit extends React.Component {
 
     this.changeTab = this.changeTab.bind(this);
     this.tabClass = this.tabClass.bind(this);
-  }
-
-  componentDidUpdate() {
-    console.log(this.state);
   }
 
   changeTab(e) {
@@ -58,6 +56,7 @@ class CampaignEdit extends React.Component {
               </ul>
             </div>
           </div>
+          {children}
         </div>
       </div>
     )

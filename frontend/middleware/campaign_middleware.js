@@ -1,8 +1,10 @@
 import { UPDATE_CAMPAIGN,
          REQUEST_SINGLE_CAMPAIGN,
+         CREATE_CAMPAIGN,
          receiveSingleCampaign } from "../actions/campaign_actions";
 import { fetchSingleCampaign,
-         patchCampaign } from "../util/campaign_api_util.js";
+         patchCampaign,
+         postCampaign } from "../util/campaign_api_util.js";
 
 const CampaignMiddleware = ({ getState, dispatch }) => next => action => {
   const updateCampaignSuccess = data => dispatch(receiveSingleCampaign(data));
@@ -14,6 +16,9 @@ const CampaignMiddleware = ({ getState, dispatch }) => next => action => {
       return next(action);
     case REQUEST_SINGLE_CAMPAIGN:
       fetchSingleCampaign(action.id, updateCampaignSuccess);
+      return next(action);
+    case CREATE_CAMPAIGN:
+      postCampaign(action.campaign, updateCampaignSuccess);
       return next(action);
     default:
       return next(action);

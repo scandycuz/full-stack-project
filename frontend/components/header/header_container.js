@@ -1,15 +1,20 @@
 import { connect } from 'react-redux';
 import Header from './header';
-import { signup, login, logout, receiveSessionErrors } from '../../actions/session_actions';
+import { signup,
+         login,
+         logout,
+         receiveSessionErrors } from '../../actions/session_actions';
+import { requestUserCampaigns } from '../../actions/profile_actions';
 
-const mapStateToProps = ({ session }) => ({
+const mapStateToProps = ({ session, profile }) => ({
  session,
  currentUser: session.currentUser,
  loggedIn: Boolean(session.currentUser),
- errors: session.errors
+ errors: session.errors,
+ campaigns: profile.profile.campaigns
 });
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, { location }) => {
 
   return {
     receiveSessionErrors: (errors) => dispatch(receiveSessionErrors(errors)),
@@ -19,7 +24,10 @@ const mapDispatchToProps = dispatch => {
         dispatch(formType(user))
       }
     },
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    requestUserCampaigns: (user_id) => {
+      return dispatch(requestUserCampaigns(user_id))
+    }
   }
 }
 

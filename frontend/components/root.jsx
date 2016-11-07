@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory, IndexRedirect } from 'react-router';
 
 import App from './app';
 import HomeContainer from './home/home_container';
@@ -13,6 +13,8 @@ import ProfileEditContainer from './profile_edit/profile_edit_container';
 import CampaignContainer from './campaign/campaign_container';
 import CampaignShowContainer from './campaign_show/campaign_show_container';
 import CampaignEditContainer from './campaign_edit/campaign_edit_container';
+import CampaignEditFormContainer from './campaign_edit/campaign_edit_form_container';
+import CampaignPitchContainer from './campaign_pitch/campaign_pitch_container';
 
 import { requestSingleProfile } from '../actions/profile_actions';
 
@@ -38,10 +40,12 @@ const Root = ({ store }) => {
           <Route path="/campaigns/:id" component={CampaignContainer}>
             <IndexRoute component={CampaignShowContainer}/>
             <Route path="/campaigns/:id/edit" component={CampaignEditContainer}>
-              <Route path="/campaigns/:id/edit/basics"/>
-              <Route path="/campaigns/:id/edit/story"/>
+              <IndexRedirect to="/campaigns/:id/edit/basics" />
+              <Route path="/campaigns/:id/edit/basics" component={CampaignEditFormContainer}/>
+              <Route path="/campaigns/:id/edit/story" component={CampaignEditFormContainer}/>
             </Route>
           </Route>
+          <Route path="/pitch-a-startup" component={CampaignPitchContainer}/>
         </Route>
       </Router>
     </Provider>

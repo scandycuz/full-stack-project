@@ -28,6 +28,9 @@ class UserMenu extends React.Component {
     this.handleDemoSubmit = this.handleDemoSubmit.bind(this);
     this.handleRouterLink = this.handleRouterLink.bind(this);
     this.redirectIfLoggedOut = this.redirectIfLoggedOut.bind(this);
+    this.userCampaignList = this.userCampaignList.bind(this);
+    this.userCampaignList = this.userCampaignList.bind(this);
+    this.linkToCampaign = this.linkToCampaign.bind(this);
   }
 
   componentDidMount() {
@@ -243,6 +246,26 @@ class UserMenu extends React.Component {
     }
   }
 
+  linkToCampaign(e) {
+    e.preventDefault();
+    const campaignId = e.currentTarget.dataset.id;
+    this.props.router.push(`/campaigns/${campaignId}/edit/basics`);
+  }
+
+  userCampaignList() {
+    const campaigns = this.props.campaigns;
+    return (
+      <ul className="user-campaign-list clickable">
+        {Object.keys(campaigns).map( (key, idx) => {
+          const campaign = campaigns[key];
+          return (
+            <li key={idx} onClick={this.linkToCampaign} data-id={campaign.id}>{campaign.title}</li>
+          )
+        })}
+      </ul>
+    )
+  }
+
   render() {
     let currentUser = this.props.currentUser;
 
@@ -258,8 +281,9 @@ class UserMenu extends React.Component {
               <i className="fa fa-chevron-down clickable" aria-hidden="true"></i>
             </span>
             <ul id="auth-dropdown" className="dropdown-menu">
-              <li className="clickable" onClick={ logoutUser }>Log out</li>
+              {this.userCampaignList()}
               <li className="clickable" onClick={this.handleRouterLink(`profile/${this.props.currentUser.id}`)}>My Profile</li>
+              <li className="clickable" onClick={ logoutUser }>Log out</li>
             </ul>
           </li>
         </ul>

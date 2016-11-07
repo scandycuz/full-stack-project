@@ -15,3 +15,12 @@ export const fetchSingleCampaign = (id, success) => {
     success
   })
 }
+
+export const postCampaign = (campaign, success) => {
+  $.ajax({
+    url: 'api/campaigns',
+    type: 'POST',
+    data: campaign,
+    success
+  })
+}

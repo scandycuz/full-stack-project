@@ -15,6 +15,7 @@ $dark_blue: #1E7CB2;
 $light_grey: #c4c4c4;
 $very_light_grey: #f4f4f4;
 $med_grey: #dbdbdb;
+$med_dark_grey: #555;
 $yellow: #FFFB51;
 $dark_yellow: #FDDE86;
 $light_green: #38FF6C;
@@ -35,6 +36,7 @@ $dark_grey: #444;
 body {
   margin-left: 0;
   margin-right: 0;
+  overflow-x: hidden;
 }
 body * {
   box-sizing: border-box;
@@ -49,6 +51,13 @@ h1 {
 }
 h3, h4, h5, h6, p, li, button, label, input, a, textarea {
   font-family: $open-sans;
+}
+p {
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 28px;
+  letter-spacing: 0;
+  text-align: left;
 }
 ul {
   list-style: none;
@@ -106,11 +115,17 @@ form {
   text-align: left;
   padding-left: 0;
 }
+input {
+  color: $dark_grey;
+}
+input[type="text"] {
+  padding: 10px 6px;
+}
 
 // Header
 
 #siteHeader-container {
-  // border-bottom: 1px solid $light_grey;
+  border-bottom: 1px solid $light_grey;
   padding-bottom: 8px;
 }
 .siteLogo {
@@ -157,16 +172,25 @@ form {
   padding-left: 0;
 }
 #auth-dropdown {
-  border: 1px solid $light_grey;
+  border: 1px solid #c4c4c4;
   background: white;
-  margin-left: -14px;
   margin-top: 8px;
-  width: 112%;
+  width: 100%;
+  min-width: 10.8em;
+  right: 0;
   li {
     border-bottom: 1px solid $light_grey;
-    padding: 0.65em 0.95em;
-    &:last-child {
-      border-bottom-width: 0px;
+    padding: 0.8em 0.95em;
+  }
+  & > li:last-child {
+    border-bottom-width: 0px;
+  }
+}
+.user-campaign-list {
+  padding-left: 0;
+  li {
+    &:hover {
+      color: $red;
     }
   }
 }
@@ -601,7 +625,49 @@ form {
   }
 }
 
+// Campaign Pitch
 
+.campaign-pitch-header {
+  h2 {
+    margin-bottom: 0;
+    margin-top: 0.75em;
+  }
+}
+.campaign-pitch-body {
+  margin-top: 3.4em;
+  input {
+    font-size: 18px;
+    font-weight: 600;
+    color: $dark_grey;
+  }
+  label {
+    color: $dark_grey;
+  }
+}
+.currency-symbol {
+  border: 1px solid $light_grey;
+  padding-left: 10px;
+  display: inline-block;
+  color: $blue;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 1.8em;
+  input {
+    border: none;
+  }
+}
+.pitch-title {
+  margin-top: 10px;
+  min-width: 24em;
+  padding-left: 14px !important;
+}
+.create-campaign {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 12px 18px;
+  margin-top: 3em;
+}
 
 
 

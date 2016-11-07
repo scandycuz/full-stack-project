@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CampaignEdit from './campaign_edit';
+import CampaignEditForm from './campaign_edit_form';
 
 import { updateCampaign,
          requestSingleCampaign } from '../../actions/campaign_actions';
@@ -24,4 +24,4 @@ const mapDispatchToProps = (dispatch, { location }) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CampaignEdit);
+)(CampaignEditForm);

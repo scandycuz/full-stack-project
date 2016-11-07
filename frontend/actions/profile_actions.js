@@ -4,6 +4,8 @@ export const RECEIVE_SINGLE_PROFILE = "RECEIVE_SINGLE_PROFILE";
 export const RECEIVE_PROFILE_ERRORS = "RECEIVE_ERRORS";
 export const UPLOAD_IMAGE = "UPLOAD_IMAGE";
 export const RECEIVE_IMAGE = "RECEIVE_IMAGE";
+export const REQUEST_USER_CAMPAIGNS = "REQUEST_USER_CAMPAIGNS";
+export const RECEIVE_USER_CAMPAIGNS = "RECEIVE_USER_CAMPAIGNS";
 
 export const updateProfile = profile => ({
   type: UPDATE_PROFILE,
@@ -32,3 +34,13 @@ export const uploadImage = () => ({
 export const receiveImage = () => ({
   type: RECEIVE_IMAGE
 });
+
+export const requestUserCampaigns = (user_id) => ({
+  type: REQUEST_USER_CAMPAIGNS,
+  user_id
+})
+
+export const receiveUserCampaigns = (campaigns) => ({
+  type: RECEIVE_USER_CAMPAIGNS,
+  campaigns
+})

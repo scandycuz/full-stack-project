@@ -1,14 +1,18 @@
 class Api::CampaignsController < ApplicationController
 
   def index
-    @campaigns = Campaign.all
+    if params[:profile_id]
+      @campaigns = Campaign.where("user_id = '#{params[:profile_id]}'")
+    else
+      @campaigns = Campaign.all
+    end
   end
 
   def create
     @campaign = Campaign.new(campaign_params)
 
     if @campaign.save
-      render :edit
+      render :show
     else
       render @campaign.errors.full_messages
     end

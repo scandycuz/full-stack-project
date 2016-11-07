@@ -15,3 +15,12 @@ export const fetchSingleProfile = (id, success) => {
     success
   })
 }
+
+export const fetchUserCampaigns = (profile_id, success) => {
+  $.ajax({
+    url: `api/profiles/${profile_id}/campaigns`,
+    type: 'GET',
+    data: profile_id,
+    success
+  })
+}
