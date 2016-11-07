@@ -5,6 +5,7 @@ import { signup,
          logout,
          receiveSessionErrors } from '../../actions/session_actions';
 import { requestUserCampaigns } from '../../actions/profile_actions';
+import { requestSingleCampaign } from '../../actions/campaign_actions';
 
 const mapStateToProps = ({ session, profile }) => ({
  session,
@@ -27,7 +28,8 @@ const mapDispatchToProps = (dispatch, { location }) => {
     logout: () => dispatch(logout()),
     requestUserCampaigns: (user_id) => {
       return dispatch(requestUserCampaigns(user_id))
-    }
+    },
+    requestSingleCampaign: (id) => dispatch(requestSingleCampaign(id))
   }
 }
 

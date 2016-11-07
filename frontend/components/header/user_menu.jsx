@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { Link, Router, Route, IndexRoute, hashHistory, withRouter } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory, withRouter } from 'react-router';
 
 class UserMenu extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class UserMenu extends React.Component {
     this.handleRouterLink = this.handleRouterLink.bind(this);
     this.redirectIfLoggedOut = this.redirectIfLoggedOut.bind(this);
     this.userCampaignList = this.userCampaignList.bind(this);
-    this.userCampaignList = this.userCampaignList.bind(this);
+    this.handleCampaignLink = this.handleCampaignLink.bind(this);
   }
 
   componentDidMount() {
@@ -238,6 +238,15 @@ class UserMenu extends React.Component {
     $targetEl.siblings("#auth-dropdown").toggle(0);
   }
 
+  handleCampaignLink(campaignId) {
+
+    return (e) => {
+      e.preventDefault();
+      this.props.requestSingleCampaign(campaignId);
+      this.props.router.push(`/campaigns/${campaignId}/edit`);
+    }
+  }
+
   handleRouterLink(url) {
     return (e) => {
       e.preventDefault;
@@ -252,7 +261,7 @@ class UserMenu extends React.Component {
         {Object.keys(campaigns).map( (key, idx) => {
           const campaign = campaigns[key];
           return (
-            <li key={idx}><Link to={`/campaigns/${campaign.id}/edit`}>{campaign.title}</Link></li>
+            <li key={idx} onClick={this.handleCampaignLink(campaign.id)}>{campaign.title}</li>
           )
         })}
       </ul>

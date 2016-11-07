@@ -15,6 +15,7 @@ $dark_blue: #1E7CB2;
 $light_grey: #c4c4c4;
 $very_light_grey: #f4f4f4;
 $med_grey: #dbdbdb;
+$grey: #777;
 $med_dark_grey: #555;
 $yellow: #FFFB51;
 $dark_yellow: #FDDE86;
@@ -190,7 +191,9 @@ input[type="text"] {
   padding-left: 0;
   li {
     &:hover {
-      color: $red;
+      a {
+        color: $red;
+      }
     }
   }
 }
@@ -556,7 +559,6 @@ input[type="text"] {
   }
   .campaign-status {
     padding: 4px 8px;
-    // border: 1px solid $blue;
     background: $dark_yellow;
     font-size: 16px;
     border-radius: 3px;
@@ -667,6 +669,40 @@ input[type="text"] {
   font-weight: 700;
   padding: 12px 18px;
   margin-top: 3em;
+}
+
+// Campaign Edit Form
+
+.campaign-edit-form-container {
+  h4 {
+    font-size: 26px;
+    font-weight: 500;
+    margin-top: 0.5em;
+  }
+  label {
+    font-size: 18px;
+    .form-sub-title {
+      color: $grey;
+      font-size: 16px;
+      margin-top: 8px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    input[type="text"] {
+      width: 50%;
+      padding-left: 12px;
+      margin-bottom: 3em;
+    }
+  }
+  .campaign-form-tagline {
+    width: 60% !important;
+  }
+  .currency-symbol {
+    width: 50%;
+    input {
+      margin-bottom: 0 !important;
+    }
+  }
 }
 
 

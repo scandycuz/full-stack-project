@@ -11,7 +11,15 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
-    this.props.requestUserCampaigns(this.props.currentUser.id);
+    if (this.props.currentUser) {
+      this.props.requestUserCampaigns(this.props.currentUser.id);
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.currentUser && Object.keys(this.props.campaigns).length === 0) {
+      this.props.requestUserCampaigns(this.props.currentUser.id);
+    }
   }
 
   redirectHome() {
@@ -44,6 +52,9 @@ class Header extends React.Component {
             receiveSessionErrors={this.props.receiveSessionErrors}
             errors={this.props.errors}
             campaigns={this.props.campaigns}
+            router={this.props.router}
+            requestUserCampaigns={this.props.requestUserCampaigns}
+            requestSingleCampaign={this.props.requestSingleCampaign}
             router={this.props.router}/>
         </div>
       </header>
