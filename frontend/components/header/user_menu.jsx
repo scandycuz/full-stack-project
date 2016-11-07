@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { Router, Route, IndexRoute, hashHistory, withRouter } from 'react-router';
+import { Link, Router, Route, IndexRoute, hashHistory, withRouter } from 'react-router';
 
 class UserMenu extends React.Component {
   constructor(props) {
@@ -30,7 +30,6 @@ class UserMenu extends React.Component {
     this.redirectIfLoggedOut = this.redirectIfLoggedOut.bind(this);
     this.userCampaignList = this.userCampaignList.bind(this);
     this.userCampaignList = this.userCampaignList.bind(this);
-    this.linkToCampaign = this.linkToCampaign.bind(this);
   }
 
   componentDidMount() {
@@ -246,12 +245,6 @@ class UserMenu extends React.Component {
     }
   }
 
-  linkToCampaign(e) {
-    e.preventDefault();
-    const campaignId = e.currentTarget.dataset.id;
-    this.props.router.push(`/campaigns/${campaignId}/edit/basics`);
-  }
-
   userCampaignList() {
     const campaigns = this.props.campaigns;
     return (
@@ -259,7 +252,7 @@ class UserMenu extends React.Component {
         {Object.keys(campaigns).map( (key, idx) => {
           const campaign = campaigns[key];
           return (
-            <li key={idx} onClick={this.linkToCampaign} data-id={campaign.id}>{campaign.title}</li>
+            <li key={idx}><Link to={`/campaigns/${campaign.id}/edit`}>{campaign.title}</Link></li>
           )
         })}
       </ul>
