@@ -27,6 +27,7 @@ class Api::CampaignsController < ApplicationController
 
   def update
     @campaign = Campaign.find(params[:campaign][:id])
+    @author = @campaign.user
 
     if @campaign.update_attributes(campaign_params)
       render :show

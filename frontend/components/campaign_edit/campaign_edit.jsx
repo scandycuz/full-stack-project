@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Route, IndexRoute, hashHistory, withRouter } from 'react-router';
+import merge from 'lodash/merge';
 
 import CampaignEditForm from './campaign_edit_form';
 
@@ -9,29 +10,49 @@ class CampaignEdit extends React.Component {
 
     this.state = {
       selectedTab: this.props.currentPath(),
-      formState: {
-
-      }
+      formState: this.props.campaign
     }
 
     this.changeTab = this.changeTab.bind(this);
     this.tabClass = this.tabClass.bind(this);
     this.publishStatus = this.publishStatus.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.requestSingleCampaign(this.props.params.id);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ formState: nextProps.campaign });
   }
 
   getChildContext() {
     return ({
       selectedTab: this.state.selectedTab,
-      formState: this.state.formState
+      formState: this.state.formState,
+      handleSubmit: (campaign) => this.handleSubmit(campaign),
+      updateParentState: (campaign) => this.setState({formState: campaign})
      });
   }
 
+  handleSubmit(campaign) {
+    campaign = merge({}, campaign, {status: "published"});
+    this.props.updateCampaign({campaign});
+
+    let campaignId = this.props.params.id;
+    this.props.router.push(`/campaigns/${campaignId}`);
+  }
+
   changeTab(e) {
+    e.preventDefault();
     let tabName = e.target.innerHTML.toLowerCase();
 
-    if (!(tabName === "review &amp; launch")) {
+    if (tabName === "review &amp; launch") {
+      this.handleSubmit(this.state.formState);
+    } else {
       this.props.router.push(`/campaigns/${this.props.params.id}/edit/${tabName}`);
-      this.setState({ selectedTab: tabName});
+      this.setState({ selectedTab: tabName });
     }
   }
 
@@ -96,7 +117,9 @@ class CampaignEdit extends React.Component {
 
 CampaignEdit.childContextTypes = {
   selectedTab: React.PropTypes.string,
-  formState: React.PropTypes.object
+  formState: React.PropTypes.object,
+  handleSubmit: React.PropTypes.func,
+  updateParentState: React.PropTypes.func
 }
 
 export default withRouter(CampaignEdit);

@@ -6,6 +6,8 @@ class CampaignEditForm extends React.Component {
   constructor(props) {
     super(props)
 
+    this.state = {};
+
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.formSection = this.formSection.bind(this);
@@ -45,8 +47,6 @@ class CampaignEditForm extends React.Component {
         pitch_image_url: data.result.url
       });
     });
-
-    this.props.requestSingleCampaign(this.props.params.id)
   }
 
   componentDidUpdate() {
@@ -54,7 +54,7 @@ class CampaignEditForm extends React.Component {
       "startupgogo_campaign",{ cloud_name: 'dhh1nask4' }
     ).bind('cloudinarydone', (e, data) => {
       this.props.receiveImage();
-      console.log('jquery1');
+
       this.setState({
         card_image_url: data.result.url
       });
@@ -64,17 +64,24 @@ class CampaignEditForm extends React.Component {
       "startupgogo_pitch",{ cloud_name: 'dhh1nask4' }
     ).bind('cloudinarydone', (e, data) => {
       this.props.receiveImage();
-      console.log('jquery2');
+
       this.setState({
         pitch_image_url: data.result.url
       });
     });
+
+    this.context.updateParentState(this.state);
   }
 
   componentWillReceiveProps(nextProps) {
     // on intial get campaign call or new Campaign Content
     if (!this.state.title || this.state.title !== nextProps.campaign.title) {
       this.setState(nextProps.campaign);
+    }
+
+    // set state to parents context when it updates
+    if (this.context.formType) {
+      this.setState(this.context.formType);
     }
   }
 
@@ -115,10 +122,7 @@ class CampaignEditForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let campaign = this.state;
-    this.props.updateCampaign({campaign});
-
-    let campaignId = this.props.params.id;
-    this.props.router.push(`/campaigns/${campaignId}`);
+    this.context.handleSubmit(this.state);
   }
 
   handleSave(e) {
@@ -291,7 +295,7 @@ class CampaignEditForm extends React.Component {
   }
 
   render() {
-    console.log(this.context);
+
     return(
       <div className="campaign-edit-form-container container">
         <form onSubmit={this.handleSubmit}>
@@ -304,7 +308,9 @@ class CampaignEditForm extends React.Component {
 
 CampaignEditForm.contextTypes = {
   selectedTab: React.PropTypes.string,
-  formState: React.PropTypes.object
+  formState: React.PropTypes.object,
+  handleSubmit: React.PropTypes.func,
+  updateParentState: React.PropTypes.func
 }
 
 export default withRouter(CampaignEditForm);
