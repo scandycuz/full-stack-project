@@ -106,7 +106,7 @@ class CampaignEditForm extends React.Component {
       let endDateFormatted = endDateArray[1]+","+endDateArray[2]+","+endDateArray[0];
       let timestamp = new Date(endDateFormatted).getTime();
       let durationLeft = timestamp - new Date();
-      return Math.round(durationLeft / (86400000));
+      return Math.ceil(durationLeft / (86400000));
     }
   }
 

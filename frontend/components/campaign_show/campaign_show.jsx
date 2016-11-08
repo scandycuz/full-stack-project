@@ -7,6 +7,9 @@ class CampaignShow extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      selectedTab: "story"
+    }
   }
 
   componentDidMount() {
@@ -67,13 +70,13 @@ class CampaignShow extends React.Component {
             <div className="campaign-tabs-container">
               <ul className="campaign-tabs">
                 {campaignTabs.map( (title, idx) => (
-                  <li key={idx} className="clickable"><h4>{title}</h4></li>
+                  <li key={idx} className={tabClass(title)}><h4>{title}</h4></li>
                 ))}
               </ul>
               <p>{this.props.campaign.campaign_pitch}</p>
             </div>
           </div>
-          <div className="grid-5 campaign-content-sidebar alpha">
+          <div className="grid-4 campaign-content-sidebar alpha">
             <div className="campaign-header">
               <h4>Rewards</h4>
             </div>

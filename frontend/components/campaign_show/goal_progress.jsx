@@ -25,12 +25,12 @@ class GoalProgress extends React.Component {
 
     return (
       <div className="goal-progress-container">
-        <h4><strong>${fundsReceived}</strong> <span className="thin">raised</span></h4>
+        <h4>${fundsReceived} <span className="thin">raised</span></h4>
         <div className="progress-bar">
           <div className="progress"></div>
         </div>
         <div className="progress-stats">
-          <p><strong>{fundsReceived / goalAmount * 100}%</strong> of {goalAmount} goal</p>
+          <p><strong>{fundsReceived / goalAmount * 100}%</strong> of ${goalAmount} goal</p>
           <p><strong>{daysLeft}</strong> days left</p>
         </div>
       </div>
