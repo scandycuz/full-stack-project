@@ -32,6 +32,7 @@ class CampaignEditForm extends React.Component {
       "startupgogo_campaign",{ cloud_name: 'dhh1nask4' }
     ).bind('cloudinarydone', (e, data) => {
       this.props.receiveImage();
+      console.log('jquery1');
       this.setState({
         card_image_url: data.result.url
       });
@@ -41,6 +42,7 @@ class CampaignEditForm extends React.Component {
       "startupgogo_pitch",{ cloud_name: 'dhh1nask4' }
     ).bind('cloudinarydone', (e, data) => {
       this.props.receiveImage();
+      console.log('jquery2');
       this.setState({
         pitch_image_url: data.result.url
       });
@@ -49,16 +51,27 @@ class CampaignEditForm extends React.Component {
     this.props.requestSingleCampaign(this.props.params.id)
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.campaign.duration) {
-  //     let endDate = nextProps.campaign.duration;
-  //     let duration = this.endDateToDuration(endDate);
-  //
-  //     console.log(nextProps.campaign);
-  //     let newState = Object.assign({}, nextProps.campaign, {duration});
-  //     this.setState(newState);
-  //   }
-  // }
+  componentDidUpdate() {
+    $("#uploadThumbnailImage").unsigned_cloudinary_upload(
+      "startupgogo_campaign",{ cloud_name: 'dhh1nask4' }
+    ).bind('cloudinarydone', (e, data) => {
+      this.props.receiveImage();
+      console.log('jquery1');
+      this.setState({
+        card_image_url: data.result.url
+      });
+    });
+
+    $("#uploadPitchImage").unsigned_cloudinary_upload(
+      "startupgogo_pitch",{ cloud_name: 'dhh1nask4' }
+    ).bind('cloudinarydone', (e, data) => {
+      this.props.receiveImage();
+      console.log('jquery2');
+      this.setState({
+        pitch_image_url: data.result.url
+      });
+    });
+  }
 
   componentWillReceiveProps(nextProps) {
     // on intial get campaign call or new Campaign Content
@@ -104,9 +117,6 @@ class CampaignEditForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let campaign = this.state;
-    // let durationDate = this.parseDuration(this.state.duration);
-    // let publishedCampaign = Object.assign({}, campaign, {status: "published"}, { duration: durationDate });
-    // this.props.updateCampaign({campaign: publishedCampaign});
     this.props.updateCampaign({campaign});
 
     let campaignId = this.props.params.id;
@@ -116,9 +126,6 @@ class CampaignEditForm extends React.Component {
   handleSave(e) {
     e.preventDefault();
     let campaign = this.state;
-
-    // let durationDate = this.parseDuration(this.state.duration);
-    // this.saveCampaign(Object.assign({}, this.state, { duration: durationDate }));
     this.saveCampaign(campaign);
 
     let currentPath = this.props.currentPath();
