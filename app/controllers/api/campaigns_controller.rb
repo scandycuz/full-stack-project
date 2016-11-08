@@ -12,7 +12,7 @@ class Api::CampaignsController < ApplicationController
     @campaign = Campaign.new(campaign_params)
 
     if @campaign.save
-      render :show
+      render :create
     else
       render @campaign.errors.full_messages
     end
