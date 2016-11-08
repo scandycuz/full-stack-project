@@ -677,6 +677,10 @@ input[type="text"] {
 
 // Campaign Edit Form
 
+.status-published {
+  background-color: $green !important;
+  color: white !important;
+}
 .campaign-edit-form-container {
   h4 {
     font-size: 26px;
@@ -751,6 +755,51 @@ input[type="text"] {
   }
 }
 
+// Campaign Show
+
+.campaign-show-container {
+  padding-top: 3em;
+  img {
+    max-width: 100%;
+  }
+}
+.campaign-info {
+  padding-left: 1em;
+  padding-right: 1em;
+  h4 {
+    font-family: $work-sans;
+    font-size: 26px;
+    font-weight: 400;
+    margin-top: 2px;
+    margin-bottom: 0;
+  }
+  .campaign-author-container {
+    display: flex;
+    align-items: center;
+  }
+  .author-image {
+    img {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+    }
+  }
+  .author-info {
+    padding-left: 1em;
+    p {
+      margin: 0 !important;
+      font-size: 16px;
+      color: $med_dark_grey;
+    }
+  }
+}
+
+.goal-progress-container {
+  width: 100%;
+  .progress-bar {
+    height: 4px;
+  }
+}
 
 
 

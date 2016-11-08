@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import CampaignEdit from './campaign_edit';
 
 import { updateCampaign,
-         requestSingleCampaign } from '../../actions/campaign_actions';
+         requestSingleCampaign} from '../../actions/campaign_actions';
 import { fetchingSingleCampaign } from '../../util/campaign_api_util';
 
 const mapStateToProps = ({ campaign }) => ({

@@ -20,6 +20,7 @@ class Api::CampaignsController < ApplicationController
 
   def show
     @campaign = Campaign.find(params[:id])
+    @author = @campaign.user
 
     render :show
   end

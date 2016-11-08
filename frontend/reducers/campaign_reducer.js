@@ -1,12 +1,13 @@
 import { RECEIVE_SINGLE_CAMPAIGN,
-  RECEIVE_CAMPAIGN_ERRORS } from '../actions/campaign_actions';
+         RECEIVE_CAMPAIGN_ERRORS } from '../actions/campaign_actions';
 import { fetchSingleCampaign } from '../util/campaign_api_util'
 import merge from 'lodash/merge';
 
 const _nullCampaign= Object.freeze({
   campaign: {
     funds_received: 0,
-    goal_amount: 0
+    goal_amount: 0,
+    author: {}
   },
   campaigns: {},
   errors: []

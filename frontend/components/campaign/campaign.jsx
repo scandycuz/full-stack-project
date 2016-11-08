@@ -13,10 +13,6 @@ class Campaign extends React.Component {
     this.switchViewEdit = this.switchViewEdit.bind(this);
   }
 
-  componentDidMount() {
-    this.props.requestSingleCampaign(this.props.params.id)
-  }
-
   getTabClass(tabName) {
     let currentPathArray = this.props.currentPathArray();
     currentPathArray = (currentPathArray.length === 3) ? ["view"] : currentPathArray;
@@ -26,7 +22,7 @@ class Campaign extends React.Component {
 
   switchViewEdit(e) {
     let tabName = e.currentTarget.textContent.split(" ")[1].toLowerCase();
-    
+
     if (tabName === "edit") {
       this.props.router.push(`/campaigns/${this.props.params.id}/${tabName}/basics`);
     } else {

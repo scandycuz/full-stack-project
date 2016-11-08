@@ -14,21 +14,20 @@ class CampaignEdit extends React.Component {
     this.changeTab = this.changeTab.bind(this);
     this.tabClass = this.tabClass.bind(this);
     this.reviewAndLaunch = this.reviewAndLaunch.bind(this);
+    this.publishStatus = this.publishStatus.bind(this);
   }
 
-  reviewAndLaunch() {
-    let campaign = this.props.campaign;
-    // set campaign.status to published
-
-    let campaignId = this.props.params.id;
-    this.props.router.push(`/campaigns/${campaignId}`);
+  reviewAndLaunch(e) {
+    e.preventDefault();
+    let submitButton = document.getElementById('#review-and-launch-campaign');
+    $(submitButton).click();
   }
 
   changeTab(e) {
     let tabName = e.target.innerHTML.toLowerCase();
 
     if (tabName === "review &amp; launch") {
-      this.reviewAndLaunch();
+      this.reviewAndLaunch(e);
     } else {
       this.props.router.push(`/campaigns/${this.props.params.id}/edit/${tabName}`);
       this.setState({ selectedTab: tabName});
@@ -41,6 +40,15 @@ class CampaignEdit extends React.Component {
       return "selected clickable";
     } else {
       return "clickable";
+    }
+  }
+
+  publishStatus() {
+    let status = this.props.campaign.status;
+    if (status === "draft") {
+      return "campaign-status";
+    } else {
+      return "campaign-status status-published";
     }
   }
 
@@ -59,7 +67,7 @@ class CampaignEdit extends React.Component {
       <div className="campaign_edit">
         <div className="campaign-tab-content tab-content">
           <div className="campaign-header container">
-            <h3>{campaign.title} <span className="campaign-status">{campaign.status}</span></h3>
+            <h3>{campaign.title} <span className={this.publishStatus()}>{campaign.status}</span></h3>
           </div>
           <div className="campaign-steps container">
             <div className="campaign-steps-list">

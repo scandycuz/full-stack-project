@@ -45,44 +45,51 @@ class CampaignEditForm extends React.Component {
         pitch_image_url: data.result.url
       });
     });
+
+    this.props.requestSingleCampaign(this.props.params.id)
   }
 
-  componentDidUpdate() {
-    // console.log(this.state);
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.campaign.duration) {
+  //     let endDate = nextProps.campaign.duration;
+  //     let duration = this.endDateToDuration(endDate);
+  //
+  //     console.log(nextProps.campaign);
+  //     let newState = Object.assign({}, nextProps.campaign, {duration});
+  //     this.setState(newState);
+  //   }
+  // }
 
   componentWillReceiveProps(nextProps) {
+    // on intial get campaign call
     if (!this.state.title) {
-      this.setState(
-        nextProps.campaign, () => {
-          let endDate = this.state.duration;
-
-          if (endDate) {
-            let endDateArray = endDate.split("-");
-            let endDateFormatted = endDateArray[1]+","+endDateArray[2]+","+endDateArray[0];
-            let timestamp = new Date(endDateFormatted).getTime();
-            let durationLeft = timestamp - new Date();
-            let durationDays =  Math.floor(durationLeft / (86400000));
-
-            this.setState({ duration: durationDays });
-          }
-        }
-      );
+      this.setState(nextProps.campaign);
     }
   }
 
   update(property) {
-    return e => this.setState({[property]: e.target.value});
+    if (property === 'duration') {
+      return e => {
+        let targetValue = e.target.value;
+        if (typeof targetValue !== "undefined" && targetValue >= 0 && targetValue !== "") {
+          this.setState({[property]: this.parseDuration(e.target.value)});
+        } else {
+          this.setState({[property]: ""});
+        }
+      }
+    } else {
+      return e => this.setState({[property]: e.target.value});
+    }
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-
-    let durationDate = this.parseDuration(this.state.duration);
-    this.saveCampaign(Object.assign({}, this.state, { duration: durationDate }));
-    
-    let campaignId = this.props.params.id;
-    this.props.router.push(`/campaigns/${campaignId}`);
+  endDateToDuration(endDate) {
+    if (endDate) {
+      let endDateArray = endDate.split("-");
+      let endDateFormatted = endDateArray[1]+","+endDateArray[2]+","+endDateArray[0];
+      let timestamp = new Date(endDateFormatted).getTime();
+      let durationLeft = timestamp - new Date();
+      return Math.round(durationLeft / (86400000));
+    }
   }
 
   parseDuration(lengthOfCampaign) {
@@ -94,11 +101,25 @@ class CampaignEditForm extends React.Component {
     return this.toMysqlFormat(dateObj);
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    let campaign = this.state;
+    // let durationDate = this.parseDuration(this.state.duration);
+    // let publishedCampaign = Object.assign({}, campaign, {status: "published"}, { duration: durationDate });
+    // this.props.updateCampaign({campaign: publishedCampaign});
+    this.props.updateCampaign({campaign});
+
+    let campaignId = this.props.params.id;
+    this.props.router.push(`/campaigns/${campaignId}`);
+  }
+
   handleSave(e) {
     e.preventDefault();
+    let campaign = this.state;
 
-    let durationDate = this.parseDuration(this.state.duration);
-    this.saveCampaign(Object.assign({}, this.state, { duration: durationDate }));
+    // let durationDate = this.parseDuration(this.state.duration);
+    // this.saveCampaign(Object.assign({}, this.state, { duration: durationDate }));
+    this.saveCampaign(campaign);
 
     let currentPath = this.props.currentPath();
     let campaignId = this.props.params.id;
@@ -142,6 +163,14 @@ class CampaignEditForm extends React.Component {
         document.getElementById('uploadThumbnailImage').click();
       }
 
+      const daysLeft = (endDate) => {
+        if (typeof endDate === "undefined") {
+          return "";
+        } else {
+          return this.endDateToDuration(endDate);
+        }
+      }
+
       return(
         <div className="form-section">
           <h4>Basics</h4>
@@ -171,7 +200,7 @@ class CampaignEditForm extends React.Component {
             <span id="fake-upload-button"
               className={`${buttonClass()} image-button`}
               disabled={buttonStatus()}
-              onClick={handleImageClick}>Upload Image</span>
+              onClick={this.handleImageClick}>Upload Image</span>
             <input id="uploadThumbnailImage"
               type="file"
               name="file"/><br/>
@@ -186,7 +215,7 @@ class CampaignEditForm extends React.Component {
             <span className="form-sub-title">How many days would you like to run your campaign for?</span><br/>
             <input type="text"
               className="campaign-duration-input"
-              value={this.state.duration}
+              value={daysLeft(this.state.duration)}
               onChange={this.update('duration')}/>
           </label><br/>
           <div className="form-button-container">
@@ -218,7 +247,7 @@ class CampaignEditForm extends React.Component {
 
       const handleImageClick = (e) => {
         e.preventDefault();
-        // this.props.uploadImage();
+        this.props.uploadImage();
         document.getElementById('uploadPitchImage').click();
       }
 
@@ -231,7 +260,7 @@ class CampaignEditForm extends React.Component {
             <span id="fake-upload-button"
               className={`${buttonClass()} image-button`}
               disabled={buttonStatus()}
-              onClick={handleImageClick}>Upload Image</span>
+              onClick={this.handleImageClick}>Upload Image</span>
             <input id="uploadPitchImage"
               type="file"
               name="file"/><br/>
@@ -249,7 +278,7 @@ class CampaignEditForm extends React.Component {
             </textarea>
           </label><br/>
           <div className="form-button-container">
-            <span className="clickable button" onClick={this.handleSubmit}>Review &amp; Launch</span>
+            <span id="#review-and-launch-campaign" className="clickable button" onClick={this.handleSubmit}>Review &amp; Launch</span>
           </div>
         </div>
       )
