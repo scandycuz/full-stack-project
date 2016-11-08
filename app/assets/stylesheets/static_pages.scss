@@ -78,7 +78,7 @@ form {
 
 .container {
   max-width: $med_width;
-  padding: 0 30px;
+  padding: 0 40px;
   margin: 0 auto;
 }
 
@@ -772,6 +772,10 @@ input[type="text"] {
     font-weight: 400;
     margin-top: 2px;
     margin-bottom: 0;
+    padding-right: 1em;
+  }
+  p {
+    padding-right: 1em;
   }
   .campaign-author-container {
     display: flex;
@@ -796,9 +800,49 @@ input[type="text"] {
 
 .goal-progress-container {
   width: 100%;
+  margin-top: 4em;
   .progress-bar {
-    height: 4px;
+    height: 10px;
+    width: 100%;
+    margin: 4px 0;
+    margin-top: 10px;
+    background: $med_grey;
+    .progress {
+      background-color: $blue;
+      height: 10px;
+      max-width: 100%;
+    }
   }
+  .progress-stats {
+    display: flex;
+    justify-content: space-between;
+    & > * {
+      margin-top: 6px;
+    }
+  }
+}
+.thin {
+  font-weight: 300;
+}
+
+.campaign-tabs {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 0;
+  li {
+    margin-right: 1em;
+  }
+}
+.campaign-content-sidebar {
+  padding-left: 1em;
+}
+.campaign-header {
+  width: 100%;
+  border-bottom: 1px solid $light_grey;
+}
+
+.campaign-tabs {
+  border-bottom: 1px solid $light_grey;
 }
 
 

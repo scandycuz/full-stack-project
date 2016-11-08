@@ -26,6 +26,11 @@ class CampaignShow extends React.Component {
   render() {
     const children = this.props.children;
 
+    const campaignTabs = [
+      "Story",
+      "Backers"
+    ]
+
     return(
       <div className="campaign-show">
         <div className="campaign-show-container container">
@@ -49,7 +54,29 @@ class CampaignShow extends React.Component {
               fundsReceived={this.props.campaign.funds_received}
               goalAmount={this.props.campaign.goal_amount}
               endDate={this.props.campaign.duration}
-              daysLeft={this.endDateToDuration(this.props.campaign.duration)}/>
+              daysLeft={this.endDateToDuration(this.props.campaign.duration)}
+              endDateToDuration={(endDate) => this.endDateToDuration(endDate)}/>
+          </div>
+          <div className="grid-7 campaign-content-main alpha">
+            <div className="campaign-overview">
+              <div className="campaign-header">
+                <h4>Overview</h4>
+              </div>
+              <p>{this.props.campaign.campaign_overview}</p>
+            </div>
+            <div className="campaign-tabs-container">
+              <ul className="campaign-tabs">
+                {campaignTabs.map( (title, idx) => (
+                  <li key={idx} className="clickable"><h4>{title}</h4></li>
+                ))}
+              </ul>
+              <p>{this.props.campaign.campaign_pitch}</p>
+            </div>
+          </div>
+          <div className="grid-5 campaign-content-sidebar alpha">
+            <div className="campaign-header">
+              <h4>Rewards</h4>
+            </div>
           </div>
         </div>
       </div>

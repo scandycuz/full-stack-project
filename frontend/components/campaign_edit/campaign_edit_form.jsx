@@ -32,7 +32,7 @@ class CampaignEditForm extends React.Component {
       "startupgogo_campaign",{ cloud_name: 'dhh1nask4' }
     ).bind('cloudinarydone', (e, data) => {
       this.props.receiveImage();
-      console.log('jquery1');
+
       this.setState({
         card_image_url: data.result.url
       });
@@ -42,7 +42,7 @@ class CampaignEditForm extends React.Component {
       "startupgogo_pitch",{ cloud_name: 'dhh1nask4' }
     ).bind('cloudinarydone', (e, data) => {
       this.props.receiveImage();
-      console.log('jquery2');
+
       this.setState({
         pitch_image_url: data.result.url
       });
