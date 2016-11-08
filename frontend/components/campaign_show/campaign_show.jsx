@@ -70,7 +70,7 @@ class CampaignShow extends React.Component {
             <div className="campaign-tabs-container">
               <ul className="campaign-tabs">
                 {campaignTabs.map( (title, idx) => (
-                  <li key={idx} className={tabClass(title)}><h4>{title}</h4></li>
+                  <li key={idx} className="clickable"><h4>{title}</h4></li>
                 ))}
               </ul>
               <p>{this.props.campaign.campaign_pitch}</p>
