@@ -61,8 +61,8 @@ class CampaignEditForm extends React.Component {
   // }
 
   componentWillReceiveProps(nextProps) {
-    // on intial get campaign call
-    if (!this.state.title) {
+    // on intial get campaign call or new Campaign Content
+    if (!this.state.title || this.state.title !== nextProps.campaign.title) {
       this.setState(nextProps.campaign);
     }
   }

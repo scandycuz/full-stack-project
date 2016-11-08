@@ -13,10 +13,6 @@ class CampaignShow extends React.Component {
     this.props.requestSingleCampaign(this.props.params.id)
   }
 
-  // componentDidUpdate() {
-  //   console.log(this.props.campaign);
-  // }
-
   endDateToDuration(endDate) {
     if (endDate) {
       let endDateArray = endDate.split("-");
@@ -29,6 +25,7 @@ class CampaignShow extends React.Component {
 
   render() {
     const children = this.props.children;
+    console.log('rendered');
     return(
       <div className="campaign-show">
         <div className="campaign-show-container container">
