@@ -15,7 +15,8 @@ class ProfileEdit extends React.Component {
     $("#uploadProfileImage").unsigned_cloudinary_upload(
       "startupgogo_profile",{ cloud_name: 'dhh1nask4' }
     ).bind('cloudinarydone', (e, data) => {
-      // this.props.receiveImage();
+      this.props.receiveImage();
+
       this.setState({
         photo_url: data.result.url,
         small_photo_url: data.result.eager[0].secure_url
@@ -25,8 +26,16 @@ class ProfileEdit extends React.Component {
     this.props.requestSingleProfile(this.props.params.id)
   }
 
+  componentDidUpdate() {
+    console.log(this.props.profile);
+    console.log(this.state);
+  }
+
   componentWillReceiveProps(nextProps) {
-    this.setState(nextProps.profile);
+
+    if (!this.state.first_name) {
+      this.setState(nextProps.profile);
+    }
   }
 
   update(property) {
@@ -41,7 +50,7 @@ class ProfileEdit extends React.Component {
 
   handleImageClick(e) {
     e.preventDefault();
-    // this.props.uploadImage();
+    this.props.uploadImage();
 
     document.getElementById('uploadProfileImage').click();
   }

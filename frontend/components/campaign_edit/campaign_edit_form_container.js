@@ -2,7 +2,9 @@ import { connect } from 'react-redux';
 import CampaignEditForm from './campaign_edit_form';
 
 import { updateCampaign,
-         requestSingleCampaign } from '../../actions/campaign_actions';
+         requestSingleCampaign,
+         uploadImage,
+         receiveImage } from '../../actions/campaign_actions';
 import { fetchingSingleCampaign } from '../../util/campaign_api_util';
 
 const mapStateToProps = ({ session, campaign, loading }) => ({
@@ -18,7 +20,9 @@ const mapDispatchToProps = (dispatch, { location }) => {
     requestSingleCampaign: id => dispatch(requestSingleCampaign(id)),
     currentPath: () => {
       return location.pathname.split("/").pop();
-    }
+    },
+    uploadImage: () => dispatch(uploadImage()),
+    receiveImage: () => dispatch(receiveImage())
   })
 };
 

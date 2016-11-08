@@ -501,7 +501,7 @@ input[type="text"] {
   float: none;
   margin-top: 6px;
 }
-#uploadProfileImage, #uploadThumbnailImage {
+#uploadProfileImage, #uploadThumbnailImage, #uploadPitchImage {
   position: absolute;
   visibility: hidden;
   z-index: -999;
@@ -726,6 +726,13 @@ input[type="text"] {
     margin-top: 2px;
     display: inline-block;
   }
+  textarea {
+    width: 100%;
+    margin-bottom: 4em;
+    height: 14em;
+    font-size: 15px;
+    padding: 10px 14px;
+  }
 }
 .form-section {
   width: 80%;
@@ -736,6 +743,12 @@ input[type="text"] {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+}
+.form-story-section {
+  img, .blank-image {
+    width: 620px;
+    height: 415px;
+  }
 }
 
 
