@@ -26,11 +26,6 @@ class ProfileEdit extends React.Component {
     this.props.requestSingleProfile(this.props.params.id)
   }
 
-  componentDidUpdate() {
-    console.log(this.props.profile);
-    console.log(this.state);
-  }
-
   componentWillReceiveProps(nextProps) {
 
     if (!this.state.first_name) {

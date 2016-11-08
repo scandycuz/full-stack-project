@@ -13,12 +13,26 @@ class CampaignEdit extends React.Component {
 
     this.changeTab = this.changeTab.bind(this);
     this.tabClass = this.tabClass.bind(this);
+    this.reviewAndLaunch = this.reviewAndLaunch.bind(this);
+  }
+
+  reviewAndLaunch() {
+    let campaign = this.props.campaign;
+    // set campaign.status to published
+
+    let campaignId = this.props.params.id;
+    this.props.router.push(`/campaigns/${campaignId}`);
   }
 
   changeTab(e) {
     let tabName = e.target.innerHTML.toLowerCase();
-    this.props.router.push(`/campaigns/${this.props.params.id}/edit/${tabName}`);
-    this.setState({ selectedTab: tabName});
+
+    if (tabName === "review &amp; launch") {
+      this.reviewAndLaunch();
+    } else {
+      this.props.router.push(`/campaigns/${this.props.params.id}/edit/${tabName}`);
+      this.setState({ selectedTab: tabName});
+    }
   }
 
   tabClass(step) {

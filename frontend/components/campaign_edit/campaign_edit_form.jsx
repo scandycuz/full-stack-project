@@ -78,6 +78,11 @@ class CampaignEditForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
+    let durationDate = this.parseDuration(this.state.duration);
+    this.saveCampaign(Object.assign({}, this.state, { duration: durationDate }));
+    
+    let campaignId = this.props.params.id;
+    this.props.router.push(`/campaigns/${campaignId}`);
   }
 
   parseDuration(lengthOfCampaign) {

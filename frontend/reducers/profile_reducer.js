@@ -6,15 +6,15 @@ import merge from 'lodash/merge';
 const _nullProfile = Object.freeze({
   profile: {
     user_id: "",
-    title: "",
-    tagline: "",
-    funds_received: 0,
-    goal_amount: 0,
-    card_image_url: "",
-    pitch_image_url: "",
-    campaign_overview: "",
-    campaign_pitch: "",
-    status: "draft",
+    first_name: "",
+    last_name: "",
+    country: "",
+    city: "",
+    postal_code: "",
+    description: "",
+    about: "",
+    photo_url: "",
+    small_photo_url: "",
     campaigns: {}
   },
   errors: []
