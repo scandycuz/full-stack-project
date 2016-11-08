@@ -6,8 +6,6 @@ class CampaignEditForm extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = this.props.campaign;
-
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.formSection = this.formSection.bind(this);
@@ -293,7 +291,7 @@ class CampaignEditForm extends React.Component {
   }
 
   render() {
-
+    console.log(this.context);
     return(
       <div className="campaign-edit-form-container container">
         <form onSubmit={this.handleSubmit}>
@@ -302,6 +300,11 @@ class CampaignEditForm extends React.Component {
       </div>
     )
   }
+}
+
+CampaignEditForm.contextTypes = {
+  selectedTab: React.PropTypes.string,
+  formState: React.PropTypes.object
 }
 
 export default withRouter(CampaignEditForm);

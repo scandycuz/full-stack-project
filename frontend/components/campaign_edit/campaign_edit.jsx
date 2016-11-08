@@ -8,27 +8,28 @@ class CampaignEdit extends React.Component {
     super(props);
 
     this.state = {
-      selectedTab: this.props.currentPath()
+      selectedTab: this.props.currentPath(),
+      formState: {
+
+      }
     }
 
     this.changeTab = this.changeTab.bind(this);
     this.tabClass = this.tabClass.bind(this);
-    this.reviewAndLaunch = this.reviewAndLaunch.bind(this);
     this.publishStatus = this.publishStatus.bind(this);
   }
 
-  reviewAndLaunch(e) {
-    e.preventDefault();
-    let submitButton = document.getElementById('#review-and-launch-campaign');
-    $(submitButton).click();
+  getChildContext() {
+    return ({
+      selectedTab: this.state.selectedTab,
+      formState: this.state.formState
+     });
   }
 
   changeTab(e) {
     let tabName = e.target.innerHTML.toLowerCase();
 
-    if (tabName === "review &amp; launch") {
-      this.reviewAndLaunch(e);
-    } else {
+    if (!(tabName === "review &amp; launch")) {
       this.props.router.push(`/campaigns/${this.props.params.id}/edit/${tabName}`);
       this.setState({ selectedTab: tabName});
     }
@@ -36,11 +37,18 @@ class CampaignEdit extends React.Component {
 
   tabClass(step) {
     const stepName = step.toLowerCase();
+    let className;
+
     if (this.props.currentPath() === stepName) {
-      return "selected clickable";
+      className = "selected clickable";
     } else {
-      return "clickable";
+      className = "clickable";
     }
+    if (stepName === "review & launch") {
+      className = `${className} review-button`;
+    }
+
+    return className;
   }
 
   publishStatus() {
@@ -84,6 +92,11 @@ class CampaignEdit extends React.Component {
     )
   }
 
+}
+
+CampaignEdit.childContextTypes = {
+  selectedTab: React.PropTypes.string,
+  formState: React.PropTypes.object
 }
 
 export default withRouter(CampaignEdit);
