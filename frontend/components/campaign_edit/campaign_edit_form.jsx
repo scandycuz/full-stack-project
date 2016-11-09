@@ -78,9 +78,9 @@ class CampaignEditForm extends React.Component {
       this.setState(nextProps.campaign);
     }
 
-    if (this.context.formState) {
-      this.setState(this.context.formState);
-    }
+    // if (this.context.formState) {
+    //   this.setState(this.context.formState);
+    // }
   }
 
   update(property) {
@@ -126,14 +126,8 @@ class CampaignEditForm extends React.Component {
   handleSave(e) {
     e.preventDefault();
     let campaign = this.state;
-    this.saveCampaign(campaign);
-
     let currentPath = this.props.currentPath();
-    let campaignId = this.props.params.id;
-    switch(currentPath) {
-      case "basics":
-        this.props.router.push(`/campaigns/${campaignId}/edit/story`);
-    }
+    this.context.handleSave(campaign, currentPath);
   }
 
   saveCampaign(state) {
@@ -308,6 +302,7 @@ CampaignEditForm.contextTypes = {
   selectedTab: React.PropTypes.string,
   formState: React.PropTypes.object,
   handleSubmit: React.PropTypes.func,
+  handleSave: React.PropTypes.func,
   updateParentState: React.PropTypes.func
 }
 

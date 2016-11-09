@@ -58,7 +58,7 @@ class Campaign extends React.Component {
             {this.tabList()}
           </div>
         </div>
-        <div className="campaign-content content">
+        <div className="campaign-content content group">
           {children}
         </div>
       </div>

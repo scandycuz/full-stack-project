@@ -687,6 +687,11 @@ input[type="text"] {
   background-color: $green !important;
   color: white !important;
 }
+.campaign_edit {
+  .campaign-header {
+    border-bottom: none;
+  }
+}
 .campaign-edit-form-container {
   h4 {
     font-size: 26px;

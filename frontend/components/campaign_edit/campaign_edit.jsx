@@ -17,6 +17,7 @@ class CampaignEdit extends React.Component {
     this.tabClass = this.tabClass.bind(this);
     this.publishStatus = this.publishStatus.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +33,7 @@ class CampaignEdit extends React.Component {
       selectedTab: this.state.selectedTab,
       formState: this.state.formState,
       handleSubmit: (campaign) => this.handleSubmit(campaign),
+      handleSave: (campaign, currentPath) => this.handleSave(campaign, currentPath),
       updateParentState: (campaign) => this.setState({formState: campaign})
      });
   }
@@ -42,6 +44,20 @@ class CampaignEdit extends React.Component {
 
     let campaignId = this.props.params.id;
     this.props.router.push(`/campaigns/${campaignId}`);
+  }
+
+  handleSave(campaign, currentPath) {
+    this.saveCampaign(campaign);
+
+    let campaignId = this.props.params.id;
+    switch(currentPath) {
+      case "basics":
+        this.props.router.push(`/campaigns/${campaignId}/edit/story`);
+    }
+  }
+
+  saveCampaign(campaign) {
+    this.props.updateCampaign({ campaign });
   }
 
   changeTab(e) {
@@ -119,6 +135,7 @@ CampaignEdit.childContextTypes = {
   selectedTab: React.PropTypes.string,
   formState: React.PropTypes.object,
   handleSubmit: React.PropTypes.func,
+  handleSave: React.PropTypes.func,
   updateParentState: React.PropTypes.func
 }
 
