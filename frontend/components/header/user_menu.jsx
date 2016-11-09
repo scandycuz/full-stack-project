@@ -40,14 +40,14 @@ class UserMenu extends React.Component {
       }
     })
 
-    this.redirectIfLoggedOut();
+    // this.redirectIfLoggedOut();
   }
 
   componentDidUpdate() {
     if (this.props.loggedIn && this.state.modalIsOpen === true) {
       return this.closeModal();
     }
-    this.redirectIfLoggedOut();
+    // this.redirectIfLoggedOut();
   }
 
   redirectIfLoggedOut() {

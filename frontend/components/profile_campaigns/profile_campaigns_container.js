@@ -2,9 +2,10 @@ import { connect } from 'react-redux';
 import { requestUserCampaigns } from "../../actions/profile_actions";
 import ProfileCampaigns from './profile_campaigns';
 
-const mapStateToProps = ({ profile }) => {
+const mapStateToProps = ({ profile, session }) => {
   return ({
-    campaigns: profile.profile.campaigns
+    campaigns: profile.profile.campaigns,
+    currentUserId: session.currentUser.id
   })
 };
 

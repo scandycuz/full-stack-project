@@ -4,7 +4,7 @@ class Api::CampaignsController < ApplicationController
     if params[:profile_id]
       @campaigns = Campaign.where("user_id = '#{params[:profile_id]}'")
     else
-      @campaigns = Campaign.all
+      @campaigns = Campaign.where("status = 'published'")
     end
   end
 

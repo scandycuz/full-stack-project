@@ -26,7 +26,6 @@ const ProfileReducer = (state = _nullProfile, action) => {
   switch(action.type) {
     case RECEIVE_SINGLE_PROFILE:
       const profile = action.profile;
-      console.log(profile);
       let clonedState = merge({}, state);
       clonedState.profile.campaigns = {};
       let newState = merge({}, clonedState, {profile});

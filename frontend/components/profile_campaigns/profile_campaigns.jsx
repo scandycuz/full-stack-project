@@ -23,10 +23,31 @@ class ProfileCampaigns extends React.Component {
       campaignsArray.push(campaigns[key]);
     })
 
+    const editLink = () => {
+      if (String(this.props.currentUserId) === this.props.params.id) {
+        return (
+          <div className="campaign-item-link clickable">Edit</div>
+        )
+      }
+    }
+
+    const goToUserCampainLink = (id) => {
+      console.log(id);
+      return( (e) => {
+        this.props.router.push(`campaigns/${id}`);
+      })
+    }
+
     return(
-      <ul>
-        {campaignsArray.map( (campaign, idx) => (
-          <li key={idx}>{campaign.title}</li>
+      <ul className="user-campaign-show-list">
+        {campaignsArray.map( (campaign) => (
+          <li className="user-campaign-item" key={campaign.id}>
+            <div onClick={goToUserCampainLink(campaign.id)} className="user-campaign-item-info clickable">
+              <img src={campaign.card_image_url}/>
+              <h4 className="clickable">{campaign.title}</h4>
+            </div>
+            {editLink()}
+          </li>
         ))}
       </ul>
     )
