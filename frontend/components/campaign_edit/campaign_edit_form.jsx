@@ -74,14 +74,12 @@ class CampaignEditForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // on intial get campaign call or new Campaign Content
     if (!this.state.title || this.state.title !== nextProps.campaign.title) {
       this.setState(nextProps.campaign);
     }
 
-    // set state to parents context when it updates
-    if (this.context.formType) {
-      this.setState(this.context.formType);
+    if (this.context.formState) {
+      this.setState(this.context.formState);
     }
   }
 
@@ -106,7 +104,7 @@ class CampaignEditForm extends React.Component {
       let endDateFormatted = endDateArray[1]+","+endDateArray[2]+","+endDateArray[0];
       let timestamp = new Date(endDateFormatted).getTime();
       let durationLeft = timestamp - new Date();
-      return Math.ceil(durationLeft / (86400000));
+      return Math.round(durationLeft / (86400000.00));
     }
   }
 
