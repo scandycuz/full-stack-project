@@ -20,12 +20,16 @@ import { requestSingleProfile } from '../actions/profile_actions';
 
 const Root = ({ store }) => {
 
-  const _redirectIfLoggedIn = (nextState, replace) => {
-    const currentUser = store.getState().session.currentUser;
+  // const _redirectIfLoggedIn = (nextState, replace) => {
+  //   const currentUser = store.getState().session.currentUser;
+  //
+  //   if (currentUser) {
+  //     replace("/");
+  //   }
+  // }
 
-    if (currentUser) {
-      replace("/");
-    }
+  const requestProfile = (nextState) => {
+    store.dispatch(requestSingleProfile(nextState.params.id));
   }
 
   return (
@@ -33,7 +37,7 @@ const Root = ({ store }) => {
       <Router history={hashHistory}>
         <Route path="/" component={App}>
           <IndexRoute component={HomeContainer}/>
-          <Route path="/profile/:id" component={ProfileContainer}>
+          <Route path="/profile/:id" component={ProfileContainer} onEnter={requestProfile}>
             <Route path="/profile/:id/campaigns" component={ProfileCampaignsContainer}/>
             <Route path="/profile/:id/contributions" component={ProfileContributionsContainer}/>
             <Route path="/profile/:id/edit" component={ProfileEditContainer}/>

@@ -1,6 +1,6 @@
 import { RECEIVE_SINGLE_PROFILE,
-         RECEIVE_PROFILE_ERRORS,
-         RECEIVE_USER_CAMPAIGNS } from '../actions/profile_actions';
+         RECEIVE_PROFILE_ERRORS } from '../actions/profile_actions';
+import { LOGOUT } from '../actions/session_actions';
 import merge from 'lodash/merge';
 
 const _nullProfile = Object.freeze({
@@ -26,15 +26,16 @@ const ProfileReducer = (state = _nullProfile, action) => {
   switch(action.type) {
     case RECEIVE_SINGLE_PROFILE:
       const profile = action.profile;
-      let newState = merge({}, state, { profile });
+      console.log(profile);
+      let clonedState = merge({}, state);
+      clonedState.profile.campaigns = {};
+      let newState = merge({}, clonedState, {profile});
       return newState;
     case RECEIVE_PROFILE_ERRORS:
       const errors = action.errors;
       return merge({}, _nullProfile, { errors });
-    case RECEIVE_USER_CAMPAIGNS:
-      const campaigns = action.campaigns;
-      const newProfile = merge({}, state.profile, { campaigns })
-      return merge({}, state, { profile: newProfile });
+    case LOGOUT:
+      return merge({}, _nullProfile);
     default:
       return state;
   }

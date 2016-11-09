@@ -19,9 +19,6 @@ const ProfileMiddleware = ({ getState, dispatch }) => next => action => {
     case REQUEST_SINGLE_PROFILE:
       fetchSingleProfile(action.id, updateProfileSuccess);
       return next(action);
-    case REQUEST_USER_CAMPAIGNS:
-      fetchUserCampaigns(action.user_id, requestUserCampaignsSuccess);
-      return next(action);
     default:
       return next(action);
   }

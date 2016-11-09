@@ -12,6 +12,7 @@ class CampaignShow extends React.Component {
     }
 
     this.tabClass = this.tabClass.bind(this);
+    this.linkToProfile = this.linkToProfile.bind(this);
   }
 
   componentDidMount() {
@@ -36,12 +37,17 @@ class CampaignShow extends React.Component {
     }
   }
 
+  linkToProfile(e) {
+    e.preventDefault();
+    let authorId = this.props.author.id;
+    this.props.router.push(`/profile/${authorId}`);
+  }
+
   render() {
     const children = this.props.children;
 
     const campaignTabs = [
-      "Story",
-      "Backers"
+      "Story"
     ]
 
     return(
@@ -53,7 +59,7 @@ class CampaignShow extends React.Component {
           <div className="grid-5 omega campaign-info">
             <h4>{this.props.campaign.title} by {this.props.author.first_name} {this.props.author.last_name}</h4>
             <p>{this.props.campaign.tagline}</p>
-            <div className="campaign-author-container">
+            <div onClick={this.linkToProfile} className="campaign-author-container clickable">
               <div className="author-image">
                 <img src={this.props.author.small_photo_url} />
               </div>

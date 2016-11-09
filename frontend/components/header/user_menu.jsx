@@ -256,16 +256,19 @@ class UserMenu extends React.Component {
 
   userCampaignList() {
     const campaigns = this.props.campaigns;
-    return (
-      <ul className="user-campaign-list clickable">
-        {Object.keys(campaigns).map( (key, idx) => {
-          const campaign = campaigns[key];
-          return (
-            <li key={idx} onClick={this.handleCampaignLink(campaign.id)}>{campaign.title}</li>
-          )
-        })}
-      </ul>
-    )
+
+    if (this.props.campaigns) {
+      return (
+        <ul className="user-campaign-list clickable">
+          {Object.keys(campaigns).map( (key, idx) => {
+            const campaign = campaigns[key];
+            return (
+              <li key={idx} onClick={this.handleCampaignLink(campaign.id)}>{campaign.title}</li>
+            )
+          })}
+        </ul>
+      )
+    }
   }
 
   render() {

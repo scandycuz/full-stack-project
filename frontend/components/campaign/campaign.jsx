@@ -6,11 +6,25 @@ class Campaign extends React.Component {
     super(props);
 
     this.state = {
-      selectedTab: this.props.currentPath()
+      selectedTab: this.props.currentPath(),
+      userCampaigns: this.props.currentUserCampaigns
     }
 
     this.getTabClass = this.getTabClass.bind(this);
     this.switchViewEdit = this.switchViewEdit.bind(this);
+  }
+
+  componentDidMount() {
+    // if (this.props.currentUser) {
+    //   let currentUserId = this.props.currentUser.id;
+    //   this.props.requestUserCampaigns(currentUserId);
+    // }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.userCampaigns !== nextProps.currentUserCampaigns) {
+      this.setState({userCampaigns: nextProps.currentUserCampaigns});
+    }
   }
 
   getTabClass(tabName) {
@@ -33,18 +47,23 @@ class Campaign extends React.Component {
   }
 
   tabList() {
-    return(
-      <ul>
-        <li className={this.getTabClass('view')}
-            onClick={this.switchViewEdit}>
-          <i className="fa fa-eye"
-             aria-hidden="true"></i> View Campaign</li>
-        <li className={this.getTabClass('edit')}
-            onClick={this.switchViewEdit}>
-          <i className="fa fa-pencil-square-o"
-             aria-hidden="true"></i> Edit Campaign</li>
-      </ul>
-    )
+    let userCampaignIds = Object.keys(this.state.userCampaigns);
+    let currentCampaignId = String(this.props.currentCampaignId);
+
+    if (userCampaignIds.includes(currentCampaignId)) {
+      return(
+        <ul>
+          <li className={this.getTabClass('view')}
+              onClick={this.switchViewEdit}>
+            <i className="fa fa-eye"
+               aria-hidden="true"></i> View Campaign</li>
+          <li className={this.getTabClass('edit')}
+              onClick={this.switchViewEdit}>
+            <i className="fa fa-pencil-square-o"
+               aria-hidden="true"></i> Edit Campaign</li>
+        </ul>
+      )
+    }
   }
 
   render() {

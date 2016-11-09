@@ -197,6 +197,7 @@ input[type="text"] {
   padding-left: 0;
   li {
     &:hover {
+      color: $red;
       a {
         color: $red;
       }

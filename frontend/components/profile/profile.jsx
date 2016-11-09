@@ -56,12 +56,21 @@ class Profile extends React.Component {
     }
   }
 
-  renderTabList() {
-    const profileTabs = [
-      "Profile",
-      "Campaigns",
-      "Contributions"
-    ]
+  renderTabList(view) {
+    let profileTabs;
+
+    if (view === 'view-only') {
+      profileTabs = [
+        "Profile",
+        "Campaigns"
+      ]
+    } else {
+      profileTabs = [
+        "Profile",
+        "Campaigns",
+        "Contributions"
+      ]
+    }
 
     let currentPath = this.props.currentPath();
 
@@ -100,7 +109,7 @@ class Profile extends React.Component {
           </div>
           <div className="profile-info grid-7 omega">
             <ul className="profile-statistics">
-              <li><span className="stat-num">0</span> Campaigns</li>
+              <li><span className="stat-num">{Object.keys(this.props.campaigns).length}</span> Campaigns</li>
               <li><span className="stat-num">0</span> Contributions</li>
             </ul>
             <h3>{description}</h3>
@@ -115,27 +124,63 @@ class Profile extends React.Component {
 
     const children = this.props.children;
     const profile = this.props.profile;
+    const profileId = this.props.params.id;
+    const currentUser = this.props.currentUser;
 
-    return(
-      <div className="profile">
-        <div className="profile-bar-container bar-container">
-          <div className="profile-bar container bar">
-            <ul>
-              <li className={this.tabClass('view')} onClick={this.switchViewEdit}><i className="fa fa-eye" aria-hidden="true"></i> View Profile</li>
-              <li className={this.tabClass('edit')} onClick={this.switchViewEdit}><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</li>
-            </ul>
+    if (currentUser) {
+      if (String(currentUser.id) === String(profileId)) {
+        return (
+          <div className="profile">
+            <div className="profile-bar-container bar-container">
+              <div className="profile-bar container bar">
+                <ul>
+                  <li className={this.tabClass('view')} onClick={this.switchViewEdit}><i className="fa fa-eye" aria-hidden="true"></i> View Profile</li>
+                  <li className={this.tabClass('edit')} onClick={this.switchViewEdit}><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</li>
+                </ul>
+              </div>
+            </div>
+            <div className="profile-content content container">
+              <h2>{this.props.profile.first_name} {this.props.profile.last_name}</h2>
+              {this.renderTabList()}
+              <div className="profile-tab-content tab-content">
+                {this.renderProfileTab()}
+                {children}
+              </div>
+            </div>
+          </div>
+        )
+      } else {
+        // Not logged in user's profile
+        return(
+          <div className="profile">
+            <div className="profile-content content container">
+              <h2>{this.props.profile.first_name} {this.props.profile.last_name}</h2>
+              {this.renderTabList('view-only')}
+              <div className="profile-tab-content tab-content">
+                {this.renderProfileTab()}
+                {children}
+              </div>
+            </div>
+          </div>
+        )
+      }
+      // No current user
+    } else {
+      return(
+        <div className="profile">
+          <div className="profile-content content container">
+            <h2>{this.props.profile.first_name} {this.props.profile.last_name}</h2>
+            {this.renderTabList('view-only')}
+            <div className="profile-tab-content tab-content">
+              {this.renderProfileTab()}
+              {children}
+            </div>
           </div>
         </div>
-        <div className="profile-content content container">
-          <h2>{this.props.profile.first_name} {this.props.profile.last_name}</h2>
-          {this.renderTabList()}
-          <div className="profile-tab-content tab-content">
-            {this.renderProfileTab()}
-            {children}
-          </div>
-        </div>
-      </div>
-    )
+      )
+    }
+
+
   }
 
 }

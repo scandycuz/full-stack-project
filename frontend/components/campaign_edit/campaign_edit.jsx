@@ -22,10 +22,24 @@ class CampaignEdit extends React.Component {
 
   componentDidMount() {
     this.props.requestSingleCampaign(this.props.params.id);
+
+    // if (this.props.currentUser) {
+    //   let currentUserId = this.props.currentUser.id;
+    //   this.props.requestUserCampaigns(currentUserId);
+    // }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ formState: nextProps.campaign });
+    let campaignId = this.props.params.id;
+
+    if (!this.props.currentUser) {
+      this.props.router.replace(`/campaigns/${campaignId}`);
+    } else if (this.props.currentUserCampaigns) {
+      if (this.props.currentUserCampaigns && Object.keys(this.props.currentUserCampaigns).length === 0) {
+        this.props.router.replace(`/campaigns/${campaignId}`);
+      }
+    }
   }
 
   getChildContext() {

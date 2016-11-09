@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { requestUserCampaigns } from "../../actions/profile_actions";
 import ProfileCampaigns from './profile_campaigns';
 
 const mapStateToProps = ({ profile }) => {
@@ -12,7 +13,8 @@ const mapDispatchToProps = (dispatch, { location }) => {
   let currentPath = (["Campaigns", "Contributions", "Edit"].includes(currentPathName)) ? currentPathName : 'Profile';
 
   return({
-    currentPath: currentPath
+    currentPath: currentPath,
+    requestUserCampaigns: (user_id) => requestUserCampaigns(user_id)
   })
 };
 

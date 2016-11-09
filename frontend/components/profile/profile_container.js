@@ -3,8 +3,10 @@ import Profile from './profile';
 
 import { requestSingleProfile } from '../../actions/profile_actions';
 
-const mapStateToProps = ({ profile }) => ({
-  profile: profile.profile
+const mapStateToProps = ({ session, profile }) => ({
+  profile: profile.profile,
+  campaigns: profile.profile.campaigns,
+  currentUser: session.currentUser
 });
 
 const mapDispatchToProps = (dispatch, { location }) => {

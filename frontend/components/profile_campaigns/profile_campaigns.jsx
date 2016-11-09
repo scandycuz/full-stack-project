@@ -12,6 +12,10 @@ class ProfileCampaigns extends React.Component {
     this.campaignList = this.campaignList.bind(this);
   }
 
+  // componentDidMount() {
+  //   this.props.requestUserCampaigns(this.props.params.id);
+  // }
+
   campaignList() {
     let campaignsArray = [];
     const campaigns = this.props.campaigns;

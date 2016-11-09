@@ -1,11 +1,13 @@
 import { RECEIVE_CURRENT_USER,
   RECEIVE_SESSION_ERRORS,
   LOGOUT } from '../actions/session_actions';
+import { RECEIVE_USER_CAMPAIGNS } from '../actions/profile_actions';
 import merge from 'lodash/merge';
 
 const _nullUser = Object.freeze({
   currentUser: null,
-  errors: []
+  errors: [],
+  campaigns: {}
 });
 
 const SessionReducer = (state = _nullUser, action) => {
@@ -22,6 +24,9 @@ const SessionReducer = (state = _nullUser, action) => {
       return merge({}, _nullUser, {
         errors
       });
+    case RECEIVE_USER_CAMPAIGNS:
+      const campaigns = action.campaigns;
+      return merge({}, state, { campaigns });
     case LOGOUT:
       return merge({}, _nullUser);
     default:
