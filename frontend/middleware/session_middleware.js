@@ -1,5 +1,5 @@
 import { receiveCurrentUser,
-         receiveErrors,
+         receiveSessionErrors,
          LOGIN,
          LOGOUT,
          SIGNUP
@@ -9,7 +9,7 @@ import { signup, login, logout } from '../util/session_api_util';
 
 const SessionMiddleware = ({ getState, dispatch }) => next => action => {
   const successCallback = user => dispatch(receiveCurrentUser(user));
-  const errorCallback = xhr => dispatch(receiveErrors(xhr.responseJSON));
+  const errorCallback = xhr => dispatch(receiveSessionErrors(xhr.responseJSON));
 
   switch (action.type) {
     case LOGIN:

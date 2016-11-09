@@ -10,6 +10,8 @@ class CampaignShow extends React.Component {
     this.state = {
       selectedTab: "story"
     }
+
+    this.tabClass = this.tabClass.bind(this);
   }
 
   componentDidMount() {
@@ -23,6 +25,14 @@ class CampaignShow extends React.Component {
       let timestamp = new Date(endDateFormatted).getTime();
       let durationLeft = timestamp - new Date();
       return Math.floor(durationLeft / (86400000));
+    }
+  }
+
+  tabClass(title) {
+    if (title.toLowerCase() === this.state.selectedTab) {
+      return "clickable selected";
+    } else {
+      return "clickable";
     }
   }
 
@@ -70,7 +80,7 @@ class CampaignShow extends React.Component {
             <div className="campaign-tabs-container">
               <ul className="campaign-tabs">
                 {campaignTabs.map( (title, idx) => (
-                  <li key={idx} className="clickable"><h4>{title}</h4></li>
+                  <li key={idx} className={this.tabClass(title)}><h4>{title}</h4></li>
                 ))}
               </ul>
               <p>{this.props.campaign.campaign_pitch}</p>

@@ -5,32 +5,43 @@ class GoalProgress extends React.Component {
   constructor(props) {
     super(props)
 
-    this.barWidth = this.barWidth.bind(this);
-  }
-
-  componentDidUpdate() {
-    this.barWidth();
-  }
-
-  barWidth() {
-    let widthProportion = this.props.fundsReceived / this.props.goalAmount;
-    let widthPixels = widthProportion * $('.progress-bar').outerWidth();
-    $('.progress').outerWidth(widthPixels);
   }
 
   render() {
-    const fundsReceived = this.props.fundsReceived;
+
+    let fundsReceived = 0;
+    if (this.props.fundsReceived) {
+      fundsReceived = this.props.fundsReceived;
+    }
+
     const goalAmount = this.props.goalAmount;
     const daysLeft = this.props.daysLeft;
 
+    const componentType = this.props.componentType;
+    const dynamicClass = (type) => {
+      switch(type) {
+        case "index":
+          return "goal-progress-container index-goal-item";
+        default:
+          return "goal-progress-container";
+      }
+    }
+
+    let style = {
+      width: fundsReceived / goalAmount * 100 + "%"
+    }
+
     return (
-      <div className="goal-progress-container">
+      <div className={dynamicClass(componentType)}>
         <h4>${fundsReceived} <span className="thin">raised</span></h4>
         <div className="progress-bar">
-          <div className="progress"></div>
+          <div className="progress" style={style}></div>
         </div>
         <div className="progress-stats">
-          <p><strong>{fundsReceived / goalAmount * 100}%</strong> of ${goalAmount} goal</p>
+          <p><strong>{fundsReceived / goalAmount * 100}%</strong>
+          <span className="index-hidden"> of ${goalAmount} goal</span>
+          <span className="index-displayed">&nbsp;funded</span>
+          </p>
           <p><strong>{daysLeft}</strong> days left</p>
         </div>
       </div>

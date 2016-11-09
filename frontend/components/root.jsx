@@ -32,6 +32,7 @@ const Root = ({ store }) => {
     <Provider store={store}>
       <Router history={hashHistory}>
         <Route path="/" component={App}>
+          <IndexRoute component={HomeContainer}/>
           <Route path="/profile/:id" component={ProfileContainer}>
             <Route path="/profile/:id/campaigns" component={ProfileCampaignsContainer}/>
             <Route path="/profile/:id/contributions" component={ProfileContributionsContainer}/>

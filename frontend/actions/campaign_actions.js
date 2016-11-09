@@ -5,6 +5,8 @@ export const RECEIVE_CAMPAIGN_ERRORS = "RECEIVE_ERRORS";
 export const UPLOAD_IMAGE = "UPLOAD_IMAGE";
 export const RECEIVE_IMAGE = "RECEIVE_IMAGE";
 export const CREATE_CAMPAIGN = "CREATE_CAMPAIGN";
+export const REQUEST_CAMPAIGNS = "REQUEST_CAMPAIGNS";
+export const RECEIVE_CAMPAIGNS = "RECEIVE_CAMPAIGNS";
 
 export const updateCampaign = campaign => ({
   type: UPDATE_CAMPAIGN,
@@ -38,3 +40,12 @@ export const createCampaign = (campaign) => ({
   type: CREATE_CAMPAIGN,
   campaign
 });
+
+export const requestCampaigns = () => ({
+  type: REQUEST_CAMPAIGNS
+});
+
+export const receiveCampaigns = (campaigns) => ({
+  type: RECEIVE_CAMPAIGNS,
+  campaigns
+})

@@ -24,3 +24,11 @@ export const postCampaign = (campaign, success) => {
     success
   })
 }
+
+export const fetchCampaigns = (success) => {
+  $.ajax({
+    url: `api/campaigns`,
+    type: 'GET',
+    success
+  })
+}

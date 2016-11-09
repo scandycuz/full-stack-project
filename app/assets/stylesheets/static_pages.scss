@@ -21,6 +21,7 @@ $yellow: #FFFB51;
 $dark_yellow: #FDDE86;
 $light_green: #38FF6C;
 $green: #03B232;
+$dark_white: #fafafa;
 
 $large_width: 1440px;
 $med_width: 1280px;
@@ -32,6 +33,11 @@ $dark_grey: #444;
   content: "";
   display: table;
   clear: both;
+}
+
+
+.siteBody-container {
+  background: $dark_white;
 }
 
 body {
@@ -829,17 +835,29 @@ input[type="text"] {
   display: flex;
   justify-content: flex-start;
   padding-left: 0;
+  .selected {
+    h4 {
+      color: $red !important;
+      font-weight: 700;
+    }
+  }
   li {
     margin-right: 1em;
   }
 }
 .campaign-content-sidebar {
   padding-left: 1em;
+  h4 {
+    margin-bottom: 12px;
+  }
   p {
     font-size: 17px;
   }
 }
 .campaign-content-main {
+  h4 {
+    margin-bottom: 12px;
+  }
   p {
     font-size: 17px;
   }
@@ -847,12 +865,108 @@ input[type="text"] {
 .campaign-header {
   width: 100%;
   border-bottom: 1px solid $light_grey;
+  h4 {
+    font-weight: 400;
+    text-transform: uppercase;
+    color: $med_dark_grey;
+  }
 }
 
 .campaign-tabs {
   border-bottom: 1px solid $light_grey;
+  h4 {
+    font-weight: 400;
+    text-transform: uppercase;
+    color: $med_dark_grey;
+    &:hover {
+      color: $red;
+    }
+  }
 }
 
+// Home
+
+.home-content-container {
+  padding-top: 2em;
+  h3 {
+    font-family: $work-sans;
+  }
+}
+
+// Campaign Index
+
+.index-displayed {
+  display: none;
+}
+
+.campaign-index {
+
+}
+.campaign-index-tabs {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 0;
+  margin-bottom: 24px;
+  h3 {
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0;
+    margin-bottom: 6px;
+  }
+  li {
+    padding: 0 6px;
+    border-bottom: 3px solid $red;
+  }
+}
+.campaign-index-item {
+  width: 22.6%;
+  margin: 0 1.6%;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 1px solid $light_grey;
+  &:hover {
+    color: inherit;
+  }
+  img {
+    max-width: 100%;
+    padding: 0;
+  }
+  &:nth-child(4n+1) {
+    margin-left: 0;
+    margin-right: 1.6%;
+  }
+  &:nth-child(4n+4) {
+    margin-left: 1.6%;
+    margin-right: 0;
+  }
+  .campaign-index-item-content {
+    padding: 10px;
+    h4 {
+      margin-top: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.4em;
+      margin-top: 10px;
+    }
+  }
+  .campaign-index-item-info {
+    height: 4.2em;
+  }
+}
+.index-goal-item {
+  .index-hidden {
+    display: none;
+  }
+  .index-displayed {
+    display: inline-block;
+  }
+}
 
 
 
