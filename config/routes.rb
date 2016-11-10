@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     resources :profiles, only: [:update, :show] do
       resources :campaigns, only: [:index]
     end
-    
+
+    resources :rewards, only: [:create, :update, :index, :destroy]
+
     resources :campaigns, only: [:index, :create, :show, :update, :destroy]
   end
 end

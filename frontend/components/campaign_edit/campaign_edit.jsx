@@ -21,24 +21,27 @@ class CampaignEdit extends React.Component {
   }
 
   componentDidMount() {
-    this.props.requestSingleCampaign(this.props.params.id);
-
-    // if (this.props.currentUser) {
-    //   let currentUserId = this.props.currentUser.id;
-    //   this.props.requestUserCampaigns(currentUserId);
-    // }
+    let campaignId = this.props.params.id;
+    this.props.requestSingleCampaign(campaignId);
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ formState: nextProps.campaign });
-    let campaignId = this.props.params.id;
 
-    if (!this.props.currentUser) {
-      this.props.router.replace(`/campaigns/${campaignId}`);
-    } else if (this.props.currentUserCampaigns) {
-      if (this.props.currentUserCampaigns && Object.keys(this.props.currentUserCampaigns).length === 0) {
+
+    if (Object.keys(nextProps.currentUserCampaigns).length !== 0) {
+      let campaignId = this.props.params.id;
+      let currentUserCampaignKeys = Object.keys(nextProps.currentUserCampaigns);
+      if (!currentUserCampaignKeys.includes(campaignId)) {
         this.props.router.replace(`/campaigns/${campaignId}`);
       }
+    }
+  }
+
+  componentDidUpdate() {
+    let campaignId = this.props.params.id;
+    if (!this.props.currentUser) {
+      this.props.router.replace(`/campaigns/${campaignId}`);
     }
   }
 
@@ -67,6 +70,8 @@ class CampaignEdit extends React.Component {
     switch(currentPath) {
       case "basics":
         this.props.router.push(`/campaigns/${campaignId}/edit/story`);
+      case "story":
+        this.props.router.push(`/campaigns/${campaignId}/edit/rewards`);
     }
   }
 
@@ -119,6 +124,7 @@ class CampaignEdit extends React.Component {
     const editSteps = [
       "Basics",
       "Story",
+      "Rewards",
       "Review & Launch"
     ]
 

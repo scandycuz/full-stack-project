@@ -1,1 +1,1 @@
-json.partial! 'api/campaigns/campaign', campaign: @campaign, author: @author
+json.partial! 'api/campaigns/campaign', campaign: @campaign, author: @author, rewards: @rewards

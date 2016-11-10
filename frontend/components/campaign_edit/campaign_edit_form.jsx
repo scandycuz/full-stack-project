@@ -13,7 +13,6 @@ class CampaignEditForm extends React.Component {
     this.formSection = this.formSection.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSave = this.handleSave.bind(this);
-    this.saveCampaign = this.saveCampaign.bind(this);
     this.parseDuration = this.parseDuration.bind(this);
   }
 
@@ -77,10 +76,6 @@ class CampaignEditForm extends React.Component {
     if (!this.state.title || this.state.title !== nextProps.campaign.title) {
       this.setState(nextProps.campaign);
     }
-
-    // if (this.context.formState) {
-    //   this.setState(this.context.formState);
-    // }
   }
 
   update(property) {
@@ -128,10 +123,6 @@ class CampaignEditForm extends React.Component {
     let campaign = this.state;
     let currentPath = this.props.currentPath();
     this.context.handleSave(campaign, currentPath);
-  }
-
-  saveCampaign(state) {
-    this.props.updateCampaign({ campaign: state });
   }
 
   formSection(currentPath) {
@@ -278,6 +269,17 @@ class CampaignEditForm extends React.Component {
                       value={this.state.campaign_pitch}>
             </textarea>
           </label><br/>
+          <div className="form-button-container">
+            <span className="clickable button" onClick={this.handleSave}>Save & Continue</span>
+          </div>
+        </div>
+      )
+    } else if (currentPath === "rewards") {
+
+      return(
+        <div className="form-section form-rewards-section">
+          <h4>Rewards</h4>
+          <p>Rewards are offered as incentives for potentional backers in exchange for their support.</p>
           <div className="form-button-container">
             <span id="#review-and-launch-campaign" className="clickable button" onClick={this.handleSubmit}>Review &amp; Launch</span>
           </div>

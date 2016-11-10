@@ -13,7 +13,8 @@ const _nullCampaign= Object.freeze({
     pitch_video_url: "",
     campaign_overview: "",
     campaign_pitch: "",
-    author: {}
+    author: {},
+    rewards: {}
   },
   campaigns: {},
   errors: []

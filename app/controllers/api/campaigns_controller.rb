@@ -21,6 +21,7 @@ class Api::CampaignsController < ApplicationController
   def show
     @campaign = Campaign.find(params[:id])
     @author = @campaign.user
+    @rewards = @campaign.rewards
 
     render :show
   end

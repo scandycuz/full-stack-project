@@ -6,8 +6,7 @@ class Campaign extends React.Component {
     super(props);
 
     this.state = {
-      selectedTab: this.props.currentPath(),
-      userCampaigns: this.props.currentUserCampaigns
+      selectedTab: this.props.currentPath()
     }
 
     this.getTabClass = this.getTabClass.bind(this);
@@ -15,15 +14,9 @@ class Campaign extends React.Component {
   }
 
   componentDidMount() {
-    // if (this.props.currentUser) {
-    //   let currentUserId = this.props.currentUser.id;
-    //   this.props.requestUserCampaigns(currentUserId);
-    // }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.state.userCampaigns !== nextProps.currentUserCampaigns) {
-      this.setState({userCampaigns: nextProps.currentUserCampaigns});
+    if (this.props.currentUser) {
+      let currentUserId = this.props.currentUser.id;
+      this.props.requestSingleProfile(currentUserId);
     }
   }
 
@@ -47,7 +40,7 @@ class Campaign extends React.Component {
   }
 
   tabList() {
-    let userCampaignIds = Object.keys(this.state.userCampaigns);
+    let userCampaignIds = Object.keys(this.props.currentUserCampaigns);
     let currentCampaignId = String(this.props.currentCampaignId);
 
     if (userCampaignIds.includes(currentCampaignId)) {

@@ -12,10 +12,6 @@ class ProfileCampaigns extends React.Component {
     this.campaignList = this.campaignList.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.props.requestUserCampaigns(this.props.params.id);
-  // }
-
   campaignList() {
     let campaignsArray = [];
     const campaigns = this.props.campaigns;
@@ -23,16 +19,23 @@ class ProfileCampaigns extends React.Component {
       campaignsArray.push(campaigns[key]);
     })
 
-    const editLink = () => {
-      if (String(this.props.currentUserId) === this.props.params.id) {
-        return (
-          <div className="campaign-item-link clickable">Edit</div>
-        )
+    const editLink = (campaignId) => {
+      if (this.props.currentUser) {
+        if (String(this.props.currentUser.id) === this.props.params.id) {
+          return (
+            <div onClick={goToUserEditCampaignLink(campaignId)} className="campaign-item-link clickable">Edit</div>
+          )
+        }
       }
     }
 
+    const goToUserEditCampaignLink = (id) => {
+      return( (e) => {
+        this.props.router.push(`campaigns/${id}/edit`);
+      })
+    }
+
     const goToUserCampainLink = (id) => {
-      console.log(id);
       return( (e) => {
         this.props.router.push(`campaigns/${id}`);
       })
@@ -46,7 +49,7 @@ class ProfileCampaigns extends React.Component {
               <img src={campaign.card_image_url}/>
               <h4 className="clickable">{campaign.title}</h4>
             </div>
-            {editLink()}
+            {editLink(campaign.id)}
           </li>
         ))}
       </ul>

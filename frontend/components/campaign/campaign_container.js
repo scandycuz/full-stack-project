@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import Campaign from './campaign';
 
 import { requestSingleCampaign } from '../../actions/campaign_actions';
-import { requestUserCampaigns } from '../../actions/profile_actions';
+import { requestUserCampaigns,
+         requestSingleProfile } from '../../actions/profile_actions';
 
 const mapStateToProps = ({ campaign, profile, session }, ownState) => {
 
@@ -25,7 +26,8 @@ const mapDispatchToProps = (dispatch, { location }) => {
       return pathArray;
     },
     requestSingleCampaign: id => dispatch(requestSingleCampaign(id)),
-    requestUserCampaigns: user_id => dispatch(requestUserCampaigns(user_id))
+    requestUserCampaigns: user_id => dispatch(requestUserCampaigns(user_id)),
+    requestSingleProfile: (id) => dispatch(requestSingleProfile(id))
   })
 };
 

@@ -40,6 +40,7 @@ const Root = ({ store }) => {
               <IndexRedirect to="/campaigns/:id/edit/basics" />
               <Route path="/campaigns/:id/edit/basics" component={CampaignEditFormContainer}/>
               <Route path="/campaigns/:id/edit/story" component={CampaignEditFormContainer}/>
+              <Route path="/campaigns/:id/edit/rewards" component={CampaignEditFormContainer}/>
             </Route>
           </Route>
           <Route path="/pitch-a-startup" component={CampaignPitchContainer}/>

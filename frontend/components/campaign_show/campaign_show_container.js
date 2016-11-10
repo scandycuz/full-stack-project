@@ -6,7 +6,8 @@ import { requestSingleCampaign } from '../../actions/campaign_actions';
 const mapStateToProps = ({session, campaign, loading}) => ({
   campaign: campaign.campaign,
   currentUser: session.currentUser,
-  author: campaign.campaign.author
+  author: campaign.campaign.author,
+  rewards: campaign.campaign.rewards
 });
 
 const mapDispatchToProps = (dispatch, { location }) => {

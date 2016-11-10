@@ -2,13 +2,17 @@ import React from 'react';
 import { Router, Route, IndexRoute, hashHistory, withRouter } from 'react-router';
 
 import GoalProgress from './goal_progress';
+import Rewards from './rewards';
 
 class CampaignShow extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedTab: "story"
+      selectedTab: "story",
+      form: {
+        donation_amount: 0
+      }
     }
 
     this.tabClass = this.tabClass.bind(this);
@@ -50,10 +54,17 @@ class CampaignShow extends React.Component {
       "Story"
     ]
 
+    const startCheckout = (e) => {
+      let target = e.target;
+      let input = target.previousSibling;
+      target.innerHTML = "Confirm";
+      input.placeholder = "Enter an amount";
+    }
+
     return(
       <div className="campaign-show">
-        <div className="campaign-show-container container">
-          <div className="grid-7 alpha">
+        <div className="campaign-show-container container group">
+          <div className="grid-7 alpha pitch-image-container">
             <img src={this.props.campaign.pitch_image_url}/>
           </div>
           <div className="grid-5 omega campaign-info">
@@ -75,6 +86,10 @@ class CampaignShow extends React.Component {
               endDate={this.props.campaign.duration}
               daysLeft={this.endDateToDuration(this.props.campaign.duration)}
               endDateToDuration={(endDate) => this.endDateToDuration(endDate)}/>
+            <div className="contribute-button-container">
+              <input type="text" />
+              <button className="clickable button" onClick={startCheckout}>Contribute</button>
+            </div>
           </div>
           <div className="grid-7 campaign-content-main alpha">
             <div className="campaign-overview">
@@ -96,6 +111,7 @@ class CampaignShow extends React.Component {
             <div className="campaign-header">
               <h4>Rewards</h4>
             </div>
+            <Rewards rewards={this.props.rewards}/>
           </div>
         </div>
       </div>

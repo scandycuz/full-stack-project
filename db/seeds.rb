@@ -187,3 +187,24 @@ campaigns = Campaign.create([
     duration: "2016-11-30"
   }
 ])
+
+rewards = Reward.create([
+  { campaign_id: 1,
+    price: 50,
+    title: "Snackwave mlkshk",
+    description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
+    number_available: 30,
+    estimated_delivery: "2017-01-02",
+    requires_shipping: true
+  },{ campaign_id: 1,
+    price: 80,
+    title: "YOLO pitchfork",
+    description: "Activated charcoal poutine chambray air plant beard, irony portland kombucha kinfolk humblebrag.",
+    requires_shipping: false
+  },{ campaign_id: 1,
+    price: 150,
+    title: "Hashtag master cleanse",
+    description: "Etsy chartreuse hella truffaut neutra, unicorn live-edge brooklyn small batch drinking vinegar.",
+    requires_shipping: false
+  }
+])
