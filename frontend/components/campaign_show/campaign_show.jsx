@@ -87,7 +87,9 @@ class CampaignShow extends React.Component {
               daysLeft={this.endDateToDuration(this.props.campaign.duration)}
               endDateToDuration={(endDate) => this.endDateToDuration(endDate)}/>
             <div className="contribute-button-container">
-              <input type="text" />
+              <span className="contribute-button-box">
+                $&nbsp;<input type="text" />
+              </span>
               <button className="clickable button" onClick={startCheckout}>Contribute</button>
             </div>
           </div>
