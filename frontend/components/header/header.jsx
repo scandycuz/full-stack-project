@@ -8,6 +8,9 @@ class Header extends React.Component {
 
     this.redirectHome = this.redirectHome.bind(this);
     this.linkToPitch = this.linkToPitch.bind(this);
+    this.state = {
+      modalIsOpen: false
+    }
   }
 
   componentDidMount() {
@@ -28,7 +31,11 @@ class Header extends React.Component {
 
   linkToPitch(e) {
     e.preventDefault();
-    this.props.router.push('/pitch-a-startup');
+    if (this.props.currentUser) {
+      this.props.router.push('/pitch-a-startup');
+    } else {
+      this.setState({modalIsOpen: true});
+    }
   }
 
   render() {
@@ -55,6 +62,7 @@ class Header extends React.Component {
             router={this.props.router}
             requestUserCampaigns={this.props.requestUserCampaigns}
             requestSingleCampaign={this.props.requestSingleCampaign}
+            modalIsOpen={this.state.modalIsOpen}
             router={this.props.router}/>
         </div>
       </header>

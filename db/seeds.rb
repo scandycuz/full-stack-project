@@ -194,6 +194,7 @@ rewards = Reward.create([
     title: "Snackwave mlkshk",
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
+    inventory: 30,
     estimated_delivery: "2017-01-02",
     requires_shipping: true
   },{ campaign_id: 1,

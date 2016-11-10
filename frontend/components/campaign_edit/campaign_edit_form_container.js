@@ -10,7 +10,8 @@ import { fetchingSingleCampaign } from '../../util/campaign_api_util';
 const mapStateToProps = ({ session, campaign, loading }) => ({
   currentUser: session.currentUser,
   campaign: campaign.campaign,
-  loading: loading
+  loading: loading,
+  rewards: campaign.campaign.rewards
 });
 
 const mapDispatchToProps = (dispatch, { location }) => {
@@ -18,6 +19,7 @@ const mapDispatchToProps = (dispatch, { location }) => {
   return({
     updateCampaign: campaign => dispatch(updateCampaign(campaign)),
     requestSingleCampaign: id => dispatch(requestSingleCampaign(id)),
+    location: location.pathname,
     currentPath: () => {
       return location.pathname.split("/").pop();
     },

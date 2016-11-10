@@ -15,6 +15,7 @@ import CampaignShowContainer from './campaign_show/campaign_show_container';
 import CampaignEditContainer from './campaign_edit/campaign_edit_container';
 import CampaignEditFormContainer from './campaign_edit/campaign_edit_form_container';
 import CampaignPitchContainer from './campaign_pitch/campaign_pitch_container';
+import RewardFormContainer from './reward/reward_form_container';
 
 import { requestSingleProfile } from '../actions/profile_actions';
 
@@ -40,7 +41,10 @@ const Root = ({ store }) => {
               <IndexRedirect to="/campaigns/:id/edit/basics" />
               <Route path="/campaigns/:id/edit/basics" component={CampaignEditFormContainer}/>
               <Route path="/campaigns/:id/edit/story" component={CampaignEditFormContainer}/>
-              <Route path="/campaigns/:id/edit/rewards" component={CampaignEditFormContainer}/>
+              <Route path="/campaigns/:id/edit/rewards" component={CampaignEditFormContainer}>
+                <Route path="/campaigns/:id/edit/rewards/new" component={RewardFormContainer}/>
+                <Route path="/campaigns/:id/edit/rewards/:reward_id" component={RewardFormContainer}/>
+              </Route>
             </Route>
           </Route>
           <Route path="/pitch-a-startup" component={CampaignPitchContainer}/>

@@ -7,7 +7,7 @@ class UserMenu extends React.Component {
     super(props);
 
     this.state = {
-      modalIsOpen: false,
+      modalIsOpen: this.props.modalIsOpen,
       formType: "",
       first_name: "",
       last_name: "",
@@ -43,10 +43,17 @@ class UserMenu extends React.Component {
     // this.redirectIfLoggedOut();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.state.modalIsOpen !== nextProps.modalIsOpen) {
+      this.setState({modalIsOpen: nextProps.modalIsOpen});
+    }
+  }
+
   componentDidUpdate() {
     if (this.props.loggedIn && this.state.modalIsOpen === true) {
       return this.closeModal();
     }
+
     // this.redirectIfLoggedOut();
   }
 

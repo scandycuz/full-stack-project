@@ -274,12 +274,64 @@ class CampaignEditForm extends React.Component {
           </div>
         </div>
       )
-    } else if (currentPath === "rewards") {
+    } else {
+
+      const rewardItems = () => {
+        const rewards = this.props.rewards;
+        const rewardKeys = Object.keys(rewards);
+
+        return (
+          rewardKeys.map( (id) => {
+            const reward = rewards[id];
+            return (
+              <tr key={id}>
+                <td>{reward.title}</td>
+                <td>${reward.price}</td>
+                <td>{(reward.number_available) ? reward.number_available : "Unlimited"}</td>
+                <td>{reward.estimated_delivery}</td>
+              </tr>
+            )
+          })
+        )
+      }
+
+      const linkToCreateReward = (e) => {
+        e.preventDefault();
+        let id = this.props.params.id;
+        this.props.router.push(`/campaigns/${id}/edit/rewards/new`);
+      }
+
+      const createRewardButton = () => {
+        let pathName = this.props.currentPath();
+
+        if (pathName === 'rewards') {
+          return (
+            <button className="create-reward-button button clickable" onClick={linkToCreateReward}>Create New Reward</button>
+          )
+        }
+      }
+
+      const children = this.props.children;
 
       return(
         <div className="form-section form-rewards-section">
           <h4>Rewards</h4>
-          <p>Rewards are offered as incentives for potentional backers in exchange for their support.</p>
+          <p className="reward-subtitle">Rewards are offered as incentives for potentional backers in exchange for their support.</p>
+          {createRewardButton()}
+          {children}
+          <table className="reward-table" cellSpacing="0" cellPadding="0">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Remaining</th>
+                <th>Est. Delivery</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rewardItems()}
+            </tbody>
+          </table>
           <div className="form-button-container">
             <span id="#review-and-launch-campaign" className="clickable button" onClick={this.handleSubmit}>Review &amp; Launch</span>
           </div>

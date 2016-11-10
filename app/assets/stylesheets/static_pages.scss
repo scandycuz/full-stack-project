@@ -39,6 +39,9 @@ $dark_grey: #444;
 .siteBody-container {
   background: $dark_white;
 }
+.button {
+  border-radius: 1px;
+}
 
 body {
   margin-left: 0;
@@ -947,6 +950,8 @@ input[type="text"] {
     justify-content: space-between;
     align-items: center;
     padding-left: 10px;
+    color: $grey;
+    font-family: $open-sans;
   }
   input {
     width: 100%;
@@ -958,6 +963,7 @@ input[type="text"] {
     font-size: 18px;
     font-weight: 600;
     color: #444;
+    background: none;
   }
   button {
     padding: 8px 16px;
@@ -1060,10 +1066,97 @@ input[type="text"] {
   flex-direction: column;
   li {
     width: 100%;
+    padding: 1em;
+    padding-top: 0;
+    position: relative;
+    &:hover {
+      .opacity-cover {
+        display: inline-block;
+      }
+      .reward-claim-button {
+        display: inline-block !important;
+        opacity: 1 !important;
+      }
+    }
+    .opacity-cover {
+      background: white;
+      opacity: 0.2;
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+  }
+  .reward-price {
+    font-size: 26px;
+    font-family: $work-sans;
+    margin-bottom: 10px;
+    margin-top: 14px;
+  }
+  .reward-title {
+    margin: 0;
+  }
+  .reward-description {
+    margin-top: 2px;
+    margin-bottom: 16px;
+  }
+  .reward-inventory {
+    margin: 0;
+    color: $grey;
+  }
+  .reward-estimated-delivery {
+    color: $med_dark_grey;
+    text-transform: uppercase;
+  }
+  .reward-claim-button {
+    position: absolute;
+    bottom: 1em;
+    padding: 12px;
+    width: 100%;
+    display: none;
+    font-weight: 600;
+    font-size: 16px;
   }
 }
 
+// Edit Rewards
 
+.form-rewards-section {
+  width: 100%;
+  .reward-table {
+    width: 100%;
+    text-align: left;
+    border: 1px solid $very_light_grey;
+    margin-bottom: 2.8em;
+    * {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    thead {
+      background: $very_light_grey;
+    }
+    th {
+      padding: 12px 20px;
+      font-family: $work-sans;
+      color: $black;
+      margin: 0;
+      font-size: 17px;
+      font-weight: 600;
+    }
+    td {
+      padding: 12px 20px;
+      font-family: $open-sans;
+      color: $dark_grey;
+    }
+  }
+  .create-reward-button {
+    margin: 1em 0 2em;
+    font-weight: 700;
+    padding: 12px 16px;
+  }
+}
 
 
 
