@@ -38,7 +38,7 @@ class GoalProgress extends React.Component {
           <div className="progress" style={style}></div>
         </div>
         <div className="progress-stats">
-          <p><strong>{Math.round(fundsReceived / goalAmount) * 100}%</strong>
+          <p><strong>{Math.floor(fundsReceived / goalAmount * 100)}%</strong>
           <span className="index-hidden"> of ${goalAmount} goal</span>
           <span className="index-displayed">&nbsp;funded</span>
           </p>

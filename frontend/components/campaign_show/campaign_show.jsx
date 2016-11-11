@@ -15,7 +15,8 @@ class CampaignShow extends React.Component {
         campaign_id: null,
         reward_id: null,
         amount: ""
-      }
+      },
+      buttonText: "Contribute"
     }
 
     this.tabClass = this.tabClass.bind(this);
@@ -35,10 +36,14 @@ class CampaignShow extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.campaign.funds_received !== nextProps.campaign.funds_received) {
-      console.log('requesting again');
       this.props.requestSingleCampaign(this.props.params.id);
+      this.setState({buttonText: "Contribute"});
     }
   }
 
@@ -81,24 +86,42 @@ class CampaignShow extends React.Component {
     const children = this.props.children;
 
     const campaignTabs = [
-      "Story"
+      "Story",
+      "Backers"
     ]
+
+    const _nullContribution = {
+      user_id: null,
+      campaign_id: null,
+      reward_id: null,
+      amount: ""
+    }
 
     const startCheckout = (e) => {
       let target = e.target;
       let input = target.previousSibling;
-      target.innerHTML = "Confirm";
-      input.placeholder = "Enter an amount";
+      this.setState({buttonText: "Checkout"})
       target.addEventListener("click", confirmCheckout);
+      $(target).closest('.contribute-button-container').mouseleave(
+        () => {
+          this.setState({buttonText: "Contribute"});
+          target.removeEventListener("click", confirmCheckout);
+        }
+      );
+
     }
 
     const confirmCheckout = (e) => {
       e.preventDefault();
+      let target = e.target;
+      target.removeEventListener("click", confirmCheckout);
+
       let contribution = this.state.contribution;
       let amount = this.props.campaign.funds_received + this.state.contribution.amount;
       let campaign = Object.assign({}, this.props.campaign, {funds_received: amount});
       this.props.createContribution({contribution});
-      this.props.updateCampaign(campaign)
+      this.props.updateCampaign(campaign);
+      this.setState({contribution: _nullContribution});
     }
 
     return(
@@ -132,7 +155,7 @@ class CampaignShow extends React.Component {
                 value={this.state.contribution.amount}
                 onChange={this.update('amount')}/>
               </span>
-              <button className="clickable button" onClick={startCheckout}>Contribute</button>
+              <button className="clickable button" onClick={startCheckout}>{this.state.buttonText}</button>
             </div>
           </div>
           <div className="grid-7 campaign-content-main alpha">
@@ -155,7 +178,12 @@ class CampaignShow extends React.Component {
             <div className="campaign-header">
               <h4>Rewards</h4>
             </div>
-            <Rewards rewards={this.props.rewards}/>
+            <Rewards
+              rewards={this.props.rewards}
+              contribution={this.state.contribution}
+              campaign={this.props.campaign}
+              createContribution={this.props.createContribution}
+              updateCampaign={this.props.updateCampaign}/>
           </div>
         </div>
       </div>

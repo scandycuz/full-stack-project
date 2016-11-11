@@ -5,14 +5,28 @@ class Rewards extends React.Component {
   constructor(props) {
     super(props)
 
+    this.state = props.contribution;
   }
 
   componentDidMount() {
   }
 
+  componentWillReceiveProps(nextProps) {
+
+    if (this.state !== nextProps.contribution) {
+      this.setState(nextProps.contribution)
+    }
+  }
+
   render() {
     const rewards = this.props.rewards;
     const rewardKeys = Object.keys(rewards);
+    const _nullContribution = {
+      user_id: null,
+      campaign_id: null,
+      reward_id: null,
+      amount: ""
+    }
 
     const inventory = (reward) => {
       if (reward.inventory) {
@@ -34,8 +48,23 @@ class Rewards extends React.Component {
     const confirmReward = (rewardAmount) => {
       return (e) => {
         let target = e.target;
+        let rewardId = $(target).data("id");
+        this.setState({amount: rewardAmount, reward_id: rewardId});
         target.innerHTML = `Claim for $${rewardAmount}?`;
+        target.addEventListener("click", confirmCheckout);
       }
+    }
+
+    const confirmCheckout = (e) => {
+      let target = e.target;
+      target.removeEventListener("click", confirmCheckout);
+
+      let contribution = this.state;
+      let amount = this.props.campaign.funds_received + this.state.amount;
+      let campaign = Object.assign({}, this.props.campaign, {funds_received: amount});
+      this.props.createContribution({contribution});
+      this.props.updateCampaign(campaign);
+      this.setState(_nullContribution);
     }
 
     const onLeaveReward = (e) => {
@@ -49,7 +78,8 @@ class Rewards extends React.Component {
           {rewardKeys.map( (key) => {
             const reward = rewards[key]
             return (
-              <li onMouseLeave={onLeaveReward} className="campaign-reward-item" key={key}>
+              <li onMouseLeave={onLeaveReward}
+                className="campaign-reward-item" key={key}>
                 <div className="opacity-cover"></div>
                 <h4 className="reward-price">${reward.price}</h4>
                 <h4 className="reward-title">{reward.title}</h4>
@@ -57,7 +87,8 @@ class Rewards extends React.Component {
                 {estimatedDelivery(reward)}
                 <button
                   onClick={confirmReward(reward.price)}
-                  className="reward-claim-button button clickable">Claim Reward</button>
+                  className="reward-claim-button button clickable"
+                  data-id={key}>Claim Reward</button>
               </li>
             )
           })}
