@@ -55,7 +55,7 @@ class Header extends React.Component {
         <div className="siteHeader-content-left">
           <h1 className="siteLogo" onClick={this.redirectHome}>StartupGoGo</h1>
           <ul>
-            <li><a className="clickable">Explore</a></li>
+            <li></li>
           </ul>
         </div>
         <div className="siteHeader-content-right">
