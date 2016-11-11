@@ -67,8 +67,8 @@ class Profile extends React.Component {
     } else {
       profileTabs = [
         "Profile",
-        "Campaigns",
-        "Contributions"
+        "Campaigns"
+        // "Contributions"
       ]
     }
 
@@ -102,6 +102,22 @@ class Profile extends React.Component {
       let description = this.props.profile.description;
       let about = this.props.profile.about;
 
+      const campaignNum = () => {
+        if (this.props.campaigns !== {}) {
+          return (
+            Object.keys(this.props.campaigns).length
+          )
+        }
+      }
+
+      const contributionNum = () => {
+        if (this.props.profile.contributions !== {}) {
+          return (
+            Object.keys(this.props.profile.contributions).length
+          )
+        }
+      }
+
       return (
         <div id="profile-content" className="group">
           <div className="grid-5 alpha">
@@ -109,8 +125,8 @@ class Profile extends React.Component {
           </div>
           <div className="profile-info grid-7 omega">
             <ul className="profile-statistics">
-              <li><span className="stat-num">{Object.keys(this.props.campaigns).length}</span> Campaigns</li>
-              <li><span className="stat-num">0</span> Contributions</li>
+              <li><span className="stat-num">{campaignNum()}</span> Campaigns</li>
+              <li><span className="stat-num">{contributionNum()}</span> Contributions</li>
             </ul>
             <h3>{description}</h3>
             <p>{about}</p>
@@ -179,7 +195,6 @@ class Profile extends React.Component {
         </div>
       )
     }
-
 
   }
 

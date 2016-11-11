@@ -37,6 +37,7 @@ const Root = ({ store }) => {
           </Route>
           <Route path="/campaigns/:id" component={CampaignContainer}>
             <IndexRoute component={CampaignShowContainer}/>
+            <Route path="/campaigns/:id/backers" component={CampaignShowContainer}/>
             <Route path="/campaigns/:id/edit" component={CampaignEditContainer}>
               <IndexRedirect to="/campaigns/:id/edit/basics" />
               <Route path="/campaigns/:id/edit/basics" component={CampaignEditFormContainer}/>

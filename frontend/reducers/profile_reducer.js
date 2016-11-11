@@ -33,6 +33,7 @@ const ProfileReducer = (state = _nullProfile, action) => {
     case RECEIVE_SINGLE_PROFILE:
       const profile = action.profile;
       clonedState.profile.campaigns = {};
+      clonedState.profile.contributions = {};
       newState = merge({}, clonedState, {profile});
       return newState;
     // case RECEIVE_CONTRIBUTIONS:

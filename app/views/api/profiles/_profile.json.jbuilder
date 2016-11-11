@@ -5,3 +5,9 @@ campaigns ||= []
 campaigns.each do |campaign|
   json.partial! 'api/profiles/campaign', campaign: campaign
 end
+
+contributions ||= []
+
+contributions.each do |contribution|
+  json.partial! 'api/profiles/contribution', contribution: contribution
+end

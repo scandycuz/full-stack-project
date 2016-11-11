@@ -21,6 +21,7 @@ class CampaignShow extends React.Component {
 
     this.tabClass = this.tabClass.bind(this);
     this.linkToProfile = this.linkToProfile.bind(this);
+    this.changeTab = this.changeTab.bind(this);
   }
 
   componentDidMount() {
@@ -65,6 +66,20 @@ class CampaignShow extends React.Component {
     }
   }
 
+  changeTab(title) {
+
+    return (e) => {
+      title = title.toLowerCase();
+      this.setState({selectedTab: title});
+      let id = this.props.params.id;
+      if (title === "story") {
+        this.props.router.push(`/campaigns/${id}`);
+      } else {
+        this.props.router.push(`/campaigns/${id}/${title}`);
+      }
+    }
+  }
+
   linkToProfile(e) {
     e.preventDefault();
     let authorId = this.props.author.id;
@@ -98,9 +113,14 @@ class CampaignShow extends React.Component {
     }
 
     const startCheckout = (e) => {
+      // temporary:
+      if (!this.props.currentUser) {
+        return this.props.router.push('/');
+      }
+
       let target = e.target;
       let input = target.previousSibling;
-      this.setState({buttonText: "Checkout"})
+      this.setState({buttonText: "Confirm"})
       target.addEventListener("click", confirmCheckout);
       $(target).closest('.contribute-button-container').mouseleave(
         () => {
@@ -122,6 +142,50 @@ class CampaignShow extends React.Component {
       this.props.createContribution({contribution});
       this.props.updateCampaign(campaign);
       this.setState({contribution: _nullContribution});
+    }
+
+    const linkToProfile = (id) => {
+      return (e) => {
+        this.props.router.push(`/profile/${id}`);
+      }
+    }
+
+    const tabContent = () => {
+      let selectedTab = this.state.selectedTab;
+
+      if (selectedTab === 'story') {
+        return (
+          <p>{this.props.campaign.campaign_pitch}</p>
+        )
+      } else if (selectedTab === 'backers') {
+        return (
+          <ul className="backers-list">
+            {backers()}
+          </ul>
+        )
+      }
+    }
+
+    const backers = () => {
+
+      if (this.props.campaign) {
+        if (this.props.campaign.contributors) {
+          let backers = this.props.campaign.contributors;
+          let backersKeys = Object.keys(backers).map( id => parseInt(id));
+          console.log(backersKeys);
+            return (
+              backersKeys.map( (id) => (
+                <li key={id} className="clickable" onClick={linkToProfile(id)}>
+                  <img src={backers[id].small_photo_url}/>
+                  <div className="backer-info">
+                    <span>{backers[id].first_name} {backers[id].last_name}</span><br/>
+                    <span>{backers[id].city}, {backers[id].country}</span>
+                  </div>
+                </li>
+              ))
+            )
+        }
+      }
     }
 
     return(
@@ -168,10 +232,10 @@ class CampaignShow extends React.Component {
             <div className="campaign-tabs-container">
               <ul className="campaign-tabs">
                 {campaignTabs.map( (title, idx) => (
-                  <li key={idx} className={this.tabClass(title)}><h4>{title}</h4></li>
+                  <li key={idx} className={this.tabClass(title)} onClick={this.changeTab(title)}><h4>{title}</h4></li>
                 ))}
               </ul>
-              <p>{this.props.campaign.campaign_pitch}</p>
+              {tabContent()}
             </div>
           </div>
           <div className="grid-4 campaign-content-sidebar alpha">
@@ -183,6 +247,7 @@ class CampaignShow extends React.Component {
               contribution={this.state.contribution}
               campaign={this.props.campaign}
               createContribution={this.props.createContribution}
+              currentUser={this.props.currentUser}
               updateCampaign={this.props.updateCampaign}/>
           </div>
         </div>

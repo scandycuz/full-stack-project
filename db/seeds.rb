@@ -325,3 +325,55 @@ rewards = Reward.create([
     requires_shipping: true
   }
 ])
+
+contributions = Contribution.create([
+  { user_id: 1,
+    campaign_id: 3,
+    amount: 50
+  },{ user_id: 1,
+    campaign_id: 5,
+    amount: 100
+  },{ user_id: 1,
+    campaign_id: 7,
+    amount: 150
+  },{ user_id: 2,
+    campaign_id: 1,
+    amount: 50
+  },{ user_id: 2,
+    campaign_id: 1,
+    amount: 180
+  },{ user_id: 2,
+    campaign_id: 6,
+    amount: 350
+  },{ user_id: 4,
+    campaign_id: 1,
+    amount: 20
+  },{ user_id: 4,
+    campaign_id: 2,
+    amount: 280
+  },{ user_id: 4,
+    campaign_id: 7,
+    amount: 140
+  },{ user_id: 4,
+    campaign_id: 5,
+    amount: 400
+  },{ user_id: 5,
+    campaign_id: 1,
+    amount: 20
+  },{ user_id: 5,
+    campaign_id: 2,
+    amount: 280
+  },{ user_id: 4,
+    campaign_id: 4,
+    amount: 140
+  },{ user_id: 6,
+    campaign_id: 2,
+    amount: 400
+  },{ user_id: 6,
+    campaign_id: 1,
+    amount: 180
+  },{ user_id: 7,
+    campaign_id: 6,
+    amount: 350
+  }
+])

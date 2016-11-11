@@ -47,6 +47,11 @@ class Rewards extends React.Component {
 
     const confirmReward = (rewardAmount) => {
       return (e) => {
+        // temporary:
+        if (!this.props.currentUser) {
+          return this.props.router.push('/');
+        }
+        
         let target = e.target;
         let rewardId = $(target).data("id");
         this.setState({amount: rewardAmount, reward_id: rewardId});
