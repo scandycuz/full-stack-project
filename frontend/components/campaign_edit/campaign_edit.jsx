@@ -68,9 +68,9 @@ class CampaignEdit extends React.Component {
     let campaignId = this.props.params.id;
     switch(currentPath) {
       case "basics":
-        this.props.router.push(`/campaigns/${campaignId}/edit/story`);
+        return this.props.router.push(`/campaigns/${campaignId}/edit/story`);
       case "story":
-        this.props.router.push(`/campaigns/${campaignId}/edit/rewards`);
+        return this.props.router.push(`/campaigns/${campaignId}/edit/rewards`);
     }
   }
 

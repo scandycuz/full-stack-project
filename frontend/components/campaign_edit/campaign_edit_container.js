@@ -10,7 +10,7 @@ const mapStateToProps = ({ campaign, session, profile }) => ({
   campaign: campaign.campaign,
 
   currentUser: session.currentUser,
-  currentUserCampaigns: profile.profile.campaigns,
+  currentUserCampaigns: session.campaigns,
   currentCampaignId: campaign.campaign.id
 });
 

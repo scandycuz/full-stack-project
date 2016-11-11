@@ -26,6 +26,12 @@ class RewardForm extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    if (!this.state.campaign_id) {
+      this.setState({campaign_id: this.props.params.id});
+    }
+  }
+
   update(property) {
     return e => {
       let targetValue = e.target.value;
@@ -49,8 +55,62 @@ class RewardForm extends React.Component {
 
     const radioStatus = this.state.requires_shipping;
 
+    const closeRewardEdit = (e) => {
+      e.preventDefault();
+      let id = this.props.params.id;
+      this.props.router.push(`/campaigns/${id}/edit/rewards`);
+    }
+
+    const deleteReward = (e) => {
+      e.preventDefault();
+      let id = this.props.params.reward_id;
+      this.props.destroyReward(id);
+      let campaignId = this.props.campaign.id;
+      this.props.router.push(`/campaigns/${campaignId}/edit/rewards`);
+    }
+
+    const createReward = (e) => {
+      e.preventDefault();
+      let reward = this.state;
+      this.props.createReward({reward});
+      let campaignId = this.props.campaign.id;
+      this.props.router.push(`/campaigns/${campaignId}/edit/rewards`);
+    }
+
+    const saveReward = (e) => {
+      e.preventDefault();
+      let reward = this.state;
+      this.props.updateReward({reward});
+      let campaignId = this.props.campaign.id;
+      this.props.router.push(`/campaigns/${campaignId}/edit/rewards`);
+    }
+
+    const rewardButtons = () => {
+      let currentPath = this.props.currentPath();
+
+      if (currentPath === "new") {
+        return (
+          <ul className="reward-buttons-list">
+            <li className="clickable" onClick={closeRewardEdit}>Cancel</li>
+            <li className="clickable button" onClick={createReward}>Add Reward</li>
+          </ul>
+        );
+      } else if (currentPath === "edit") {
+        return (
+          <ul className="reward-buttons-list">
+            <li className="clickable" onClick={closeRewardEdit}>Cancel</li>
+            <li className="clickable button delete-reward-button" onClick={deleteReward}>Delete Reward</li>
+            <li className="clickable button" onClick={saveReward}>Save Reward</li>
+          </ul>
+        )
+      }
+    }
+
     return(
-      <div className="campaign-edit-form-container container">
+      <div className="campaign-edit-form-container">
+        <div className="reward-buttons-container">
+          {rewardButtons()}
+        </div>
         <div className="reward-ajax-form group">
           <div className="grid-4 alpha reward-form-col">
             <label>Title<br/>
@@ -103,6 +163,7 @@ class RewardForm extends React.Component {
             <input
               type="date"
               value={this.state.estimated_delivery}
+              placeholder="YYYY-MM-DD"
               onChange={this.update('estimated_delivery')}/>
             </label>
           </div>

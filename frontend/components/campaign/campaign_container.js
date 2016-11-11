@@ -9,7 +9,7 @@ const mapStateToProps = ({ campaign, profile, session }, ownState) => {
 
   return ({
     currentUser: session.currentUser,
-    currentUserCampaigns: profile.profile.campaigns,
+    currentUserCampaigns: session.campaigns,
     currentCampaignId: campaign.campaign.id
   })
 }

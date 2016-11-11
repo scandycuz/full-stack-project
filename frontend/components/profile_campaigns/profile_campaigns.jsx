@@ -15,9 +15,29 @@ class ProfileCampaigns extends React.Component {
   campaignList() {
     let campaignsArray = [];
     const campaigns = this.props.campaigns;
-    Object.keys(campaigns).forEach( (key) => {
-      campaignsArray.push(campaigns[key]);
-    })
+
+    if (this.props.currentUser) {
+      if (this.props.currentUser.id === this.props.profile.id) {
+        Object.keys(campaigns).forEach( (key) => {
+          campaignsArray.push(campaigns[key]);
+        })
+      } else {
+        Object.keys(campaigns).forEach( (key) => {
+          let campaign = campaigns[key];
+          if (campaign.status === "published") {
+            campaignsArray.push(campaign);
+          }
+        })
+      }
+    } else {
+      Object.keys(campaigns).forEach( (key) => {
+        let campaign = campaigns[key];
+        if (campaign.status === "published") {
+          campaignsArray.push(campaign);
+        }
+      })
+    }
+
 
     const editLink = (campaignId) => {
       if (this.props.currentUser) {

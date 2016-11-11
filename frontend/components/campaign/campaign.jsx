@@ -17,6 +17,7 @@ class Campaign extends React.Component {
     if (this.props.currentUser) {
       let currentUserId = this.props.currentUser.id;
       this.props.requestSingleProfile(currentUserId);
+      this.props.requestUserCampaigns(currentUserId);
     }
   }
 
@@ -40,22 +41,24 @@ class Campaign extends React.Component {
   }
 
   tabList() {
-    let userCampaignIds = Object.keys(this.props.currentUserCampaigns);
-    let currentCampaignId = String(this.props.currentCampaignId);
+    if (this.props.currentUserCampaigns) {
+      let userCampaignIds = Object.keys(this.props.currentUserCampaigns);
+      let currentCampaignId = String(this.props.currentCampaignId);
 
-    if (userCampaignIds.includes(currentCampaignId)) {
-      return(
-        <ul>
-          <li className={this.getTabClass('view')}
+      if (userCampaignIds.includes(currentCampaignId)) {
+        return(
+          <ul>
+            <li className={this.getTabClass('view')}
               onClick={this.switchViewEdit}>
-            <i className="fa fa-eye"
-               aria-hidden="true"></i> View Campaign</li>
-          <li className={this.getTabClass('edit')}
+              <i className="fa fa-eye"
+                aria-hidden="true"></i> View Campaign</li>
+            <li className={this.getTabClass('edit')}
               onClick={this.switchViewEdit}>
-            <i className="fa fa-pencil-square-o"
-               aria-hidden="true"></i> Edit Campaign</li>
-        </ul>
-      )
+              <i className="fa fa-pencil-square-o"
+                aria-hidden="true"></i> Edit Campaign</li>
+          </ul>
+        )
+      }
     }
   }
 

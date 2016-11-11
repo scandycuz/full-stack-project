@@ -7,11 +7,12 @@ import { updateCampaign,
          receiveImage } from '../../actions/campaign_actions';
 import { fetchingSingleCampaign } from '../../util/campaign_api_util';
 
-const mapStateToProps = ({ session, campaign, loading }) => ({
+const mapStateToProps = ({ session, campaign, reward, loading }) => ({
   currentUser: session.currentUser,
   campaign: campaign.campaign,
   loading: loading,
-  rewards: campaign.campaign.rewards
+  rewards: campaign.campaign.rewards,
+  reward: reward.reward
 });
 
 const mapDispatchToProps = (dispatch, { location }) => {

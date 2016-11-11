@@ -4,6 +4,7 @@ import ProfileCampaigns from './profile_campaigns';
 
 const mapStateToProps = ({ profile, session }) => {
   return ({
+    profile: profile.profile,
     campaigns: profile.profile.campaigns,
     currentUser: session.currentUser
   })

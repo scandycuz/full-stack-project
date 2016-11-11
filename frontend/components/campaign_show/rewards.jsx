@@ -15,7 +15,8 @@ class Rewards extends React.Component {
     const rewardKeys = Object.keys(rewards);
 
     const inventory = (reward) => {
-      if (reward.number_available) {
+      if (reward.inventory) {
+        // add backers using contributer association
         return(
           <p className="reward-claimed"></p>
         )
@@ -38,8 +39,8 @@ class Rewards extends React.Component {
     }
 
     const onLeaveReward = (e) => {
-      const $target = $(e.target).find('button');
-      $target.html("Claim Reward");
+      let $target = $(e.currentTarget).children('.button');
+      $target.text("Claim Reward");
     }
 
     return (

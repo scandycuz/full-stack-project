@@ -816,6 +816,7 @@ input[type="text"], input[type="date"] {
 
 .pitch-image-container {
   margin-bottom: 2em;
+  padding-right: 1.5%;
 }
 
 .goal-progress-container {
@@ -869,6 +870,7 @@ input[type="text"], input[type="date"] {
   }
 }
 .campaign-content-main {
+  padding-right: 1.5%;
   h4 {
     margin-bottom: 12px;
   }
@@ -1059,7 +1061,7 @@ input[type="text"], input[type="date"] {
   }
 }
 
-// Rewards
+// Show Rewards
 
 .campaign-rewards-list {
   display: flex;
@@ -1217,12 +1219,12 @@ input[type="text"], input[type="date"] {
 .reward-buttons-list {
   display: flex;
   width: 100%;
-  border-bottom: 1px solid $very_dark_white;
+  border-top: 1px solid $very_dark_white;
   justify-content: flex-end;
   padding-left: 0;
   align-items: center;
   li {
-    margin: 1.2em 1.5em;
+    margin: 1.2em 1em;
     &:last-child {
       margin-right: 0em;
     }
@@ -1233,7 +1235,15 @@ input[type="text"], input[type="date"] {
   .button {
     border-radius: 3px;
   }
+  .delete-reward-button {
+    margin-right: 1em;
+  }
 }
+
+
+
+
+
 
 
 

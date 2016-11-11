@@ -1,4 +1,5 @@
-import { RECEIVE_SINGLE_REWARD } from '../actions/reward_actions';
+import { RECEIVE_SINGLE_REWARD,
+         RECEIVE_REWARD_DELETE } from '../actions/reward_actions';
 
 import merge from 'lodash/merge';
 
@@ -24,6 +25,8 @@ const RewardReducer = (state = _nullReward, action) => {
       let reward = action.reward;
       let newState = merge({}, state, {reward});
       return newState;
+    case RECEIVE_REWARD_DELETE:
+      return merge({}, _nullReward);
     default:
       return state;
   }

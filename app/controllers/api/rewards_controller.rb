@@ -26,11 +26,21 @@ class Api::RewardsController < ApplicationController
   end
 
   def update
+    @reward = Reward.find(reward_params[:id])
 
+    if @reward.update_attributes(reward_params)
+      render :show
+    else
+      render json: @reward.errors.full_messages
+    end
   end
 
   def destroy
+    @reward = Reward.find(params[:id])
+    @campaign = @reward.campaign
+    @reward.destroy
 
+    render :show
   end
 
   private

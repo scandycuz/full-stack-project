@@ -76,6 +76,11 @@ class CampaignEditForm extends React.Component {
     if (!this.state.title || this.state.title !== nextProps.campaign.title) {
       this.setState(nextProps.campaign);
     }
+
+    if (this.props.reward.title !== nextProps.reward.title) {
+      let campaignId = this.props.params.id;
+      this.props.requestSingleCampaign(campaignId);
+    }
   }
 
   update(property) {
@@ -277,28 +282,24 @@ class CampaignEditForm extends React.Component {
     } else {
 
       const rewardItems = () => {
-        const rewards = this.props.rewards;
-        const rewardKeys = Object.keys(rewards);
+        if (this.props.rewards) {
+          const rewards = this.props.rewards;
+          const rewardKeys = Object.keys(rewards);
 
-        return (
-          rewardKeys.map( (id) => {
-            const reward = rewards[id];
-            return (
-              <tr key={id} onClick={linkToEditReward(reward.id)}>
-                <td>{reward.title}</td>
-                <td>${reward.price}</td>
-                <td>{(reward.number_available) ? reward.number_available : "Unlimited"}</td>
-                <td>{reward.estimated_delivery}</td>
-              </tr>
-            )
-          })
-        )
-      }
-
-      const linkToCreateReward = (e) => {
-        e.preventDefault();
-        let id = this.props.params.id;
-        this.props.router.push(`/campaigns/${id}/edit/rewards/new`);
+          return (
+            rewardKeys.map( (id) => {
+              const reward = rewards[id];
+              return (
+                <tr key={id} onClick={linkToEditReward(reward.id)}>
+                  <td>{reward.title}</td>
+                  <td>${reward.price}</td>
+                  <td>{(reward.number_available) ? reward.number_available : "Unlimited"}</td>
+                  <td>{reward.estimated_delivery}</td>
+                </tr>
+              )
+            })
+          )
+        }
       }
 
       const linkToEditReward = (rewardId) => {
@@ -308,6 +309,8 @@ class CampaignEditForm extends React.Component {
           this.props.router.push(`/campaigns/${id}/edit/rewards/${rewardId}/edit`);
         }
       }
+
+      const children = this.props.children;
 
       const createRewardButton = () => {
         let pathName = this.props.currentPath();
@@ -319,40 +322,15 @@ class CampaignEditForm extends React.Component {
         }
       }
 
-      const children = this.props.children;
-
-      const closeRewardEdit = (e) => {
+      const linkToCreateReward = (e) => {
         e.preventDefault();
         let id = this.props.params.id;
-        this.props.router.push(`/campaigns/${id}/edit/rewards`);
-      }
-
-      const rewardButtons = () => {
-        let currentPath = this.props.currentPath();
-
-        if (currentPath === "new") {
-          return (
-            <ul className="reward-buttons-list">
-              <li className="clickable" onClick={closeRewardEdit}>Cancel</li>
-              <li className="clickable button" >Add Reward</li>
-            </ul>
-          );
-        } else if (currentPath === "edit") {
-          return (
-            <ul className="reward-buttons-list">
-              <li className="clickable" onClick={closeRewardEdit}>Cancel</li>
-              <li className="clickable button" >Save Reward</li>
-            </ul>
-          )
-        }
+        this.props.router.push(`/campaigns/${id}/edit/rewards/new`);
       }
 
       return(
         <div className="form-section form-rewards-section">
           <h4>Rewards</h4>
-          <div className="reward-buttons-container">
-            {rewardButtons()}
-          </div>
           <p className="reward-subtitle">Rewards are offered as incentives for potentional backers in exchange for their support.</p>
           {createRewardButton()}
           {children}
