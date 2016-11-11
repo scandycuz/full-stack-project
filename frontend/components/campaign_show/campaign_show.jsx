@@ -14,7 +14,7 @@ class CampaignShow extends React.Component {
         user_id: null,
         campaign_id: null,
         reward_id: null,
-        amount: 0
+        amount: ""
       }
     }
 
@@ -29,9 +29,16 @@ class CampaignShow extends React.Component {
       let contribution = Object.assign({},
                                        this.state.contribution,
                                        {user_id: this.props.currentUser.id},
-                                       {campaign_id: this.props.params.campaign_id});
+                                       {campaign_id: parseInt(this.props.params.id)});
       let newState = Object.assign({}, this.state, {contribution});
       this.setState(newState);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.campaign.funds_received !== nextProps.campaign.funds_received) {
+      console.log('requesting again');
+      this.props.requestSingleCampaign(this.props.params.id);
     }
   }
 
@@ -59,6 +66,17 @@ class CampaignShow extends React.Component {
     this.props.router.push(`/profile/${authorId}`);
   }
 
+  update(property) {
+    return (e) => {
+      let targetVal = parseInt(e.target.value);
+      let contribution = Object.assign({},
+                                       this.state.contribution,
+                                       {amount: parseInt(targetVal)});
+      let newState = Object.assign({}, this.state, {contribution});
+      this.setState(newState);
+    }
+  }
+
   render() {
     const children = this.props.children;
 
@@ -76,8 +94,11 @@ class CampaignShow extends React.Component {
 
     const confirmCheckout = (e) => {
       e.preventDefault();
-      let contribution =
-      this.props.createContribution()
+      let contribution = this.state.contribution;
+      let amount = this.props.campaign.funds_received + this.state.contribution.amount;
+      let campaign = Object.assign({}, this.props.campaign, {funds_received: amount});
+      this.props.createContribution({contribution});
+      this.props.updateCampaign(campaign)
     }
 
     return(
@@ -107,7 +128,9 @@ class CampaignShow extends React.Component {
               endDateToDuration={(endDate) => this.endDateToDuration(endDate)}/>
             <div className="contribute-button-container">
               <span className="contribute-button-box">
-                $&nbsp;<input type="text" />
+                $&nbsp;<input type="text"
+                value={this.state.contribution.amount}
+                onChange={this.update('amount')}/>
               </span>
               <button className="clickable button" onClick={startCheckout}>Contribute</button>
             </div>

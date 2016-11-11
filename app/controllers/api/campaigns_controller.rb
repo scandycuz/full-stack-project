@@ -22,6 +22,7 @@ class Api::CampaignsController < ApplicationController
     @campaign = Campaign.find(params[:id])
     @author = @campaign.user
     @rewards = @campaign.rewards
+    @contributors = @campaign.contributors
 
     render :show
   end
@@ -29,7 +30,6 @@ class Api::CampaignsController < ApplicationController
   def update
     @campaign = Campaign.find(params[:campaign][:id])
     @author = @campaign.user
-
     if @campaign.update_attributes(campaign_params)
       render :show
     else
@@ -44,6 +44,6 @@ class Api::CampaignsController < ApplicationController
   private
   def campaign_params
     params.require(:campaign)
-    .permit(:user_id, :title, :tagline, :funds_received, :goal_amount, :card_image_url, :pitch_image_url, :pitch_video_url, :campaign_overview, :campaign_pitch, :location, :duration, :status)
+    .permit(:id, :user_id, :title, :tagline, :funds_received, :goal_amount, :card_image_url, :pitch_image_url, :pitch_video_url, :campaign_overview, :campaign_pitch, :location, :duration, :status, :author, :rewards, :contributors)
   end
 end

@@ -2,7 +2,7 @@ import { RECEIVE_SINGLE_PROFILE,
          RECEIVE_PROFILE_ERRORS } from '../actions/profile_actions';
 import { LOGOUT } from '../actions/session_actions';
 import { CREATE_CONTRIBUTION } from '../actions/contribution_actions';
-import { RECEIVE_PROFILE_CONTRIBUTIONS } from '../actions/contribution_actions'
+import { RECEIVE_CONTRIBUTIONS } from '../actions/contribution_actions'
 import { postContribution } from '../util/contribution_api_util';
 import merge from 'lodash/merge';
 
@@ -35,12 +35,12 @@ const ProfileReducer = (state = _nullProfile, action) => {
       clonedState.profile.campaigns = {};
       newState = merge({}, clonedState, {profile});
       return newState;
-    case RECEIVE_PROFILE_CONTRIBUTIONS:
-      const contributions = action.contributions
-      clonedState = merge({}, state);
-      clonedState.profile.contributions = {};
-      newState = merge({}, clonedState, {contributions});
-      return newState;
+    // case RECEIVE_CONTRIBUTIONS:
+    //   const contributions = action.contributions
+    //   clonedState = merge({}, state);
+    //   clonedState.profile.contributions = {};
+    //   newState = merge({}, clonedState, {contributions});
+    //   return newState;
     case RECEIVE_PROFILE_ERRORS:
       const errors = action.errors;
       return merge({}, _nullProfile, { errors });

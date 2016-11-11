@@ -1,5 +1,5 @@
 class Contribution < ActiveRecord::Base
-  validates :user, :campaign, :reward, presence: true
+  validates :user, :campaign, :amount, presence: true
 
   belongs_to :user
   belongs_to :campaign

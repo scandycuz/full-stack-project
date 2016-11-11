@@ -2,6 +2,7 @@ import { RECEIVE_SINGLE_CAMPAIGN,
          RECEIVE_CAMPAIGNS,
          RECEIVE_CAMPAIGN_ERRORS } from '../actions/campaign_actions';
 import { RECEIVE_REWARD_DELETE } from '../actions/reward_actions';
+import { RECEIVE_SINGLE_CONTRIBUTION } from '../actions/contribution_actions';
 import { fetchSingleCampaign } from '../util/campaign_api_util';
 import merge from 'lodash/merge';
 
@@ -34,6 +35,7 @@ const CampaignReducer = (state = _nullCampaign, action) => {
       clonedState = merge({}, state);
       clonedState.campaign.rewards = {};
       clonedState.campaign.author = {};
+      clonedState.campaign.contributors = {};
       newState = merge({}, clonedState, { campaign });
       return newState;
     case RECEIVE_CAMPAIGNS:

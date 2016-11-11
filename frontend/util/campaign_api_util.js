@@ -2,7 +2,7 @@ export const patchCampaign = (campaign, success) => {
   $.ajax({
     url: `api/campaigns/${campaign.id}`,
     type: 'PATCH',
-    data: campaign,
+    data: {campaign},
     success
   })
 }

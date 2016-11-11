@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import CampaignShow from './campaign_show';
 
-import { requestSingleCampaign } from '../../actions/campaign_actions';
+import { requestSingleCampaign,
+         updateCampaign } from '../../actions/campaign_actions';
 import { createContribution } from '../../actions/contribution_actions';
 
 const mapStateToProps = ({session, campaign, loading}) => ({
@@ -15,6 +16,7 @@ const mapDispatchToProps = (dispatch, { location }) => {
 
     return ({
       requestSingleCampaign: (id) => dispatch(requestSingleCampaign(id)),
+      updateCampaign: (campaign) => dispatch(updateCampaign(campaign)),
       createContribution: (contribution) => dispatch(createContribution(contribution))
     })
 };

@@ -1,4 +1,4 @@
-export const postContribution= (contribution, success) => {
+export const postContribution = (contribution, success) => {
   $.ajax({
     url: 'api/contributions',
     type: 'POST',

@@ -4,6 +4,7 @@ import { UPDATE_CAMPAIGN,
          REQUEST_CAMPAIGNS,
          receiveSingleCampaign,
          receiveCampaigns } from "../actions/campaign_actions";
+import { RECEIVE_SINGLE_CONTRIBUTION } from "../actions/contribution_actions";
 import { fetchSingleCampaign,
          patchCampaign,
          postCampaign,

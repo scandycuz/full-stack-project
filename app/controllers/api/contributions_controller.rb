@@ -22,6 +22,6 @@ class Api::ContributionsController < ApplicationController
   private
   def contribution_params
     params.require(:contribution)
-    .permit(:user_id, :campaign_id, :reward_id)
+    .permit(:user_id, :campaign_id, :reward_id, :amount)
   end
 end

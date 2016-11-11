@@ -1,3 +1,5 @@
+rewards ||= []
+
 json.set! :rewards do
   rewards.each do |reward|
     json.set! reward.id do
