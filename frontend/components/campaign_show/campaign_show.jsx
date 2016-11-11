@@ -115,6 +115,7 @@ class CampaignShow extends React.Component {
     const startCheckout = (e) => {
       // temporary:
       if (!this.props.currentUser) {
+        alert('Please log in or Sign Up to Contribute.');
         return this.props.router.push('/');
       }
 

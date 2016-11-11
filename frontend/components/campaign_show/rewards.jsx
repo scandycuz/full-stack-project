@@ -49,9 +49,10 @@ class Rewards extends React.Component {
       return (e) => {
         // temporary:
         if (!this.props.currentUser) {
+          alert('Please log in or Sign Up to Contribute.')
           return this.props.router.push('/');
         }
-        
+
         let target = e.target;
         let rewardId = $(target).data("id");
         this.setState({amount: rewardAmount, reward_id: rewardId});
