@@ -28,7 +28,6 @@ class CampaignEdit extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({ formState: nextProps.campaign });
 
-
     if (Object.keys(nextProps.currentUserCampaigns).length !== 0) {
       let campaignId = this.props.params.id;
       let currentUserCampaignKeys = Object.keys(nextProps.currentUserCampaigns);
@@ -99,6 +98,9 @@ class CampaignEdit extends React.Component {
       className = "selected clickable";
     } else {
       className = "clickable";
+    }
+    if (stepName === "rewards" && (this.props.currentPath() === "edit" || this.props.currentPath() === "new")) {
+      className = "selected clickable";
     }
     if (stepName === "review & launch") {
       className = `${className} review-button`;

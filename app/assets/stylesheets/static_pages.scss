@@ -22,6 +22,7 @@ $dark_yellow: #FDDE86;
 $light_green: #38FF6C;
 $green: #03B232;
 $dark_white: #fafafa;
+$very_dark_white: #eee;
 
 $large_width: 1440px;
 $med_width: 1280px;
@@ -128,7 +129,7 @@ form {
 input {
   color: $dark_grey;
 }
-input[type="text"] {
+input[type="text"], input[type="date"] {
   padding: 10px 6px;
 }
 
@@ -716,7 +717,7 @@ input[type="text"] {
       margin-bottom: 12px;
       display: inline-block;
     }
-    input[type="text"] {
+    input[type="text"], input[type="date"] {
       width: 55%;
       padding-left: 12px;
       margin-bottom: 3em;
@@ -1137,6 +1138,14 @@ input[type="text"] {
     thead {
       background: $very_light_grey;
     }
+    tbody {
+      tr {
+        cursor: pointer;
+        &:hover {
+          background: $very_dark_white;
+        }
+      }
+    }
     th {
       padding: 12px 20px;
       font-family: $work-sans;
@@ -1158,6 +1167,73 @@ input[type="text"] {
   }
 }
 
+.reward-ajax-form {
+  margin-top: 1.8em;
+  .currency-symbol {
+    margin-top: 0;
+    width: 100% !important;
+    color: $med_dark_grey;
+    input {
+      width: 80% !important;
+      padding-left: 0 !important;
+    }
+  }
+  input {
+    width: 100% !important;
+  }
+  .reward-form-col {
+    padding-right: 3em;
+  }
+  .form-sub-title {
+    height: 2.76em;
+    padding-right: 2em;
+  }
+  input[type="date"] {
+    margin-bottom: 2.5em;
+  }
+  .radio-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 6px;
+    input {
+      width: 2em !important;
+    }
+    span {
+      margin-right: 2em;
+    }
+  }
+  .reward-description-textarea {
+    .form-sub-title {
+      height: auto;
+    }
+    textarea {
+      height: 10em;
+    }
+  }
+}
+.reward-buttons-container {
+  padding-right: 3em;
+}
+.reward-buttons-list {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid $very_dark_white;
+  justify-content: flex-end;
+  padding-left: 0;
+  align-items: center;
+  li {
+    margin: 1.2em 1.5em;
+    &:last-child {
+      margin-right: 0em;
+    }
+  }
+  .clickable {
+    text-transform: uppercase;
+  }
+  .button {
+    border-radius: 3px;
+  }
+}
 
 
 

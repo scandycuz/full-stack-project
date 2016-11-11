@@ -11,7 +11,6 @@ export const fetchSingleCampaign = (id, success) => {
   $.ajax({
     url: `api/campaigns/${id}`,
     type: 'GET',
-    data: id,
     success
   })
 }

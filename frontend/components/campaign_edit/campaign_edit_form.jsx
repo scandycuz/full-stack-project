@@ -284,7 +284,7 @@ class CampaignEditForm extends React.Component {
           rewardKeys.map( (id) => {
             const reward = rewards[id];
             return (
-              <tr key={id}>
+              <tr key={id} onClick={linkToEditReward(reward.id)}>
                 <td>{reward.title}</td>
                 <td>${reward.price}</td>
                 <td>{(reward.number_available) ? reward.number_available : "Unlimited"}</td>
@@ -301,6 +301,14 @@ class CampaignEditForm extends React.Component {
         this.props.router.push(`/campaigns/${id}/edit/rewards/new`);
       }
 
+      const linkToEditReward = (rewardId) => {
+        let id = this.props.params.id;
+        return (e) => {
+          e.preventDefault();
+          this.props.router.push(`/campaigns/${id}/edit/rewards/${rewardId}/edit`);
+        }
+      }
+
       const createRewardButton = () => {
         let pathName = this.props.currentPath();
 
@@ -313,9 +321,38 @@ class CampaignEditForm extends React.Component {
 
       const children = this.props.children;
 
+      const closeRewardEdit = (e) => {
+        e.preventDefault();
+        let id = this.props.params.id;
+        this.props.router.push(`/campaigns/${id}/edit/rewards`);
+      }
+
+      const rewardButtons = () => {
+        let currentPath = this.props.currentPath();
+
+        if (currentPath === "new") {
+          return (
+            <ul className="reward-buttons-list">
+              <li className="clickable" onClick={closeRewardEdit}>Cancel</li>
+              <li className="clickable button" >Add Reward</li>
+            </ul>
+          );
+        } else if (currentPath === "edit") {
+          return (
+            <ul className="reward-buttons-list">
+              <li className="clickable" onClick={closeRewardEdit}>Cancel</li>
+              <li className="clickable button" >Save Reward</li>
+            </ul>
+          )
+        }
+      }
+
       return(
         <div className="form-section form-rewards-section">
           <h4>Rewards</h4>
+          <div className="reward-buttons-container">
+            {rewardButtons()}
+          </div>
           <p className="reward-subtitle">Rewards are offered as incentives for potentional backers in exchange for their support.</p>
           {createRewardButton()}
           {children}
