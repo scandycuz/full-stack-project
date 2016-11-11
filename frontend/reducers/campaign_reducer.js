@@ -23,14 +23,17 @@ const _nullCampaign= Object.freeze({
 
 const CampaignReducer = (state = _nullCampaign, action) => {
   Object.freeze(state);
-
   let newState;
+  let clonedState;
   let campaign;
 
   switch(action.type) {
     case RECEIVE_SINGLE_CAMPAIGN:
       campaign = action.campaign;
-      newState = merge({}, state, { campaign });
+      clonedState = merge({}, state);
+      clonedState.campaign.rewards = {};
+      clonedState.campaign.author = {};
+      newState = merge({}, clonedState, { campaign });
       return newState;
     case RECEIVE_CAMPAIGNS:
       const campaigns = action.campaigns;
@@ -43,7 +46,7 @@ const CampaignReducer = (state = _nullCampaign, action) => {
       });
     case RECEIVE_REWARD_DELETE:
       campaign = action.campaign;
-      let clonedState = merge({}, state);
+      clonedState = merge({}, state);
       clonedState.campaign.rewards = {};
       return merge({}, clonedState, {campaign});
     default:
