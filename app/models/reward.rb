@@ -3,4 +3,6 @@ class Reward < ActiveRecord::Base
   # validates :estimated_delivery, presence: true, if: :requires_shipping?
 
   belongs_to :campaign
+  belongs_to :user
+  has_many :contributions
 end

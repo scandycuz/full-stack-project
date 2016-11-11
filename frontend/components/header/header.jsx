@@ -8,8 +8,11 @@ class Header extends React.Component {
 
     this.redirectHome = this.redirectHome.bind(this);
     this.linkToPitch = this.linkToPitch.bind(this);
+    this.setFormToLogin = this.setFormToLogin.bind(this);
+
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      formType: "login"
     }
   }
 
@@ -29,12 +32,19 @@ class Header extends React.Component {
     this.props.router.push("/");
   }
 
+  setFormToLogin() {
+    this.setState({formType: "login"});
+  }
+
   linkToPitch(e) {
     e.preventDefault();
     if (this.props.currentUser) {
       this.props.router.push('/pitch-a-startup');
     } else {
-      this.setState({modalIsOpen: true});
+      this.setState({formType: "login"},
+      this.setState({modalIsOpen: true})
+    );
+
     }
   }
 
@@ -63,7 +73,8 @@ class Header extends React.Component {
             requestUserCampaigns={this.props.requestUserCampaigns}
             requestSingleCampaign={this.props.requestSingleCampaign}
             modalIsOpen={this.state.modalIsOpen}
-            router={this.props.router}/>
+            router={this.props.router}
+            formType={this.state.formType}/>
         </div>
       </header>
     )

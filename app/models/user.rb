@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
 
   has_many :campaigns
+  has_many :contributions
+  has_many :rewards, through: :contributions
 
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)

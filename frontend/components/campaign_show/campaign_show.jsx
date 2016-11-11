@@ -10,8 +10,11 @@ class CampaignShow extends React.Component {
 
     this.state = {
       selectedTab: "story",
-      form: {
-        donation_amount: 0
+      contribution: {
+        user_id: null,
+        campaign_id: null,
+        reward_id: null,
+        amount: 0
       }
     }
 
@@ -20,7 +23,16 @@ class CampaignShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.requestSingleCampaign(this.props.params.id)
+    this.props.requestSingleCampaign(this.props.params.id);
+
+    if (this.props.currentUser) {
+      let contribution = Object.assign({},
+                                       this.state.contribution,
+                                       {user_id: this.props.currentUser.id},
+                                       {campaign_id: this.props.params.campaign_id});
+      let newState = Object.assign({}, this.state, {contribution});
+      this.setState(newState);
+    }
   }
 
   endDateToDuration(endDate) {
@@ -59,6 +71,13 @@ class CampaignShow extends React.Component {
       let input = target.previousSibling;
       target.innerHTML = "Confirm";
       input.placeholder = "Enter an amount";
+      target.addEventListener("click", confirmCheckout);
+    }
+
+    const confirmCheckout = (e) => {
+      e.preventDefault();
+      let contribution =
+      this.props.createContribution()
     }
 
     return(

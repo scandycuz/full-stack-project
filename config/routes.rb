@@ -7,10 +7,15 @@ Rails.application.routes.draw do
 
     resources :profiles, only: [:update, :show] do
       resources :campaigns, only: [:index]
+      resources :contributions, only: [:index]
     end
 
     resources :rewards, only: [:show, :create, :update, :index, :destroy]
 
-    resources :campaigns, only: [:index, :create, :show, :update, :destroy]
+    resources :campaigns, only: [:index, :create, :show, :update, :destroy] do
+      resources :contributions, only: [:index]
+    end
+
+    resources :contributions, only: [:create, :index]
   end
 end

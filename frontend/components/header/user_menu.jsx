@@ -8,7 +8,7 @@ class UserMenu extends React.Component {
 
     this.state = {
       modalIsOpen: this.props.modalIsOpen,
-      formType: "",
+      formType: this.props.formType,
       first_name: "",
       last_name: "",
       email: "",
@@ -46,6 +46,9 @@ class UserMenu extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.state.modalIsOpen !== nextProps.modalIsOpen) {
       this.setState({modalIsOpen: nextProps.modalIsOpen});
+    }
+    if (this.state.formType !== nextProps.formType) {
+      this.setState({formType: nextProps.formType});
     }
   }
 
@@ -304,8 +307,8 @@ class UserMenu extends React.Component {
       return (
         <ul className="signedOut-menu">
           {this.renderModal()}
-          <li><a href="#" onClick={this.openSignupModal}>Sign Up</a></li>
-          <li><a href="#" onClick={this.openLoginModal}>Log In</a></li>
+          <li className="clickable"><a onClick={this.openSignupModal}>Sign Up</a></li>
+          <li className="clickable"><a onClick={this.openLoginModal}>Log In</a></li>
         </ul>
       )
     }

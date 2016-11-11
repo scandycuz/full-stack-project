@@ -1,6 +1,9 @@
 import { RECEIVE_SINGLE_PROFILE,
          RECEIVE_PROFILE_ERRORS } from '../actions/profile_actions';
 import { LOGOUT } from '../actions/session_actions';
+import { CREATE_CONTRIBUTION } from '../actions/contribution_actions';
+import { RECEIVE_PROFILE_CONTRIBUTIONS } from '../actions/contribution_actions'
+import { postContribution } from '../util/contribution_api_util';
 import merge from 'lodash/merge';
 
 const _nullProfile = Object.freeze({
@@ -15,20 +18,28 @@ const _nullProfile = Object.freeze({
     about: "",
     photo_url: "",
     small_photo_url: "",
-    campaigns: {}
+    campaigns: {},
+    contributions: {}
   },
   errors: []
 });
 
 const ProfileReducer = (state = _nullProfile, action) => {
   Object.freeze(state);
+  let clonedState = merge({}, state);
+  let newState;
 
   switch(action.type) {
     case RECEIVE_SINGLE_PROFILE:
       const profile = action.profile;
-      let clonedState = merge({}, state);
       clonedState.profile.campaigns = {};
-      let newState = merge({}, clonedState, {profile});
+      newState = merge({}, clonedState, {profile});
+      return newState;
+    case RECEIVE_PROFILE_CONTRIBUTIONS:
+      const contributions = action.contributions
+      clonedState = merge({}, state);
+      clonedState.profile.contributions = {};
+      newState = merge({}, clonedState, {contributions});
       return newState;
     case RECEIVE_PROFILE_ERRORS:
       const errors = action.errors;

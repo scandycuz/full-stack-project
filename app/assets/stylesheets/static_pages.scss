@@ -85,6 +85,9 @@ form {
     border: none;
   }
 }
+a, button {
+    outline: none;
+}
 
 .container {
   max-width: $med_width;
@@ -1083,7 +1086,7 @@ input[type="text"], input[type="date"] {
     }
     .opacity-cover {
       background: white;
-      opacity: 0.2;
+      opacity: 0.3;
       display: none;
       position: absolute;
       width: 100%;

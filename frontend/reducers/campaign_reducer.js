@@ -15,7 +15,8 @@ const _nullCampaign= Object.freeze({
     campaign_overview: "",
     campaign_pitch: "",
     author: {},
-    rewards: {}
+    rewards: {},
+    contributors: {}
   },
   campaigns: {},
   errors: []

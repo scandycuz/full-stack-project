@@ -163,7 +163,7 @@ class RewardForm extends React.Component {
             <input
               type="date"
               value={this.state.estimated_delivery}
-              placeholder="YYYY-MM-DD"
+              placeholder="MM/DD/YYYY"
               onChange={this.update('estimated_delivery')}/>
             </label>
           </div>
