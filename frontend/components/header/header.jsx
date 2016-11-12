@@ -41,8 +41,7 @@ class Header extends React.Component {
     if (this.props.currentUser) {
       this.props.router.push('/pitch-a-startup');
     } else {
-      this.setState({formType: "login"},
-      this.setState({modalIsOpen: true})
+      this.setState({formType: "login", modalIsOpen: true}
     );
 
     }

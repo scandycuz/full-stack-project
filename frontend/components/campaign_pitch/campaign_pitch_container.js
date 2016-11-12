@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch, { location }) => {
 
   return({
     createCampaign: campaign => dispatch(createCampaign(campaign)),
-    requestUserCampaigns: userId => dispatch(requestUserCampaigns(userId)) 
+    requestUserCampaigns: userId => dispatch(requestUserCampaigns(userId))
   })
 };
 

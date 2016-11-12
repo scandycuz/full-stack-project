@@ -44,7 +44,9 @@ class UserMenu extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    
+    if (nextProps.modalIsOpen === true && nextProps.formType === "login") {
+      this.setState({modalIsOpen: true});
+    }
   }
 
   componentDidUpdate() {
