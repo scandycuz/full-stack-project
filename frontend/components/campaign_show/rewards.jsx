@@ -57,7 +57,7 @@ class Rewards extends React.Component {
         let rewardId = $(target).data("id");
         this.setState({amount: rewardAmount, reward_id: rewardId});
         target.innerHTML = `Claim for $${rewardAmount}?`;
-        target.addEventListener("click", confirmCheckout);
+        $(target).click(confirmCheckout);
       }
     }
 
@@ -75,6 +75,7 @@ class Rewards extends React.Component {
 
     const onLeaveReward = (e) => {
       let $target = $(e.currentTarget).children('.button');
+      $target.unbind("click");
       $target.text("Claim Reward");
     }
 
