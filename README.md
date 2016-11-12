@@ -1,6 +1,6 @@
-# FresherNote
+# StartupGoGo
 
-[FresherNote live][site]
+[StartupGoGo live][site]
 
 [site]: http://www.startupgogo.xyz
 
