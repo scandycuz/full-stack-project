@@ -23,9 +23,9 @@ class Header extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.currentUser && Object.keys(this.props.campaigns).length === 0) {
-      this.props.requestUserCampaigns(this.props.currentUser.id);
-    }
+    // if (this.props.currentUser && Object.keys(this.props.campaigns).length === 0) {
+    //   this.props.requestUserCampaigns(this.props.currentUser.id);
+    // }
   }
 
   redirectHome() {
