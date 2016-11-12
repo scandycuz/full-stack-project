@@ -44,12 +44,7 @@ class UserMenu extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.modalIsOpen !== nextProps.modalIsOpen) {
-      this.setState({modalIsOpen: nextProps.modalIsOpen});
-    }
-    if (this.state.formType !== nextProps.formType) {
-      this.setState({formType: nextProps.formType});
-    }
+    
   }
 
   componentDidUpdate() {
