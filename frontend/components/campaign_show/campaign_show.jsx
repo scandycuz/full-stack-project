@@ -173,7 +173,6 @@ class CampaignShow extends React.Component {
         if (this.props.campaign.contributors) {
           let backers = this.props.campaign.contributors;
           let backersKeys = Object.keys(backers).map( id => parseInt(id));
-          console.log(backersKeys);
             return (
               backersKeys.map( (id) => (
                 <li key={id} className="clickable" onClick={linkToProfile(id)}>
