@@ -1149,6 +1149,11 @@ input[type="text"], input[type="date"] {
         &:hover {
           background: $very_dark_white;
         }
+        &:last-child {
+          td {
+            border-bottom: none;
+          }
+        }
       }
     }
     th {
@@ -1163,6 +1168,7 @@ input[type="text"], input[type="date"] {
       padding: 12px 20px;
       font-family: $open-sans;
       color: $dark_grey;
+      border-bottom: 1px solid $very_light_grey;
     }
   }
   .create-reward-button {
@@ -1269,6 +1275,45 @@ input[type="text"], input[type="date"] {
   }
 }
 
+
+// Contribution Table
+
+.contribution-table {
+  width: 100%;
+  text-align: left;
+  border: 1px solid $very_light_grey;
+  margin-bottom: 2.8em;
+  * {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  thead {
+    background: $very_light_grey;
+  }
+  tbody {
+    tr {
+      &:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  th {
+    padding: 12px 20px;
+    font-family: $work-sans;
+    color: $black;
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  td {
+    padding: 5px 20px;
+    font-family: $open-sans;
+    color: $dark_grey;
+    border-bottom: 1px solid $very_light_grey;
+  }
+}
 
 
 

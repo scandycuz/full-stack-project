@@ -25,6 +25,12 @@ class Profile extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.currentUser !== nextProps.currentUser) {
+      this.props.requestSingleProfile(this.props.params.id)
+    }
+  }
+
   tabClass(tabName) {
     let currentTabName = tabName.toLowerCase();
     if (currentTabName === "view") {
@@ -67,8 +73,8 @@ class Profile extends React.Component {
     } else {
       profileTabs = [
         "Profile",
-        "Campaigns"
-        // "Contributions"
+        "Campaigns",
+        "Contributions"
       ]
     }
 

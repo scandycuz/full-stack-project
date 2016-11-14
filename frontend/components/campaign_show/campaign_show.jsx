@@ -91,7 +91,7 @@ class CampaignShow extends React.Component {
       let targetVal = parseInt(e.target.value);
       let contribution = Object.assign({},
                                        this.state.contribution,
-                                       {amount: parseInt(targetVal)});
+                                       {amount: targetVal});
       let newState = Object.assign({}, this.state, {contribution});
       this.setState(newState);
     }
@@ -217,7 +217,7 @@ class CampaignShow extends React.Component {
             <div className="contribute-button-container">
               <span className="contribute-button-box">
                 $&nbsp;<input type="text"
-                value={this.state.contribution.amount}
+                value={(isNaN(this.state.contribution.amount)) ? "" : this.state.contribution.amount}
                 onChange={this.update('amount')}/>
               </span>
               <button className="clickable button" onClick={startCheckout}>{this.state.buttonText}</button>

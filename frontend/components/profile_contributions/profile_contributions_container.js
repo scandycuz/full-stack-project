@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import ProfileContributions from './profile_contributions';
 
-const mapStateToProps = ({session}) => {
+const mapStateToProps = ({session, profile}) => {
   return ({
-
+    contributions: profile.profile.contributions,
+    currentUser: session.currentUser
   })
 };
 

@@ -213,7 +213,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-01-02",
+    estimated_delivery: "2017-02-24",
     requires_shipping: true
   },{ campaign_id: 2,
     price: 100,
@@ -231,7 +231,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-01-02",
+    estimated_delivery: "2017-06-10",
     requires_shipping: true
   },{ campaign_id: 3,
     price: 80,
@@ -249,7 +249,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-01-02",
+    estimated_delivery: "2017-01-18",
     requires_shipping: true
   },{ campaign_id: 4,
     price: 450,
@@ -262,7 +262,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-01-02",
+    estimated_delivery: "2018-01-04",
     requires_shipping: true
   },{ campaign_id: 5,
     price: 80,
@@ -295,7 +295,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-01-02",
+    estimated_delivery: "2017-04-18",
     requires_shipping: true
   },{ campaign_id: 7,
     price: 450,
@@ -308,7 +308,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-01-02",
+    estimated_delivery: "2017-02-24",
     requires_shipping: true
   },{ campaign_id: 8,
     price: 250,
@@ -321,7 +321,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-01-02",
+    estimated_delivery: "2017-02-18",
     requires_shipping: true
   }
 ])
@@ -335,7 +335,12 @@ contributions = Contribution.create([
     amount: 100
   },{ user_id: 1,
     campaign_id: 7,
-    amount: 150
+    amount: 50,
+    reward_id: 1
+  },{ user_id: 1,
+    campaign_id: 7,
+    amount: 100,
+    reward_id: 5
   },{ user_id: 2,
     campaign_id: 1,
     amount: 50

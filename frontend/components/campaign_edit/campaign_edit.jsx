@@ -75,7 +75,7 @@ class CampaignEdit extends React.Component {
   }
 
   saveCampaign(campaign) {
-    this.props.updateCampaign({ campaign });
+    this.props.updateCampaign( campaign );
   }
 
   changeTab(e) {

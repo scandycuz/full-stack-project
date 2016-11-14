@@ -11,7 +11,7 @@ export const fetchSingleProfile = (id, success) => {
   $.ajax({
     url: `api/profiles/${id}`,
     type: 'GET',
-    data: id,
+    data: {id},
     success
   })
 }
