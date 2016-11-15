@@ -37,8 +37,6 @@ Each user's details are kept in a table in the database. In addition to the stan
 
 The component content that is available to a user is dynamically altered based on the current user's status. For example, if a user is not logged in, they will not have access to `ProfileEdit` and `CampaignEdit` components. If a user is logged in and views their own Pitch or Profile, they will have access to the `ProfileEdit` and `CampaignEdit` components, as well as a menu bar near the top of the screen allowing them to switch between 'View' and 'Edit'.
 
-![image of campaign detail](docs/wireframes/Edit-Campaign.png)
-
 What content is available to a user is controlled by dynamically rendering content and using router redirects contingent on the current users status.
 
 ### Rewards and Contributions
