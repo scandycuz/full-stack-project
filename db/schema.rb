@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161111185533) do
+ActiveRecord::Schema.define(version: 20161115075329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20161111185533) do
     t.integer  "user_id",                             null: false
     t.string   "title",                               null: false
     t.string   "tagline"
-    t.integer  "funds_received"
+    t.integer  "funds_received",    default: 0
     t.integer  "goal_amount",                         null: false
     t.string   "card_image_url"
     t.string   "pitch_image_url"

@@ -21,8 +21,7 @@ class GoalProgress extends React.Component {
     }
 
     const daysLeft = this.props.daysLeft;
-
-    const fundsReceived = (this.props.fundsReceived) ? this.props.fundsReceived : 0;
+    const fundsReceived = this.props.fundsReceived;
     const goalAmount = this.props.goalAmount;
 
     const style = {

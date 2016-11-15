@@ -21,7 +21,7 @@ Both the `CampaignIndexItems` on the home page and the individual `CampaignShow`
 Code to create the JSX style attribute for the progress bar in the `GoalProgress` component:
 
 ```javascript
-const fundsReceived = (this.props.fundsReceived) ? this.props.fundsReceived : 0;
+const fundsReceived = this.props.fundsReceived;
 const goalAmount = this.props.goalAmount;
 
 const style = {
@@ -54,6 +54,10 @@ In addition the the already implemented features, I plan to continue to work on 
 ### Search
 
 Searching Startup Pitches would be a very useful element for the app. I will add a search bar to the header that will send an ajax call to the RESTful API based on the user's query. The results would render in a new `CampaignSearchIndex` component with its own route. I will also add lazy loading to the `CampaignSearchIndex` component, along with additional seed data to better demonstrate the feature.
+
+### Loading Animation
+
+I will implement a simple loading animation to improve the app's appearance while loading content.
 
 ### Categories
 

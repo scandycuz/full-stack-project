@@ -36,6 +36,9 @@ $dark_grey: #444;
   clear: both;
 }
 
+input {
+    outline: none;
+}
 
 .siteBody-container {
   background: $dark_white;
