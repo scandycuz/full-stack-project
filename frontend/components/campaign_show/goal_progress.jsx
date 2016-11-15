@@ -9,13 +9,6 @@ class GoalProgress extends React.Component {
 
   render() {
 
-    let fundsReceived = 0;
-    if (this.props.fundsReceived) {
-      fundsReceived = this.props.fundsReceived;
-    }
-
-    const goalAmount = this.props.goalAmount;
-    const daysLeft = this.props.daysLeft;
 
     const componentType = this.props.componentType;
     const dynamicClass = (type) => {
@@ -27,7 +20,12 @@ class GoalProgress extends React.Component {
       }
     }
 
-    let style = {
+    const daysLeft = this.props.daysLeft;
+
+    const fundsReceived = (this.props.fundsReceived) ? this.props.fundsReceived : 0;
+    const goalAmount = this.props.goalAmount;
+
+    const style = {
       width: fundsReceived / goalAmount * 100 + "%"
     }
 
