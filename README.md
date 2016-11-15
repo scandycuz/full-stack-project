@@ -14,7 +14,7 @@ Startup pitches are stored in a table in the back-end, with columns for each att
 
 The home page of the site contains the `CampaignIndex` component, and displays the Startup pitches currently active on the site.
 
-Both the `CampaignIndexItems` on the home page and the individual `CampaignShow` components contain a `GoalProgress` component. This component uses the Pitch's `funds_received` and `goal_amount` attributes from the database to create a dyamic visual representation of the Pitch's progress towards its goal.
+Both the `CampaignIndexItems` on the home page and the individual `CampaignShow` components contain a `GoalProgress` component. This component uses the Pitch's `funds_received` and `goal_amount` attributes from the database to create a dynamic visual representation of the Pitch's progress towards its goal.
 
 ![image of campaign detail](docs/wireframes/View-Campaign.png)
 
@@ -35,17 +35,17 @@ A Startup Pitch is created using a multi-part form. The user first clicks on the
 
 Each user's details are kept in a table in the database. In addition to the standard user information (`user_id`, `password_digest`, `session_token`, etc...), the `Users` table in the database also contains all of the information pertaining to that user's profile. When the user signs up, they are only required to fill in their first name, last name, email, and password information, however, once successfully logged in, users have access to their profile page, where they can access the `ProfileEdit` component and fill in additional information, such as a profile image and description.
 
-The component content that is available to a user is dynamically altered based on the current user's status. For example, if a user is not logged in, they will not have access to `ProfileEdit` and `CampaignEdit` components. If a user is logged in and views their own Pitch or Profile, they will have access to the `ProfileEdit` and `CampaignEdit` components, as well as a menu bar near the top of the screen allowing them to switch between 'View' and 'Edit'.
+The component content available to a user is dynamically altered based on the current user's status. If a user is not logged in, for example, they will not have access to `ProfileEdit` and `CampaignEdit` components. If a user is logged in and views their own Pitch or Profile, they will have access to the `ProfileEdit` and `CampaignEdit` components as well as a menu bar near the top of the screen allowing them to switch between the 'View' and 'Edit' routes.
 
-What content is available to a user is controlled by dynamically rendering content and using router redirects contingent on the current users status.
+What content is available to a user is controlled through dynamically rendering content and using router redirects based on the current user's status.
 
 ### Rewards and Contributions
 
 Users can contribute to Startup Pitches from a pitch's `CampaignShow` component. When a user contributes an amount, it will be added to that Pitches `funds_received` attribute in the database, and the `CampaignShow` and `GoalProgress` components will re-render to register the change.
 
-Startup Pitches also have rewards, which can be added, removed, and edited by a user through a pitch's `CampaignEdit` component. A user can elect to choose one of a Campaign's rewards instead of making a standard contribution. The user contributes an amount equal to that reward's `price` attribute and receives the reward.
+Startup Pitches also have rewards, which can be added, removed, and edited by a user through a pitch's `CampaignEdit` component. When making a contribution, a user can elect to choose one of a Campaign's rewards instead of making a standard contribution. The user contributes an amount equal to that reward's `price` attribute and receives the reward.
 
-Rewards that users have received can be tracked in the `ProfileShow` component. Additionally, the `CampaignShow` component keeps track of which users who have backed that Campaign.
+The `ProfileShow` component tracks the rewards that users have received. Additionally, the `CampaignShow` component keeps track of which users have backed that Campaign.
 
 ## Future Directions for the Project
 
@@ -53,7 +53,7 @@ In addition the the already implemented features, I plan to continue to work on 
 
 ### Search
 
-Searching Startup Pitches would be a very useful element for the app. I will add a search bar to the header that will send an ajax call to the RESTful API based on the user's query. The results would render in a new `CampaignSearchIndex` component with its own route. I would also like to add lazy loading to the `CampaignSearchIndex` component, along with additional seed data to better demonstrate the feature.
+Searching Startup Pitches would be a very useful element for the app. I will add a search bar to the header that will send an ajax call to the RESTful API based on the user's query. The results would render in a new `CampaignSearchIndex` component with its own route. I will also add lazy loading to the `CampaignSearchIndex` component, along with additional seed data to better demonstrate the feature.
 
 ### Categories
 
