@@ -124,7 +124,7 @@ campaigns = Campaign.create([
     campaign_pitch: "Bushwick YOLO stumptown mlkshk, master cleanse tilde flexitarian readymade vexillologist pabst knausgaard slow-carb celiac leggings. La croix copper mug post-ironic cliche tacos normcore. Art party heirloom salvia DIY succulents 90's, microdosing vinyl umami dreamcatcher. Disrupt aesthetic master cleanse live-edge hexagon normcore, tattooed chartreuse butcher plaid fam lumbersexual 90's.",
     status: "published",
     location: "Portland, CA, United States",
-    duration: "2017-12-02"
+    duration: "2016-12-31"
   },{ user_id: 3,
     title: "Klerpit",
     goal_amount: 1000,
@@ -148,7 +148,7 @@ campaigns = Campaign.create([
     campaign_pitch: "Chia hell of street art small batch echo park edison bulb. Truffaut pinterest flexitarian, snackwave shoreditch mlkshk tbh fixie tilde. Pinterest selfies biodiesel meh 8-bit hot chicken. VHS tilde put a bird on it, asymmetrical meggings keytar actually irony chia small batch normcore farm-to-table. Wayfarers pitchfork vegan, gastropub twee XOXO asymmetrical mustache.",
     status: "published",
     location: "New York, NY, United States",
-    duration: "2017-11-24"
+    duration: "2016-12-24"
   },{ user_id: 5,
     title: "Vuzoo",
     goal_amount: 40000,
@@ -172,7 +172,7 @@ campaigns = Campaign.create([
     campaign_pitch: "Chia hell of street art small batch echo park edison bulb. Truffaut pinterest flexitarian, snackwave shoreditch mlkshk tbh fixie tilde. Pinterest selfies biodiesel meh 8-bit hot chicken. VHS tilde put a bird on it, asymmetrical meggings keytar actually irony chia small batch normcore farm-to-table. Wayfarers pitchfork vegan, gastropub twee XOXO asymmetrical mustache.",
     status: "published",
     location: "San Francisco, CA, United States",
-    duration: "2017-12-08"
+    duration: "2016-12-28"
   },{ user_id: 7,
     title: "jQuirky",
     goal_amount: 2000,
