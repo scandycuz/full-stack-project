@@ -17,8 +17,14 @@ class CampaignPitch extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const createdCampaignId = nextProps.campaign.id;
-    this.props.router.push(`/campaigns/${createdCampaignId}/edit/basics`);
+    if (this.props.campaign !== nextProps.campaign) {
+      const createdCampaignId = nextProps.campaign.id;
+      this.props.router.push(`/campaigns/${createdCampaignId}/edit/basics`);
+    }
+    // redirect to home if user logs out
+    if (!nextProps.currentUser) {
+      this.props.router.push(`/`);
+    }
   }
 
   update(property) {

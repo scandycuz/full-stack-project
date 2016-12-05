@@ -178,7 +178,7 @@ class CampaignShow extends React.Component {
                 <li key={id} className="clickable" onClick={linkToProfile(id)}>
                   <img src={backers[id].small_photo_url}/>
                   <div className="backer-info">
-                    <span>{backers[id].first_name} {backers[id].last_name}</span><br/>
+                    <span>{backers[id].first_name} {backers[id].last_name}</span>
                     <span>{backers[id].city}, {backers[id].country}</span>
                   </div>
                 </li>

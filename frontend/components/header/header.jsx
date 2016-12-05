@@ -12,7 +12,8 @@ class Header extends React.Component {
 
     this.state = {
       modalIsOpen: false,
-      formType: "login"
+      formType: "login",
+      redirect: null
     }
   }
 
@@ -22,13 +23,14 @@ class Header extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    
-  }
-
   componentWillReceiveProps(nextProps) {
     if (!this.props.currentUser && nextProps.currentUser) {
       this.props.requestUserCampaigns(nextProps.currentUser.id);
+      if (this.state.redirect) {
+        let redirect = this.state.redirect;
+        this.setState({redirect: null});
+        this.props.router.push(redirect);
+      }
     }
   }
 
@@ -45,9 +47,11 @@ class Header extends React.Component {
     if (this.props.currentUser) {
       this.props.router.push('/pitch-a-startup');
     } else {
-      this.setState({formType: "login", modalIsOpen: true}
-    );
-
+      this.setState({
+        formType: "login",
+        modalIsOpen: true,
+        redirect: '/pitch-a-startup'
+      });
     }
   }
 
@@ -76,6 +80,7 @@ class Header extends React.Component {
             requestUserCampaigns={this.props.requestUserCampaigns}
             requestSingleCampaign={this.props.requestSingleCampaign}
             modalIsOpen={this.state.modalIsOpen}
+            redirect={this.state.redirect}
             router={this.props.router}
             formType={this.state.formType}/>
         </div>

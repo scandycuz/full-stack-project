@@ -44,7 +44,10 @@ class UserMenu extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.modalIsOpen === true && nextProps.formType === "login") {
+    // open login modal if Pitch a Startup clicked && logged out
+    if (nextProps.modalIsOpen === true
+    && nextProps.formType === "login"
+    && nextProps.redirect) {
       this.setState({modalIsOpen: true});
     }
   }
@@ -69,7 +72,7 @@ class UserMenu extends React.Component {
   }
 
   openLoginModal() {
-    this.setFormToLogin()
+    this.setFormToLogin();
     this.openModal();
   }
 
