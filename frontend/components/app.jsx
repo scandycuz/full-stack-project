@@ -5,15 +5,30 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      loading: true,
+      loadCount: 1
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-
+    if (!nextProps.loading) {
+      this.setState({
+        loadCount: this.state.loadCount + 1
+      }, () => {
+        if (this.state.loadCount >= 2) {
+          this.setState({
+            loading: false,
+            loadCount: 0
+          })
+        }
+      });
+    }
   }
 
   render() {
     const loader = () => {
-      if (this.props.loading) {
+      if (this.state.loading) {
         return (
           <div className="loading-screen">
             <div className="loader-container">
