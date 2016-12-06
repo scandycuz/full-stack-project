@@ -17,12 +17,12 @@ export default (state = false, action) => {
   switch(action.type){
     case REQUEST_SINGLE_CAMPAIGN:
     case REQUEST_SINGLE_PROFILE:
-    case UPLOAD_IMAGE:
+    // case UPLOAD_IMAGE:
       return true;
     case RECEIVE_SINGLE_PROFILE:
     case RECEIVE_PROFILE_ERRORS:
     case RECEIVE_SESSION_ERRORS:
-    case RECEIVE_IMAGE:
+    // case RECEIVE_IMAGE:
     case RECEIVE_SINGLE_CAMPAIGN:
       return false;
     default:

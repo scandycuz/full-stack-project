@@ -1,16 +1,24 @@
 import React from 'react';
 import HeaderContainer from './header/header_container';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      loading: true
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.loading) {
+      this.setState({loading: false})
+    }
   }
 
   render() {
     const loader = () => {
-      if (this.props.loading) {
+      if (this.state.loading) {
         return (
           <div className="loading-screen">
             <div className="loader-container">
