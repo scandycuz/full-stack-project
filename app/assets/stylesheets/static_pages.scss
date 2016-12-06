@@ -1321,7 +1321,7 @@ input[type="text"], input[type="date"] {
 
 // Loading Screen & Loader
 
-.loading-screen {
+#loading-screen {
   position: absolute;
   left: 0;
   top: 0;
@@ -1329,6 +1329,12 @@ input[type="text"], input[type="date"] {
   height: 100%;
   background: #fff;
   z-index: 999;
+  &.done-loading {
+    display: none;
+  }
+  &.currently-loading {
+    display: block;
+  }
 }
 .loader-container {
   position: fixed;

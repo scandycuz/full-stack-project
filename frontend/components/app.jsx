@@ -12,11 +12,32 @@ class App extends React.Component {
   }
 
   render() {
+
+    const loadingClass = () => {
+      if (this.props.loading) {
+        return "currently-loading";
+      } else {
+        return "done-loading";
+      }
+    }
+
     const loader = () => {
+
       if (this.props.loading) {
         return (
-          <div className="loading-screen">
+          <div id="loading-screen" className={loadingClass()}>
             <div className="loader-container">
+              <div className="loader">
+                <div className="square" ></div>
+                <div className="square"></div>
+                <div className="square last"></div>
+                <div className="square clear"></div>
+                <div className="square"></div>
+                <div className="square last"></div>
+                <div className="square clear"></div>
+                <div className="square "></div>
+                <div className="square last"></div>
+              </div>
             </div>
           </div>
         )
