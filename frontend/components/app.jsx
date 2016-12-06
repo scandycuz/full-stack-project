@@ -11,7 +11,6 @@ class App extends React.Component {
     const loader = () => {
 
       if (this.props.loading) {
-        alert('loading');
         return (
           <div id="loading-screen">
             <div className="loader-container">
