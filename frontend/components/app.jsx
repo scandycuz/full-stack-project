@@ -5,13 +5,24 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      loading: true
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.loading) {
+      this.setState({
+        loading: false
+      })
+    }
   }
 
   render() {
 
     const loader = () => {
 
-      if (this.props.loading) {
+      if (this.state.loading) {
         return (
           <div id="loading-screen">
             <div className="loader-container">
