@@ -24,7 +24,7 @@ class App extends React.Component {
   render() {
 
     const loadingClass = () => {
-      if (!this.props.loading) {
+      if (!this.state.loading) {
         return "done-loading";
       }
     }
