@@ -7,16 +7,24 @@ class App extends React.Component {
 
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidMount() {
+    this.setState({
+      loading: true
+    })
+  }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.state.loading && !nextProps.loading) {
+      this.setState({
+        loading: false
+      })
+    }
   }
 
   render() {
 
     const loadingClass = () => {
-      if (this.props.loading) {
-        return "currently-loading";
-      } else {
+      if (!this.props.loading) {
         return "done-loading";
       }
     }
