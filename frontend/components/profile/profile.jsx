@@ -16,7 +16,7 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    this.props.requestSingleProfile(this.props.params.id)
+    // this.props.requestSingleProfile(this.props.params.id);
   }
 
   componentDidUpdate() {
@@ -26,9 +26,9 @@ class Profile extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.currentUser !== nextProps.currentUser) {
-      this.props.requestSingleProfile(this.props.params.id)
-    }
+    // if (this.props.currentUser !== nextProps.currentUser) {
+    //   this.props.requestSingleProfile(this.props.params.id)
+    // }
   }
 
   tabClass(tabName) {

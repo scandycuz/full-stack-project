@@ -25,7 +25,7 @@ class CampaignShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.requestSingleCampaign(this.props.params.id);
+    // this.props.requestSingleCampaign(this.props.params.id);
 
     if (this.props.currentUser) {
       let contribution = Object.assign({},

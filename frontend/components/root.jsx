@@ -18,11 +18,16 @@ import CampaignPitchContainer from './campaign_pitch/campaign_pitch_container';
 import RewardFormContainer from './reward/reward_form_container';
 
 import { requestSingleProfile } from '../actions/profile_actions';
+import { requestSingleCampaign } from '../actions/campaign_actions';
 
 const Root = ({ store }) => {
 
   const requestProfile = (nextState) => {
     store.dispatch(requestSingleProfile(nextState.params.id));
+  }
+
+  const requestCampaign = (nextState) => {
+    store.dispatch(requestSingleCampaign(nextState.params.id));
   }
 
   return (
@@ -35,7 +40,7 @@ const Root = ({ store }) => {
             <Route path="/profile/:id/contributions" component={ProfileContributionsContainer}/>
             <Route path="/profile/:id/edit" component={ProfileEditContainer}/>
           </Route>
-          <Route path="/campaigns/:id" component={CampaignContainer}>
+          <Route path="/campaigns/:id" component={CampaignContainer} onEnter={requestCampaign}>
             <IndexRoute component={CampaignShowContainer}/>
             <Route path="/campaigns/:id/backers" component={CampaignShowContainer}/>
             <Route path="/campaigns/:id/edit" component={CampaignEditContainer}>
