@@ -5,12 +5,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-  }
-
-  componentDidMount() {
-    this.setState({
+    this.state = {
       loading: true
-    })
+    }
   }
 
   componentWillReceiveProps(nextProps) {
