@@ -16,13 +16,15 @@ class App extends React.Component {
 
       if ((currentPath === "campaigns" && this.props.loading.campaign) ||
       (currentPath === "profile" && this.props.loading.profile)) {
-        return (
-          <div id="loading-screen">
-            <div className="loader-container">
-              
+        setTimeout(() => {
+          return (
+            <div id="loading-screen">
+              <div className="loader-container">
+
+              </div>
             </div>
-          </div>
-        )
+          )
+        }, 100);
       }
     };
 
