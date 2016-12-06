@@ -9,31 +9,27 @@ class App extends React.Component {
 
   render() {
 
-    const loadingClass = () => {
-      if (!this.props.loading) {
-        return "done-loading";
-      }
-    }
-
     const loader = () => {
 
-      return (
-        <div id="loading-screen" className={loadingClass()}>
-          <div className="loader-container">
-            <div className="loader">
-              <div className="square" ></div>
-              <div className="square"></div>
-              <div className="square last"></div>
-              <div className="square clear"></div>
-              <div className="square"></div>
-              <div className="square last"></div>
-              <div className="square clear"></div>
-              <div className="square "></div>
-              <div className="square last"></div>
+      if (this.props.loading) {
+        return (
+          <div id="loading-screen">
+            <div className="loader-container">
+              <div className="loader">
+                <div className="square" ></div>
+                <div className="square"></div>
+                <div className="square last"></div>
+                <div className="square clear"></div>
+                <div className="square"></div>
+                <div className="square last"></div>
+                <div className="square clear"></div>
+                <div className="square "></div>
+                <div className="square last"></div>
+              </div>
             </div>
           </div>
-        </div>
-      )
+        )
+      }
     };
 
     const children = this.props.children;
