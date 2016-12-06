@@ -5,23 +5,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      loading: true
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.state.loading && !nextProps.loading) {
-      this.setState({
-        loading: false
-      })
-    }
   }
 
   render() {
 
     const loadingClass = () => {
-      if (!this.state.loading) {
+      if (!this.props.loading) {
         return "done-loading";
       }
     }
