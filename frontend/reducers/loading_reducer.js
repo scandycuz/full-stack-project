@@ -13,7 +13,7 @@ import {
   RECEIVE_SESSION_ERRORS
 } from '../actions/session_actions';
 
-export default (state = true, action) => {
+export default (state = false, action) => {
   switch(action.type){
     // case UPLOAD_IMAGE:
     case REQUEST_SINGLE_CAMPAIGN:

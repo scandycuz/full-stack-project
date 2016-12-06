@@ -7,6 +7,7 @@ import App from './app';
 const mapStateToProps = ({session, campaign, loading}) => ({
   currentUser: session.currentUser,
   campaigns: campaign.campaigns,
+  campaign: campaign.campaign,
   loading: loading
 });
 
