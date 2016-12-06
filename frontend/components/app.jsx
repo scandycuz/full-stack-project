@@ -16,19 +16,8 @@ class App extends React.Component {
       if (this.props.loading) {
         return (
           <div className="loading-screen">
-            // <div className="loader-container">
-            //   <div className="loader">
-            //     <div className="square" ></div>
-            //     <div className="square"></div>
-            //     <div className="square last"></div>
-            //     <div className="square clear"></div>
-            //     <div className="square"></div>
-            //     <div className="square last"></div>
-            //     <div className="square clear"></div>
-            //     <div className="square "></div>
-            //     <div className="square last"></div>
-            //   </div>
-            // </div>
+            <div className="loader-container">
+            </div>
           </div>
         )
       }
