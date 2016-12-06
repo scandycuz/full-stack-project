@@ -1,6 +1,8 @@
 import React from 'react';
 import HeaderContainer from './header/header_container';
 
+import { Router, Route, IndexRoute, hashHistory, withRouter } from 'react-router';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +12,10 @@ class App extends React.Component {
   render() {
     const loader = () => {
 
-      if (this.props.loading) {
+      let currentPath = this.props.location.pathname.split("/")[1];
+
+      if ((currentPath === "campaigns" && this.props.loading.campaign) ||
+      (currentPath === "profile" && this.props.loading.profile)) {
         return (
           <div id="loading-screen">
             <div className="loader-container">

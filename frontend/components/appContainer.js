@@ -12,7 +12,10 @@ const mapStateToProps = ({session, campaign, loading}) => ({
 });
 
 const mapDispatchToProps = (dispatch, { location }) => ({
-  // requestCampaigns: () => dispatch(requestCampaigns())
+  currentPath: () => {
+    let pathArr = location.pathname.split("/");
+    return pathArr[pathArr.length - 2];
+  }
 });
 
 export default connect(
