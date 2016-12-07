@@ -52,7 +52,7 @@ class CampaignShow extends React.Component {
   }
 
   handleImageLoaded() {
-    this.setState({ imageStatus: 'loaded' });
+    this.setState({ imageStatus: 'loaded' }, this.setState({imageStatus: null}));
   }
 
   endDateToDuration(endDate) {
