@@ -160,7 +160,7 @@ class Profile extends React.Component {
     const currentUser = this.props.currentUser;
 
     const loadClass = () => {
-      if (true) {
+      if (this.props.loading && !this.state.imageLoaded) {
         return "loading";
       }
     }
