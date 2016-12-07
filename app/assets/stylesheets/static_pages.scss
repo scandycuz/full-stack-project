@@ -1331,9 +1331,9 @@ input[type="text"], input[type="date"] {
   height: 100%;
   background: #fff;
   z-index: 999;
-  display: block;
-  &.done-loading {
-    display: none;
+  display: none;
+  &.loading {
+    display: block;
   }
 }
 .loader-container {

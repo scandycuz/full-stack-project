@@ -203,27 +203,31 @@ class CampaignShow extends React.Component {
       }
     }
 
+    const loadClass = () => {
+      if (this.props.loading && !this.state.imageLoaded) {
+        return "loading";
+      }
+    }
+
     const loader = () => {
 
-      if (this.props.loading && !this.state.imageLoaded) {
-        return (
-          <div id="loading-screen">
-            <div className="loader-container">
-              <div className="loader">
-                <div className="square" ></div>
-                <div className="square"></div>
-                <div className="square last"></div>
-                <div className="square clear"></div>
-                <div className="square"></div>
-                <div className="square last"></div>
-                <div className="square clear"></div>
-                <div className="square "></div>
-                <div className="square last"></div>
-              </div>
+      return (
+        <div id="loading-screen" className={loadClass()}>
+          <div className="loader-container">
+            <div className="loader">
+              <div className="square" ></div>
+              <div className="square"></div>
+              <div className="square last"></div>
+              <div className="square clear"></div>
+              <div className="square"></div>
+              <div className="square last"></div>
+              <div className="square clear"></div>
+              <div className="square "></div>
+              <div className="square last"></div>
             </div>
           </div>
-        )
-      }
+        </div>
+      )
     };
 
     return(
