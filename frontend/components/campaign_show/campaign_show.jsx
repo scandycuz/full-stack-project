@@ -23,7 +23,6 @@ class CampaignShow extends React.Component {
     this.tabClass = this.tabClass.bind(this);
     this.linkToProfile = this.linkToProfile.bind(this);
     this.changeTab = this.changeTab.bind(this);
-    this.handleImageLoaded = this.handleImageLoaded.bind(this);
   }
 
   componentDidMount() {
@@ -39,23 +38,16 @@ class CampaignShow extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-
-  }
-
   componentWillReceiveProps(nextProps) {
     if (this.props.campaign.funds_received !== nextProps.campaign.funds_received &&
     this.props.campaign == nextProps.campaign) {
       this.props.requestSingleCampaign(this.props.params.id);
       this.setState({buttonText: "Contribute"});
     }
-    if (this.state.imageStatus === "loaded") {
-      this.setState({imageStatus: null});
-    }
   }
 
-  handleImageLoaded() {
-    this.setState({ imageStatus: 'loaded' });
+  routeLocationDidUpdate() {
+    alert('route change');
   }
 
   endDateToDuration(endDate) {
@@ -201,7 +193,7 @@ class CampaignShow extends React.Component {
     const loadClass = () => {
       let currentPath = this.props.location.pathname.split("/")[1];
 
-      if (!this.props.loading.campaign && this.state.imageStatus) {
+      if (!this.props.loading.campaign) {
         return "done-loading";
       }
     }
@@ -222,8 +214,7 @@ class CampaignShow extends React.Component {
         <div className="campaign-show-container container group">
           <div className="grid-7 alpha pitch-image-container">
             <img
-              src={this.props.campaign.pitch_image_url}
-              onLoad={this.handleImageLoaded}/>
+              src={this.props.campaign.pitch_image_url}/>
           </div>
           <div className="grid-5 omega campaign-info">
             <h4>{this.props.campaign.title} by {this.props.author.first_name} {this.props.author.last_name}</h4>
