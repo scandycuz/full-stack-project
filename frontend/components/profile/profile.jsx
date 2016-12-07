@@ -23,6 +23,8 @@ class Profile extends React.Component {
       profilePhotoUrl: null,
       imageLoaded: null
     });
+
+    window.scrollTo(0, 0);
   }
 
   componentDidUpdate() {

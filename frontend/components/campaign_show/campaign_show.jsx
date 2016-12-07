@@ -33,6 +33,8 @@ class CampaignShow extends React.Component {
       imageLoaded: null
     });
 
+    window.scrollTo(0, 0);
+
     if (this.props.currentUser) {
       let contribution = Object.assign({},
                                        this.state.contribution,
