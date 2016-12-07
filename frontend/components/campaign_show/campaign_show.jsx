@@ -17,7 +17,7 @@ class CampaignShow extends React.Component {
         amount: ""
       },
       buttonText: "Contribute",
-      authorSmallPhotoUrl: null,
+      campaignPitchImageUrl: null,
       imageLoaded: null
     }
 
@@ -29,7 +29,7 @@ class CampaignShow extends React.Component {
 
   componentDidMount() {
     this.setState({
-      authorSmallPhotoUrl: null,
+      campaignPitchImageUrl: null,
       imageLoaded: null
     });
 
@@ -58,8 +58,8 @@ class CampaignShow extends React.Component {
           this.setState(newState);
       }
     }
-    if (this.state.authorSmallPhotoUrl !== nextProps.author.small_photo_url) {
-      this.setState({authorSmallPhotoUrl: nextProps.author.small_photo_url});
+    if (this.state.campaignPitchImageUrl !== nextProps.campaign.pitch_image_url) {
+      this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url});
     }
   }
 
@@ -234,7 +234,7 @@ class CampaignShow extends React.Component {
         <div className="campaign-show-container container group">
           <div className="grid-7 alpha pitch-image-container">
             <img
-              src={this.props.campaign.pitch_image_url}
+              src={this.state.campaignPitchImageUrl}
               onLoad={this.handleImageLoaded}/>
           </div>
           <div className="grid-5 omega campaign-info">
@@ -242,7 +242,7 @@ class CampaignShow extends React.Component {
             <p>{this.props.campaign.tagline}</p>
             <div onClick={this.linkToProfile} className="campaign-author-container clickable">
               <div className="author-image">
-                <img src={this.state.authorSmallPhotoUrl} />
+                <img src={this.props.author.small_photo_url} />
               </div>
               <div className="author-info">
                 <p><strong>{this.props.author.first_name} {this.props.author.last_name}</strong></p>
