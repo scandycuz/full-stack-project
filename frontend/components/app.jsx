@@ -11,27 +11,6 @@ class App extends React.Component {
 
   render() {
 
-    const loadClass = () => {
-      let currentPath = this.props.location.pathname.split("/")[1];
-
-      if ((currentPath === "campaigns" && !this.props.loading.campaign) ||
-      (currentPath === "profile" && !this.props.loading.profile) ||
-      (currentPath !== "profile" && currentPath !== "campaigns" && !this.props.loading.profile && !this.props.loading.campaign)) {
-        // alert('loading');
-        return "done-loading";
-      }
-    }
-
-    const loader = () => {
-
-      return (
-        <div id="loading-screen" className={loadClass()}>
-          <div className="loader-container">
-          </div>
-        </div>
-      )
-    };
-
     const children = this.props.children;
 
     return (
@@ -40,7 +19,6 @@ class App extends React.Component {
           <HeaderContainer />
         </div>
         <div className="siteBody-container">
-          {loader()}
           {children}
         </div>
       </div>

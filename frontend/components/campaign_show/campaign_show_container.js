@@ -9,7 +9,8 @@ const mapStateToProps = ({session, campaign, loading}) => ({
   campaign: campaign.campaign,
   currentUser: session.currentUser,
   author: campaign.campaign.author,
-  rewards: campaign.campaign.rewards
+  rewards: campaign.campaign.rewards,
+  loading: loading.campaign
 });
 
 const mapDispatchToProps = (dispatch, { location }) => {

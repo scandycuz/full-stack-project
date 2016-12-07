@@ -16,16 +16,18 @@ class CampaignShow extends React.Component {
         reward_id: null,
         amount: ""
       },
-      buttonText: "Contribute"
+      buttonText: "Contribute",
+      imageStatus: null
     }
 
     this.tabClass = this.tabClass.bind(this);
     this.linkToProfile = this.linkToProfile.bind(this);
     this.changeTab = this.changeTab.bind(this);
+    this.handleImageLoaded = this.handleImageLoaded.bind(this);
   }
 
   componentDidMount() {
-    this.props.requestSingleCampaign(this.props.params.id);
+    // this.props.requestSingleCampaign(this.props.params.id);
 
     if (this.props.currentUser) {
       let contribution = Object.assign({},
@@ -47,6 +49,10 @@ class CampaignShow extends React.Component {
       this.props.requestSingleCampaign(this.props.params.id);
       this.setState({buttonText: "Contribute"});
     }
+  }
+
+  handleImageLoaded() {
+    this.setState({ imageStatus: 'loaded' });
   }
 
   endDateToDuration(endDate) {
@@ -189,11 +195,32 @@ class CampaignShow extends React.Component {
       }
     }
 
+    const loadClass = () => {
+      let currentPath = this.props.location.pathname.split("/")[1];
+
+      if (!this.props.loading.campaign && this.state.imageStatus) {
+        return "done-loading";
+      }
+    }
+
+    const loader = () => {
+
+      return (
+        <div id="loading-screen" className={loadClass()}>
+          <div className="loader-container">
+          </div>
+        </div>
+      )
+    };
+
     return(
       <div className="campaign-show">
+        {loader()}
         <div className="campaign-show-container container group">
           <div className="grid-7 alpha pitch-image-container">
-            <img src={this.props.campaign.pitch_image_url}/>
+            <img
+              src={this.props.campaign.pitch_image_url}
+              onLoad={this.handleImageLoaded}/>
           </div>
           <div className="grid-5 omega campaign-info">
             <h4>{this.props.campaign.title} by {this.props.author.first_name} {this.props.author.last_name}</h4>
