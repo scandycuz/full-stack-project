@@ -47,12 +47,15 @@ class CampaignShow extends React.Component {
     if (this.props.campaign.funds_received !== nextProps.campaign.funds_received) {
       this.props.requestSingleCampaign(this.props.params.id);
 
-      let contribution = Object.assign({},
-                                       this.state.contribution,
-                                       {user_id: this.props.currentUser.id},
-                                       {campaign_id: parseInt(this.props.params.id)});
-      let newState = Object.assign({}, this.state, {buttonText: "Contribute", contribution});
-      this.setState(newState);
+      if (this.props.currentUser) {
+
+        let contribution = Object.assign({},
+          this.state.contribution,
+          {user_id: this.props.currentUser.id},
+          {campaign_id: parseInt(this.props.params.id)});
+          let newState = Object.assign({}, this.state, {buttonText: "Contribute", contribution});
+          this.setState(newState);
+      }
     }
     if (this.state.authorSmallPhotoUrl !== nextProps.author.small_photo_url) {
       this.setState({authorSmallPhotoUrl: nextProps.author.small_photo_url});
