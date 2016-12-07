@@ -35,6 +35,10 @@ class Profile extends React.Component {
     if (this.state.profilePhotoUrl !== nextProps.profile.photo_url) {
       this.setState({profilePhotoUrl: nextProps.profile.photo_url});
     }
+
+    if (this.props.currentUser !== nextProps.currentUser) {
+      this.props.requestSingleProfile(nextProps.params.id)
+    }
   }
 
   handleImageLoaded() {
@@ -223,6 +227,7 @@ class Profile extends React.Component {
     } else {
       return(
         <div className="profile">
+          {loader()}
           <div className="profile-content content container">
             <h2>{this.props.profile.first_name} {this.props.profile.last_name}</h2>
             {this.renderTabList('view-only')}
