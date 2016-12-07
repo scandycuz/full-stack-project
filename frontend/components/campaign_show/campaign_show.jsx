@@ -17,17 +17,22 @@ class CampaignShow extends React.Component {
         amount: ""
       },
       buttonText: "Contribute",
-      authorSmallPhotoUrl: null
+      authorSmallPhotoUrl: null,
+      imageLoaded: null
     }
 
     this.tabClass = this.tabClass.bind(this);
     this.linkToProfile = this.linkToProfile.bind(this);
     this.changeTab = this.changeTab.bind(this);
+    this.handleImageLoaded = this.handleImageLoaded.bind(this);
   }
 
   componentDidMount() {
-    this.setState({authorSmallPhotoUrl: null});
-    
+    this.setState({
+      authorSmallPhotoUrl: null,
+      imageLoaded: null
+    });
+
     if (this.props.currentUser) {
       let contribution = Object.assign({},
                                        this.state.contribution,
@@ -49,8 +54,8 @@ class CampaignShow extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-
+  handleImageLoaded() {
+    this.setState({ imageStatus: 'loaded' });
   }
 
   endDateToDuration(endDate) {
@@ -193,22 +198,24 @@ class CampaignShow extends React.Component {
       }
     }
 
-    const loadClass = () => {
-      let currentPath = this.props.location.pathname.split("/")[1];
-
-      if (!this.props.loading) {
-        return "done-loading";
-      }
-    }
+    // const loadClass = () => {
+    //   let currentPath = this.props.location.pathname.split("/")[1];
+    //
+    //   if (!this.props.loading) {
+    //     return "done-loading";
+    //   }
+    // }
 
     const loader = () => {
 
-      return (
-        <div id="loading-screen" className={loadClass()}>
-          <div className="loader-container">
+      if (this.props.loading && !this.state.imageLoaded) {
+        return (
+          <div id="loading-screen">
+            <div className="loader-container">
+            </div>
           </div>
-        </div>
-      )
+        )
+      }
     };
 
     return(
@@ -217,7 +224,8 @@ class CampaignShow extends React.Component {
         <div className="campaign-show-container container group">
           <div className="grid-7 alpha pitch-image-container">
             <img
-              src={this.props.campaign.pitch_image_url}/>
+              src={this.props.campaign.pitch_image_url}
+              onLoad={this.handleImageLoaded}/>
           </div>
           <div className="grid-5 omega campaign-info">
             <h4>{this.props.campaign.title} by {this.props.author.first_name} {this.props.author.last_name}</h4>
