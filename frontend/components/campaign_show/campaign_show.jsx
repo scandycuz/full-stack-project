@@ -44,10 +44,15 @@ class CampaignShow extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.campaign.funds_received !== nextProps.campaign.funds_received &&
-    this.props.campaign == nextProps.campaign) {
+    if (this.props.campaign.funds_received !== nextProps.campaign.funds_received) {
       this.props.requestSingleCampaign(this.props.params.id);
-      this.setState({buttonText: "Contribute"});
+
+      let contribution = Object.assign({},
+                                       this.state.contribution,
+                                       {user_id: this.props.currentUser.id},
+                                       {campaign_id: parseInt(this.props.params.id)});
+      let newState = Object.assign({}, this.state, {buttonText: "Contribute", contribution});
+      this.setState(newState);
     }
     if (this.state.authorSmallPhotoUrl !== nextProps.author.small_photo_url) {
       this.setState({authorSmallPhotoUrl: nextProps.author.small_photo_url});
@@ -197,14 +202,6 @@ class CampaignShow extends React.Component {
         }
       }
     }
-
-    // const loadClass = () => {
-    //   let currentPath = this.props.location.pathname.split("/")[1];
-    //
-    //   if (!this.props.loading) {
-    //     return "done-loading";
-    //   }
-    // }
 
     const loader = () => {
 

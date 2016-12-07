@@ -6,17 +6,23 @@ class Profile extends React.Component {
     super(props);
 
     this.state = {
-      selectedTab: this.props.currentPath()
+      selectedTab: this.props.currentPath(),
+      profilePhotoUrl: null,
+      imageLoaded: null
     }
     this.tabClass = this.tabClass.bind(this);
     this.changeTab = this.changeTab.bind(this);
     this.renderTabList = this.renderTabList.bind(this);
     this.renderProfileTab = this.renderProfileTab.bind(this);
     this.switchViewEdit = this.switchViewEdit.bind(this);
+    this.handleImageLoaded = this.handleImageLoaded.bind(this);
   }
 
   componentDidMount() {
-    // this.props.requestSingleProfile(this.props.params.id);
+    this.setState({
+      profilePhotoUrl: null,
+      imageLoaded: null
+    });
   }
 
   componentDidUpdate() {
@@ -26,9 +32,13 @@ class Profile extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // if (this.props.currentUser !== nextProps.currentUser) {
-    //   this.props.requestSingleProfile(this.props.params.id)
-    // }
+    if (this.state.profilePhotoUrl !== nextProps.profile.photo_url) {
+      this.setState({profilePhotoUrl: nextProps.profile.photo_url});
+    }
+  }
+
+  handleImageLoaded() {
+    this.setState({ imageStatus: 'loaded' });
   }
 
   tabClass(tabName) {
@@ -104,7 +114,7 @@ class Profile extends React.Component {
 
     if (currentPath === "profile") {
       let small_photo_url = this.props.profile.small_photo_url;
-      let photo_url = this.props.profile.photo_url;
+      let photo_url = this.state.profilePhotoUrl;
       let description = this.props.profile.description;
       let about = this.props.profile.about;
 
@@ -149,10 +159,23 @@ class Profile extends React.Component {
     const profileId = this.props.params.id;
     const currentUser = this.props.currentUser;
 
+    const loader = () => {
+
+      if (this.props.loading && !this.state.imageLoaded) {
+        return (
+          <div id="loading-screen">
+            <div className="loader-container">
+            </div>
+          </div>
+        )
+      }
+    };
+
     if (currentUser) {
       if (String(currentUser.id) === String(profileId)) {
         return (
           <div className="profile">
+            {loader()}
             <div className="profile-bar-container bar-container">
               <div className="profile-bar container bar">
                 <ul>
@@ -175,6 +198,7 @@ class Profile extends React.Component {
         // Not logged in user's profile
         return(
           <div className="profile">
+            {loader()}
             <div className="profile-content content container">
               <h2>{this.props.profile.first_name} {this.props.profile.last_name}</h2>
               {this.renderTabList('view-only')}
