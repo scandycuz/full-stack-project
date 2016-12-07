@@ -17,7 +17,7 @@ class CampaignShow extends React.Component {
         amount: ""
       },
       buttonText: "Contribute",
-      imageStatus: null
+      authorSmallPhotoUrl: null
     }
 
     this.tabClass = this.tabClass.bind(this);
@@ -26,8 +26,8 @@ class CampaignShow extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.requestSingleCampaign(this.props.params.id);
-
+    this.setState({authorSmallPhotoUrl: null});
+    
     if (this.props.currentUser) {
       let contribution = Object.assign({},
                                        this.state.contribution,
@@ -44,6 +44,13 @@ class CampaignShow extends React.Component {
       this.props.requestSingleCampaign(this.props.params.id);
       this.setState({buttonText: "Contribute"});
     }
+    if (this.state.authorSmallPhotoUrl !== nextProps.author.small_photo_url) {
+      this.setState({authorSmallPhotoUrl: nextProps.author.small_photo_url});
+    }
+  }
+
+  componentDidUpdate() {
+
   }
 
   endDateToDuration(endDate) {
@@ -217,7 +224,7 @@ class CampaignShow extends React.Component {
             <p>{this.props.campaign.tagline}</p>
             <div onClick={this.linkToProfile} className="campaign-author-container clickable">
               <div className="author-image">
-                <img src={this.props.author.small_photo_url} />
+                <img src={this.state.authorSmallPhotoUrl} />
               </div>
               <div className="author-info">
                 <p><strong>{this.props.author.first_name} {this.props.author.last_name}</strong></p>
