@@ -204,7 +204,7 @@ class CampaignShow extends React.Component {
     }
 
     const loadClass = () => {
-      if (this.props.loading && !this.state.imageLoaded) {
+      if (true) {
         return "loading";
       }
     }
@@ -215,15 +215,9 @@ class CampaignShow extends React.Component {
         <div id="loading-screen" className={loadClass()}>
           <div className="loader-container">
             <div className="loader">
-              <div className="square" ></div>
-              <div className="square"></div>
-              <div className="square last"></div>
-              <div className="square clear"></div>
-              <div className="square"></div>
-              <div className="square last"></div>
-              <div className="square clear"></div>
-              <div className="square "></div>
-              <div className="square last"></div>
+              <svg className="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle className="path" fill="none" strokeWidth="6" strokeLinecap="round" cx="33" cy="33" r="30"></circle>
+              </svg>
             </div>
           </div>
         </div>

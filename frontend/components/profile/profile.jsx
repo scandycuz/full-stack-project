@@ -159,16 +159,25 @@ class Profile extends React.Component {
     const profileId = this.props.params.id;
     const currentUser = this.props.currentUser;
 
+    const loadClass = () => {
+      if (true) {
+        return "loading";
+      }
+    }
+
     const loader = () => {
 
-      if (this.props.loading && !this.state.imageLoaded) {
-        return (
-          <div id="loading-screen">
-            <div className="loader-container">
+      return (
+        <div id="loading-screen" className={loadClass()}>
+          <div className="loader-container">
+            <div className="loader">
+              <svg className="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle className="path" fill="none" strokeWidth="6" strokeLinecap="round" cx="33" cy="33" r="30"></circle>
+              </svg>
             </div>
           </div>
-        )
-      }
+        </div>
+      )
     };
 
     if (currentUser) {
