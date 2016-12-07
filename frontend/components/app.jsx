@@ -14,22 +14,22 @@ class App extends React.Component {
     const loadClass = () => {
       let currentPath = this.props.location.pathname.split("/")[1];
 
-      if ((currentPath === "campaigns" && this.props.loading.campaign) ||
-      (currentPath === "profile" && this.props.loading.profile)) {
-        alert('loading');
+      if ((currentPath === "campaigns" && !this.props.loading.campaign) ||
+      (currentPath === "profile" && !this.props.loading.profile) ||
+      (currentPath !== "profile" && currentPath !== "campaigns" && !this.props.loading.profile && !this.props.loading.campaign)) {
+        // alert('loading');
         return "done-loading";
       }
     }
 
     const loader = () => {
 
-        return (
-          <div id="loading-screen" className={loadClass()}>
-            <div className="loader-container">
-            </div>
+      return (
+        <div id="loading-screen" className={loadClass()}>
+          <div className="loader-container">
           </div>
-        )
-      }
+        </div>
+      )
     };
 
     const children = this.props.children;
