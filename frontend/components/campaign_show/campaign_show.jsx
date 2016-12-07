@@ -46,10 +46,6 @@ class CampaignShow extends React.Component {
     }
   }
 
-  routeLocationDidUpdate() {
-    alert('route change');
-  }
-
   endDateToDuration(endDate) {
     if (endDate) {
       let endDateArray = endDate.split("-");
@@ -193,7 +189,7 @@ class CampaignShow extends React.Component {
     const loadClass = () => {
       let currentPath = this.props.location.pathname.split("/")[1];
 
-      if (!this.props.loading.campaign) {
+      if (!this.props.loading) {
         return "done-loading";
       }
     }
