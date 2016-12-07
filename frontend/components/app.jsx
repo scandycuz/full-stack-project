@@ -10,14 +10,21 @@ class App extends React.Component {
   }
 
   render() {
-    const loader = () => {
 
+    const loadClass = () => {
       let currentPath = this.props.location.pathname.split("/")[1];
 
       if ((currentPath === "campaigns" && this.props.loading.campaign) ||
       (currentPath === "profile" && this.props.loading.profile)) {
+        alert('loading');
+        return "done-loading";
+      }
+    }
+
+    const loader = () => {
+
         return (
-          <div id="loading-screen">
+          <div id="loading-screen" className={loadClass()}>
             <div className="loader-container">
             </div>
           </div>

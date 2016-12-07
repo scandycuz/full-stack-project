@@ -42,7 +42,8 @@ class CampaignShow extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.campaign.funds_received !== nextProps.campaign.funds_received) {
+    if (this.props.campaign.funds_received !== nextProps.campaign.funds_received &&
+    this.props.campaign == nextProps.campaign) {
       this.props.requestSingleCampaign(this.props.params.id);
       this.setState({buttonText: "Contribute"});
     }
