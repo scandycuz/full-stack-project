@@ -49,10 +49,13 @@ class CampaignShow extends React.Component {
       this.props.requestSingleCampaign(this.props.params.id);
       this.setState({buttonText: "Contribute"});
     }
+    if (this.state.imageStatus === "loaded") {
+      this.setState({imageStatus: null});
+    }
   }
 
   handleImageLoaded() {
-    this.setState({ imageStatus: 'loaded' }, this.setState({imageStatus: null}));
+    this.setState({ imageStatus: 'loaded' });
   }
 
   endDateToDuration(endDate) {
