@@ -27,8 +27,7 @@ class CampaignEdit extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ formState: nextProps.campaign });
-
-    if (Object.keys(nextProps.currentUserCampaigns).length !== 0) {
+    if (nextProps.currentUserCampaigns) {
       let campaignId = this.props.params.id;
       let currentUserCampaignKeys = Object.keys(nextProps.currentUserCampaigns);
       if (!currentUserCampaignKeys.includes(campaignId)) {
@@ -130,6 +129,14 @@ class CampaignEdit extends React.Component {
       "Review & Launch"
     ]
 
+    const lastStep = () => {
+      if (this.state.formState.status === "published") {
+        return "Update Campaign";
+      } else {
+        return "Review & Launch";
+      }
+    }
+
     return(
       <div className="campaign_edit">
         <div className="campaign-tab-content tab-content">
@@ -139,9 +146,17 @@ class CampaignEdit extends React.Component {
           <div className="campaign-steps container">
             <div className="campaign-steps-list">
               <ul>
-                {editSteps.map( (step, idx) => (
-                  <li key={idx} className={this.tabClass(step)} onClick={this.changeTab}>{step}</li>
-                ))}
+                {editSteps.map( (step, idx) =>  {
+                  if (idx === editSteps.length - 1) {
+                    return (
+                      <li key={idx} className={this.tabClass(step)} onClick={this.changeTab}>{lastStep()}</li>
+                    )
+                  } else {
+                    return (
+                      <li key={idx} className={this.tabClass(step)} onClick={this.changeTab}>{step}</li>
+                    )
+                  }
+                })}
               </ul>
             </div>
           </div>

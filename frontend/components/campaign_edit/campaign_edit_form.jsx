@@ -77,9 +77,14 @@ class CampaignEditForm extends React.Component {
       this.setState(nextProps.campaign);
     }
 
-    if (this.props.reward.title !== nextProps.reward.title) {
+    if (this.props.reward !== nextProps.reward) {
       let campaignId = this.props.params.id;
       this.props.requestSingleCampaign(campaignId);
+    }
+
+    if (nextProps.rewards) {
+      let rewards = nextProps.rewards;
+      this.setState({rewards: rewards});
     }
   }
 
@@ -275,15 +280,16 @@ class CampaignEditForm extends React.Component {
             </textarea>
           </label><br/>
           <div className="form-button-container">
-            <span className="clickable button" onClick={this.handleSave}>Save & Continue</span>
+            <span className="clickable button" onClick={this.handleSave}>Save &amp; Continue</span>
           </div>
         </div>
       )
     } else {
 
       const rewardItems = () => {
-        if (this.props.rewards) {
-          const rewards = this.props.rewards;
+
+        if (this.state.rewards) {
+          const rewards = this.state.rewards;
           const rewardKeys = Object.keys(rewards);
 
           return (
@@ -328,6 +334,14 @@ class CampaignEditForm extends React.Component {
         this.props.router.push(`/campaigns/${id}/edit/rewards/new`);
       }
 
+      const reviewText = () => {
+        if (this.state.status === "published") {
+          return "Update Campaign";
+        } else {
+          return "Review & Launch";
+        }
+      }
+
       return(
         <div className="form-section form-rewards-section">
           <h4>Rewards</h4>
@@ -348,7 +362,9 @@ class CampaignEditForm extends React.Component {
             </tbody>
           </table>
           <div className="form-button-container">
-            <span id="#review-and-launch-campaign" className="clickable button" onClick={this.handleSubmit}>Review &amp; Launch</span>
+            <span id="#review-and-launch-campaign"
+              className="clickable button"
+              onClick={this.handleSubmit}>{reviewText()}</span>
           </div>
         </div>
       )

@@ -4,7 +4,8 @@ import { requestSingleReward,
          updateReward,
          createReward,
          destroyReward } from '../../actions/reward_actions';
-import { requestSingleCampaign } from '../../actions/campaign_actions';
+import { requestSingleCampaign,
+         updateCampaign } from '../../actions/campaign_actions';
 
 import RewardForm from './reward_form';
 
@@ -23,7 +24,8 @@ const mapDispatchToProps = (dispatch, { location }) => {
     },
     updateReward: (reward) => dispatch(updateReward(reward)),
     createReward: (reward) => dispatch(createReward(reward)),
-    destroyReward: (id) => dispatch(destroyReward(id))
+    destroyReward: (id) => dispatch(destroyReward(id)),
+    requestSingleCampaign: () => dispatch(requestSingleCampaign())
   })
 };
 
