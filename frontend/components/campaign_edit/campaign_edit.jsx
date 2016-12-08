@@ -81,7 +81,7 @@ class CampaignEdit extends React.Component {
     e.preventDefault();
     let tabName = e.target.innerHTML.toLowerCase();
 
-    if (tabName === "review &amp; launch") {
+    if (tabName === "review & launch" || tabName === "update campaign") {
       this.handleSubmit(this.state.formState);
     } else {
       this.props.router.push(`/campaigns/${this.props.params.id}/edit/${tabName}`);

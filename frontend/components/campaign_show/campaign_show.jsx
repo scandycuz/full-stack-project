@@ -134,8 +134,7 @@ class CampaignShow extends React.Component {
     const startCheckout = (e) => {
       // temporary:
       if (!this.props.currentUser) {
-        alert('Please log in or Sign Up to Contribute.');
-        return this.props.router.push('/');
+        return alert('Please log in or Sign Up to Contribute.');
       }
 
       let target = e.target;
@@ -160,7 +159,7 @@ class CampaignShow extends React.Component {
       let amount = this.props.campaign.funds_received + this.state.contribution.amount;
       let campaign = Object.assign({}, this.props.campaign, {funds_received: amount});
       this.props.createContribution({contribution});
-      this.props.updateCampaign(campaign);
+      this.props.updateCampaign({campaign});
       this.setState({contribution: _nullContribution});
     }
 
