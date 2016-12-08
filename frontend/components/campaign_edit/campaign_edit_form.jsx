@@ -6,7 +6,9 @@ class CampaignEditForm extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {};
+    this.state = {
+      loading_image: false
+    };
 
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,9 +29,10 @@ class CampaignEditForm extends React.Component {
   }
 
   componentDidMount() {
+
     $("#uploadThumbnailImage").unsigned_cloudinary_upload(
       "startupgogo_campaign",{ cloud_name: 'dhh1nask4' }
-    ).bind('cloudinarydone', (e, data) => {
+    ).bind('fileuploaddone', (e, data) => {
       this.props.receiveImage();
 
       this.setState({
@@ -49,6 +52,7 @@ class CampaignEditForm extends React.Component {
   }
 
   componentDidUpdate() {
+
     $("#uploadThumbnailImage").unsigned_cloudinary_upload(
       "startupgogo_campaign",{ cloud_name: 'dhh1nask4' }
     ).bind('cloudinarydone', (e, data) => {
@@ -58,7 +62,6 @@ class CampaignEditForm extends React.Component {
         card_image_url: data.result.url
       });
     });
-
     $("#uploadPitchImage").unsigned_cloudinary_upload(
       "startupgogo_pitch",{ cloud_name: 'dhh1nask4' }
     ).bind('cloudinarydone', (e, data) => {
@@ -85,6 +88,14 @@ class CampaignEditForm extends React.Component {
     if (nextProps.rewards) {
       let rewards = nextProps.rewards;
       this.setState({rewards: rewards});
+    }
+
+    if (!nextProps.campaign.tagline) {
+      this.setState(nextProps.campaign);
+    }
+
+    if (this.props.loading.image !== nextProps.loading.image) {
+      this.setState({loading_image: nextProps.loading.image});
     }
   }
 
@@ -152,11 +163,11 @@ class CampaignEditForm extends React.Component {
       }
 
       const buttonClass = () => {
-        return (this.props.loading) ? "button loading" : "button";
+        return (this.state.loading_image) ? "button loading" : "button";
       }
 
       const buttonStatus = () => {
-        return (this.props.loading) ? "disabled" : "enabled";
+        return (this.state.loading_image) ? "disabled" : "enabled";
       }
 
       const handleImageClick = (e) => {
@@ -202,7 +213,7 @@ class CampaignEditForm extends React.Component {
             <span id="fake-upload-button"
               className={`${buttonClass()} image-button`}
               disabled={buttonStatus()}
-              onClick={this.handleImageClick}>Upload Image</span>
+              onClick={handleImageClick}>Upload Image</span>
             <input id="uploadThumbnailImage"
               type="file"
               name="file"/><br/>
@@ -240,11 +251,11 @@ class CampaignEditForm extends React.Component {
       }
 
       const buttonClass = () => {
-        return (this.props.loading) ? "button loading" : "button";
+        return (this.state.loading_image) ? "button loading" : "button";
       }
 
       const buttonStatus = () => {
-        return (this.props.loading) ? "disabled" : "enabled";
+        return (this.state.loading_image) ? "disabled" : "enabled";
       }
 
       const handleImageClick = (e) => {
@@ -262,7 +273,7 @@ class CampaignEditForm extends React.Component {
             <span id="fake-upload-button"
               className={`${buttonClass()} image-button`}
               disabled={buttonStatus()}
-              onClick={this.handleImageClick}>Upload Image</span>
+              onClick={handleImageClick}>Upload Image</span>
             <input id="uploadPitchImage"
               type="file"
               name="file"/><br/>

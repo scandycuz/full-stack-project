@@ -3,6 +3,7 @@ import {
   RECEIVE_SINGLE_PROFILE,
   RECEIVE_PROFILE_ERRORS,
   RECEIVE_IMAGE,
+  UPLOAD_IMAGE,
   RECEIVE_USER_CAMPAIGNS } from '../actions/profile_actions';
 import {
   REQUEST_SINGLE_CAMPAIGN,
@@ -29,16 +30,19 @@ import {
 
 import merge from 'lodash/merge';
 
-export default (state = {campaign: false, profile: false}, action) => {
+export default (state = {campaign: false, profile: false, image: false}, action) => {
   switch(action.type){
     case REQUEST_SINGLE_CAMPAIGN:
       return merge({}, state, {campaign: true});
     case REQUEST_SINGLE_PROFILE:
       return merge({}, state, {profile: true});
+    case UPLOAD_IMAGE:
+      return merge({}, state, {image: true});
     case RECEIVE_SINGLE_PROFILE:
       return merge({}, state, {profile: false});
     // case RECEIVE_PROFILE_ERRORS:
-    // case RECEIVE_IMAGE:
+    case RECEIVE_IMAGE:
+      return merge({}, state, {image: false});
     // case RECEIVE_USER_CAMPAIGNS:
     case RECEIVE_SINGLE_CAMPAIGN:
       return merge({}, state, {campaign: false});

@@ -74,14 +74,14 @@ class CampaignEdit extends React.Component {
   }
 
   saveCampaign(campaign) {
-    this.props.updateCampaign( campaign );
+    this.props.updateCampaign({campaign});
   }
 
   changeTab(e) {
     e.preventDefault();
     let tabName = e.target.innerHTML.toLowerCase();
 
-    if (tabName === "review & launch" || tabName === "update campaign") {
+    if (tabName === "review &amp; launch" || tabName === "update campaign") {
       this.handleSubmit(this.state.formState);
     } else {
       this.props.router.push(`/campaigns/${this.props.params.id}/edit/${tabName}`);

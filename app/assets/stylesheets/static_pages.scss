@@ -274,13 +274,15 @@ input[type="text"], input[type="date"] {
   }
 }
 
-// Loader
+// Loading
 
-// .loading {
-//   opacity: 0.8;
-//   background-color: $light_grey;
-//   cursor: default;
-// }
+.image-button {
+  &.loading {
+    opacity: 0.8;
+    background-color: $light_grey;
+    cursor: default;
+  }
+}
 //
 // .loader {
 //   font-size: 10px;
@@ -445,6 +447,10 @@ input[type="text"], input[type="date"] {
     color: $black;
     font-size: 50px;
     text-transform: none;
+    &:first-child {
+      margin-top: 0;
+      padding-top: 0.775em;
+    }
   }
   .tabTitleList {
     display: flex;
@@ -1095,7 +1101,7 @@ input[type="text"], input[type="date"] {
       }
     }
     .opacity-cover {
-      background: white;
+      background: #FAFAFA;
       opacity: 0.3;
       display: none;
       position: absolute;

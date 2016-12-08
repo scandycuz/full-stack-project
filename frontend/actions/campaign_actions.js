@@ -28,9 +28,11 @@ export const receiveCampaignErrors = errors => ({
   errors
 });
 
-export const uploadImage = () => ({
-  type: UPLOAD_IMAGE
-});
+export const uploadImage = () => {
+  return ({
+    type: UPLOAD_IMAGE
+  })
+};
 
 export const receiveImage = () => ({
   type: RECEIVE_IMAGE
