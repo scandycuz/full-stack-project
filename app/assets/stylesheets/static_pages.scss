@@ -1331,6 +1331,31 @@ input[type="text"], input[type="date"] {
   }
 }
 
+// Slider
+
+/* enable Flickity by default */
+.gallery:after {
+  content: 'flickity';
+  display: none; /* hide :after */
+}
+
+.gallery-cell {
+  min-height: 350px;
+  width: 38.4%;
+  background: green;
+  margin: 0;
+  text-align: center;
+  &:nth-child(1) {
+    background: blue;
+  }
+  &:nth-child(2) {
+    background: red;
+  }
+  &:nth-child(3) {
+    background: purple;
+  }
+}
+
 // Loading Screen & Loader
 
 #loading-screen {
