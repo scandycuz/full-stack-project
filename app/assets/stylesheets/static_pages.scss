@@ -1339,6 +1339,9 @@ input[type="text"], input[type="date"] {
   display: none; /* hide :after */
 }
 
+.main-gallery {
+  background: $dark_grey;
+}
 .gallery-cell {
   min-height: 350px;
   width: 38.4%;

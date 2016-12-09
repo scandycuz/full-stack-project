@@ -8,16 +8,18 @@ class SimpleSlider extends React.Component {
   }
 
   componentDidMount() {
+    this.props.requestFeaturedCampaigns();
+
     let flkty = new Flickity( '.main-gallery', {
       // options
       cellAlign: 'center',
       initialIndex: 1,
       wrapAround: true,
-      autoPlay: 4000,
-      selectedAttraction: 0.01,
-      friction: 0.15,
+      autoPlay: 5000,
+      selectedAttraction: 0.15,
+      friction: 0.8,
       prevNextButtons: false,
-      pageDots: false
+      pageDots: false,
     });
 
     $('.gallery-cell').each(function() {

@@ -31,3 +31,12 @@ export const fetchCampaigns = (success) => {
     success
   })
 }
+
+export const fetchFeaturedCampaigns = (success) => {
+  $.ajax({
+    url: `api/campaigns`,
+    type: 'GET',
+    data: {"featured": true},
+    success
+  })
+}

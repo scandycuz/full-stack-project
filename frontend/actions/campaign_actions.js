@@ -7,6 +7,8 @@ export const RECEIVE_IMAGE = "RECEIVE_IMAGE";
 export const CREATE_CAMPAIGN = "CREATE_CAMPAIGN";
 export const REQUEST_CAMPAIGNS = "REQUEST_CAMPAIGNS";
 export const RECEIVE_CAMPAIGNS = "RECEIVE_CAMPAIGNS";
+export const REQUEST_FEATURED_CAMPAIGNS = "REQUEST_FEATURED_CAMPAIGNS";
+export const RECEIVE_FEATURED_CAMPAIGNS = "RECEIVE_FEATURED_CAMPAIGNS";
 
 export const updateCampaign = campaign => ({
   type: UPDATE_CAMPAIGN,
@@ -50,4 +52,17 @@ export const requestCampaigns = () => ({
 export const receiveCampaigns = (campaigns) => ({
   type: RECEIVE_CAMPAIGNS,
   campaigns
-})
+});
+
+export const requestFeaturedCampaigns = () => {
+  return ({
+    type: REQUEST_FEATURED_CAMPAIGNS
+  })
+};
+
+export const receiveFeaturedCampaigns = (featured_campaigns) => {
+  return ({
+    type: RECEIVE_FEATURED_CAMPAIGNS,
+    featured_campaigns
+  });
+}

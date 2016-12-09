@@ -1,6 +1,7 @@
 import { RECEIVE_SINGLE_CAMPAIGN,
          RECEIVE_CAMPAIGNS,
-         RECEIVE_CAMPAIGN_ERRORS } from '../actions/campaign_actions';
+         RECEIVE_CAMPAIGN_ERRORS,
+         RECEIVE_FEATURED_CAMPAIGNS } from '../actions/campaign_actions';
 import { RECEIVE_REWARD_DELETE } from '../actions/reward_actions';
 import { RECEIVE_SINGLE_CONTRIBUTION } from '../actions/contribution_actions';
 import { fetchSingleCampaign } from '../util/campaign_api_util';
@@ -52,6 +53,10 @@ const CampaignReducer = (state = _nullCampaign, action) => {
       clonedState = merge({}, state);
       clonedState.campaign.rewards = {};
       return merge({}, clonedState, {campaign});
+    case RECEIVE_FEATURED_CAMPAIGNS:
+      const featured_campaigns = action.featured_campaigns;
+      newState = merge({}, state, { featured_campaigns });
+      return newState;
     default:
       return state;
   }

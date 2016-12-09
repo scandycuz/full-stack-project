@@ -3,6 +3,8 @@ class Api::CampaignsController < ApplicationController
   def index
     if params[:profile_id]
       @campaigns = Campaign.where("user_id = '#{params[:profile_id]}'")
+    elsif params[:featured]
+      @campaigns = Campaign.where("featured = true")
     else
       @campaigns = Campaign.where("status = 'published'")
     end

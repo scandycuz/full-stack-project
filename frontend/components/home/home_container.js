@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
 import Home from './home';
 
-import { requestCampaigns } from '../../actions/campaign_actions';
-import { fetchCampaigns } from '../../util/campaign_api_util';
+import { requestCampaigns,
+         requestFeaturedCampaigns } from '../../actions/campaign_actions';
+import { fetchCampaigns,
+         fetchFeaturedCampaigns } from '../../util/campaign_api_util';
 
 const mapStateToProps = ({session, campaign, loading}) => ({
   currentUser: session.currentUser,
@@ -11,7 +13,8 @@ const mapStateToProps = ({session, campaign, loading}) => ({
 });
 
 const mapDispatchToProps = (dispatch, { location }) => ({
-  requestCampaigns: () => dispatch(requestCampaigns())
+  requestCampaigns: () => dispatch(requestCampaigns()),
+  requestFeaturedCampaigns: () => dispatch(requestFeaturedCampaigns())
 });
 
 export default connect(

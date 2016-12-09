@@ -75,15 +75,15 @@ class ProfileEdit extends React.Component {
     }
 
     const buttonClass = () => {
-      return (this.props.loading) ? "button loading" : "button";
+      return (this.props.loading.image) ? "button loading" : "button";
     }
 
     const buttonStatus = () => {
-      return (this.props.loading) ? "disabled" : "enabled";
+      return (this.props.loading.image) ? "disabled" : "enabled";
     }
 
     const submitButtonClass = () => {
-      if (this.props.loading) {
+      if (this.props.loading.image) {
         return 'button loading'
       } else {
         return 'button';
