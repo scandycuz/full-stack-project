@@ -6,7 +6,7 @@ class Api::CampaignsController < ApplicationController
     elsif params[:featured]
       @campaigns = Campaign.where("featured = true")
     else
-      @campaigns = Campaign.where("status = 'published'")
+      @campaigns = Campaign.where("status = 'published' and featured = 'false'")
     end
   end
 

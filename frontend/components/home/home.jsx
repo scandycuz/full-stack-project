@@ -23,7 +23,7 @@ class Home extends React.Component {
     return(
       <div className="home-content-full">
         <div id="home-slider" className="home-slider">
-          <SimpleSlider requestFeaturedCampaigns={this.props.requestFeaturedCampaigns}/>
+          <SimpleSlider requestFeaturedCampaigns={this.props.requestFeaturedCampaigns} featuredCampaigns={this.props.featuredCampaigns}/>
         </div>
         <div className="home-content-container container">
           <div className="campaign-index-container">

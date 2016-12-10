@@ -9,6 +9,7 @@ import { fetchCampaigns,
 const mapStateToProps = ({session, campaign, loading}) => ({
   currentUser: session.currentUser,
   campaigns: campaign.campaigns,
+  featuredCampaigns: campaign.featured_campaigns,
   loading: loading
 });
 

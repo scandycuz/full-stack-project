@@ -205,7 +205,7 @@ campaigns = Campaign.create([
     tagline: "Edison bulb kickstarter readymade twee, heirloom glossier live-edge activated.",
     campaign_overview: "Actually small batch whatever asymmetrical, pickled narwhal vinyl gastropub ramps tumblr art party ugh. Swag 3 wolf moon marfa chartreuse irony. Heirloom chartreuse succulents, occupy banjo blog godard gastropub everyday carry kitsch direct trade four dollar toast. Brunch etsy man bun, freegan williamsburg shabby chic venmo vice swag blue bottle cliche.",
     campaign_pitch: "Banjo drinking vinegar 8-bit neutra, vape hexagon mixtape bitters fingerstache edison bulb. Direct trade master cleanse dreamcatcher, vinyl green juice selvage austin squid taxidermy. Pour-over lomo slow-carb iPhone actually thundercats food truck, hammock banh mi ramps disrupt williamsburg waistcoat. Bespoke typewriter wolf, vegan hella banh mi keffiyeh +1 slow-carb. Authentic cronut williamsburg, asymmetrical you probably haven't heard of them pabst direct trade post-ironic kitsch waistcoat blue bottle microdosing.",
-    status: "draft",
+    status: "published",
     location: "San Francisco, CA, United States",
     duration: "2017-01-30",
     featured: true
@@ -347,11 +347,6 @@ rewards = Reward.create([
     inventory: 30,
     estimated_delivery: "2017-02-18",
     requires_shipping: true
-  },{ campaign_id: 9,
-    price: 250,
-    title: "Freegan pork belly",
-    description: "Activated charcoal poutine chambray air plant beard, irony portland kombucha kinfolk humblebrag.",
-    requires_shipping: false
   },{ campaign_id: 9,
     price: 450,
     title: "Literally man bun brunch",

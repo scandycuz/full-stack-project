@@ -5,6 +5,13 @@ class SimpleSlider extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {}
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.featuredCampaigns && this.state != nextProps.featuredCampaigns) {
+      this.setState(nextProps.featuredCampaigns);
+    }
   }
 
   componentDidMount() {
@@ -32,12 +39,33 @@ class SimpleSlider extends React.Component {
   }
 
   render() {
+    const campaignSlides = () => {
+      if (!this.state.empty) {
+        let keys = Object.keys(this.state);
+        let campaigns = keys.map( (key) => (
+          this.state[key]
+        ));
+        return campaigns;
+      } else {
+        return [];
+      }
+    }
 
     return (
       <div className="main-gallery">
-        <div className="gallery-cell"></div>
-        <div className="gallery-cell"></div>
-        <div className="gallery-cell"></div>
+        {campaignSlides().map( (campaign, i) => {
+          let imgUrl = campaign.pitch_image_url;
+          let divStyle = {
+            backgroundImage: 'url(' + imgUrl + ')'
+          }
+          return(
+            <div key={i}
+              className={'gallery-cell'}
+              style={divStyle}>
+              
+            </div>
+          );
+        })}
       </div>
     );
 
