@@ -69,7 +69,7 @@ class Rewards extends React.Component {
       let amount = this.props.campaign.funds_received + this.state.amount;
       let campaign = Object.assign({}, this.props.campaign, {funds_received: amount});
       this.props.createContribution({contribution});
-      this.props.updateCampaign(campaign);
+      this.props.updateCampaign({campaign});
       this.setState(_nullContribution);
     }
 

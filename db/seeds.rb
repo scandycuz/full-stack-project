@@ -200,14 +200,40 @@ campaigns = Campaign.create([
     title: "Focusly",
     goal_amount: 4000,
     funds_received: 1400,
-    card_image_url: "http://res.cloudinary.com/dhh1nask4/image/upload/v1481242474/campaign_images/pzjlpov7693fyn3r1nbs.jpg",
-    pitch_image_url: "http://res.cloudinary.com/dhh1nask4/image/upload/v1481242497/campaign_images/vxxogrfaldwbfekcedje.jpg",
+    card_image_url: "http://res.cloudinary.com/dhh1nask4/image/upload/v1481242497/campaign_images/vxxogrfaldwbfekcedje.jpg",
+    pitch_image_url: "http://res.cloudinary.com/dhh1nask4/image/upload/v1481356787/campaign_images/na62gb2lw7ndzokhxtym.jpg",
     tagline: "Edison bulb kickstarter readymade twee, heirloom glossier live-edge activated.",
     campaign_overview: "Actually small batch whatever asymmetrical, pickled narwhal vinyl gastropub ramps tumblr art party ugh. Swag 3 wolf moon marfa chartreuse irony. Heirloom chartreuse succulents, occupy banjo blog godard gastropub everyday carry kitsch direct trade four dollar toast. Brunch etsy man bun, freegan williamsburg shabby chic venmo vice swag blue bottle cliche.",
     campaign_pitch: "Banjo drinking vinegar 8-bit neutra, vape hexagon mixtape bitters fingerstache edison bulb. Direct trade master cleanse dreamcatcher, vinyl green juice selvage austin squid taxidermy. Pour-over lomo slow-carb iPhone actually thundercats food truck, hammock banh mi ramps disrupt williamsburg waistcoat. Bespoke typewriter wolf, vegan hella banh mi keffiyeh +1 slow-carb. Authentic cronut williamsburg, asymmetrical you probably haven't heard of them pabst direct trade post-ironic kitsch waistcoat blue bottle microdosing.",
     status: "published",
     location: "San Francisco, CA, United States",
     duration: "2017-01-30",
+    featured: true
+  },{ user_id: 8,
+    title: "Reaction",
+    goal_amount: 4000,
+    funds_received: 1400,
+    card_image_url: "http://res.cloudinary.com/dhh1nask4/image/upload/v1481343738/campaign_images/x7ibilnnkmxipj2y1xd0.jpg",
+    pitch_image_url: "http://res.cloudinary.com/dhh1nask4/image/upload/v1481356926/campaign_images/dpsed9p6vivx7dzk6exa.jpg",
+    tagline: "Green juice brooklyn offal, street art XOXO trust fund actually fashion axe cronut.",
+    campaign_overview: "Actually small batch whatever asymmetrical, pickled narwhal vinyl gastropub ramps tumblr art party ugh. Swag 3 wolf moon marfa chartreuse irony. Heirloom chartreuse succulents, occupy banjo blog godard gastropub everyday carry kitsch direct trade four dollar toast. Brunch etsy man bun, freegan williamsburg shabby chic venmo vice swag blue bottle cliche.",
+    campaign_pitch: "Banjo drinking vinegar 8-bit neutra, vape hexagon mixtape bitters fingerstache edison bulb. Direct trade master cleanse dreamcatcher, vinyl green juice selvage austin squid taxidermy. Pour-over lomo slow-carb iPhone actually thundercats food truck, hammock banh mi ramps disrupt williamsburg waistcoat. Bespoke typewriter wolf, vegan hella banh mi keffiyeh +1 slow-carb. Authentic cronut williamsburg, asymmetrical you probably haven't heard of them pabst direct trade post-ironic kitsch waistcoat blue bottle microdosing.",
+    status: "published",
+    location: "San Francisco, CA, United States",
+    duration: "2017-01-30",
+    featured: true
+  },{ user_id: 6,
+    title: "InspHired",
+    goal_amount: 40000,
+    funds_received: 24000,
+    card_image_url: "http://res.cloudinary.com/dhh1nask4/image/upload/v1481356483/campaign_images/ym87ggpudknwizhcanlv.jpg",
+    pitch_image_url: "http://res.cloudinary.com/dhh1nask4/image/upload/v1481357150/campaign_images/gqpg1xckiitjosvpxzq3.jpg",
+    tagline: "Normcore hot chicken polaroid photo booth. Salvia williamsburg yr paleo, godard hexagon.",
+    campaign_overview: "Actually small batch whatever asymmetrical, pickled narwhal vinyl gastropub ramps tumblr art party ugh. Swag 3 wolf moon marfa chartreuse irony. Heirloom chartreuse succulents, occupy banjo blog godard gastropub everyday carry kitsch direct trade four dollar toast. Brunch etsy man bun, freegan williamsburg shabby chic venmo vice swag blue bottle cliche.",
+    campaign_pitch: "Banjo drinking vinegar 8-bit neutra, vape hexagon mixtape bitters fingerstache edison bulb. Direct trade master cleanse dreamcatcher, vinyl green juice selvage austin squid taxidermy. Pour-over lomo slow-carb iPhone actually thundercats food truck, hammock banh mi ramps disrupt williamsburg waistcoat. Bespoke typewriter wolf, vegan hella banh mi keffiyeh +1 slow-carb. Authentic cronut williamsburg, asymmetrical you probably haven't heard of them pabst direct trade post-ironic kitsch waistcoat blue bottle microdosing.",
+    status: "published",
+    location: "San Francisco, CA, United States",
+    duration: "2017-02-12",
     featured: true
   }
 ])
@@ -368,6 +394,43 @@ rewards = Reward.create([
     inventory: 30,
     estimated_delivery: "2017-02-18",
     requires_shipping: true
+  },{ campaign_id: 10,
+    price: 650,
+    title: "Craft beer hot chicken",
+    description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
+    number_available: 30,
+    inventory: 30,
+    estimated_delivery: "2017-02-24",
+    requires_shipping: true
+  },{ campaign_id: 10,
+    price: 800,
+    title: "Before they sold out",
+    description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
+    number_available: 30,
+    inventory: 30,
+    estimated_delivery: "2017-02-18",
+    requires_shipping: true
+  },{ campaign_id: 11,
+    price: 400,
+    title: "Before they sold out",
+    description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
+    number_available: 30,
+    inventory: 30,
+    estimated_delivery: "2017-02-18",
+    requires_shipping: true
+  },{ campaign_id: 11,
+    price: 650,
+    title: "Craft beer hot chicken",
+    description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
+    requires_shipping: false
+  },{ campaign_id: 11,
+    price: 800,
+    title: "Before they sold out",
+    description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
+    number_available: 30,
+    inventory: 30,
+    estimated_delivery: "2017-02-18",
+    requires_shipping: true
   }
 ])
 
@@ -434,5 +497,26 @@ contributions = Contribution.create([
   },{ user_id: 4,
     campaign_id: 9,
     amount: 350
+  },{ user_id: 2,
+    campaign_id: 10,
+    amount: 50
+  },{ user_id: 4,
+    campaign_id: 10,
+    amount: 180
+  },{ user_id: 6,
+    campaign_id: 10,
+    amount: 350
+  },{ user_id: 4,
+    campaign_id: 11,
+    amount: 180
+  },{ user_id: 2,
+    campaign_id: 11,
+    amount: 350
+  },{ user_id: 7,
+    campaign_id: 11,
+    amount: 600
+  },{ user_id: 3,
+    campaign_id: 11,
+    amount: 800
   }
 ])

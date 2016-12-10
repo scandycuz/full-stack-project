@@ -1,4 +1,6 @@
 import React from 'react';
+import { Router, Route, hashHistory, withRouter } from 'react-router';
+
 import CampaignIndex from '../campaign_index/campaign_index';
 import SimpleSlider from './simple_slider';
 
@@ -23,7 +25,9 @@ class Home extends React.Component {
     return(
       <div className="home-content-full">
         <div id="home-slider" className="home-slider">
-          <SimpleSlider requestFeaturedCampaigns={this.props.requestFeaturedCampaigns} featuredCampaigns={this.props.featuredCampaigns}/>
+          <SimpleSlider requestFeaturedCampaigns={this.props.requestFeaturedCampaigns}
+                        featuredCampaigns={this.props.featuredCampaigns}
+                        router={this.props.router}/>
         </div>
         <div className="home-content-container container">
           <div className="campaign-index-container">
@@ -40,4 +44,4 @@ class Home extends React.Component {
 
 }
 
-export default Home;
+export default withRouter(Home);

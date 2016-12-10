@@ -998,7 +998,7 @@ input[type="text"], input[type="date"] {
 // Home
 
 .home-content-container {
-  padding-top: 2em;
+  padding-top: 1.8em;
   h3 {
     font-family: $work-sans;
   }
@@ -1340,7 +1340,10 @@ input[type="text"], input[type="date"] {
 }
 
 .main-gallery {
-  background: $dark_grey;
+  background: #000;
+}
+.flickity-viewport {
+  cursor: pointer !important;
 }
 .gallery-cell {
   position: relative;
@@ -1350,39 +1353,67 @@ input[type="text"], input[type="date"] {
   text-align: left;
   min-height: 350px;
   width: 38.4%;
-  background: green;
   margin: 0;
   text-align: left;
   background-size: cover;
   background-position: 50% 50%;
-  padding: 2em;
+  padding: 2em 2.4em;
+  margin-right: 0 !important;
+  // top box shadow
+  -webkit-box-shadow: inset 0px 30px 104px -24px rgba(0,0,0,0.15);
+  -moz-box-shadow: inset 0px 30px 104px -24px rgba(0,0,0,0.15);
+  box-shadow: inset 0px 30px 104px -24px rgba(0,0,0,0.15);
   .gallery-overlay {
     position: absolute;
+    display: inline-block;
     background-color: rgba(0,0,0,0.2);
     z-index: 100;
-    width: 100%;
     height: 100%;
+    width: 100%;
     bottom: 0;
-    left: 0
+    left: 0;
+    // bottom box shadow
+    -webkit-box-shadow: inset 0px -84px 104px -20px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px -84px 104px -20px rgba(0,0,0,0.75);
+    box-shadow: inset 0px -84px 104px -20px rgba(0,0,0,0.75);
+  }
+  .slide-content {
+    z-index: 200;
+    opacity: 0;
+  }
+  .slide-subcontent {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
   }
   h3 {
     margin-bottom: 0;
     color: white;
-    z-index: 200;
+    font-size: 19px;
   }
   p {
-    padding-right: 20%;
     color: white;
-    z-index: 200;
+    margin-top: 0.25em;
+    margin-bottom: 0;
+    padding-right: 4em;
+    font-size: 16px;
+    line-height: 1.45em;
   }
-  &:nth-child(1) {
-    background: blue;
-  }
-  &:nth-child(2) {
-    background: red;
-  }
-  &:nth-child(3) {
-    background: purple;
+  .button {
+    position: relative;
+    z-index: 400;
+    padding: 9px 17px;
+    align-self: flex-end;
+    white-space: nowrap;
+    font-family: $open-sans;
+    font-weight: 600;
+    background: none;
+    border: 2px solid white;
+    &:hover {
+      background: white;
+      color: $black !important;
+    }
   }
 }
 

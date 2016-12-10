@@ -18,7 +18,8 @@ import CampaignPitchContainer from './campaign_pitch/campaign_pitch_container';
 import RewardFormContainer from './reward/reward_form_container';
 
 import { requestSingleProfile } from '../actions/profile_actions';
-import { requestSingleCampaign } from '../actions/campaign_actions';
+import { requestSingleCampaign,
+         requestFeaturedCampaigns } from '../actions/campaign_actions';
 
 const Root = ({ store }) => {
 
