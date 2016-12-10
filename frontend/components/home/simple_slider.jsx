@@ -60,12 +60,16 @@ class SimpleSlider extends React.Component {
           }
           return(
             <div key={i}
-              className={'gallery-cell'}
+              className='gallery-cell'
               style={divStyle}>
-              
+              <div className='gallery-overlay'>
+              </div>
+              <h3>{campaign.title}</h3>
+              <p>{campaign.tagline}</p>
             </div>
           );
         })}
+
       </div>
     );
 
