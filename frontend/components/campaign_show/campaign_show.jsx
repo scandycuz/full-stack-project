@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Route, IndexRoute, hashHistory, withRouter } from 'react-router';
+import merge from 'lodash/merge';
 
 import GoalProgress from './goal_progress';
 import Rewards from './rewards';
@@ -25,6 +26,10 @@ class CampaignShow extends React.Component {
     this.linkToProfile = this.linkToProfile.bind(this);
     this.changeTab = this.changeTab.bind(this);
     this.handleImageLoaded = this.handleImageLoaded.bind(this);
+    this.startCheckout = this.startCheckout.bind(this);
+    this.confirmCheckout = this.confirmCheckout.bind(this);
+    this.tabContent = this.tabContent.bind(this);
+    this.backers = this.backers.bind(this);
   }
 
   componentDidMount() {
@@ -48,19 +53,23 @@ class CampaignShow extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.campaign.funds_received !== nextProps.campaign.funds_received) {
       this.props.requestSingleCampaign(this.props.params.id);
-
-      if (this.props.currentUser) {
-        let contribution = Object.assign({},
-          this.state.contribution,
-          {user_id: this.props.currentUser.id},
-          {campaign_id: parseInt(this.props.params.id)});
-          let newState = Object.assign({}, this.state, {buttonText: "Contribute", contribution});
-          this.setState(newState);
-      }
     }
+    // if (nextProps.currentUser) {
+    //   let contribution = merge({},
+    //     this.state.contribution,
+    //     {user_id: nextProps.currentUser.id},
+    //     {campaign_id: parseInt(this.props.params.id)});
+    //   let newState = merge({}, this.state, {buttonText: "Contribute"}, {contribution});
+    //   this.setState(newState);
+    // }
     if (this.state.campaignPitchImageUrl !== nextProps.campaign.pitch_image_url) {
       this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url});
     }
+
+  }
+
+  componentDidUpdate() {
+    
   }
 
   handleImageLoaded() {
@@ -86,7 +95,6 @@ class CampaignShow extends React.Component {
   }
 
   changeTab(title) {
-
     return (e) => {
       title = title.toLowerCase();
       this.setState({selectedTab: title});
@@ -105,14 +113,94 @@ class CampaignShow extends React.Component {
     this.props.router.push(`/profile/${authorId}`);
   }
 
-  update(property) {
+  update() {
     return (e) => {
       let targetVal = parseInt(e.target.value);
-      let contribution = Object.assign({},
-                                       this.state.contribution,
-                                       {amount: targetVal});
-      let newState = Object.assign({}, this.state, {contribution});
+      let contribution = merge({},
+                               this.state.contribution,
+                               {amount: targetVal});
+      let newState = merge({}, this.state, {contribution});
       this.setState(newState);
+    }
+  }
+
+  startCheckout(e) {
+    // temporary:
+    if (!this.props.currentUser) {
+      return alert('Please log in or Sign Up to Contribute.');
+    }
+
+    let target = e.target;
+    let input = target.previousSibling;
+    this.setState({buttonText: "Confirm"})
+    target.addEventListener("click", this.confirmCheckout);
+    $(target).closest('.contribute-button-container').mouseleave(
+      () => {
+        this.setState({buttonText: "Contribute"});
+        target.removeEventListener("click", this.confirmCheckout);
+      }
+    );
+  }
+
+  confirmCheckout(e) {
+    const _nullContribution = {
+      user_id: null,
+      campaign_id: null,
+      reward_id: null,
+      amount: ""
+    }
+
+    e.preventDefault();
+    let target = e.target;
+    target.removeEventListener("click", this.confirmCheckout);
+
+    let contribution = this.state.contribution;
+    let amount = this.props.campaign.funds_received + this.state.contribution.amount;
+    let campaign = Object.assign({}, this.props.campaign, {funds_received: amount});
+    this.props.createContribution({contribution});
+    this.props.updateCampaign({campaign});
+    this.setState({contribution: _nullContribution});
+  }
+
+  tabContent() {
+    let selectedTab = this.state.selectedTab;
+
+    if (selectedTab === 'story') {
+      return (
+        <p>{this.props.campaign.campaign_pitch}</p>
+      )
+    } else if (selectedTab === 'backers') {
+      return (
+        <ul className="backers-list">
+          {this.backers()}
+        </ul>
+      )
+    }
+  }
+
+  backers() {
+    const linkToProfile = (id) => {
+      return (e) => {
+        this.props.router.push(`/profile/${id}`);
+      }
+    }
+
+    if (this.props.campaign) {
+      if (this.props.campaign.contributors) {
+        let backers = this.props.campaign.contributors;
+        let backersKeys = Object.keys(backers).map( id => parseInt(id));
+          return (
+            backersKeys.map( (id) => (
+              <li key={id} className="clickable" onClick={linkToProfile(id)}>
+                <img src={backers[id].small_photo_url}/>
+                <div className="backer-info">
+                  <span>{backers[id].first_name} {backers[id].last_name}</span>
+                  <span>{backers[id].city}, {backers[id].country}</span>
+                </div>
+              </li>
+            ))
+          )
+      }
     }
   }
 
@@ -123,88 +211,6 @@ class CampaignShow extends React.Component {
       "Story",
       "Backers"
     ]
-
-    const _nullContribution = {
-      user_id: null,
-      campaign_id: null,
-      reward_id: null,
-      amount: ""
-    }
-
-    const startCheckout = (e) => {
-      // temporary:
-      if (!this.props.currentUser) {
-        return alert('Please log in or Sign Up to Contribute.');
-      }
-
-      let target = e.target;
-      let input = target.previousSibling;
-      this.setState({buttonText: "Confirm"})
-      target.addEventListener("click", confirmCheckout);
-      $(target).closest('.contribute-button-container').mouseleave(
-        () => {
-          this.setState({buttonText: "Contribute"});
-          target.removeEventListener("click", confirmCheckout);
-        }
-      );
-
-    }
-
-    const confirmCheckout = (e) => {
-      e.preventDefault();
-      let target = e.target;
-      target.removeEventListener("click", confirmCheckout);
-
-      let contribution = this.state.contribution;
-      let amount = this.props.campaign.funds_received + this.state.contribution.amount;
-      let campaign = Object.assign({}, this.props.campaign, {funds_received: amount});
-      this.props.createContribution({contribution});
-      this.props.updateCampaign({campaign});
-      this.setState({contribution: _nullContribution});
-    }
-
-    const linkToProfile = (id) => {
-      return (e) => {
-        this.props.router.push(`/profile/${id}`);
-      }
-    }
-
-    const tabContent = () => {
-      let selectedTab = this.state.selectedTab;
-
-      if (selectedTab === 'story') {
-        return (
-          <p>{this.props.campaign.campaign_pitch}</p>
-        )
-      } else if (selectedTab === 'backers') {
-        return (
-          <ul className="backers-list">
-            {backers()}
-          </ul>
-        )
-      }
-    }
-
-    const backers = () => {
-
-      if (this.props.campaign) {
-        if (this.props.campaign.contributors) {
-          let backers = this.props.campaign.contributors;
-          let backersKeys = Object.keys(backers).map( id => parseInt(id));
-            return (
-              backersKeys.map( (id) => (
-                <li key={id} className="clickable" onClick={linkToProfile(id)}>
-                  <img src={backers[id].small_photo_url}/>
-                  <div className="backer-info">
-                    <span>{backers[id].first_name} {backers[id].last_name}</span>
-                    <span>{backers[id].city}, {backers[id].country}</span>
-                  </div>
-                </li>
-              ))
-            )
-        }
-      }
-    }
 
     const loadClass = () => {
       if (this.props.loading && !this.state.imageLoaded) {
@@ -259,9 +265,9 @@ class CampaignShow extends React.Component {
               <span className="contribute-button-box">
                 $&nbsp;<input type="text"
                 value={(isNaN(this.state.contribution.amount)) ? "" : this.state.contribution.amount}
-                onChange={this.update('amount')}/>
+                onChange={this.update()}/>
               </span>
-              <button className="clickable button" onClick={startCheckout}>{this.state.buttonText}</button>
+              <button className="clickable button" onClick={this.startCheckout}>{this.state.buttonText}</button>
             </div>
           </div>
           <div className="grid-7 campaign-content-main alpha">
@@ -277,7 +283,7 @@ class CampaignShow extends React.Component {
                   <li key={idx} className={this.tabClass(title)} onClick={this.changeTab(title)}><h4>{title}</h4></li>
                 ))}
               </ul>
-              {tabContent()}
+              {this.tabContent()}
             </div>
           </div>
           <div className="grid-4 campaign-content-sidebar alpha">

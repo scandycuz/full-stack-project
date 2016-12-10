@@ -94,8 +94,8 @@ users = User.create([
     postal_code: 94105,
     description: "Chartreuse four loko meh man braid, woke franzen farm-to-table.",
     about: "kombucha intelligentsia meditation fanny pack small batch truffaut af ramps godard bushwick. Typewriter vape messenger bag listicle. Twee mumblecore typewriter poutine, disrupt fap viral cronut tacos before they sold out unicorn ugh whatever crucifix cardigan.",
-    photo_url: "http://res.cloudinary.com/dhh1nask4/image/upload/v1481236980/profile_images/tg0iszgyfyqkdfnu76ml.jpg",
-    small_photo_url: "http://res.cloudinary.com/dhh1nask4/image/upload/c_fill,h_310,w_310/v1481236980/profile_images/tg0iszgyfyqkdfnu76ml.jpg"
+    photo_url: "http://res.cloudinary.com/dhh1nask4/image/upload/v1481361378/profile_images/peclogp0hql4buf9njub.png",
+    small_photo_url: "http://res.cloudinary.com/dhh1nask4/image/upload/c_fill,h_310,w_310/v1481361378/profile_images/peclogp0hql4buf9njub.png"
   }
 ])
 
@@ -517,6 +517,15 @@ contributions = Contribution.create([
     amount: 600
   },{ user_id: 3,
     campaign_id: 11,
+    amount: 800
+  },{ user_id: 8,
+    campaign_id: 2,
+    amount: 600
+  },{ user_id: 8,
+    campaign_id: 4,
+    amount: 240
+  },{ user_id: 8,
+    campaign_id: 6,
     amount: 800
   }
 ])
