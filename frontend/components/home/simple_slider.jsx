@@ -29,6 +29,9 @@ class SimpleSlider extends React.Component {
         draggable: true
       });
 
+      this.flkty.reposition();
+      this.flkty.resize();
+
       this.flkty.on( 'staticClick', ( event, pointer, cellElement, cellIndex ) => {
         if (event.target.className === "clickable button") {
           event.preventDefault();
@@ -39,9 +42,6 @@ class SimpleSlider extends React.Component {
       });
 
       this.flkty.on( 'select', () => this.setState({selectedIndex: this.flkty.selectedIndex}));
-
-      this.flkty.reposition();
-      this.flkty.resize();
     }
 
     if (nextProps.featuredCampaigns && this.state.featuredCampaigns != nextProps.featuredCampaigns) {

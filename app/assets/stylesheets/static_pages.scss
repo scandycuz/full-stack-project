@@ -1361,7 +1361,10 @@ input[type="text"], input[type="date"] {
   background-position: 50% 50%;
   padding: 2em 2.4em;
   margin-right: 0 !important;
-  transition:all 0.25s ease;
+  transition: background-size 0.25s ease;
+  // flicker fix
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
   // top box shadow
   -webkit-box-shadow: inset 0px 30px 104px -24px rgba(0,0,0,0.15);
   -moz-box-shadow: inset 0px 30px 104px -24px rgba(0,0,0,0.15);
