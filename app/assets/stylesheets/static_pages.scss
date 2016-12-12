@@ -44,6 +44,7 @@ input {
 .siteBody-container {
   position: relative;
   background: $dark_white;
+  min-height: 96vh;
 }
 .button {
   border-radius: 1px;
