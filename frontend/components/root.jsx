@@ -19,8 +19,9 @@ import RewardFormContainer from './reward/reward_form_container';
 
 import { requestSingleProfile } from '../actions/profile_actions';
 import { requestSingleCampaign,
+         requestCampaigns,
          requestFeaturedCampaigns } from '../actions/campaign_actions';
-
+requestCampaigns
 const Root = ({ store }) => {
 
   const requestProfile = (nextState) => {
@@ -29,6 +30,10 @@ const Root = ({ store }) => {
 
   const requestCampaign = (nextState) => {
     store.dispatch(requestSingleCampaign(nextState.params.id));
+  }
+
+  const requestCampaigns = (nextState) => {
+    store.dispatch(requestCampaigns());
   }
 
   return (

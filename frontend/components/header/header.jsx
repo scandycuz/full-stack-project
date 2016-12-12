@@ -26,6 +26,7 @@ class Header extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (!this.props.currentUser && nextProps.currentUser) {
       this.props.requestUserCampaigns(nextProps.currentUser.id);
+      this.props.requestCampaigns();
       if (this.state.redirect) {
         let redirect = this.state.redirect;
         this.setState({redirect: null});

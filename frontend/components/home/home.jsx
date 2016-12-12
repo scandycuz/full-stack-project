@@ -15,15 +15,33 @@ class Home extends React.Component {
   }
 
   componentDidUpdate() {
-    if (Object.keys(this.props.campaigns).length === 0) {
-      this.props.requestCampaigns();
-    }
+    // if (Object.keys(this.props.campaigns).length === 0) {
+    //   console.log(Object.keys(this.props.campaigns).length);
+    //   this.props.requestCampaigns();
+    // }
   }
 
   render() {
 
+    const loadingScreen = () => {
+      if (this.props.loading.campaigns && this.props.loading.featuredCampaigns) {
+        return (
+          <div id="loading-screen" className="loading">
+            <div className="loader-container">
+              <div className="loader">
+                <svg className="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                  <circle className="path" fill="none" strokeWidth="6" strokeLinecap="round" cx="33" cy="33" r="30"></circle>
+                </svg>
+              </div>
+            </div>
+          </div>
+        )
+      }
+    }
+
     return(
       <div className="home-content-full">
+        {loadingScreen()}
         <div id="home-slider" className="home-slider">
           <SimpleSlider requestFeaturedCampaigns={this.props.requestFeaturedCampaigns}
                         featuredCampaigns={this.props.featuredCampaigns}

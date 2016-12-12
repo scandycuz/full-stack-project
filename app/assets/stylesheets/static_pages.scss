@@ -1040,6 +1040,7 @@ input[type="text"], input[type="date"] {
   margin-bottom: 2.6em;
   &:hover {
     color: inherit;
+    border-color: #a8a8a8;
   }
   img {
     max-width: 100%;
@@ -1355,14 +1356,22 @@ input[type="text"], input[type="date"] {
   width: 38.4%;
   margin: 0;
   text-align: left;
-  background-size: cover;
+  // background-size: cover;
+  background-size: 104%;
   background-position: 50% 50%;
   padding: 2em 2.4em;
   margin-right: 0 !important;
+  transition:all 0.25s ease;
   // top box shadow
   -webkit-box-shadow: inset 0px 30px 104px -24px rgba(0,0,0,0.15);
   -moz-box-shadow: inset 0px 30px 104px -24px rgba(0,0,0,0.15);
   box-shadow: inset 0px 30px 104px -24px rgba(0,0,0,0.15);
+  &:hover {
+    background-size: 102%;
+  }
+  &.is-selected:hover {
+    background-size: 104%;
+  }
   .gallery-overlay {
     position: absolute;
     display: inline-block;
@@ -1416,6 +1425,8 @@ input[type="text"], input[type="date"] {
     }
   }
 }
+
+// Footer
 
 // Loading Screen & Loader
 
