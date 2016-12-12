@@ -19,7 +19,7 @@ class CampaignShow extends React.Component {
       },
       buttonText: "Contribute",
       campaignPitchImageUrl: null,
-      imageLoaded: null
+      imageLoaded: false
     }
 
     this.tabClass = this.tabClass.bind(this);
@@ -35,7 +35,7 @@ class CampaignShow extends React.Component {
   componentDidMount() {
     this.setState({
       campaignPitchImageUrl: null,
-      imageLoaded: null
+      imageLoaded: false
     });
 
     window.scrollTo(0, 0);
@@ -69,11 +69,11 @@ class CampaignShow extends React.Component {
   }
 
   componentDidUpdate() {
-    
+
   }
 
   handleImageLoaded() {
-    this.setState({ imageStatus: 'loaded' });
+    this.setState({ imageLoaded: true });
   }
 
   endDateToDuration(endDate) {
@@ -215,6 +215,8 @@ class CampaignShow extends React.Component {
     const loadClass = () => {
       if (this.props.loading && !this.state.imageLoaded) {
         return "loading";
+      } else {
+        return "";
       }
     }
 

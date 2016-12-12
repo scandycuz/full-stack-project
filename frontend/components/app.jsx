@@ -26,7 +26,9 @@ class App extends React.Component {
           {children}
         </div>
         <footer>
-
+          <div className="container">
+            
+          </div>
         </footer>
       </div>
     );

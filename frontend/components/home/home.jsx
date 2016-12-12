@@ -50,7 +50,7 @@ class Home extends React.Component {
         <div className="home-content-container container">
           <div className="campaign-index-container">
             <ul className="campaign-index-tabs">
-              <li><h3>Recent Pitches</h3></li>
+              <li><h3>Popular Pitches</h3></li>
             </ul>
 
             <CampaignIndex campaigns={this.props.campaigns}/>

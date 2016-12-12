@@ -10,6 +10,7 @@ $open-sans: "open sans", sans-serif;
 $red: #ff383f;
 $light_red: lighten($red,4%);
 $black: #2a2a2a;
+$dark-black: #000;
 $blue: #188ACC;
 $dark_blue: #1E7CB2;
 $light_grey: #c4c4c4;
@@ -51,6 +52,7 @@ input {
 body {
   margin-left: 0;
   margin-right: 0;
+  margin-bottom: 0;
   overflow-x: hidden;
 }
 body * {
@@ -1430,6 +1432,12 @@ input[type="text"], input[type="date"] {
 }
 
 // Footer
+
+footer {
+  padding: 2em 0;
+  margin-top: 0.8em;
+  background-color: $dark-black;
+}
 
 // Loading Screen & Loader
 
