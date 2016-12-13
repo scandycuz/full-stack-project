@@ -26,8 +26,28 @@ class App extends React.Component {
           {children}
         </div>
         <footer>
-          <div className="container">
-            
+          <div className="container group">
+            <div>
+              <h4 className="footer-title" onClick={() => this.props.router.push('/')}>GO</h4>
+            </div>
+            <div className="footer-list-container">
+              <ul>
+                <li onClick={() => this.props.router.push('/')}>Home</li>
+                <li>Explore</li>
+              </ul>
+            </div>
+            <div className="footer-list-container">
+              <ul>
+                <li><a href="mailto:trevorscandalios@gmail.com" target="_top">Contact</a></li>
+                <li><a href="https://www.linkedin.com/in/trevorscandalios" target="_blank">Careers</a></li>
+              </ul>
+            </div>
+            <div className="footer-icons-container">
+              <ul className="footer-icons">
+                <li><a href="https://www.linkedin.com/in/trevorscandalios" target="_blank"><i className="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                <li><a href="https://github.com/scandycuz" target="_blank"><i className="fa fa-github" aria-hidden="true"></i></a></li>
+              </ul>
+            </div>
           </div>
         </footer>
       </div>
@@ -36,4 +56,4 @@ class App extends React.Component {
 
 }
 
-export default App;
+export default withRouter(App);
