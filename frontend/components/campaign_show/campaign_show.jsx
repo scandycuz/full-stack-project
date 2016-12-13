@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Route, IndexRoute, hashHistory, withRouter } from 'react-router';
+import Modal from 'react-modal';
 import merge from 'lodash/merge';
 
 import GoalProgress from './goal_progress';
@@ -17,9 +18,15 @@ class CampaignShow extends React.Component {
         reward_id: null,
         amount: ""
       },
+      reward: {
+        title: "",
+        amount: "",
+        shippingRequired: false
+      },
       buttonText: "Contribute",
       campaignPitchImageUrl: null,
-      imageLoaded: false
+      imageLoaded: false,
+      modalIsOpen: false,
     }
 
     this.tabClass = this.tabClass.bind(this);
@@ -30,6 +37,9 @@ class CampaignShow extends React.Component {
     this.confirmCheckout = this.confirmCheckout.bind(this);
     this.tabContent = this.tabContent.bind(this);
     this.backers = this.backers.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.renderModal = this.renderModal.bind(this);
   }
 
   componentDidMount() {
@@ -124,6 +134,70 @@ class CampaignShow extends React.Component {
     }
   }
 
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
+  renderModal() {
+    const customStyles = {
+      content : {
+        top                   : '50%',
+        left                  : '50%',
+        right                 : 'auto',
+        bottom                : 'auto',
+        transform             : 'translate(-50%, -50%)',
+        maxWidth              : '800px'
+      }
+    };
+
+    let contributionAmount = this.state.contribution.amount;
+    let campaignTitle = this.props.campaign.title;
+    let formTitle = (contributionAmount.toString().length > 0 && contributionAmount.toString() != "NaN")
+                    ? `Contribute $${contributionAmount} to ${campaignTitle}?` : `Contribute to ${campaignTitle}?`;
+    let firstName = "";
+    let lastName = "";
+    if (this.props.currentUser) {
+      firstName = this.props.currentUser.first_name;
+      lastName = this.props.currentUser.last_name;
+    }
+
+    if (this.state.reward.title) {
+
+    } else {
+      return(
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Checkout" >
+
+            <i className="fa fa-times modal-close clickable" aria-hidden="true" onClick={this.closeModal}></i>
+            <p className="checkoutTitle">{formTitle}</p>
+            <div className="checkoutForm">
+              <div>
+                <label>First Name
+                  <input type="text" name="firstName" defaultValue={firstName}/>
+                </label>
+                <label>Last Name
+                  <input type="text" name="lastName" defaultValue={lastName}/>
+                </label>
+              </div>
+              <div>
+
+              </div>
+              <div>
+
+              </div>
+            </div>
+        </Modal>
+      );
+    }
+  }
+
   startCheckout(e) {
     // temporary:
     if (!this.props.currentUser) {
@@ -132,14 +206,15 @@ class CampaignShow extends React.Component {
 
     let target = e.target;
     let input = target.previousSibling;
-    this.setState({buttonText: "Confirm"})
-    target.addEventListener("click", this.confirmCheckout);
-    $(target).closest('.contribute-button-container').mouseleave(
-      () => {
-        this.setState({buttonText: "Contribute"});
-        target.removeEventListener("click", this.confirmCheckout);
-      }
-    );
+    this.setState({modalIsOpen: true});
+    // this.setState({buttonText: "Confirm"})
+    // target.addEventListener("click", this.confirmCheckout);
+    // $(target).closest('.contribute-button-container').mouseleave(
+    //   () => {
+    //     this.setState({buttonText: "Contribute"});
+    //     target.removeEventListener("click", this.confirmCheckout);
+    //   }
+    // );
   }
 
   confirmCheckout(e) {
@@ -238,6 +313,7 @@ class CampaignShow extends React.Component {
     return(
       <div className="campaign-show">
         {loader()}
+        {this.renderModal()}
         <div className="campaign-show-container container group">
           <div className="grid-7 alpha pitch-image-container">
             <img

@@ -1434,6 +1434,38 @@ input[type="text"], input[type="date"] {
   }
 }
 
+// Checkout form
+
+.checkoutForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  & > div {
+    display: flex;
+    flex: row;
+    justify-content: space-between;
+  }
+  label {
+    font-weight: 600;
+    color: $dark_grey;
+    &:nth-child(even) {
+      margin-left: 0.5em;
+    }
+    &:nth-child(odd) {
+      margin-right: 0.5em;
+    }
+  }
+  input {
+    border: 1px solid $light_grey;
+    font-size: 16px;
+    padding: 8px 10px;
+    margin-top: 6px;
+  }
+}
+.checkoutModal {
+  max-width: 800px;
+}
+
 // Footer
 
 footer {
