@@ -1454,12 +1454,41 @@ input[type="text"], input[type="date"] {
     &:nth-child(odd) {
       margin-right: 0.5em;
     }
+    > span {
+      padding-left: 4px;
+    }
   }
   input {
     border: 1px solid $light_grey;
     font-size: 16px;
     padding: 8px 10px;
     margin-top: 6px;
+  }
+  .contribute-button-container {
+    margin-top: 6px;
+    margin-left: 5px;
+  }
+  .contribute-button-box {
+    input {
+      border-width: 0;
+      margin: 0;
+    }
+  }
+  .reward-title-box {
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+    font-family: $open-sans;
+  }
+  .contribution-info {
+    & > div, & > label {
+      width: 50%;
+    }
+    label {
+      & > span {
+        padding-left: 8px;
+      }
+    }
   }
 }
 .checkoutModal {

@@ -186,8 +186,18 @@ class CampaignShow extends React.Component {
                   <input type="text" name="lastName" defaultValue={lastName}/>
                 </label>
               </div>
-              <div>
-
+              <div className="contribution-info">
+                <div className="reward-title-box">
+                  Reward:
+                </div>
+                <label>Contribution Amount
+                  <div className="contribute-button-container">
+                    <span className="contribute-button-box">
+                      $&nbsp;<input type="text"
+                      name="contributionAmount" defaultValue={contributionAmount}/>
+                    </span>
+                  </div>
+                </label>
               </div>
               <div>
 
