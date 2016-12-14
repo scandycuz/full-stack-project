@@ -8,6 +8,7 @@ $work-sans: "work sans", sans-serif;
 $open-sans: "open sans", sans-serif;
 
 $red: #ff383f;
+$dark_red: darken($red, 3%);
 $light_red: lighten($red,4%);
 $light_black: #444;
 $black: #2a2a2a;
@@ -37,6 +38,10 @@ $dark_grey: #444;
   content: "";
   display: table;
   clear: both;
+}
+
+.button:hover, button:hover {
+  background-color: $dark_red;
 }
 
 input {
@@ -1441,11 +1446,11 @@ input[type="text"], input[type="date"] {
 }
 .checkoutForm {
   button {
-    margin-top: 0.8em;
+    margin-top: 0.7em;
     margin-bottom: 0.6em;
     padding: 10px 16px;
-    font-size: 19px;
-    font-weight: 800 !important;
+    font-size: 18px;
+    font-weight: 600 !important;
     border-radius: 1px;
   }
   display: flex;
@@ -1618,6 +1623,11 @@ footer {
     i {
       font-size: 19px;
     }
+  }
+}
+.contribute-button-box {
+  input {
+    padding-left: 2px !important;
   }
 }
 

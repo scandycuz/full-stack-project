@@ -191,7 +191,8 @@ class CampaignShow extends React.Component {
                   <div className="contribute-button-container">
                     <span className="contribute-button-box">
                       $&nbsp;<input type="text"
-                      name="contributionAmount" defaultValue={contributionAmount}/>
+                      value={(isNaN(this.state.contribution.amount)) ? "" : this.state.contribution.amount}
+                      onChange={this.update()}/>
                     </span>
                   </div>
                 </label>
@@ -223,7 +224,7 @@ class CampaignShow extends React.Component {
                   </label>
                 </div>
               </div>
-              <button className="button clickable">Submit Contribution</button>
+              <button className="button clickable" onClick={this.confirmCheckout}>Submit Contribution</button>
             </div>
         </Modal>
       );
@@ -259,14 +260,15 @@ class CampaignShow extends React.Component {
 
     e.preventDefault();
     let target = e.target;
-    target.removeEventListener("click", this.confirmCheckout);
+    // target.removeEventListener("click", this.confirmCheckout);
 
-    let contribution = this.state.contribution;
+    let contribution = merge({}, this.state.contribution, {user_id: this.props.currentUser.id}, {campaign_id: this.props.campaign.id});
     let amount = this.props.campaign.funds_received + this.state.contribution.amount;
-    let campaign = Object.assign({}, this.props.campaign, {funds_received: amount});
+    let campaign = merge({}, this.props.campaign, {funds_received: amount});
     this.props.createContribution({contribution});
     this.props.updateCampaign({campaign});
     this.setState({contribution: _nullContribution});
+    this.closeModal();
   }
 
   tabContent() {
