@@ -150,7 +150,7 @@ class CampaignShow extends React.Component {
         right                 : 'auto',
         bottom                : 'auto',
         transform             : 'translate(-50%, -50%)',
-        maxWidth              : '800px'
+        maxWidth              : '600px'
       }
     };
 
@@ -187,9 +187,6 @@ class CampaignShow extends React.Component {
                 </label>
               </div>
               <div className="contribution-info">
-                <div className="reward-title-box">
-                  Reward:
-                </div>
                 <label>Contribution Amount
                   <div className="contribute-button-container">
                     <span className="contribute-button-box">
@@ -198,10 +195,35 @@ class CampaignShow extends React.Component {
                     </span>
                   </div>
                 </label>
+                <div className="reward-title-box">
+                  No Reward Selected
+                </div>
               </div>
-              <div>
-
+              <div className="financial-container">
+                <div className="financial-overlay">
+                  <p>StartupGoGo is for demo purposes only, no actual money is exchanged.</p>
+                </div>
+                <div className="credit-info-container">
+                  <label>Name on Card
+                    <input type="text" disabled="true"/>
+                  </label>
+                  <label>Card Number
+                    <input type="text" disabled="true"/>
+                  </label>
+                </div>
+                <div className="credit-info-container-two group">
+                  <label>Exp. Date
+                    <input type="text" disabled="true"/>
+                  </label>
+                  <label>CCV
+                    <input type="text" disabled="true"/>
+                  </label>
+                  <label>Postal Code
+                    <input type="text" disabled="true"/>
+                  </label>
+                </div>
               </div>
+              <button className="button clickable">Submit Contribution</button>
             </div>
         </Modal>
       );
