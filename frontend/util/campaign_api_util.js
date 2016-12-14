@@ -32,6 +32,15 @@ export const fetchCampaigns = (success) => {
   })
 }
 
+export const fetchCampaignsQuery = (queryString, success) => {
+  $.ajax({
+    url: `api/campaigns`,
+    type: 'GET',
+    data: {"query": queryString},
+    success
+  })
+}
+
 export const fetchFeaturedCampaigns = (success) => {
   $.ajax({
     url: `api/campaigns`,

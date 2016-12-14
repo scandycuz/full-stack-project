@@ -17,6 +17,7 @@ $dark-black: #000;
 $blue: #188ACC;
 $dark_blue: #1E7CB2;
 $light_grey: #c4c4c4;
+$med_light_dark_grey: #ccc;
 $very_light_grey: #f4f4f4;
 $med_grey: #dbdbdb;
 $grey: #777;
@@ -1569,6 +1570,35 @@ input[type="text"], input[type="date"] {
 }
 .checkoutModal {
   max-width: 800px;
+}
+
+// Search bar
+
+.search-symbol {
+  border: 1px solid $med_light_dark_grey;
+  padding-left: 10px;
+  display: inline-block;
+  color: $light_grey;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0;
+  border-radius: 2px;
+  & > i {
+    cursor: pointer;
+  }
+  &.selected-input {
+    border-color: $grey;
+  }
+  input {
+    font-family: $open-sans;
+    font-size: 16px;
+    font-weight: 600;
+    color: $dark_grey;
+    border: none;
+    padding: 8px 7px;
+    width: 10em;
+    transition: all 0.5s;
+  }
 }
 
 // Footer

@@ -48,7 +48,7 @@ class UserMenu extends React.Component {
     if (nextProps.modalIsOpen === true
     && nextProps.formType === "login"
     && nextProps.redirect) {
-      this.setState({modalIsOpen: true});
+      return this.setState({modalIsOpen: true});
     }
   }
 
@@ -126,7 +126,12 @@ class UserMenu extends React.Component {
         password: "password"
       }
     }
-    return this.props.processForm(this.state.formType)(demoUser);
+    this.props.processForm(this.state.formType)(demoUser);
+    if (this.props.redirect) {
+      let redirect = this.props.redirect;
+      this.props.router.push(redirect);
+      this.props.resetRedirect();
+    }
   }
 
   renderModal() {

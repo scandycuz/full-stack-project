@@ -9,6 +9,22 @@ export const REQUEST_CAMPAIGNS = "REQUEST_CAMPAIGNS";
 export const RECEIVE_CAMPAIGNS = "RECEIVE_CAMPAIGNS";
 export const REQUEST_FEATURED_CAMPAIGNS = "REQUEST_FEATURED_CAMPAIGNS";
 export const RECEIVE_FEATURED_CAMPAIGNS = "RECEIVE_FEATURED_CAMPAIGNS";
+export const REQUEST_CAMPAIGNS_QUERY = "REQUEST_CAMPAIGNS_QUERY";
+export const RECEIVE_QUERIED_CAMPAIGNS = "RECEIVE_QUERIED_CAMPAIGNS";
+
+export const requestCampaignsQuery = (queryString) => {
+  return({
+    type: REQUEST_CAMPAIGNS_QUERY,
+    queryString
+  })
+}
+
+export const receiveQueriedCampaigns = (queriedCampaigns) => {
+  return ({
+    type: RECEIVE_QUERIED_CAMPAIGNS,
+    queriedCampaigns
+  })
+}
 
 export const updateCampaign = campaign => ({
   type: UPDATE_CAMPAIGN,

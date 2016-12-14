@@ -6,7 +6,8 @@ import { signup,
          receiveSessionErrors } from '../../actions/session_actions';
 import { requestUserCampaigns } from '../../actions/profile_actions';
 import { requestSingleCampaign,
-         requestCampaigns } from '../../actions/campaign_actions';
+         requestCampaigns,
+         requestCampaignsQuery } from '../../actions/campaign_actions';
 
 const mapStateToProps = ({ session, profile }) => ({
  session,
@@ -31,7 +32,8 @@ const mapDispatchToProps = (dispatch, { location }) => {
     requestUserCampaigns: (user_id) => {
       return dispatch(requestUserCampaigns(user_id))
     },
-    requestSingleCampaign: (id) => dispatch(requestSingleCampaign(id))
+    requestSingleCampaign: (id) => dispatch(requestSingleCampaign(id)),
+    requestCampaignsQuery: (queryString) => dispatch(requestCampaignsQuery(queryString))
   }
 }
 

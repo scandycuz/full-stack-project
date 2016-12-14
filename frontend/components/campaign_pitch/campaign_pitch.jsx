@@ -6,7 +6,7 @@ class CampaignPitch extends React.Component {
     super(props);
 
     this.state = {
-      user_id: this.props.currentUser.id,
+      user_id: null,
       goal_amount: "",
       title: ""
     }
@@ -16,10 +16,19 @@ class CampaignPitch extends React.Component {
     this.sendSubmit = this.sendSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.currentUser) {
+      this.setState({user_id: this.props.currentUser.id});
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
-    if (this.props.campaign !== nextProps.campaign) {
+    if (nextProps.campaign && nextProps.campaign.title !== "") {
       const createdCampaignId = nextProps.campaign.id;
       this.props.router.push(`/campaigns/${createdCampaignId}/edit/basics`);
+    }
+    if (!this.props.currentUser && nextProps.currentUser) {
+      this.setState({user_id: nextProps.currentUser.id});
     }
     // redirect to home if user logs out
     if (!nextProps.currentUser) {
@@ -41,7 +50,7 @@ class CampaignPitch extends React.Component {
   }
 
   sendSubmit(state) {
-    this.props.createCampaign({ campaign: this.state });
+    let test = this.props.createCampaign({ campaign: this.state });
     this.props.requestUserCampaigns(this.props.currentUser.id);
   }
 

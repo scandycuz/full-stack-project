@@ -5,8 +5,11 @@ class Api::CampaignsController < ApplicationController
       @campaigns = Campaign.where("user_id = '#{params[:profile_id]}'")
     elsif params[:featured]
       @campaigns = Campaign.where("featured = true")
+    elsif params[:query]
+      query = params[:query].split(" ").map {|val| "%#{val}%" }
+      @campaigns = Campaign.where("title ILIKE ANY ( array[?] )", query)
     else
-      @campaigns = Campaign.where("status = 'published' and featured = 'false'")
+      @campaigns = Campaign.where("status = 'published' and featured = 'false'").limit(8)
     end
   end
 

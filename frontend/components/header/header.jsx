@@ -9,11 +9,15 @@ class Header extends React.Component {
     this.redirectHome = this.redirectHome.bind(this);
     this.linkToPitch = this.linkToPitch.bind(this);
     this.setFormToLogin = this.setFormToLogin.bind(this);
+    this.resetRedirect = this.resetRedirect.bind(this);
+    this.update = this.update.bind(this);
+    this.searchListener = this.searchListener.bind(this);
 
     this.state = {
       modalIsOpen: false,
       formType: "login",
-      redirect: null
+      redirect: null,
+      query: ""
     }
   }
 
@@ -21,18 +25,57 @@ class Header extends React.Component {
     if (this.props.currentUser) {
       this.props.requestUserCampaigns(this.props.currentUser.id);
     }
+    this.searchListener();
   }
 
   componentWillReceiveProps(nextProps) {
     if (!this.props.currentUser && nextProps.currentUser) {
       this.props.requestUserCampaigns(nextProps.currentUser.id);
       this.props.requestCampaigns();
-      if (this.state.redirect) {
-        let redirect = this.state.redirect;
-        this.setState({redirect: null});
-        this.props.router.push(redirect);
-      }
+      // if (this.state.redirect) {
+      //   let redirect = this.state.redirect;
+      //   this.setState({redirect: null});
+      //   this.props.router.push(redirect);
+      // }
     }
+  }
+
+  searchListener() {
+    $('.search-symbol input').focus( (e) => {
+      let $input = $(e.target);
+      let $container = $(e.target).closest('.search-symbol');
+      let $icon = $(e.target).prev('i');
+      $icon.click( (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        let query = $input.val();
+        // send query
+        this.props.requestCampaignsQuery(query);
+      });
+      $container.addClass('selected-input');
+      $input.css('width', '16em');
+      $input.keydown( (e) => {
+        if (e.which == 13) {
+          e.stopPropagation();
+          e.preventDefault();
+          let query = $input.val();
+          // send query
+          this.props.requestCampaignsQuery(query);
+        }
+      });
+      $input.focusout( () => {
+        $container.removeClass('selected-input');
+        $input.css('width', '10em');
+      });
+    });
+  }
+
+  enterListener() {
+    $('input[type=text]').on('keydown', function(e) {
+      if (e.which == 13) {
+          e.preventDefault();
+      }
+    });
   }
 
   redirectHome() {
@@ -56,6 +99,14 @@ class Header extends React.Component {
     }
   }
 
+  resetRedirect() {
+    this.setState({redirect: null});
+  }
+
+  update(property) {
+    return e => this.setState({[property]: e.target.value});
+  }
+
   render() {
 
     return(
@@ -63,7 +114,15 @@ class Header extends React.Component {
         <div className="siteHeader-content-left">
           <h1 className="siteLogo" onClick={this.redirectHome}>StartupGoGo</h1>
           <ul>
-            <li></li>
+            <li>
+              <span className="search-symbol">
+                <i className="fa fa-search" aria-hidden="true"></i>
+                <input
+                  type="text"
+                  value={this.state.query}
+                  onChange={this.update('query')}/>
+              </span>
+            </li>
           </ul>
         </div>
         <div className="siteHeader-content-right">
@@ -82,6 +141,7 @@ class Header extends React.Component {
             requestSingleCampaign={this.props.requestSingleCampaign}
             modalIsOpen={this.state.modalIsOpen}
             redirect={this.state.redirect}
+            resetRedirect={this.resetRedirect}
             router={this.props.router}
             formType={this.state.formType}/>
         </div>

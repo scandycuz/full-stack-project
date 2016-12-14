@@ -1,7 +1,8 @@
 import { RECEIVE_SINGLE_CAMPAIGN,
          RECEIVE_CAMPAIGNS,
          RECEIVE_CAMPAIGN_ERRORS,
-         RECEIVE_FEATURED_CAMPAIGNS } from '../actions/campaign_actions';
+         RECEIVE_FEATURED_CAMPAIGNS,
+         RECEIVE_QUERIED_CAMPAIGNS } from '../actions/campaign_actions';
 import { RECEIVE_REWARD_DELETE } from '../actions/reward_actions';
 import { RECEIVE_SINGLE_CONTRIBUTION } from '../actions/contribution_actions';
 import { fetchSingleCampaign } from '../util/campaign_api_util';
@@ -9,6 +10,7 @@ import merge from 'lodash/merge';
 
 const _nullCampaign= Object.freeze({
   campaign: {
+    title: "",
     funds_received: 0,
     goal_amount: 0,
     card_image_url: "",
@@ -21,7 +23,8 @@ const _nullCampaign= Object.freeze({
     contributors: {}
   },
   campaigns: {},
-  errors: []
+  errors: [],
+  queriedCampaigns: {}
 });
 
 const CampaignReducer = (state = _nullCampaign, action) => {
@@ -31,6 +34,12 @@ const CampaignReducer = (state = _nullCampaign, action) => {
   let campaign;
 
   switch(action.type) {
+    case RECEIVE_QUERIED_CAMPAIGNS:
+      let queriedCampaigns = action.queriedCampaigns;
+      let resetState = merge({}, state);
+      resetState.queriedCampaigns = {};
+      newState = merge({}, resetState, {queriedCampaigns});
+      return newState;
     case RECEIVE_SINGLE_CAMPAIGN:
       campaign = action.campaign;
       clonedState = merge({}, state);
