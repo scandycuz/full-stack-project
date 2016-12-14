@@ -6,7 +6,9 @@ class Api::CampaignsController < ApplicationController
     elsif params[:featured]
       @campaigns = Campaign.where("featured = true")
     elsif params[:query]
-      query = params[:query].split(" ").map {|val| "%#{val}%" }
+      query = params[:query].split(" ").reject { |word|
+        ["for", "and", "it", "is"].include?(word)
+      }.map {|val| "%#{val}%" }
       @campaigns = Campaign.where("title ILIKE ANY ( array[?] )", query)
     else
       @campaigns = Campaign.where("status = 'published' and featured = 'false'").limit(8)

@@ -53,7 +53,7 @@ class Header extends React.Component {
         this.props.requestCampaignsQuery(query);
       });
       $container.addClass('selected-input');
-      $input.css('width', '16em');
+      $input.css('width', '18em');
       $input.keydown( (e) => {
         if (e.which == 13) {
           e.stopPropagation();
@@ -65,7 +65,7 @@ class Header extends React.Component {
       });
       $input.focusout( () => {
         $container.removeClass('selected-input');
-        $input.css('width', '10em');
+        $input.css('width', '12em');
       });
     });
   }
