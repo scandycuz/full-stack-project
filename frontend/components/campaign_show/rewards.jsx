@@ -11,13 +11,6 @@ class Rewards extends React.Component {
   componentDidMount() {
   }
 
-  componentWillReceiveProps(nextProps) {
-
-    if (this.state !== nextProps.contribution) {
-      this.setState(nextProps.contribution)
-    }
-  }
-
   render() {
     const rewards = this.props.rewards;
     const rewardKeys = Object.keys(rewards);
@@ -47,36 +40,15 @@ class Rewards extends React.Component {
 
     const confirmReward = (rewardAmount) => {
       return (e) => {
-        // temporary:
         if (!this.props.currentUser) {
-          alert('Please log in or Sign Up to Contribute.')
-          return this.props.router.push('/');
+          return alert('Please log in or Sign Up to Contribute.');
         }
 
         let target = e.target;
         let rewardId = $(target).data("id");
-        this.setState({amount: rewardAmount, reward_id: rewardId});
-        target.innerHTML = `Claim for $${rewardAmount}?`;
-        $(target).click(confirmCheckout);
+        let rewardTitle = $(target).data("title");
+        this.props.updateParentState(rewardId, rewardTitle, rewardAmount);
       }
-    }
-
-    const confirmCheckout = (e) => {
-      let target = e.target;
-      target.removeEventListener("click", confirmCheckout);
-
-      let contribution = this.state;
-      let amount = this.props.campaign.funds_received + this.state.amount;
-      let campaign = Object.assign({}, this.props.campaign, {funds_received: amount});
-      this.props.createContribution({contribution});
-      this.props.updateCampaign({campaign});
-      this.setState(_nullContribution);
-    }
-
-    const onLeaveReward = (e) => {
-      let $target = $(e.currentTarget).children('.button');
-      $target.unbind("click");
-      $target.text("Claim Reward");
     }
 
     return (
@@ -85,8 +57,7 @@ class Rewards extends React.Component {
           {rewardKeys.map( (key) => {
             const reward = rewards[key]
             return (
-              <li onMouseLeave={onLeaveReward}
-                className="campaign-reward-item" key={key}>
+              <li className="campaign-reward-item" key={key}>
                 <div className="opacity-cover"></div>
                 <h4 className="reward-price">${reward.price}</h4>
                 <h4 className="reward-title">{reward.title}</h4>
@@ -95,7 +66,8 @@ class Rewards extends React.Component {
                 <button
                   onClick={confirmReward(reward.price)}
                   className="reward-claim-button button clickable"
-                  data-id={key}>Claim Reward</button>
+                  data-id={key}
+                  data-title={reward.title}>Claim Reward</button>
               </li>
             )
           })}

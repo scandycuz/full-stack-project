@@ -40,6 +40,7 @@ class CampaignShow extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.renderModal = this.renderModal.bind(this);
+    this.updateParentState = this.updateParentState.bind(this);
   }
 
   componentDidMount() {
@@ -51,11 +52,11 @@ class CampaignShow extends React.Component {
     window.scrollTo(0, 0);
 
     if (this.props.currentUser) {
-      let contribution = Object.assign({},
+      let contribution = merge({},
                                        this.state.contribution,
                                        {user_id: this.props.currentUser.id},
                                        {campaign_id: parseInt(this.props.params.id)});
-      let newState = Object.assign({}, this.state, {contribution});
+      let newState = merge({}, this.state, {contribution});
       this.setState(newState);
     }
   }
@@ -69,7 +70,7 @@ class CampaignShow extends React.Component {
     //     this.state.contribution,
     //     {user_id: nextProps.currentUser.id},
     //     {campaign_id: parseInt(this.props.params.id)});
-    //   let newState = merge({}, this.state, {buttonText: "Contribute"}, {contribution});
+    //   let newState = merge({}, this.state, {contribution});
     //   this.setState(newState);
     // }
     if (this.state.campaignPitchImageUrl !== nextProps.campaign.pitch_image_url) {
@@ -139,7 +140,10 @@ class CampaignShow extends React.Component {
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false});
+    let contribution = merge({}, this.state.contribution, {reward_id: null, amount: ""});
+    let reward = merge({}, this.state.reward, {title: ""});
+    let newState = merge({}, this.state, {modalIsOpen: false}, {contribution}, {reward});
+    this.setState(newState);
   }
 
   renderModal() {
@@ -165,89 +169,88 @@ class CampaignShow extends React.Component {
       lastName = this.props.currentUser.last_name;
     }
 
-    if (this.state.reward.title) {
-
-    } else {
-      return(
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onRequestClose={this.closeModal}
-          style={customStyles}
-          contentLabel="Checkout" >
-
-            <i className="fa fa-times modal-close clickable" aria-hidden="true" onClick={this.closeModal}></i>
-            <p className="checkoutTitle">{formTitle}</p>
-            <div className="checkoutForm">
-              <div>
-                <label>First Name
-                  <input type="text" name="firstName" defaultValue={firstName}/>
-                </label>
-                <label>Last Name
-                  <input type="text" name="lastName" defaultValue={lastName}/>
-                </label>
+    const contributionInfo = () => {
+      if (this.state.reward.title.length > 0) {
+        return(
+          <div className="contribution-info has-reward">
+              <p className="reward-info">Reward: <strong>{this.state.reward.title} - ${this.state.contribution.amount}</strong></p>
+          </div>
+        )
+      } else {
+        return(
+          <div className="contribution-info">
+            <label>Contribution Amount
+              <div className="contribute-button-container">
+                <span className="contribute-button-box">
+                  $&nbsp;<input type="text"
+                  value={(isNaN(this.state.contribution.amount)) ? "" : this.state.contribution.amount}
+                  onChange={this.update()}/>
+                </span>
               </div>
-              <div className="contribution-info">
-                <label>Contribution Amount
-                  <div className="contribute-button-container">
-                    <span className="contribute-button-box">
-                      $&nbsp;<input type="text"
-                      value={(isNaN(this.state.contribution.amount)) ? "" : this.state.contribution.amount}
-                      onChange={this.update()}/>
-                    </span>
-                  </div>
-                </label>
-                <div className="reward-title-box">
-                  No Reward Selected
-                </div>
-              </div>
-              <div className="financial-container">
-                <div className="financial-overlay">
-                  <p>StartupGoGo is for demo purposes only, no actual money is exchanged.</p>
-                </div>
-                <div className="credit-info-container">
-                  <label>Name on Card
-                    <input type="text" disabled="true"/>
-                  </label>
-                  <label>Card Number
-                    <input type="text" disabled="true"/>
-                  </label>
-                </div>
-                <div className="credit-info-container-two group">
-                  <label>Exp. Date
-                    <input type="text" disabled="true"/>
-                  </label>
-                  <label>CCV
-                    <input type="text" disabled="true"/>
-                  </label>
-                  <label>Postal Code
-                    <input type="text" disabled="true"/>
-                  </label>
-                </div>
-              </div>
-              <button className="button clickable" onClick={this.confirmCheckout}>Submit Contribution</button>
+            </label>
+            <div className="reward-title-box">
+              No Reward Selected
             </div>
-        </Modal>
-      );
+          </div>
+        );
+      }
     }
+
+    return(
+      <Modal
+        isOpen={this.state.modalIsOpen}
+        onRequestClose={this.closeModal}
+        style={customStyles}
+        contentLabel="Checkout" >
+
+          <i className="fa fa-times modal-close clickable" aria-hidden="true" onClick={this.closeModal}></i>
+          <p className="checkoutTitle">{formTitle}</p>
+          <div className="checkoutForm">
+            <div>
+              <label>First Name
+                <input type="text" name="firstName" defaultValue={firstName}/>
+              </label>
+              <label>Last Name
+                <input type="text" name="lastName" defaultValue={lastName}/>
+              </label>
+            </div>
+            {contributionInfo()}
+            <div className="financial-container">
+              <div className="financial-overlay">
+                <p>StartupGoGo is for demo purposes only, no actual money is exchanged.</p>
+              </div>
+              <div className="credit-info-container">
+                <label>Name on Card
+                  <input type="text" disabled="true"/>
+                </label>
+                <label>Card Number
+                  <input type="text" disabled="true"/>
+                </label>
+              </div>
+              <div className="credit-info-container-two group">
+                <label>Exp. Date
+                  <input type="text" disabled="true"/>
+                </label>
+                <label>CCV
+                  <input type="text" disabled="true"/>
+                </label>
+                <label>Postal Code
+                  <input type="text" disabled="true"/>
+                </label>
+              </div>
+            </div>
+            <button className="button clickable" onClick={this.confirmCheckout}>Submit Contribution</button>
+          </div>
+      </Modal>
+    );
   }
 
   startCheckout(e) {
-    // temporary:
     if (!this.props.currentUser) {
       return alert('Please log in or Sign Up to Contribute.');
     }
 
-    let target = e.target;
-    let input = target.previousSibling;
     this.setState({modalIsOpen: true});
-    // this.setState({buttonText: "Confirm"})
-    // target.addEventListener("click", this.confirmCheckout);
-    // $(target).closest('.contribute-button-container').mouseleave(
-    //   () => {
-    //     this.setState({buttonText: "Contribute"});
-    //     target.removeEventListener("click", this.confirmCheckout);
-    //   }
-    // );
   }
 
   confirmCheckout(e) {
@@ -260,7 +263,6 @@ class CampaignShow extends React.Component {
 
     e.preventDefault();
     let target = e.target;
-    // target.removeEventListener("click", this.confirmCheckout);
 
     let contribution = merge({}, this.state.contribution, {user_id: this.props.currentUser.id}, {campaign_id: this.props.campaign.id});
     let amount = this.props.campaign.funds_received + this.state.contribution.amount;
@@ -311,6 +313,14 @@ class CampaignShow extends React.Component {
           )
       }
     }
+  }
+
+  updateParentState(rewardId, rewardTitle, rewardAmount) {
+    let amount = rewardAmount;
+    let contributionState = merge({}, this.state.contribution, {reward_id: rewardId}, {amount});
+    let rewardState = merge({}, this.state.reward, {title: rewardTitle});
+    let updatedState = merge(this.state, {modalIsOpen: true}, {contribution: contributionState}, {reward: rewardState});
+    this.setState(updatedState);
   }
 
   render() {
@@ -404,11 +414,11 @@ class CampaignShow extends React.Component {
             </div>
             <Rewards
               rewards={this.props.rewards}
-              contribution={this.state.contribution}
               campaign={this.props.campaign}
               createContribution={this.props.createContribution}
               currentUser={this.props.currentUser}
-              updateCampaign={this.props.updateCampaign}/>
+              updateCampaign={this.props.updateCampaign}
+              updateParentState={this.updateParentState}/>
           </div>
         </div>
       </div>

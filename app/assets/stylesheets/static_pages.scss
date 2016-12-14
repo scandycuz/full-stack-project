@@ -1501,6 +1501,9 @@ input[type="text"], input[type="date"] {
   .contribution-info {
     border-bottom: 1px dashed $light_grey;
     padding-bottom: 2em;
+    &.has-reward {
+      padding-bottom: 0.4em;
+    }
     & > div, & > label {
       width: 50%;
     }
