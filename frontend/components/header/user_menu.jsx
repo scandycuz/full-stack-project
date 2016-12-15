@@ -254,7 +254,6 @@ class UserMenu extends React.Component {
   }
 
   handleCampaignLink(campaignId) {
-
     return (e) => {
       e.preventDefault();
       this.props.requestSingleCampaign(campaignId);

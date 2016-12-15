@@ -51,18 +51,18 @@ class CampaignShow extends React.Component {
 
     window.scrollTo(0, 0);
 
-    if (this.props.currentUser) {
-      let contribution = merge({},
-                                       this.state.contribution,
-                                       {user_id: this.props.currentUser.id},
-                                       {campaign_id: parseInt(this.props.params.id)});
-      let newState = merge({}, this.state, {contribution});
-      this.setState(newState);
-    }
+    // if (this.props.currentUser) {
+    //   let contribution = merge({},
+    //                            this.state.contribution,
+    //                            {user_id: this.props.currentUser.id},
+    //                            {campaign_id: parseInt(this.props.params.id)});
+    //   let newState = merge({}, this.state, {contribution});
+    //   this.setState(newState);
+    // }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.campaign.funds_received !== nextProps.campaign.funds_received) {
+    if (this.props.campaign.title === nextProps.campaign.title && this.props.campaign.funds_received !== nextProps.campaign.funds_received) {
       this.props.requestSingleCampaign(this.props.params.id);
     }
     // if (nextProps.currentUser) {
