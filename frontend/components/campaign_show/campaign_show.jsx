@@ -326,6 +326,8 @@ class CampaignShow extends React.Component {
   render() {
     const children = this.props.children;
 
+    let imageUrl = this.state.campaignPitchImageUrl;
+
     const campaignTabs = [
       "Story",
       "Backers"
@@ -361,7 +363,7 @@ class CampaignShow extends React.Component {
         <div className="campaign-show-container container group">
           <div className="grid-7 alpha pitch-image-container">
             <img
-              src={this.state.campaignPitchImageUrl}
+              src={imageUrl}
               onLoad={this.handleImageLoaded}/>
           </div>
           <div className="grid-5 omega campaign-info">
