@@ -332,7 +332,7 @@ class CampaignShow extends React.Component {
     ]
 
     const loadClass = () => {
-      if (this.props.loading && !this.state.imageLoaded) {
+      if ((this.props.loading && !this.state.imageLoaded) || !this.state.imageLoaded) {
         return "loading";
       } else {
         return "";
