@@ -44,7 +44,7 @@ class Profile extends React.Component {
   }
 
   handleImageLoaded() {
-    this.setState({ imageStatus: 'loaded' });
+    this.setState({ imageLoaded: true });
   }
 
   tabClass(tabName) {
@@ -143,7 +143,7 @@ class Profile extends React.Component {
       return (
         <div id="profile-content" className="group">
           <div className="grid-5 alpha">
-            <img src={photo_url} />
+            <img src={photo_url} onLoad={this.handleImageLoaded}/>
           </div>
           <div className="profile-info grid-7 omega">
             <ul className="profile-statistics">
@@ -166,7 +166,7 @@ class Profile extends React.Component {
     const currentUser = this.props.currentUser;
 
     const loadClass = () => {
-      if (this.props.loading && !this.state.imageLoaded) {
+      if (this.props.loading || !this.state.imageLoaded) {
         return "loading";
       }
     }
