@@ -100,7 +100,7 @@ class SimpleSlider extends React.Component {
     const slides = (offset) => {
       return(
         campaignSlides().map( (campaign, i) => {
-          let imgUrl = campaign.card_image_url;
+          let imgUrl = campaign.slider_image_url;
 
           return(
             <div key={i}

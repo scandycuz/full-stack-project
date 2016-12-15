@@ -2,7 +2,8 @@ import { RECEIVE_SINGLE_CAMPAIGN,
          RECEIVE_CAMPAIGNS,
          RECEIVE_CAMPAIGN_ERRORS,
          RECEIVE_FEATURED_CAMPAIGNS,
-         RECEIVE_QUERIED_CAMPAIGNS } from '../actions/campaign_actions';
+         RECEIVE_QUERIED_CAMPAIGNS,
+         REQUEST_CAMPAIGNS_QUERY } from '../actions/campaign_actions';
 import { RECEIVE_REWARD_DELETE } from '../actions/reward_actions';
 import { RECEIVE_SINGLE_CONTRIBUTION } from '../actions/contribution_actions';
 import { fetchSingleCampaign } from '../util/campaign_api_util';
@@ -14,6 +15,7 @@ const _nullCampaign= Object.freeze({
     funds_received: 0,
     goal_amount: 0,
     card_image_url: "",
+    slider_image_url: "",
     pitch_image_url: "",
     pitch_video_url: "",
     campaign_overview: "",
@@ -24,6 +26,7 @@ const _nullCampaign= Object.freeze({
   },
   campaigns: {},
   errors: [],
+  queryString: "",
   queriedCampaigns: {}
 });
 
@@ -34,6 +37,10 @@ const CampaignReducer = (state = _nullCampaign, action) => {
   let campaign;
 
   switch(action.type) {
+    case REQUEST_CAMPAIGNS_QUERY:
+      let queryString = action.queryString;
+      newState = merge({}, state, {queryString});
+      return newState;
     case RECEIVE_QUERIED_CAMPAIGNS:
       let queriedCampaigns = action.queriedCampaigns;
       let resetState = merge({}, state);

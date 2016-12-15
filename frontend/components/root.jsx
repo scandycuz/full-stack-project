@@ -16,12 +16,13 @@ import CampaignEditContainer from './campaign_edit/campaign_edit_container';
 import CampaignEditFormContainer from './campaign_edit/campaign_edit_form_container';
 import CampaignPitchContainer from './campaign_pitch/campaign_pitch_container';
 import RewardFormContainer from './reward/reward_form_container';
+import SearchContainer from './search/search_container';
 
 import { requestSingleProfile } from '../actions/profile_actions';
 import { requestSingleCampaign,
          requestCampaigns,
          requestFeaturedCampaigns } from '../actions/campaign_actions';
-requestCampaigns
+
 const Root = ({ store }) => {
 
   const requestProfile = (nextState) => {
@@ -41,6 +42,7 @@ const Root = ({ store }) => {
       <Router history={hashHistory}>
         <Route path="/" component={AppContainer}>
           <IndexRoute component={HomeContainer}/>
+          <Route path="/search" component={SearchContainer}/>
           <Route path="/profile/:id" component={ProfileContainer} onEnter={requestProfile}>
             <Route path="/profile/:id/campaigns" component={ProfileCampaignsContainer}/>
             <Route path="/profile/:id/contributions" component={ProfileContributionsContainer}/>

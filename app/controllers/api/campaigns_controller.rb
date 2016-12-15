@@ -9,7 +9,7 @@ class Api::CampaignsController < ApplicationController
       query = params[:query].split(" ").reject { |word|
         ["for", "and", "it", "is"].include?(word)
       }.map { |val| "%#{val}%" }
-      @campaigns = Campaign.where("title ILIKE ANY ( array[?] )", query)
+      @campaigns = Campaign.joins(:user).where("campaigns.title ILIKE ANY ( array[?] ) OR users.first_name ILIKE ANY ( array[?] )", query, query)
     else
       @campaigns = Campaign.where("status = 'published' and featured = 'false'").limit(8)
     end
@@ -51,6 +51,6 @@ class Api::CampaignsController < ApplicationController
   private
   def campaign_params
     params.require(:campaign)
-    .permit(:id, :user_id, :title, :tagline, :funds_received, :goal_amount, :card_image_url, :pitch_image_url, :pitch_video_url, :campaign_overview, :campaign_pitch, :location, :duration, :status, :author, :rewards, :contributors)
+    .permit(:id, :user_id, :title, :tagline, :funds_received, :goal_amount, :card_image_url, :slider_image_url, :pitch_image_url, :pitch_video_url, :campaign_overview, :campaign_pitch, :location, :duration, :status, :author, :rewards, :contributors)
   end
 end

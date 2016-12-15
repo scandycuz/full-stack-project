@@ -49,8 +49,11 @@ class Header extends React.Component {
         e.preventDefault();
         e.stopPropagation();
         let query = $input.val();
+        if (query === "") { return; }
         // send query
         this.props.requestCampaignsQuery(query);
+        this.props.router.push('/search');
+        $input.val("");
       });
       $container.addClass('selected-input');
       $input.css('width', '18em');
@@ -59,8 +62,11 @@ class Header extends React.Component {
           e.stopPropagation();
           e.preventDefault();
           let query = $input.val();
+          if (query === "") { return; }
           // send query
           this.props.requestCampaignsQuery(query);
+          this.props.router.push('/search');
+          $input.val("");
         }
       });
       $input.focusout( () => {

@@ -9,6 +9,8 @@ import {
   REQUEST_SINGLE_CAMPAIGN,
   REQUEST_CAMPAIGNS,
   REQUEST_FEATURED_CAMPAIGNS,
+  REQUEST_QUERIED_CAMPAIGNS,
+  RECEIVE_QUERIED_CAMPAIGNS,
   RECEIVE_FEATURED_CAMPAIGNS,
   RECEIVE_SINGLE_CAMPAIGN,
   RECEIVE_CAMPAIGN_ERRORS,
@@ -33,7 +35,16 @@ import {
 
 import merge from 'lodash/merge';
 
-export default (state = {campaign: false, profile: false, image: false, campaigns: false, featuredCampaigns: false}, action) => {
+const _nullstate = {
+  campaign: false,
+  profile: false,
+  image: false,
+  campaigns: false,
+  featuredCampaigns: false,
+  queriedCampaigns: false
+}
+
+export default (state = _nullstate, action) => {
   switch(action.type){
     case REQUEST_SINGLE_CAMPAIGN:
       return merge({}, state, {campaign: true});
@@ -43,6 +54,8 @@ export default (state = {campaign: false, profile: false, image: false, campaign
       return merge({}, state, {featuredCampaigns: true});
     case REQUEST_SINGLE_PROFILE:
       return merge({}, state, {profile: true});
+    case REQUEST_QUERIED_CAMPAIGNS:
+      return merge({}, state, {queriedCampaigns: true});
     case UPLOAD_IMAGE:
       return merge({}, state, {image: true});
     case RECEIVE_SINGLE_PROFILE:
@@ -58,6 +71,8 @@ export default (state = {campaign: false, profile: false, image: false, campaign
       return merge({}, state, {campaigns: false});
     case RECEIVE_FEATURED_CAMPAIGNS:
       return merge({}, state, {featuredCampaigns: false});
+    case RECEIVE_QUERIED_CAMPAIGNS:
+      return merge({}, state, {queriedCampaigns: false});
     // case RECEIVE_CONTRIBUTIONS:
     // case RECEIVE_SINGLE_CONTRIBUTION:
     // case RECEIVE_CURRENT_USER:
