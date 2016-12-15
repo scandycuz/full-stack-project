@@ -51,6 +51,7 @@ class SimpleSlider extends React.Component {
 
   componentDidMount() {
     this.props.requestFeaturedCampaigns();
+    this.setState({selectedIndex: 0}, () => $('.slide-content').animate({opacity: "1"}, 300));
   }
 
   componentDidUpdate() {
