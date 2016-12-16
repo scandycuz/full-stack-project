@@ -71,7 +71,7 @@ class Header extends React.Component {
       });
       $input.focusout( () => {
         $container.removeClass('selected-input');
-        $input.css('width', '12em');
+        $input.val("").css('width', '12em');
       });
     });
   }
