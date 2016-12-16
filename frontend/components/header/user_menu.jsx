@@ -93,7 +93,6 @@ class UserMenu extends React.Component {
   closeModal() {
     if (!this.props.currentUser) {
       this.props.resetRedirect();
-      this.props.requestCampaigns();
     }
     return this.setState({modalIsOpen: false});
   }

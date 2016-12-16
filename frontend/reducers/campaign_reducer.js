@@ -61,9 +61,8 @@ const CampaignReducer = (state = _nullCampaign, action) => {
       return newState;
     case RECEIVE_CAMPAIGN_ERRORS:
       const errors = action.errors;
-      return merge({}, _nullCampaign, {
-        errors
-      });
+      newState = merge({}, state, {errors});
+      return newState;
     case RECEIVE_REWARD_DELETE:
       campaign = action.campaign;
       clonedState = merge({}, state);

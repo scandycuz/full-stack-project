@@ -250,16 +250,22 @@ input[type="text"], input[type="date"] {
   .modal-close {
     color: $black;
   }
+  button {
+    font-size: 15px;
+  }
   .button-container {
     display: flex;
     justify-content: space-between;
     button:first-child {
       width: 40%;
       margin-right: 4%;
-      font-size: 15px;
     }
     button:nth-child(2) {
       width: 56%;
+      background: $dark_red;
+      &:hover {
+        background: $red;
+      }
     }
   }
 }
