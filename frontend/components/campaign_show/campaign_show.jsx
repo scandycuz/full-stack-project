@@ -51,6 +51,12 @@ class CampaignShow extends React.Component {
 
     window.scrollTo(0, 0);
 
+    if (this.props.campaign.id) {
+      if ((this.props.campaign.id).toString() === this.props.params.id) {
+        this.props.requestSingleCampaign(this.props.params.id);
+      }
+    }
+
     // set imageloaded to true if no image
     if (this.props.campaign) {
       if (this.props.campaign.pitch_image_url === "") {
