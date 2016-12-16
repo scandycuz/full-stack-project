@@ -23,7 +23,7 @@ class CampaignPitch extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.campaign && nextProps.campaign.title !== "") {
+    if (this.props.campaign.title !== nextProps.campaign.title) {
       const createdCampaignId = nextProps.campaign.id;
       this.props.router.push(`/campaigns/${createdCampaignId}/edit/basics`);
     }

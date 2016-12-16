@@ -1679,7 +1679,7 @@ footer {
       margin-bottom: 7px;
       cursor: pointer;
       font-weight: 600;
-      &:hover {
+      & a:hover {
         color: lighten($light_black, 10%);
       }
     }
