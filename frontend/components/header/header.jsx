@@ -76,14 +76,6 @@ class Header extends React.Component {
     });
   }
 
-  enterListener() {
-    $('input[type=text]').on('keydown', function(e) {
-      if (e.which == 13) {
-          e.preventDefault();
-      }
-    });
-  }
-
   redirectHome() {
     this.props.router.push("/");
   }

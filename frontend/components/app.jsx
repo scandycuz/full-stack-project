@@ -33,7 +33,7 @@ class App extends React.Component {
             <div className="footer-list-container">
               <ul>
                 <li onClick={() => this.props.router.push('/')}>Home</li>
-                <li>Explore</li>
+                <li onClick={() => this.props.router.push('/search')}>Search</li>
               </ul>
             </div>
             <div className="footer-list-container">

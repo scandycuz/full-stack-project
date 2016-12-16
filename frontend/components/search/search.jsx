@@ -19,6 +19,7 @@ class Search extends React.Component {
     this.handleImageLoaded = this.handleImageLoaded.bind(this);
     this.handleLoadingComplete = this.handleLoadingComplete.bind(this);
     this.update = this.update.bind(this);
+    this.searchListener = this.searchListener.bind(this);
   }
 
   componentDidMount() {
@@ -26,6 +27,12 @@ class Search extends React.Component {
     if (this.props.queriedCampaigns) {
       this.setState({totalImages: Object.keys(this.props.queriedCampaigns).length});
     }
+    // set main search input to header search inquiry
+    this.setState({query: this.props.queryString});
+    // add search listener
+    this.searchListener();
+
+    window.scrollTo(0, 0);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,7 +42,7 @@ class Search extends React.Component {
     }
     // update query string on submit new query
     if (this.props.queryString !== nextProps.queryString) {
-      this.setState({queryString: nextProps.queryString});
+      this.setState({queryString: nextProps.queryString, query: nextProps.queryString});
     }
   }
 
@@ -50,6 +57,37 @@ class Search extends React.Component {
         typeof this.state.totalImages === "number") {
       this.handleLoadingComplete();
     }
+  }
+
+  searchListener() {
+    $('.search-component-input-container input').focus( (e) => {
+      let $input = $(e.target);
+      let $container = $(e.target).closest('.search-component-input-container');
+      let $icon = $(e.target).prev('i');
+      $icon.click( (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        let query = $input.val();
+        if (query === "") { return; }
+        // send query
+        this.props.requestCampaignsQuery(query);
+        this.props.router.push('/search');
+      });
+      $container.addClass('selected-input');
+      $input.keydown( (e) => {
+        if (e.which == 13) {
+          e.stopPropagation();
+          e.preventDefault();
+          let query = $input.val();
+          if (query === "") { return; }
+          // send query
+          this.props.requestCampaignsQuery(query);
+        }
+      });
+      $input.focusout( () => {
+        $container.removeClass('selected-input');
+      });
+    });
   }
 
   handleImageLoaded() {

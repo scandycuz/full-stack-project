@@ -12,6 +12,8 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.props.requestCampaigns();
+
+    window.scrollTo(0, 0);
   }
 
   componentDidUpdate() {
