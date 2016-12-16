@@ -19,7 +19,7 @@ Both the `CampaignIndexItems` on the home page and the individual `CampaignShow`
 ![image of campaign detail](docs/wireframes/View-Campaign.png)
 ### Code Sample
 
-Dynamic JSX style tag for the progress bar in the `GoalProgress` component:
+Dynamic JSX style tag for the progress bar in the Campaign `GoalProgress` component:
 
 ```javascript
 const fundsReceived = this.props.fundsReceived;
