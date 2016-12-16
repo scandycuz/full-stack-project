@@ -17,6 +17,7 @@ The home page of the site contains the `CampaignIndex` component, and displays t
 Both the `CampaignIndexItems` on the home page and the individual `CampaignShow` components contain a `GoalProgress` component. This component uses the Pitch's `funds_received` and `goal_amount` attributes from the database to create a dynamic visual representation of the Pitch's progress towards its goal.
 
 ![image of campaign detail](docs/wireframes/View-Campaign.png)
+### Code Sample
 
 Dynamic JSX style tag for the progress bar in the `GoalProgress` component:
 
