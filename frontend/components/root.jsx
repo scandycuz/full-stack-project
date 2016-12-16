@@ -48,10 +48,10 @@ const Root = ({ store }) => {
             <Route path="/profile/:id/contributions" component={ProfileContributionsContainer}/>
             <Route path="/profile/:id/edit" component={ProfileEditContainer}/>
           </Route>
-          <Route path="/campaigns/:id" component={CampaignContainer} onEnter={requestCampaign}>
+          <Route path="/campaigns/:id" component={CampaignContainer}>
             <IndexRoute component={CampaignShowContainer} onEnter={requestCampaign}/>
             <Route path="/campaigns/:id/backers" component={CampaignShowContainer}/>
-            <Route path="/campaigns/:id/edit" component={CampaignEditContainer}>
+            <Route path="/campaigns/:id/edit" component={CampaignEditContainer} onEnter={requestCampaign}>
               <IndexRedirect to="/campaigns/:id/edit/basics" />
               <Route path="/campaigns/:id/edit/basics" component={CampaignEditFormContainer}/>
               <Route path="/campaigns/:id/edit/story" component={CampaignEditFormContainer}/>
