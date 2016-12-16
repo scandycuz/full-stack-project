@@ -137,6 +137,7 @@ class Header extends React.Component {
             router={this.props.router}
             requestUserCampaigns={this.props.requestUserCampaigns}
             requestSingleCampaign={this.props.requestSingleCampaign}
+            requestCampaigns={this.props.requestCampaigns}
             modalIsOpen={this.state.modalIsOpen}
             redirect={this.state.redirect}
             resetRedirect={this.resetRedirect}

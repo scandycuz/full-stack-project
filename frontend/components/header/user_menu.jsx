@@ -91,7 +91,11 @@ class UserMenu extends React.Component {
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false});
+    if (!this.props.currentUser) {
+      this.props.resetRedirect();
+      this.props.requestCampaigns();
+    }
+    return this.setState({modalIsOpen: false});
   }
 
   update(field) {
