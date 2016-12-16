@@ -24,6 +24,13 @@ class Profile extends React.Component {
       imageLoaded: null
     });
 
+    // set imageloaded to true if no image
+    if (this.props.profile) {
+      if (this.props.profile.photo_url === "") {
+        this.setState({imageLoaded: true});
+      }
+    }
+
     window.scrollTo(0, 0);
   }
 
@@ -40,6 +47,12 @@ class Profile extends React.Component {
 
     if (this.props.currentUser !== nextProps.currentUser) {
       this.props.requestSingleProfile(nextProps.params.id)
+    }
+
+    if (nextProps.profile) {
+      if (nextProps.profile.photo_url === "") {
+        this.setState({imageLoaded: true});
+      }
     }
   }
 

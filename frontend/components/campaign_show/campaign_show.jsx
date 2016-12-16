@@ -51,6 +51,13 @@ class CampaignShow extends React.Component {
 
     window.scrollTo(0, 0);
 
+    // set imageloaded to true if no image
+    if (this.props.campaign) {
+      if (this.props.campaign.pitch_image_url === "") {
+        this.setState({imageLoaded: true});
+      }
+    }
+
     // if (this.props.currentUser) {
     //   let contribution = merge({},
     //                            this.state.contribution,
@@ -77,6 +84,11 @@ class CampaignShow extends React.Component {
       this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url});
     }
 
+    if (nextProps.campaign) {
+      if (nextProps.campaign.pitch_image_url === "") {
+        this.setState({imageLoaded: true});
+      }
+    }
   }
 
   componentDidUpdate() {
