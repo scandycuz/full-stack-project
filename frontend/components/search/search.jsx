@@ -23,12 +23,12 @@ class Search extends React.Component {
   }
 
   componentDidMount() {
+    // set main search input to header search inquiry
+    this.setState({query: this.props.queryString, initialLoad: true});
     // set total image amount
     if (this.props.queriedCampaigns) {
       this.setState({totalImages: Object.keys(this.props.queriedCampaigns).length});
     }
-    // set main search input to header search inquiry
-    this.setState({query: this.props.queryString});
     // add search listener
     this.searchListener();
 
