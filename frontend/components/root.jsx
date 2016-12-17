@@ -48,7 +48,7 @@ const Root = ({ store }) => {
             <Route path="/profile/:id/contributions" component={ProfileContributionsContainer}/>
             <Route path="/profile/:id/edit" component={ProfileEditContainer}/>
           </Route>
-          <Route path="/campaigns/:id" component={CampaignContainer} onEnter={requestCampaign}>
+          <Route path="/campaigns/:id" component={CampaignContainer}>
             <IndexRoute component={CampaignShowContainer}/>
             <Route path="/campaigns/:id/backers" component={CampaignShowContainer}/>
             <Route path="/campaigns/:id/edit" component={CampaignEditContainer}>
