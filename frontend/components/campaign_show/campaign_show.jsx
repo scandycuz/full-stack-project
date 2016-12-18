@@ -54,6 +54,10 @@ class CampaignShow extends React.Component {
     if (this.props.campaign.id) {
       if ((this.props.campaign.id).toString() === this.props.params.id) {
         this.props.requestSingleCampaign(this.props.params.id);
+        // reset image if requesting new campaign
+        this.setState({
+          campaignPitchImageUrl: null
+        });
       }
     }
 
@@ -78,15 +82,8 @@ class CampaignShow extends React.Component {
     if (this.props.campaign.title === nextProps.campaign.title && this.props.campaign.funds_received !== nextProps.campaign.funds_received) {
       this.props.requestSingleCampaign(this.props.params.id);
     }
-    // if (nextProps.currentUser) {
-    //   let contribution = merge({},
-    //     this.state.contribution,
-    //     {user_id: nextProps.currentUser.id},
-    //     {campaign_id: parseInt(this.props.params.id)});
-    //   let newState = merge({}, this.state, {contribution});
-    //   this.setState(newState);
-    // }
-    if (this.props.campaign.pitch_image_url !== nextProps.campaign.pitch_image_url) {
+
+    if (this.state.campaignPitchImageUrl !== nextProps.campaign.pitch_image_url) {
       this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url});
     }
 
