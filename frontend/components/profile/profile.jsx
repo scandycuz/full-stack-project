@@ -46,7 +46,11 @@ class Profile extends React.Component {
     }
 
     if (this.props.currentUser !== nextProps.currentUser) {
-      this.props.requestSingleProfile(nextProps.params.id)
+      this.props.requestSingleProfile(nextProps.params.id);
+      // reset image if requesting new campaign
+      this.setState({
+        profilePhotoUrl: null
+      });
     }
 
     if (nextProps.profile) {
