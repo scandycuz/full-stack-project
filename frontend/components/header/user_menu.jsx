@@ -54,7 +54,7 @@ class UserMenu extends React.Component {
 
   componentDidUpdate() {
     if (this.props.loggedIn && this.state.modalIsOpen === true) {
-      return this.closeModal();
+      return this.setState({modalIsOpen: false});
     }
 
     // this.redirectIfLoggedOut();
@@ -116,7 +116,14 @@ class UserMenu extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = this.state;
-    return this.props.processForm(this.state.formType)({user});
+    this.props.processForm(this.state.formType)({user});
+
+    // Create Pitch Redirect
+    if (this.props.redirect) {
+      let redirect = this.props.redirect;
+      this.props.router.push(redirect);
+      this.props.resetRedirect();
+    }
   }
 
   handleDemoSubmit(e) {
