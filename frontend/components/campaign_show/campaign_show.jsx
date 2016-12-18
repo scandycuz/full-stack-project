@@ -86,7 +86,7 @@ class CampaignShow extends React.Component {
     //   let newState = merge({}, this.state, {contribution});
     //   this.setState(newState);
     // }
-    if (this.state.campaignPitchImageUrl !== nextProps.campaign.pitch_image_url) {
+    if (this.props.campaign.pitch_image_url !== nextProps.campaign.pitch_image_url) {
       this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url});
     }
 

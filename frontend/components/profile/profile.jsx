@@ -41,7 +41,7 @@ class Profile extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.profilePhotoUrl !== nextProps.profile.photo_url) {
+    if (this.props.profile.photo_url !== nextProps.profile.photo_url) {
       this.setState({profilePhotoUrl: nextProps.profile.photo_url});
     }
 
