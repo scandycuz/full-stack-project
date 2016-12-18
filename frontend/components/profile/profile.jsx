@@ -21,7 +21,7 @@ class Profile extends React.Component {
   componentDidMount() {
     this.setState({
       profilePhotoUrl: null,
-      imageLoaded: null
+      imageLoaded: false
     });
 
     // set imageloaded to true if no image
@@ -49,6 +49,13 @@ class Profile extends React.Component {
       this.props.requestSingleProfile(nextProps.params.id)
     }
 
+    if (nextProps.profile) {
+      if (nextProps.profile.photo_url === "") {
+        this.setState({imageLoaded: true});
+      }
+    }
+
+    // set imageloaded to true if no image
     if (nextProps.profile) {
       if (nextProps.profile.photo_url === "") {
         this.setState({imageLoaded: true});

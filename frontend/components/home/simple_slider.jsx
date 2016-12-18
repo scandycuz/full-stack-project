@@ -66,6 +66,10 @@ class SimpleSlider extends React.Component {
     $('.slide-content').animate({opacity: "1"}, 300);
   }
 
+  componentWillUnmount() {
+    this.flkty.destroy();
+  }
+
   render() {
     const goToCampaign = (campaignId) => {
       this.props.router.push(`/campaigns/${campaignId}`);
