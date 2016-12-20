@@ -62,11 +62,11 @@ class CampaignShow extends React.Component {
     }
 
     // set imageloaded to true if no image
-    if (this.props.campaign) {
-      if (this.props.campaign.pitch_image_url === "") {
-        this.setState({imageLoaded: true});
-      }
-    }
+    // if (this.props.campaign) {
+    //   if (this.props.campaign.pitch_image_url === "") {
+    //     this.setState({imageLoaded: true});
+    //   }
+    // }
 
     // if (this.props.currentUser) {
     //   let contribution = merge({},
