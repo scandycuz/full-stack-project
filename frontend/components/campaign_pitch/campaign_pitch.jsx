@@ -51,7 +51,7 @@ class CampaignPitch extends React.Component {
 
   sendSubmit(state) {
     let test = this.props.createCampaign({ campaign: this.state });
-    this.props.requestUserCampaigns(this.props.currentUser.id);
+    this.props.requestUserCampaigns(this.state.user_id);
   }
 
   render() {

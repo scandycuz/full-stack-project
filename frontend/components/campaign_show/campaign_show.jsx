@@ -67,15 +67,6 @@ class CampaignShow extends React.Component {
         this.setState({imageLoaded: true});
       }
     }
-
-    // if (this.props.currentUser) {
-    //   let contribution = merge({},
-    //                            this.state.contribution,
-    //                            {user_id: this.props.currentUser.id},
-    //                            {campaign_id: parseInt(this.props.params.id)});
-    //   let newState = merge({}, this.state, {contribution});
-    //   this.setState(newState);
-    // }
   }
 
   componentWillReceiveProps(nextProps) {
