@@ -120,6 +120,7 @@ class UserMenu extends React.Component {
 
     // Create Pitch Redirect
     if (this.props.redirect) {
+      this.setState({modalIsOpen: false});
       let redirect = this.props.redirect;
       this.props.router.push(redirect);
       this.props.resetRedirect();
@@ -138,6 +139,7 @@ class UserMenu extends React.Component {
     }
     this.props.processForm(this.state.formType)(demoUser);
     if (this.props.redirect) {
+      this.setState({modalIsOpen: false});
       let redirect = this.props.redirect;
       this.props.router.push(redirect);
       this.props.resetRedirect();
