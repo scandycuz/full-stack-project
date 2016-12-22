@@ -63,7 +63,6 @@ class CampaignShow extends React.Component {
 
     // set imageloaded to true if no image
     if (this.props.campaign) {
-      console.log(this.props.campaign);
       if (this.props.campaign.title !== "" &&
       (this.props.campaign.pitch_image_url === "" || !this.props.campaign.pitch_image_url)) {
         this.setState({imageLoaded: true});
@@ -96,7 +95,7 @@ class CampaignShow extends React.Component {
   handleImageLoaded() {
     setTimeout( () => {
       this.setState({ imageLoaded: true });
-    }, 200);
+    }, 100);
   }
 
   endDateToDuration(endDate) {
