@@ -6,12 +6,13 @@ import { updateCampaign,
 import { requestUserCampaigns } from '../../actions/profile_actions';
 import { fetchingSingleCampaign } from '../../util/campaign_api_util';
 
-const mapStateToProps = ({ campaign, session, profile }) => ({
+const mapStateToProps = ({ campaign, session, profile, loading }) => ({
   campaign: campaign.campaign,
 
   currentUser: session.currentUser,
   currentUserCampaigns: session.campaigns,
-  currentCampaignId: campaign.campaign.id
+  currentCampaignId: campaign.campaign.id,
+  loading: loading.campaign
 });
 
 const mapDispatchToProps = (dispatch, { location }) => {

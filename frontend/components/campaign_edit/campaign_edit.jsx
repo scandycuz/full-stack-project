@@ -27,7 +27,7 @@ class CampaignEdit extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const checkUserCampaign = () => {
-      
+
       if (this.props.campaign.title !== nextProps.campaign.title && nextProps.currentUserCampaigns) {
         let campaignId = this.props.params.id;
         let currentUserCampaignKeys = Object.keys(nextProps.currentUserCampaigns);
@@ -143,9 +143,33 @@ class CampaignEdit extends React.Component {
       }
     }
 
+    const loadClass = () => {
+      if (this.props.loading) {
+        return "loading";
+      } else {
+        return "";
+      }
+    }
+
+    const loader = () => {
+
+      return (
+        <div id="loading-screen" className={loadClass()}>
+          <div className="loader-container">
+            <div className="loader">
+              <svg className="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle className="path" fill="none" strokeWidth="6" strokeLinecap="round" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </div>
+        </div>
+      )
+    };
+
     return(
       <div className="campaign_edit">
         <div className="campaign-tab-content tab-content">
+          {loader()}
           <div className="campaign-header container">
             <h3>{campaign.title} <span className={this.publishStatus()}>{campaign.status}</span></h3>
           </div>
