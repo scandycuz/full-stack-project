@@ -61,7 +61,7 @@ class Profile extends React.Component {
 
     // set imageloaded to true if no image
     if (nextProps.profile) {
-      if (nextProps.profile.photo_url === "") {
+      if (nextProps.profile.photo_url === "" || !nextProps.profile.photo_url) {
         this.setState({imageLoaded: true});
       }
     }
