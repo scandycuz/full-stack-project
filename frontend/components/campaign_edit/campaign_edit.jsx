@@ -27,8 +27,8 @@ class CampaignEdit extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const checkUserCampaign = () => {
-
-      if (nextProps.currentUserCampaigns) {
+      
+      if (this.props.campaign.title !== nextProps.campaign.title && nextProps.currentUserCampaigns) {
         let campaignId = this.props.params.id;
         let currentUserCampaignKeys = Object.keys(nextProps.currentUserCampaigns);
         if (!currentUserCampaignKeys.includes(campaignId)) {
