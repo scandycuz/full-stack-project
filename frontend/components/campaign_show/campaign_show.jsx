@@ -47,7 +47,7 @@ class CampaignShow extends React.Component {
     this.setState({
       campaignPitchImageUrl: null,
       imageLoaded: false
-    });
+    }, () => this.props.requestSingleCampaign(this.props.params.id));
 
     window.scrollTo(0, 0);
 
