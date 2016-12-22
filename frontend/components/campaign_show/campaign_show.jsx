@@ -63,7 +63,9 @@ class CampaignShow extends React.Component {
 
     // set imageloaded to true if no image
     if (this.props.campaign) {
-      if (this.props.campaign.pitch_image_url === "") {
+      console.log(this.props.campaign);
+      if (this.props.campaign.title !== "" &&
+      (this.props.campaign.pitch_image_url === "" || !this.props.campaign.pitch_image_url)) {
         this.setState({imageLoaded: true});
       }
     }
@@ -80,7 +82,8 @@ class CampaignShow extends React.Component {
 
     // set imageloaded to true if no image
     if (nextProps.campaign) {
-      if (nextProps.campaign.pitch_image_url === "" || !nextProps.campaign.pitch_image_url) {
+      if (nextProps.campaign.title !== "" &&
+      (nextProps.campaign.pitch_image_url === "" || !nextProps.campaign.pitch_image_url)) {
         this.setState({imageLoaded: true});
       }
     }
@@ -91,7 +94,9 @@ class CampaignShow extends React.Component {
   }
 
   handleImageLoaded() {
-    this.setState({ imageLoaded: true });
+    setTimeout( () => {
+      this.setState({ imageLoaded: true });
+    }, 200);
   }
 
   endDateToDuration(endDate) {
