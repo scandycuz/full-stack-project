@@ -70,7 +70,7 @@ class Profile extends React.Component {
   handleImageLoaded() {
     setTimeout( () => {
       this.setState({ imageLoaded: true });
-    }, 100);
+    }, 200);
   }
 
   tabClass(tabName) {
