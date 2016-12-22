@@ -26,13 +26,19 @@ class CampaignEdit extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ formState: nextProps.campaign });
-    if (nextProps.currentUserCampaigns) {
-      let campaignId = this.props.params.id;
-      let currentUserCampaignKeys = Object.keys(nextProps.currentUserCampaigns);
-      if (!currentUserCampaignKeys.includes(campaignId)) {
-        this.props.router.replace(`/campaigns/${campaignId}`);
+    const checkUserCampaign = () => {
+
+      if (nextProps.currentUserCampaigns) {
+        let campaignId = this.props.params.id;
+        let currentUserCampaignKeys = Object.keys(nextProps.currentUserCampaigns);
+        if (!currentUserCampaignKeys.includes(campaignId)) {
+          this.props.router.replace(`/campaigns/${campaignId}`);
+        }
       }
+    }
+
+    if (nextProps.campaign) {
+      this.setState({ formState: nextProps.campaign }, checkUserCampaign);
     }
   }
 
