@@ -11,6 +11,7 @@ class CampaignShow extends React.Component {
     super(props);
 
     this.state = {
+      campaign: {},
       selectedTab: "story",
       contribution: {
         user_id: null,
@@ -55,9 +56,9 @@ class CampaignShow extends React.Component {
       if ((this.props.campaign.id).toString() === this.props.params.id) {
         this.props.requestSingleCampaign(this.props.params.id);
         // reset image if requesting new campaign
-        // this.setState({
-        //   campaignPitchImageUrl: null
-        // });
+        this.setState({
+          campaignPitchImageUrl: null
+        });
       }
     }
 
@@ -71,18 +72,22 @@ class CampaignShow extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // if funds received
     if (this.props.campaign.title === nextProps.campaign.title && this.props.campaign.funds_received !== nextProps.campaign.funds_received) {
       this.props.requestSingleCampaign(this.props.params.id);
     }
 
-    if (this.state.campaignPitchImageUrl !== nextProps.campaign.pitch_image_url) {
-      this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url});
+    // set new campaign image url
+    if (nextProps.campaign.pitch_image_url) {
+      this.setState({imageLoaded: false},
+        () => this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url});
+      );
     }
 
     // set imageloaded to true if no image
     if (nextProps.campaign) {
       if (nextProps.campaign.title !== "" &&
-      (nextProps.campaign.pitch_image_url === "" || !nextProps.campaign.pitch_image_url)) {
+      (nextProps.campaign.pitch_image_url === "")) {
         this.setState({imageLoaded: true});
       }
     }
