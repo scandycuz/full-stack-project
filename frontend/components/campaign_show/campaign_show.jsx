@@ -61,13 +61,13 @@ class CampaignShow extends React.Component {
       }
     }
 
-    // set imageloaded to true if no image
-    if (this.props.campaign) {
-      if (this.props.campaign.title !== "" &&
-      (this.props.campaign.pitch_image_url === "" || !this.props.campaign.pitch_image_url)) {
-        this.setState({imageLoaded: true});
-      }
-    }
+    // // set imageloaded to true if no image
+    // if (this.props.campaign) {
+    //   if (this.props.campaign.title !== "" &&
+    //   (this.props.campaign.pitch_image_url === "" || !this.props.campaign.pitch_image_url)) {
+    //     this.setState({imageLoaded: true});
+    //   }
+    // }
   }
 
   componentWillReceiveProps(nextProps) {
