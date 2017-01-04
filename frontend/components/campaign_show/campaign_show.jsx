@@ -55,19 +55,19 @@ class CampaignShow extends React.Component {
       if ((this.props.campaign.id).toString() === this.props.params.id) {
         this.props.requestSingleCampaign(this.props.params.id);
         // reset image if requesting new campaign
-        this.setState({
-          campaignPitchImageUrl: null
-        });
+        // this.setState({
+        //   campaignPitchImageUrl: null
+        // });
       }
     }
 
-    // // set imageloaded to true if no image
-    // if (this.props.campaign) {
-    //   if (this.props.campaign.title !== "" &&
-    //   (this.props.campaign.pitch_image_url === "" || !this.props.campaign.pitch_image_url)) {
-    //     this.setState({imageLoaded: true});
-    //   }
-    // }
+    // set imageloaded to true if no image
+    if (this.props.campaign) {
+      if (this.props.campaign.title !== "" &&
+      (this.props.campaign.pitch_image_url === "" || !this.props.campaign.pitch_image_url)) {
+        this.setState({imageLoaded: true});
+      }
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -79,13 +79,13 @@ class CampaignShow extends React.Component {
       this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url});
     }
 
-    // // set imageloaded to true if no image
-    // if (nextProps.campaign) {
-    //   if (nextProps.campaign.title !== "" &&
-    //   (nextProps.campaign.pitch_image_url === "" || !nextProps.campaign.pitch_image_url)) {
-    //     this.setState({imageLoaded: true});
-    //   }
-    // }
+    // set imageloaded to true if no image
+    if (nextProps.campaign) {
+      if (nextProps.campaign.title !== "" &&
+      (nextProps.campaign.pitch_image_url === "" || !nextProps.campaign.pitch_image_url)) {
+        this.setState({imageLoaded: true});
+      }
+    }
   }
 
   componentDidUpdate() {
