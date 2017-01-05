@@ -8,7 +8,7 @@ class Profile extends React.Component {
     this.state = {
       selectedTab: this.props.currentPath(),
       profilePhotoUrl: null,
-      imageLoaded: null
+      imageLoaded: false
     }
     this.tabClass = this.tabClass.bind(this);
     this.changeTab = this.changeTab.bind(this);
@@ -41,8 +41,13 @@ class Profile extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.profilePhotoUrl !== nextProps.profile.photo_url) {
+    
+    function setImageUrl() {
       this.setState({profilePhotoUrl: nextProps.profile.photo_url});
+    }
+    // set new campaign image url
+    if (this.state.profilePhotoUrl !== nextProps.profile.photo_url) {
+      this.setState({imageLoaded: false}, setImageUrl);
     }
 
     if (this.props.currentUser !== nextProps.currentUser) {
