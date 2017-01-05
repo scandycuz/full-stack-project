@@ -99,7 +99,9 @@ class CampaignShow extends React.Component {
   }
 
   handleImageLoaded() {
-    this.setState({ imageLoaded: true });
+    setTimeout(() => {
+      this.setState({ imageLoaded: true });
+    }, 200);
   }
 
   endDateToDuration(endDate) {
