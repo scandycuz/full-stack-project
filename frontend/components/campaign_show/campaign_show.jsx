@@ -73,7 +73,7 @@ class CampaignShow extends React.Component {
     }
   }
 
-  setImageUrl() {
+  setImageUrl(nextProps) {
     this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url});
   }
 
@@ -85,7 +85,7 @@ class CampaignShow extends React.Component {
 
     // set new campaign image url
     if (this.props.campaign !== nextProps.campaign && nextProps.campaign.pitch_image_url) {
-      this.setState({imageLoaded: false}, this.setImageUrl);
+      this.setState({imageLoaded: false}, this.setImageUrl(nextProps));
     }
 
     // set imageloaded to true if no image
