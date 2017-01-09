@@ -35,7 +35,7 @@
     "cloudinary-jquery-file-upload": "^2.1.6",
     "flickity": "^2.0.5",
     "flickity-bg-lazyload": "^1.0.0",
-    "jquery": "^3.1.1",
+    "jquery": "^2.2.4",
     "lodash": "^4.15.0",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",

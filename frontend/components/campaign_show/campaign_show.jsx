@@ -42,6 +42,8 @@ class CampaignShow extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.renderModal = this.renderModal.bind(this);
     this.updateParentState = this.updateParentState.bind(this);
+    this.handleImageLoaded = this.handleImageLoaded.bind(this);
+    this.setImageUrl = this.setImageUrl.bind(this);
   }
 
   componentDidMount() {
@@ -71,18 +73,19 @@ class CampaignShow extends React.Component {
     }
   }
 
+  setImageUrl() {
+    this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url});
+  }
+
   componentWillReceiveProps(nextProps) {
     // if funds received
     if (this.props.campaign.title === nextProps.campaign.title && this.props.campaign.funds_received !== nextProps.campaign.funds_received) {
       this.props.requestSingleCampaign(this.props.params.id);
     }
 
-    function setImageUrl() {
-      this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url});
-    }
     // set new campaign image url
     if (this.props.campaign !== nextProps.campaign && nextProps.campaign.pitch_image_url) {
-      this.setState({imageLoaded: false}, setImageUrl);
+      this.setState({imageLoaded: false}, this.setImageUrl);
     }
 
     // set imageloaded to true if no image
