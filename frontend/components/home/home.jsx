@@ -8,10 +8,17 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      loaded: false
+    }
   }
 
   componentDidMount() {
     this.props.requestCampaigns();
+
+    setTimeout(() => {
+      this.setState({loaded: true})
+    }, 400);
 
     window.scrollTo(0, 0);
   }
@@ -26,7 +33,7 @@ class Home extends React.Component {
   render() {
 
     const loadingScreen = () => {
-      if (this.props.loading.campaigns && this.props.loading.featuredCampaigns) {
+      if (this.props.loading.campaigns || this.props.loading.featuredCampaigns || !this.state.loaded) {
         return (
           <div id="loading-screen" className="loading">
             <div className="loader-container">
