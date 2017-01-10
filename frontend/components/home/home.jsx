@@ -11,14 +11,20 @@ class Home extends React.Component {
     this.state = {
       loaded: false
     }
+
+    this.loadingDelay = this.loadingDelay.bind(this);
+  }
+
+  loadingDelay() {
+    setTimeout(() => {
+      this.setState({loaded: true})
+    }, 400);
   }
 
   componentDidMount() {
     this.props.requestCampaigns();
 
-    setTimeout(() => {
-      this.setState({loaded: true})
-    }, 400);
+    this.setState({loading: false}, this.loadingDelay)
 
     window.scrollTo(0, 0);
   }
