@@ -55,7 +55,7 @@ class CampaignShow extends React.Component {
     window.scrollTo(0, 0);
 
     if (this.props.campaign.id) {
-      if ((this.props.campaign.id).toString() === this.props.params.id) {
+      if (this.props.campaign.id.toString() === this.props.params.id) {
         this.props.requestSingleCampaign(this.props.params.id);
         // reset image if requesting new campaign
         this.setState({
@@ -95,6 +95,13 @@ class CampaignShow extends React.Component {
       (nextProps.campaign.pitch_image_url === "")) {
         this.setState({imageLoaded: true});
       }
+    }
+
+    // Set campaignPitchImageUrl if switching from Edit tab
+    if (this.props.campaign.pitch_image_url === nextProps.campaign.pitch_image_url) {
+      this.setState({
+        campaignPitchImageUrl: nextProps.campaign.pitch_image_url
+      });
     }
   }
 
