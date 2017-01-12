@@ -9,12 +9,13 @@ import { requestSingleCampaign,
          requestCampaigns,
          requestCampaignsQuery } from '../../actions/campaign_actions';
 
-const mapStateToProps = ({ session, profile }) => ({
+const mapStateToProps = ({ session, profile, campaign }) => ({
  session,
  currentUser: session.currentUser,
  loggedIn: Boolean(session.currentUser),
  errors: session.errors,
- campaigns: session.campaigns
+ campaigns: session.campaigns,
+ campaign: campaign.campaign
 });
 
 const mapDispatchToProps = (dispatch, { location }) => {

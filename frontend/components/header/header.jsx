@@ -134,6 +134,7 @@ class Header extends React.Component {
             receiveSessionErrors={this.props.receiveSessionErrors}
             errors={this.props.errors}
             campaigns={this.props.campaigns}
+            campaign={this.props.campaign}
             router={this.props.router}
             requestUserCampaigns={this.props.requestUserCampaigns}
             requestSingleCampaign={this.props.requestSingleCampaign}
