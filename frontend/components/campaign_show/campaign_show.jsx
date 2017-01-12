@@ -91,7 +91,7 @@ class CampaignShow extends React.Component {
     // set imageloaded to true if no image
     if (nextProps.campaign) {
       if (nextProps.campaign.title !== "" &&
-      (nextProps.campaign.pitch_image_url === "")) {
+      (nextProps.campaign.pitch_image_url === "") || nextProps.errors.length === 0) {
         this.setState({imageLoaded: true});
       }
     }

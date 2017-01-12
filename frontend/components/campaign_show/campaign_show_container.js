@@ -7,6 +7,7 @@ import { createContribution } from '../../actions/contribution_actions';
 
 const mapStateToProps = ({session, campaign, loading}) => ({
   campaign: campaign.campaign,
+  errors: campaign.errors,
   currentUser: session.currentUser,
   author: campaign.campaign.author,
   rewards: campaign.campaign.rewards,
