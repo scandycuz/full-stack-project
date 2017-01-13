@@ -79,11 +79,11 @@ class CampaignShow extends React.Component {
       this.setState({
         imageLoaded: true
       });
-    }, 600);
+    }, 1000);
   }
 
   setImageUrl(nextProps) {
-    this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url}, this.setImageLoaded);
+    this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url});
   }
 
   componentWillReceiveProps(nextProps) {
@@ -94,7 +94,8 @@ class CampaignShow extends React.Component {
 
     // set new campaign image url
     if (this.props.campaign !== nextProps.campaign &&
-      this.props.campaign.pitch_image_url !== nextProps.campaign.pitch_image_url) {
+      this.props.campaign.pitch_image_url !== nextProps.campaign.pitch_image_url &&
+      this.state.campaignPitchImageUrl !== nextProps.campaign.pitch_image_url) {
       this.setState({imageLoaded: false}, this.setImageUrl(nextProps));
     }
 
