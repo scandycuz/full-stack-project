@@ -79,7 +79,7 @@ class CampaignShow extends React.Component {
       this.setState({
         imageLoaded: true
       });
-    }, 1000);
+    }, 600);
   }
 
   setImageUrl(nextProps) {
@@ -117,13 +117,9 @@ class CampaignShow extends React.Component {
   }
 
   handleImageLoaded() {
-    const loadedDelay = () => {
-      setTimeout(() => {
-        this.setState({ imageLoaded: true });
-      }, 400);
-    }
-
-    this.setState({imageLoaded: false}, loadedDelay);
+    setTimeout(() => {
+      this.setState({ imageLoaded: true });
+    }, 600);
   }
 
   endDateToDuration(endDate) {
