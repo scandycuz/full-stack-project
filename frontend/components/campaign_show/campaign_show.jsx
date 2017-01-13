@@ -99,9 +99,7 @@ class CampaignShow extends React.Component {
 
     // Set campaignPitchImageUrl if switching from Edit tab
     if (this.props.campaign.pitch_image_url === nextProps.campaign.pitch_image_url) {
-      this.setState({
-        campaignPitchImageUrl: nextProps.campaign.pitch_image_url
-      });
+      this.setState({imageLoaded: true}, this.setImageUrl(nextProps));
     }
   }
 
