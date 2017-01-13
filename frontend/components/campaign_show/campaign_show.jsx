@@ -44,6 +44,7 @@ class CampaignShow extends React.Component {
     this.updateParentState = this.updateParentState.bind(this);
     this.handleImageLoaded = this.handleImageLoaded.bind(this);
     this.setImageUrl = this.setImageUrl.bind(this);
+    this.setImageLoaded = this.setImageLoaded.bind(this);
   }
 
   componentDidMount() {
@@ -73,8 +74,16 @@ class CampaignShow extends React.Component {
     }
   }
 
+  setImageLoaded() {
+    setTimeout(() => {
+      this.setState({
+        imageLoaded: true
+      });
+    }, 1000);
+  }
+
   setImageUrl(nextProps) {
-    this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url});
+    this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url}, this.setImageLoaded);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -97,9 +106,9 @@ class CampaignShow extends React.Component {
       }
     }
 
-    // Set campaignPitchImageUrl if switching from Edit tab
+    // Set imageLoaded to true if switching from Edit tab
     if (this.props.campaign.pitch_image_url === nextProps.campaign.pitch_image_url) {
-      this.setState({imageLoaded: true}, this.setImageUrl(nextProps));
+      this.setImageUrl(nextProps);
     }
   }
 
