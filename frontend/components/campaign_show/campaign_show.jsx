@@ -47,6 +47,16 @@ class CampaignShow extends React.Component {
     this.setImageLoaded = this.setImageLoaded.bind(this);
   }
 
+  setImageLoaded() {
+    setTimeout(() => {
+      if (!this.state.imageLoaded) {
+        this.setState({
+          imageLoaded: true
+        });
+      }
+    }, 2000);
+  }
+
   componentDidMount() {
     this.setState({
       campaignPitchImageUrl: null,
@@ -64,22 +74,6 @@ class CampaignShow extends React.Component {
         });
       }
     }
-
-    // set imageloaded to true if no image
-    if (this.props.campaign) {
-      if (this.props.campaign.title !== "" &&
-      (this.props.campaign.pitch_image_url === "" || !this.props.campaign.pitch_image_url)) {
-        this.setState({imageLoaded: true});
-      }
-    }
-  }
-
-  setImageLoaded() {
-    setTimeout(() => {
-      this.setState({
-        imageLoaded: true
-      });
-    }, 1000);
   }
 
   setImageUrl(nextProps) {
@@ -101,13 +95,14 @@ class CampaignShow extends React.Component {
 
     // set imageloaded to true if no image
     if (nextProps.campaign) {
-      if (nextProps.campaign.title !== "" &&
-      (nextProps.campaign.pitch_image_url === "")) {
-        this.setState({imageLoaded: true});
+      if (nextProps.campaign.title) {
+        if (nextProps.campaign.title !== "" && nextProps.campaign.pitch_image_url === "") {
+          this.setState({imageLoaded: true});
+        }
       }
     }
 
-    // Set imageLoaded to true if switching from Edit tab
+    // Set image url if switching from Edit tab
     if (this.props.campaign.pitch_image_url === nextProps.campaign.pitch_image_url) {
       this.setImageUrl(nextProps);
     }
