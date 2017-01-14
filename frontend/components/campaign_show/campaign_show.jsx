@@ -65,16 +65,16 @@ class CampaignShow extends React.Component {
     window.scrollTo(0, 0);
 
 
-    // // request campaign again in loading same page
-    // if (this.props.campaign.id) {
-    //   if (this.props.campaign.id.toString() === this.props.params.id) {
-    //     this.props.requestSingleCampaign(this.props.params.id);
-    //     // reset campaign if requesting new campaign
-    //     this.setState({
-    //       campaign: {}
-    //     });
-    //   }
-    // }
+    // request campaign again in loading same page
+    if (this.props.campaign.id) {
+      if (this.props.campaign.id.toString() === this.props.params.id) {
+        console.log('same campaign');
+        // reset campaign if requesting new campaign
+        this.setState({
+          campaign: {}
+        }, () => this.props.requestSingleCampaign(this.props.params.id));
+      }
+    }
   }
 
   setImageUrl(nextProps) {
@@ -83,12 +83,13 @@ class CampaignShow extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps.campaign);
     // if funds received
     if (this.props.campaign.title === nextProps.campaign.title && this.props.campaign.funds_received !== nextProps.campaign.funds_received) {
       this.props.requestSingleCampaign(this.props.params.id);
     }
 
-    // set new campaign image url
+    // set new campaign data & image url
     if (this.state.campaign !== nextProps.campaign &&
     this.props.campaign.pitch_image_url !== nextProps.campaign.pitch_image_url &&
     this.state.campaign.pitch_image_url !== nextProps.campaign.pitch_image_url) {
@@ -97,9 +98,8 @@ class CampaignShow extends React.Component {
 
     // set imageloaded to true if no image
     if (nextProps.campaign) {
-      if (this.state.campaign === {} &&
-      (nextProps.campaign.title !== "" &&
-      (nextProps.campaign.pitch_image_url === "" || !nextProps.campaign.pitch_image_url))) {
+      if (!this.state.campaign.title && nextProps.campaign.title &&
+        (nextProps.campaign.pitch_image_url === "" || !nextProps.campaign.pitch_image_url)) {
         console.log('no image');
         this.setState({imageLoaded: true});
       }
