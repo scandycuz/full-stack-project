@@ -25,7 +25,6 @@ class CampaignShow extends React.Component {
         shippingRequired: false
       },
       buttonText: "Contribute",
-      campaignPitchImageUrl: null,
       imageLoaded: false,
       modalIsOpen: false,
     }
@@ -59,25 +58,28 @@ class CampaignShow extends React.Component {
 
   componentDidMount() {
     this.setState({
-      campaignPitchImageUrl: null,
-      imageLoaded: false
+      imageLoaded: false,
+      campaign: {}
     }, () => this.props.requestSingleCampaign(this.props.params.id));
 
     window.scrollTo(0, 0);
 
-    if (this.props.campaign.id) {
-      if (this.props.campaign.id.toString() === this.props.params.id) {
-        this.props.requestSingleCampaign(this.props.params.id);
-        // reset image if requesting new campaign
-        this.setState({
-          campaignPitchImageUrl: null
-        });
-      }
-    }
+
+    // // request campaign again in loading same page
+    // if (this.props.campaign.id) {
+    //   if (this.props.campaign.id.toString() === this.props.params.id) {
+    //     this.props.requestSingleCampaign(this.props.params.id);
+    //     // reset campaign if requesting new campaign
+    //     this.setState({
+    //       campaign: {}
+    //     });
+    //   }
+    // }
   }
 
   setImageUrl(nextProps) {
-    this.setState({campaignPitchImageUrl: nextProps.campaign.pitch_image_url});
+    let campaign = merge({}, this.state.campaign, {pitch_image_url: nextProps.campaign.pitch_image_url});
+    this.setState({campaign});
   }
 
   componentWillReceiveProps(nextProps) {
@@ -87,18 +89,19 @@ class CampaignShow extends React.Component {
     }
 
     // set new campaign image url
-    if (this.props.campaign !== nextProps.campaign &&
-      this.props.campaign.pitch_image_url !== nextProps.campaign.pitch_image_url &&
-      this.state.campaignPitchImageUrl !== nextProps.campaign.pitch_image_url) {
+    if (this.state.campaign !== nextProps.campaign &&
+    this.props.campaign.pitch_image_url !== nextProps.campaign.pitch_image_url &&
+    this.state.campaign.pitch_image_url !== nextProps.campaign.pitch_image_url) {
       this.setState({imageLoaded: false}, this.setImageUrl(nextProps));
     }
 
     // set imageloaded to true if no image
     if (nextProps.campaign) {
-      if (nextProps.campaign.title) {
-        if (nextProps.campaign.title !== "" && nextProps.campaign.pitch_image_url === "") {
-          this.setState({imageLoaded: true});
-        }
+      if (this.state.campaign === {} &&
+      (nextProps.campaign.title !== "" &&
+      (nextProps.campaign.pitch_image_url === "" || !nextProps.campaign.pitch_image_url))) {
+        console.log('no image');
+        this.setState({imageLoaded: true});
       }
     }
 
@@ -357,7 +360,7 @@ class CampaignShow extends React.Component {
   render() {
     const children = this.props.children;
 
-    let imageUrl = this.state.campaignPitchImageUrl;
+    let imageUrl = this.state.campaign.pitch_image_url;
 
     const campaignTabs = [
       "Story",

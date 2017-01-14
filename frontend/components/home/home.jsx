@@ -18,7 +18,7 @@ class Home extends React.Component {
   loadingDelay() {
     setTimeout(() => {
       this.setState({loaded: true})
-    }, 400);
+    }, 1000);
   }
 
   componentDidMount() {
