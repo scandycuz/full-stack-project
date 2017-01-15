@@ -83,7 +83,6 @@ class CampaignShow extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.campaign);
     // if funds received
     if (this.props.campaign.title === nextProps.campaign.title && this.props.campaign.funds_received !== nextProps.campaign.funds_received) {
       this.props.requestSingleCampaign(this.props.params.id);
