@@ -68,7 +68,6 @@ class CampaignShow extends React.Component {
     // request campaign again in loading same page
     if (this.props.campaign.id) {
       if (this.props.campaign.id.toString() === this.props.params.id) {
-        console.log('same campaign');
         // reset campaign if requesting new campaign
         this.setState({
           campaign: {}
@@ -99,6 +98,7 @@ class CampaignShow extends React.Component {
     if (nextProps.campaign) {
       if (!this.state.campaign.title && nextProps.campaign.title &&
       (nextProps.campaign.pitch_image_url === "" || !nextProps.campaign.pitch_image_url)) {
+        console.log('setting image loaded to true');
         this.setState({imageLoaded: true});
       }
     }
@@ -110,7 +110,7 @@ class CampaignShow extends React.Component {
   }
 
   componentDidUpdate() {
-
+    console.log(this.state.imageLoaded);
   }
 
   handleImageLoaded() {
