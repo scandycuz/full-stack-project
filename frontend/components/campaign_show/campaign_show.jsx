@@ -98,7 +98,6 @@ class CampaignShow extends React.Component {
     if (nextProps.campaign) {
       if (!this.state.campaign.title && nextProps.campaign.title &&
       (nextProps.campaign.pitch_image_url === "" || !nextProps.campaign.pitch_image_url)) {
-        console.log('setting image loaded to true');
         this.setState({imageLoaded: true});
       }
     }
@@ -114,9 +113,8 @@ class CampaignShow extends React.Component {
   }
 
   handleImageLoaded() {
-    setTimeout(() => {
-      this.setState({ imageLoaded: true });
-    }, 600);
+    console.log('image loaded?');
+    this.setState({ imageLoaded: true });
   }
 
   endDateToDuration(endDate) {
