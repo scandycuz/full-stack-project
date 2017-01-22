@@ -26,6 +26,7 @@ class CampaignShow extends React.Component {
       },
       buttonText: "Contribute",
       imageLoaded: false,
+      loadingDelay: true,
       modalIsOpen: false,
     }
 
@@ -61,6 +62,12 @@ class CampaignShow extends React.Component {
       imageLoaded: false,
       campaign: {}
     }, () => this.props.requestSingleCampaign(this.props.params.id));
+
+    setTimeout(() =>  {
+      this.setState({
+        loadingDelay: false
+      });
+    }, 600);
 
     window.scrollTo(0, 0);
 
@@ -109,11 +116,10 @@ class CampaignShow extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state.imageLoaded);
+
   }
 
   handleImageLoaded() {
-    console.log('image loaded?');
     this.setState({ imageLoaded: true });
   }
 
@@ -364,7 +370,7 @@ class CampaignShow extends React.Component {
     ]
 
     const loader = () => {
-      if (this.props.loading || !this.state.imageLoaded) {
+      if (this.props.loading || !this.state.imageLoaded || this.state.loadingDelay) {
         return (
           <div id="loading-screen" className="loading">
             <div className="loader-container">
