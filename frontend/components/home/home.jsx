@@ -22,6 +22,8 @@ class Home extends React.Component {
     this.props.requestCampaigns();
     this.loadingDelay();
 
+    console.log('mounted');
+
     window.scrollTo(0, 0);
   }
 
@@ -30,7 +32,8 @@ class Home extends React.Component {
     //   console.log(Object.keys(this.props.campaigns).length);
     //   this.props.requestCampaigns();
     // }
-    if (this.imagesLoaded === 8) {
+    console.log(this.imagesLoaded);
+    if (this.imagesLoaded % 8 === 0 && !this.state.imagesLoaded) {
       this.setState({imagesLoaded: true});
     }
   }
