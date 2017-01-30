@@ -22,8 +22,6 @@ class Home extends React.Component {
     this.props.requestCampaigns();
     this.loadingDelay();
 
-    console.log('mounted');
-
     window.scrollTo(0, 0);
   }
 
@@ -32,17 +30,16 @@ class Home extends React.Component {
     //   console.log(Object.keys(this.props.campaigns).length);
     //   this.props.requestCampaigns();
     // }
-    console.log(this.imagesLoaded);
     if (this.imagesLoaded % 8 === 0 && !this.state.imagesLoaded) {
       this.setState({imagesLoaded: true});
     }
   }
 
-  // Ensure loading takes at least 1s
+  // Ensure loading takes at least 800ms
   loadingDelay() {
     setTimeout(() => {
       this.setState({loadingDelayComplete: true})
-    }, 1000);
+    }, 800);
   }
 
   updateLoadedImages() {
