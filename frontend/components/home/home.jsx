@@ -9,22 +9,18 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      loaded: false
+      loadingDelayComplete: false,
+      imagesLoaded: false
     }
 
+    this.imagesLoaded = 0;
     this.loadingDelay = this.loadingDelay.bind(this);
-  }
-
-  loadingDelay() {
-    setTimeout(() => {
-      this.setState({loaded: true})
-    }, 1000);
+    this.updateLoadedImages = this.updateLoadedImages.bind(this);
   }
 
   componentDidMount() {
     this.props.requestCampaigns();
-
-    this.setState({loading: false}, this.loadingDelay)
+    this.loadingDelay();
 
     window.scrollTo(0, 0);
   }
@@ -34,12 +30,27 @@ class Home extends React.Component {
     //   console.log(Object.keys(this.props.campaigns).length);
     //   this.props.requestCampaigns();
     // }
+    if (this.imagesLoaded === 8) {
+      this.setState({imagesLoaded: true});
+    }
+  }
+
+  // Ensure loading takes at least 1s
+  loadingDelay() {
+    setTimeout(() => {
+      this.setState({loadingDelayComplete: true})
+    }, 1000);
+  }
+
+  updateLoadedImages() {
+    let imagesLoaded = this.imagesLoaded + 1;
+    this.imagesLoaded = imagesLoaded;
   }
 
   render() {
-
     const loadingScreen = () => {
-      if (this.props.loading.campaigns || this.props.loading.featuredCampaigns || !this.state.loaded) {
+      if (this.props.loading.campaigns || this.props.loading.featuredCampaigns ||
+      !this.state.imagesLoaded || !this.state.loadingDelayComplete) {
         return (
           <div id="loading-screen" className="loading">
             <div className="loader-container">
@@ -68,7 +79,8 @@ class Home extends React.Component {
               <li><h3>Popular Pitches</h3></li>
             </ul>
 
-            <CampaignIndex campaigns={this.props.campaigns}/>
+            <CampaignIndex campaigns={this.props.campaigns}
+                           updateLoadedImages={this.updateLoadedImages}/>
           </div>
         </div>
       </div>

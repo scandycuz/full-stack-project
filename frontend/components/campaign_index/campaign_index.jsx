@@ -9,6 +9,9 @@ class CampaignIndex extends React.Component {
 
   }
 
+  componentDidMount() {
+  }
+
   render() {
     const campaigns = Object.keys(this.props.campaigns).map( (key) => (
       this.props.campaigns[key]
@@ -18,7 +21,9 @@ class CampaignIndex extends React.Component {
       return(
         <div className="campaign-index group">
           {campaigns.map( (campaign, idx) => (
-            <CampaignIndexItem key={idx} campaign={campaign}/>
+            <CampaignIndexItem key={idx}
+                               campaign={campaign}
+                               updateLoadedImages={this.props.updateLoadedImages}/>
           ))}
         </div>
       )

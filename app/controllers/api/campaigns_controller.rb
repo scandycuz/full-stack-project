@@ -4,7 +4,7 @@ class Api::CampaignsController < ApplicationController
     if params[:profile_id]
       @campaigns = Campaign.where("user_id = '#{params[:profile_id]}'")
     elsif params[:featured]
-      @campaigns = Campaign.where("featured = true")
+      @campaigns = Campaign.where("featured = true").order(id: :asc).limit(8).order(id: :desc)
     elsif params[:query]
       query = params[:query].split(" ").reject { |word|
         ["for", "and", "it", "is"].include?(word)

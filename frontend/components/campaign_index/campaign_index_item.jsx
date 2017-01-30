@@ -9,6 +9,9 @@ class CampaignIndexItem extends React.Component {
     this.linkToCampaign = this.linkToCampaign.bind(this);
   }
 
+  componentDidMount() {
+  }
+
   endDateToDuration(endDate) {
     if (endDate) {
       let endDateArray = endDate.split("-");
@@ -32,11 +35,6 @@ class CampaignIndexItem extends React.Component {
     const goalAmount = this.props.campaign.goal_amount;
     const endDate = this.props.campaign.duration;
     const daysLeft = this.endDateToDuration(this.props.campaign.duration);
-    const handleImageLoaded = () => {
-      if (this.props.handleImageLoaded) {
-        this.props.handleImageLoaded();
-      }
-    }
 
     let fundsReceived = 0;
     if (this.props.campaign.funds_received) {
@@ -45,7 +43,7 @@ class CampaignIndexItem extends React.Component {
 
     return(
       <div className="campaign-index-item clickable" onClick={this.linkToCampaign}>
-        <img src={campaignThumbnail} onLoad={handleImageLoaded}/>
+        <img src={campaignThumbnail} onLoad={this.props.updateLoadedImages()}/>
         <div className="campaign-index-item-content">
           <div className="campaign-index-item-info">
             <h4>{campaignTitle}</h4>
