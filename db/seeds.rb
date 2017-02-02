@@ -217,7 +217,7 @@ campaigns = Campaign.create([
     card_image_url: "http://res.cloudinary.com/dhh1nask4/image/upload/v1481830567/campaign_images/t8qozbmwyrhrvsakasnu.jpg",
     pitch_image_url: "http://res.cloudinary.com/dhh1nask4/image/upload/v1481356926/campaign_images/dpsed9p6vivx7dzk6exa.jpg",
     slider_image_url: "http://res.cloudinary.com/dhh1nask4/image/upload/v1481343738/campaign_images/x7ibilnnkmxipj2y1xd0.jpg",
-    tagline: "An addictive online game where the goal is to destroy as many targets as possible through creating chain reactions.",
+    tagline: "An addictive online game. Destroy as many targets as possible using chain reactions.",
     campaign_overview: "Actually small batch whatever asymmetrical, pickled narwhal vinyl gastropub ramps tumblr art party ugh. Swag 3 wolf moon marfa chartreuse irony. Heirloom chartreuse succulents, occupy banjo blog godard gastropub everyday carry kitsch direct trade four dollar toast. Brunch etsy man bun, freegan williamsburg shabby chic venmo vice swag blue bottle cliche.",
     campaign_pitch: "Banjo drinking vinegar 8-bit neutra, vape hexagon mixtape bitters fingerstache edison bulb. Direct trade master cleanse dreamcatcher, vinyl green juice selvage austin squid taxidermy. Pour-over lomo slow-carb iPhone actually thundercats food truck, hammock banh mi ramps disrupt williamsburg waistcoat. Bespoke typewriter wolf, vegan hella banh mi keffiyeh +1 slow-carb. Authentic cronut williamsburg, asymmetrical you probably haven't heard of them pabst direct trade post-ironic kitsch waistcoat blue bottle microdosing.",
     status: "published",
