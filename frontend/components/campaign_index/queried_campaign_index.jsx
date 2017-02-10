@@ -20,7 +20,7 @@ class QueriedCampaignIndex extends React.Component {
           {campaigns.map( (campaign, idx) => (
             <CampaignIndexItem key={idx}
                                campaign={campaign}
-                               handleImageLoaded={this.props.handleImageLoaded}/>
+                               updateLoadedImages={this.props.updateLoadedImages}/>
           ))}
         </div>
       )

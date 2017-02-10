@@ -10,15 +10,13 @@ class Search extends React.Component {
     this.state = {
       query: "",
       queryString: "",
-      initialLoad: true,
       totalImages: null,
-      numImagesLoaded: 0,
       imagesLoaded: false
     }
 
-    this.handleImageLoaded = this.handleImageLoaded.bind(this);
-    this.handleLoadingComplete = this.handleLoadingComplete.bind(this);
+    this.numImagesLoaded = 0;
     this.update = this.update.bind(this);
+    this.updateLoadedImages = this.updateLoadedImages.bind(this);
     this.searchListener = this.searchListener.bind(this);
   }
 
@@ -42,7 +40,9 @@ class Search extends React.Component {
     }
     // update query string on submit new query
     if (this.props.queryString !== nextProps.queryString) {
-      this.setState({queryString: nextProps.queryString, query: nextProps.queryString});
+      this.setState({queryString: nextProps.queryString,
+                     query: nextProps.queryString,
+                     imagesLoaded: false});
     }
   }
 
@@ -50,12 +50,10 @@ class Search extends React.Component {
     if (this.state.queryString === "" && this.props.queryString !== "") {
       this.setState({queryString: this.props.queryString});
     }
-    // if loaded images number === total images, loading complete
-    if (!this.state.imagesLoaded &&
-        this.state.initialLoad &&
-        this.state.numImagesLoaded >= this.state.totalImages &&
-        typeof this.state.totalImages === "number") {
-      this.handleLoadingComplete();
+    // Set images loaded to true if all images loaded
+    if (this.numImagesLoaded >= this.state.totalImages && !this.state.imagesLoaded) {
+      this.setState({imagesLoaded: true});
+      this.numImagesLoaded = 0;
     }
   }
 
@@ -90,13 +88,10 @@ class Search extends React.Component {
     });
   }
 
-  handleImageLoaded() {
-    // increment loaded images number
-    this.setState({numImagesLoaded: this.state.numImagesLoaded + 1});
-  }
-
-  handleLoadingComplete() {
-    this.setState({imagesLoaded: true, initialLoad: false});
+  updateLoadedImages() {
+    let numImagesLoaded = this.numImagesLoaded + 1;
+    let totalImages = this.state.totalImages;
+    this.numImagesLoaded = numImagesLoaded;
   }
 
   update(property) {
@@ -141,6 +136,7 @@ class Search extends React.Component {
           <span className="search-component-input-container">
             <i className="fa fa-search" aria-hidden="true"></i>
             <input
+              className="search-input"
               type="text"
               value={this.state.query}
               onChange={this.update('query')}/>
@@ -148,7 +144,7 @@ class Search extends React.Component {
           <div className="campaign-index-container">
             <QueriedCampaignIndex campaigns={this.props.queriedCampaigns}
                                   queryString={this.props.queryString}
-                                  handleImageLoaded={this.handleImageLoaded} />
+                                  updateLoadedImages={this.updateLoadedImages} />
           </div>
         </div>
       </div>

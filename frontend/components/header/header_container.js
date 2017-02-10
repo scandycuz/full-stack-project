@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Header from './header';
+import { Router, Route, IndexRoute, hashHistory, withRouter } from 'react-router';
 import { signup,
          login,
          logout,
@@ -18,7 +19,7 @@ const mapStateToProps = ({ session, profile, campaign }) => ({
  campaign: campaign.campaign
 });
 
-const mapDispatchToProps = (dispatch, { location }) => {
+const mapDispatchToProps = (dispatch) => {
 
   return {
     receiveSessionErrors: (errors) => dispatch(receiveSessionErrors(errors)),
@@ -38,7 +39,7 @@ const mapDispatchToProps = (dispatch, { location }) => {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Header);
+)(Header));

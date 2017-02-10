@@ -40,6 +40,8 @@ class Header extends React.Component {
     }
   }
 
+
+
   searchListener() {
     $('.search-symbol input').focus( (e) => {
       let $input = $(e.target);
@@ -116,6 +118,7 @@ class Header extends React.Component {
               <span className="search-symbol">
                 <i className="fa fa-search" aria-hidden="true"></i>
                 <input
+                  className="search-input"
                   type="text"
                   value={this.state.query}
                   onChange={this.update('query')}/>
