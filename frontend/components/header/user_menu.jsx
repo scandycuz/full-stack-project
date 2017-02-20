@@ -37,7 +37,6 @@ class UserMenu extends React.Component {
   componentDidMount() {
     window.addEventListener('mousedown', this.pageClick, false);
     // this.redirectIfLoggedOut();
-    console.log(this.props.mobileMenu);
   }
 
   componentWillReceiveProps(nextProps) {
