@@ -45,6 +45,10 @@ class Header extends React.Component {
 
     if (this.props.queriedCampaigns) {
       this.setState({query: ""});
+      let $menu = $('.siteHeader');
+      let $mobileSearch = $('.search-symbol');
+      $menu.removeClass('search-input-active');
+      $mobileSearch.fadeOut(0).find('input');
     }
   }
 
@@ -91,7 +95,7 @@ class Header extends React.Component {
     if ($menu.hasClass('search-input-active')) {
       $mobileSearch.fadeIn(200).find('input').focus();
     } else {
-      $mobileSearch.fadeOut(0).find('input').focus();
+      $mobileSearch.fadeOut(0).find('input');
     }
 
   }
