@@ -35,6 +35,13 @@ $dark_grey: #444;
 
 // General
 
+.down-arrow {
+  transition: 200ms;
+}
+.rotated {
+  transform: rotate(180deg);
+}
+
 .group:after {
   content: "";
   display: table;

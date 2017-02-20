@@ -17,6 +17,10 @@ const mapDispatchToProps = (dispatch, { location }) => {
         let path = location.pathname.split("/").pop();
         return (["campaigns", "contributions", "edit"].includes(path)) ? path : 'profile';
       },
+      campaignsSection: () => {
+        let path = location.pathname.split("/").pop();
+        return (path === "campaigns") ? true : false ;
+      },
       requestSingleProfile: id => dispatch(requestSingleProfile(id))
     })
 };

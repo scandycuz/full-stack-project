@@ -323,7 +323,7 @@ class UserMenu extends React.Component {
       }
     }
 
-    const dropdownClass = (this.state.dropdownActive) ? "hidden" : "visible" ;
+    const dropdownClass = (this.state.dropdownActive) ? "rotated" : "" ;
     if (currentUser) {
 
       return(
@@ -332,7 +332,7 @@ class UserMenu extends React.Component {
             <span className="menu-dropdown-button clickable" onClick={this.toggleDropdown}>
               {currentUser.first_name}&nbsp;
               {currentUser.last_name} &nbsp;
-              <i className={`fa fa-chevron-down clickable ${dropdownClass}`} aria-hidden="true"></i>
+              <i className={`fa fa-chevron-down clickable down-arrow ${dropdownClass}`} aria-hidden="true"></i>
             </span>
             {dropdownMenu()}
           </li>

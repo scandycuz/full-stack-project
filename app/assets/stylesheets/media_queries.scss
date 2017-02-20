@@ -33,6 +33,10 @@
   min-width: 76px;
 }
 
+.campaignEditMobileButton {
+  display: none;
+}
+
 @media (max-width: 1340px) {
   .gallery-cell {
     width: 66%;
@@ -148,6 +152,12 @@
 }
 
 @media (max-width: 767px) {
+  #profile-content {
+    padding-right: 0;
+    .profile-info {
+      padding-right: 0;
+    }
+  }
   .pitch-image-container {
     width: 100%;
     padding-left: 0 !important;
@@ -243,6 +253,8 @@
   #mobileMenu {
     display: none;
     position: absolute;
+    left: 0;
+    right: 0;
     top: 4.575em;
     z-index: 1000;
     background: white;
@@ -312,6 +324,25 @@
     }
     .campaign-form-tagline {
       width: 100% !important;
+    }
+  }
+}
+
+@media (max-width: 580px) {
+  .user-campaign-show-list {
+    width: 100%;
+  }
+}
+
+@media (max-width: 524px) {
+  .campaignEditMobileButton {
+    display: inline-block;
+  }
+  .campaign-steps-list-element {
+    li {
+      &:last-child {
+        display: none;
+      }
     }
   }
 }
@@ -388,6 +419,15 @@
 }
 
 @media (max-width: 360px) {
+  .profile-content {
+    .tabTitleList {
+      li {
+        &:last-child {
+          display: none;
+        }
+      }
+    }
+  }
   .mobileHeader {
     .mobile-icon {
       font-size: 1.3em;

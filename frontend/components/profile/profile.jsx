@@ -8,7 +8,8 @@ class Profile extends React.Component {
     this.state = {
       selectedTab: this.props.currentPath(),
       profilePhotoUrl: null,
-      imageLoaded: false
+      imageLoaded: false,
+      forceLoad: false
     }
     this.tabClass = this.tabClass.bind(this);
     this.changeTab = this.changeTab.bind(this);
@@ -23,6 +24,10 @@ class Profile extends React.Component {
       profilePhotoUrl: null,
       imageLoaded: false
     });
+
+    if (this.props.campaignsSection()) {
+      this.setState({forceLoad: true});
+    }
 
     // set imageloaded to true if no image
     if (this.props.profile) {
@@ -41,7 +46,7 @@ class Profile extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    
+
     function setImageUrl() {
       this.setState({profilePhotoUrl: nextProps.profile.photo_url});
     }
@@ -197,7 +202,9 @@ class Profile extends React.Component {
     const currentUser = this.props.currentUser;
 
     const loadClass = () => {
-      if (this.props.loading || !this.state.imageLoaded) {
+      if (this.state.forceLoad) {
+        return;
+      } else if (this.props.loading || !this.state.imageLoaded) {
         return "loading";
       }
     }

@@ -95,15 +95,22 @@ class Header extends React.Component {
     if ($menu.hasClass('search-input-active')) {
       $mobileSearch.fadeIn(200).find('input').focus();
     } else {
-      $mobileSearch.fadeOut(0).find('input');
+      $mobileSearch.fadeOut(0);
     }
-
+    if (this.state.menuOpen) {
+      this.setState({menuOpen: false});
+    }
   }
 
   openMenu(e) {
     e.preventDefault();
     let menuOpen = !this.state.menuOpen;
     this.setState({menuOpen});
+
+    let $menu = $('.siteHeader');
+    let $mobileSearch = $('.search-symbol');
+    $menu.removeClass('search-input-active');
+    $mobileSearch.fadeOut(0);
   }
 
   closeMenu(e) {
@@ -142,6 +149,7 @@ class Header extends React.Component {
 
   render() {
     const menuClass = (this.state.menuOpen) ? "open" : "closed";
+    const dropdownClass = (this.state.menuOpen) ? "rotated" : "" ;
     return(
       <header>
         <div id="main-menu" className="siteHeader parent mobileHeader">
@@ -149,7 +157,8 @@ class Header extends React.Component {
             <li>
               <h1 className="siteLogo mobileLogo" onClick={this.redirectHome}>StartupGoGo
                 <a href="#" className="clickable" onClick={this.openMenu}>
-                  <i className="fa fa-chevron-down toggle-menu" aria-hidden="true"></i>
+                  <i className={`fa fa-chevron-down toggle-menu down-arrow ${dropdownClass}`}
+                  aria-hidden="true"></i>
                 </a>
               </h1>
             </li>

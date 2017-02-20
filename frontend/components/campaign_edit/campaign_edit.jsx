@@ -175,7 +175,7 @@ class CampaignEdit extends React.Component {
           </div>
           <div className="campaign-steps container">
             <div className="campaign-steps-list">
-              <ul>
+              <ul className="campaign-steps-list-element">
                 {editSteps.map( (step, idx) =>  {
                   if (idx === editSteps.length - 1) {
                     return (
@@ -187,6 +187,9 @@ class CampaignEdit extends React.Component {
                     )
                   }
                 })}
+              </ul>
+              <ul>
+                <li className={`campaignEditMobileButton ${this.tabClass('Review & Launch')}`} onClick={this.changeTab}>{lastStep()}</li>
               </ul>
             </div>
           </div>
