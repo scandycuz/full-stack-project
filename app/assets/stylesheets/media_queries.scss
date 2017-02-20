@@ -287,6 +287,14 @@
 }
 
 @media (max-width: 640px) {
+  .search-component-input-container {
+    width: 100% !important;
+  }
+  .home-content-container {
+    .search-input {
+      width: 90% !important;
+    }
+  }
   .currency-symbol {
     input {
       width: 90% !important;
@@ -327,6 +335,10 @@
   }
   .campaign-index-item {
     width: 100%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .campaign-index-item:nth-child(even), .campaign-index-item:nth-child(odd) {
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
