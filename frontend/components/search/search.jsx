@@ -10,11 +10,11 @@ class Search extends React.Component {
     this.state = {
       query: "",
       queryString: "",
-      totalImages: null,
       imagesLoaded: false
     }
 
     this.numImagesLoaded = 0;
+    this.totalImages = Number.MAX_INT;
     this.update = this.update.bind(this);
     this.updateLoadedImages = this.updateLoadedImages.bind(this);
     this.searchListener = this.searchListener.bind(this);
@@ -25,7 +25,9 @@ class Search extends React.Component {
     this.setState({query: this.props.queryString, initialLoad: true});
     // set total image amount
     if (this.props.queriedCampaigns) {
-      this.setState({totalImages: Object.keys(this.props.queriedCampaigns).length});
+      this.totalImages = Object.keys(this.props.queriedCampaigns).length;
+    } else {
+      this.setState({totalImages: 0});
     }
     // add search listener
     this.searchListener();
@@ -36,7 +38,7 @@ class Search extends React.Component {
   componentWillReceiveProps(nextProps) {
     // set total image amount
     if (nextProps.queriedCampaigns) {
-      this.setState({totalImages: Object.keys(nextProps.queriedCampaigns).length});
+      this.totalImages = Object.keys(nextProps.queriedCampaigns).length;
     }
     // update query string on submit new query
     if (this.props.queryString !== nextProps.queryString) {
@@ -51,7 +53,8 @@ class Search extends React.Component {
       this.setState({queryString: this.props.queryString});
     }
     // Set images loaded to true if all images loaded
-    if (this.numImagesLoaded >= this.state.totalImages && !this.state.imagesLoaded) {
+    if (this.numImagesLoaded >= (this.totalImages * 2) &&
+    !this.state.imagesLoaded) {
       this.setState({imagesLoaded: true});
       this.numImagesLoaded = 0;
     }
@@ -90,7 +93,6 @@ class Search extends React.Component {
 
   updateLoadedImages() {
     let numImagesLoaded = this.numImagesLoaded + 1;
-    let totalImages = this.state.totalImages;
     this.numImagesLoaded = numImagesLoaded;
   }
 

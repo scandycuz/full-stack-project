@@ -12,7 +12,8 @@ class UserMenu extends React.Component {
       first_name: "",
       last_name: "",
       email: "",
-      password: ""
+      password: "",
+      dropdownActive: this.props.mobileMenu
     }
 
     this.renderModal = this.renderModal.bind(this);
@@ -24,23 +25,19 @@ class UserMenu extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleDropdown = this.toggleDropdown.bind(this);
-    this.toggleVisibility = this.toggleVisibility.bind(this);
     this.handleDemoSubmit = this.handleDemoSubmit.bind(this);
     this.handleRouterLink = this.handleRouterLink.bind(this);
     this.redirectIfLoggedOut = this.redirectIfLoggedOut.bind(this);
     this.userCampaignList = this.userCampaignList.bind(this);
     this.handleCampaignLink = this.handleCampaignLink.bind(this);
+    this.pageClick = this.pageClick.bind(this);
+    this.closeDropdown = this.closeDropdown.bind(this);
   }
 
   componentDidMount() {
-    document.addEventListener("click", (e) => {
-      if (e.target.tagName != "SPAN" && e.target.tagName != "I") {
-        $('#auth-dropdown').hide();
-        $('.dropdown-parent i').css('visibility', 'visible');
-      }
-    })
-
+    window.addEventListener('mousedown', this.pageClick, false);
     // this.redirectIfLoggedOut();
+    console.log(this.props.mobileMenu);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -58,6 +55,19 @@ class UserMenu extends React.Component {
     }
 
     // this.redirectIfLoggedOut();
+  }
+
+  pageClick(e) {
+    if (this.state.dropdownActive && !this.props.mobileMenu) {
+      let dropdown = document.getElementsByClassName("siteHeader-content-right")[0];
+      let target = e.target;
+      let pitchButton = document.getElementsByClassName("siteHeader-button")[0];
+      let dropdownClicked = $.contains(dropdown, target);
+
+      if (!dropdownClicked || target.className === pitchButton.className) {
+        return this.setState({dropdownActive: false});
+      }
+    }
   }
 
   redirectIfLoggedOut() {
@@ -250,19 +260,10 @@ class UserMenu extends React.Component {
     }
   }
 
-  toggleVisibility($el) {
-    let	visibility = $el.css('visibility');
-    if (visibility === 'visible') {
-      return $el.css('visibility', 'hidden');
-    } else {
-      return $el.css('visibility', 'visible');
-    }
-  }
-
   toggleDropdown(e) {
-    let $targetEl = $(e.currentTarget);
-    this.toggleVisibility($targetEl.find("i"));
-    $targetEl.siblings("#auth-dropdown").toggle(0);
+    e.preventDefault();
+    let dropdownActive = !this.state.dropdownActive;
+    this.setState({dropdownActive});
   }
 
   handleCampaignLink(campaignId) {
@@ -297,25 +298,44 @@ class UserMenu extends React.Component {
     }
   }
 
+  closeDropdown(e) {
+    e.preventDefault();
+    if (!this.props.mobileMenu) {
+      this.setState({dropdownActive: false});
+    }
+  }
+
   render() {
     let currentUser = this.props.currentUser;
+    const logoutUser = () => this.props.logout();
 
+    const dropdownMenu = () => {
+      if (this.state.dropdownActive) {
+        return(
+          <ul id="auth-dropdown" className="dropdown-menu" onClick={this.closeDropdown}>
+            {this.userCampaignList()}
+            <li className="clickable"
+            onClick={this.handleRouterLink(`profile/${this.props.currentUser.id}`)}>
+              My Profile
+            </li>
+            <li className="clickable" onClick={ logoutUser }>Log out</li>
+          </ul>
+        )
+      }
+    }
+
+    const dropdownClass = (this.state.dropdownActive) ? "hidden" : "visible" ;
     if (currentUser) {
-      const logoutUser = () => this.props.logout();
 
       return(
-        <ul className="signedIn-menu">
+        <ul id="userMenu" className="signedIn-menu">
           <li className="dropdown-parent">
-            <span className="clickable" onClick={this.toggleDropdown}>
+            <span className="menu-dropdown-button clickable" onClick={this.toggleDropdown}>
               {currentUser.first_name}&nbsp;
               {currentUser.last_name} &nbsp;
-              <i className="fa fa-chevron-down clickable" aria-hidden="true"></i>
+              <i className={`fa fa-chevron-down clickable ${dropdownClass}`} aria-hidden="true"></i>
             </span>
-            <ul id="auth-dropdown" className="dropdown-menu">
-              {this.userCampaignList()}
-              <li className="clickable" onClick={this.handleRouterLink(`profile/${this.props.currentUser.id}`)}>My Profile</li>
-              <li className="clickable" onClick={ logoutUser }>Log out</li>
-            </ul>
+            {dropdownMenu()}
           </li>
         </ul>
       )

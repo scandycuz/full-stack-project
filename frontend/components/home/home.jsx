@@ -30,7 +30,7 @@ class Home extends React.Component {
     //   console.log(Object.keys(this.props.campaigns).length);
     //   this.props.requestCampaigns();
     // }
-    if (this.imagesLoaded % 8 === 0 && !this.state.imagesLoaded) {
+    if (this.imagesLoaded % 16 === 0 && !this.state.imagesLoaded) {
       this.setState({imagesLoaded: true});
     }
   }

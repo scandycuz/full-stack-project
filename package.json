@@ -11,6 +11,7 @@
     "npm": "3.5.2"
   },
   "scripts": {
+    "build:webpack": "webpack -p --define process.env.NODE_ENV='\"production\"'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "./node_modules/.bin/webpack"
   },

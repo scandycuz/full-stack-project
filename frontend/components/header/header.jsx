@@ -12,12 +12,16 @@ class Header extends React.Component {
     this.resetRedirect = this.resetRedirect.bind(this);
     this.update = this.update.bind(this);
     this.searchListener = this.searchListener.bind(this);
+    this.mobileSearchListener = this.mobileSearchListener.bind(this);
+    this.openMenu = this.openMenu.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
 
     this.state = {
       modalIsOpen: false,
       formType: "login",
       redirect: null,
-      query: ""
+      query: "",
+      menuOpen: false
     }
   }
 
@@ -38,9 +42,11 @@ class Header extends React.Component {
       //   this.props.router.push(redirect);
       // }
     }
+
+    if (this.props.queriedCampaigns) {
+      this.setState({query: ""});
+    }
   }
-
-
 
   searchListener() {
     $('.search-symbol input').focus( (e) => {
@@ -78,6 +84,29 @@ class Header extends React.Component {
     });
   }
 
+  mobileSearchListener() {
+    let $menu = $('.siteHeader');
+    let $mobileSearch = $('.search-symbol');
+    $menu.toggleClass('search-input-active');
+    if ($menu.hasClass('search-input-active')) {
+      $mobileSearch.fadeIn(200).find('input').focus();
+    } else {
+      $mobileSearch.fadeOut(0).find('input').focus();
+    }
+
+  }
+
+  openMenu(e) {
+    e.preventDefault();
+    let menuOpen = !this.state.menuOpen;
+    this.setState({menuOpen});
+  }
+
+  closeMenu(e) {
+    e.preventDefault();
+    this.setState({menuOpen: false});
+  }
+
   redirectHome() {
     this.props.router.push("/");
   }
@@ -108,14 +137,25 @@ class Header extends React.Component {
   }
 
   render() {
-
+    const menuClass = (this.state.menuOpen) ? "open" : "closed";
     return(
-      <header className="siteHeader">
-        <div className="siteHeader-content-left">
-          <h1 className="siteLogo" onClick={this.redirectHome}>StartupGoGo</h1>
-          <ul>
+      <header>
+        <div id="main-menu" className="siteHeader parent mobileHeader">
+          <ul className="mobileHeader">
             <li>
-              <span className="search-symbol">
+              <h1 className="siteLogo mobileLogo" onClick={this.redirectHome}>StartupGoGo
+                <a href="#" className="clickable" onClick={this.openMenu}>
+                  <i className="fa fa-chevron-down toggle-menu" aria-hidden="true"></i>
+                </a>
+              </h1>
+            </li>
+            <li className="search-icon-item">
+              <i className="fa fa-search mobile clickable mobile-icon"
+                aria-hidden="true"
+                onClick={this.mobileSearchListener}></i>
+            </li>
+            <li>
+              <span className="search-symbol desktop">
                 <i className="fa fa-search" aria-hidden="true"></i>
                 <input
                   className="search-input"
@@ -125,28 +165,78 @@ class Header extends React.Component {
               </span>
             </li>
           </ul>
+          <ul id="mobileMenu" className={menuClass} onClick={this.closeMenu}>
+            <li className="pitchButton">
+              <a href="#" className="siteHeader-button button"
+               onClick={this.linkToPitch}>Pitch A Startup</a>
+            </li>
+            <li>
+              <UserMenu
+              processForm={this.props.processForm}
+              logout={this.props.logout}
+              currentUser={this.props.currentUser}
+              loggedIn={this.props.loggedIn}
+              receiveSessionErrors={this.props.receiveSessionErrors}
+              errors={this.props.errors}
+              campaigns={this.props.campaigns}
+              campaign={this.props.campaign}
+              router={this.props.router}
+              requestUserCampaigns={this.props.requestUserCampaigns}
+              requestSingleCampaign={this.props.requestSingleCampaign}
+              requestCampaigns={this.props.requestCampaigns}
+              modalIsOpen={this.state.modalIsOpen}
+              redirect={this.state.redirect}
+              resetRedirect={this.resetRedirect}
+              router={this.props.router}
+              formType={this.state.formType}
+              mobileMenu={true}/>
+            </li>
+          </ul>
         </div>
-        <div className="siteHeader-content-right">
-          <a href="#" className="siteHeader-button button"
-             onClick={this.linkToPitch}>Pitch A Startup</a>
-          <UserMenu
-            processForm={this.props.processForm}
-            logout={this.props.logout}
-            currentUser={this.props.currentUser}
-            loggedIn={this.props.loggedIn}
-            receiveSessionErrors={this.props.receiveSessionErrors}
-            errors={this.props.errors}
-            campaigns={this.props.campaigns}
-            campaign={this.props.campaign}
-            router={this.props.router}
-            requestUserCampaigns={this.props.requestUserCampaigns}
-            requestSingleCampaign={this.props.requestSingleCampaign}
-            requestCampaigns={this.props.requestCampaigns}
-            modalIsOpen={this.state.modalIsOpen}
-            redirect={this.state.redirect}
-            resetRedirect={this.resetRedirect}
-            router={this.props.router}
-            formType={this.state.formType}/>
+        <div id="main-menu" className="siteHeader parent desktopHeader">
+          <div className="siteHeader-content-left">
+            <h1 className="siteLogo" onClick={this.redirectHome}>StartupGoGo</h1>
+            <ul className="desktop-menu">
+              <li>
+                <i className="fa fa-search mobile clickable mobile-icon"
+                  aria-hidden="true"
+                  onClick={this.mobileSearchListener}></i>
+              </li>
+              <li>
+                <span className="search-symbol desktop">
+                  <i className="fa fa-search" aria-hidden="true"></i>
+                  <input
+                    className="search-input"
+                    type="text"
+                    value={this.state.query}
+                    onChange={this.update('query')}/>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div className="siteHeader-content-right">
+            <a href="#" className="siteHeader-button button"
+               onClick={this.linkToPitch}>Pitch A Startup</a>
+            <UserMenu
+              processForm={this.props.processForm}
+              logout={this.props.logout}
+              currentUser={this.props.currentUser}
+              loggedIn={this.props.loggedIn}
+              receiveSessionErrors={this.props.receiveSessionErrors}
+              errors={this.props.errors}
+              campaigns={this.props.campaigns}
+              campaign={this.props.campaign}
+              router={this.props.router}
+              requestUserCampaigns={this.props.requestUserCampaigns}
+              requestSingleCampaign={this.props.requestSingleCampaign}
+              requestCampaigns={this.props.requestCampaigns}
+              modalIsOpen={this.state.modalIsOpen}
+              redirect={this.state.redirect}
+              resetRedirect={this.resetRedirect}
+              router={this.props.router}
+              formType={this.state.formType}
+              mobileMenu={false}/>
+          </div>
         </div>
       </header>
     )

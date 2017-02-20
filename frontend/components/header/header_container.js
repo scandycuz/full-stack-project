@@ -16,7 +16,8 @@ const mapStateToProps = ({ session, profile, campaign }) => ({
  loggedIn: Boolean(session.currentUser),
  errors: session.errors,
  campaigns: session.campaigns,
- campaign: campaign.campaign
+ campaign: campaign.campaign,
+ queriedCampaigns: campaign.queriedCampaigns
 });
 
 const mapDispatchToProps = (dispatch) => {
