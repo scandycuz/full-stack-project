@@ -108,6 +108,9 @@
       display: none;
     }
   }
+  .form-section {
+    width: 100%;
+  }
 }
 
 @media (max-width: 860px) {
@@ -283,7 +286,34 @@
   }
 }
 
+@media (max-width: 640px) {
+  .currency-symbol {
+    input {
+      width: 90% !important;
+    }
+  }
+  .form-section {
+    .currency-symbol {
+      width: 100%;
+      input {
+        width: 90% !important;
+      }
+    }
+    input, textarea {
+      width: 100% !important;
+    }
+    .campaign-form-tagline {
+      width: 100% !important;
+    }
+  }
+}
+
 @media (max-width: 480px) {
+  .form-section {
+    .thumbnail-image {
+      width: 100%;
+    }
+  }
   .slide-subcontent {
     flex-direction: column !important;
     .button {
@@ -312,6 +342,9 @@
 }
 
 @media (max-width: 420px) {
+  .pitch-title {
+    width: 100%;
+  }
   footer {
     .container {
       display: flex;
