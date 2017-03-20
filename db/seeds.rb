@@ -111,7 +111,7 @@ campaigns = Campaign.create([
     campaign_pitch: "Mustache freegan gochujang venmo, actually lo-fi put a bird on it. 8-bit mlkshk austin, tofu chambray tilde kickstarter artisan messenger bag. +1 four dollar toast tumeric, offal bitters microdosing migas chicharrones. Fanny pack scenester tattooed before they sold out shabby chic. Quinoa chambray salvia before they sold out edison bulb.",
     status: "published",
     location: "San Francisco, CA, United States",
-    duration: "2017-04-04"
+    duration: "2017-07-04"
   },{ user_id: 1,
     title: "Tindr for Farmers",
     goal_amount: 2000,
@@ -123,7 +123,7 @@ campaigns = Campaign.create([
     campaign_pitch: "Gluten-free kogi plaid kitsch narwhal. Single-origin coffee pabst sriracha heirloom, aesthetic authentic literally ramps bushwick affogato tilde hashtag franzen XOXO mixtape. Jean shorts authentic next level, glossier put a bird on it direct trade chia.",
     status: "published",
     location: "San Francisco, CA, United States",
-    duration: "2017-04-30"
+    duration: "2017-07-30"
   },{ user_id: 2,
     title: "Flikar",
     goal_amount: 2000,
@@ -135,7 +135,7 @@ campaigns = Campaign.create([
     campaign_pitch: "Bushwick YOLO stumptown mlkshk, master cleanse tilde flexitarian readymade vexillologist pabst knausgaard slow-carb celiac leggings. La croix copper mug post-ironic cliche tacos normcore. Art party heirloom salvia DIY succulents 90's, microdosing vinyl umami dreamcatcher. Disrupt aesthetic master cleanse live-edge hexagon normcore, tattooed chartreuse butcher plaid fam lumbersexual 90's.",
     status: "published",
     location: "Portland, CA, United States",
-    duration: "2017-03-31"
+    duration: "2017-06-31"
   },{ user_id: 3,
     title: "Klerpit",
     goal_amount: 1000,
@@ -147,7 +147,7 @@ campaigns = Campaign.create([
     campaign_pitch: "Tumblr mustache keffiyeh vegan, kickstarter squid vinyl. Pop-up la croix fap fanny pack. Unicorn truffaut godard portland 3 wolf moon blog. Cornhole +1 pabst, neutra 8-bit sustainable wayfarers tbh tacos street art shoreditch meggings. Four dollar toast typewriter williamsburg, intelligentsia quinoa deep v food truck flannel keytar. Meditation live-edge poutine, cred next level lumbersexual bespoke helvetica farm-to-table. Ethical keytar everyday carry, pabst ennui cliche master cleanse keffiyeh vegan celiac raclette.",
     status: "published",
     location: "San Francisco, CA, United States",
-    duration: "2017-04-28"
+    duration: "2017-07-28"
   },{ user_id: 4,
     title: "iBanjo",
     goal_amount: 4000,
@@ -159,7 +159,7 @@ campaigns = Campaign.create([
     campaign_pitch: "Chia hell of street art small batch echo park edison bulb. Truffaut pinterest flexitarian, snackwave shoreditch mlkshk tbh fixie tilde. Pinterest selfies biodiesel meh 8-bit hot chicken. VHS tilde put a bird on it, asymmetrical meggings keytar actually irony chia small batch normcore farm-to-table. Wayfarers pitchfork vegan, gastropub twee XOXO asymmetrical mustache.",
     status: "published",
     location: "New York, NY, United States",
-    duration: "2017-03-24"
+    duration: "2017-06-24"
   },{ user_id: 5,
     title: "Vuzoo",
     goal_amount: 40000,
@@ -171,7 +171,7 @@ campaigns = Campaign.create([
     campaign_pitch: "Chia hell of street art small batch echo park edison bulb. Truffaut pinterest flexitarian, snackwave shoreditch mlkshk tbh fixie tilde. Pinterest selfies biodiesel meh 8-bit hot chicken. VHS tilde put a bird on it, asymmetrical meggings keytar actually irony chia small batch normcore farm-to-table. Wayfarers pitchfork vegan, gastropub twee XOXO asymmetrical mustache.",
     status: "published",
     location: "Portland, OR, United States",
-    duration: "2017-04-08"
+    duration: "2017-07-08"
   },{ user_id: 6,
     title: "Listable",
     goal_amount: 8000,
@@ -183,7 +183,7 @@ campaigns = Campaign.create([
     campaign_pitch: "Chia hell of street art small batch echo park edison bulb. Truffaut pinterest flexitarian, snackwave shoreditch mlkshk tbh fixie tilde. Pinterest selfies biodiesel meh 8-bit hot chicken. VHS tilde put a bird on it, asymmetrical meggings keytar actually irony chia small batch normcore farm-to-table. Wayfarers pitchfork vegan, gastropub twee XOXO asymmetrical mustache.",
     status: "published",
     location: "San Francisco, CA, United States",
-    duration: "2017-03-28"
+    duration: "2017-06-28"
   },{ user_id: 7,
     title: "jQuirky",
     goal_amount: 2000,
@@ -195,7 +195,7 @@ campaigns = Campaign.create([
     campaign_pitch: "Banjo drinking vinegar 8-bit neutra, vape hexagon mixtape bitters fingerstache edison bulb. Direct trade master cleanse dreamcatcher, vinyl green juice selvage austin squid taxidermy. Pour-over lomo slow-carb iPhone actually thundercats food truck, hammock banh mi ramps disrupt williamsburg waistcoat. Bespoke typewriter wolf, vegan hella banh mi keffiyeh +1 slow-carb. Authentic cronut williamsburg, asymmetrical you probably haven't heard of them pabst direct trade post-ironic kitsch waistcoat blue bottle microdosing.",
     status: "published",
     location: "San Francisco, CA, United States",
-    duration: "2017-03-30"
+    duration: "2017-06-30"
   },{ user_id: 8,
     title: "Focusly",
     goal_amount: 4000,
@@ -208,7 +208,7 @@ campaigns = Campaign.create([
     campaign_pitch: "Banjo drinking vinegar 8-bit neutra, vape hexagon mixtape bitters fingerstache edison bulb. Direct trade master cleanse dreamcatcher, vinyl green juice selvage austin squid taxidermy. Pour-over lomo slow-carb iPhone actually thundercats food truck, hammock banh mi ramps disrupt williamsburg waistcoat. Bespoke typewriter wolf, vegan hella banh mi keffiyeh +1 slow-carb. Authentic cronut williamsburg, asymmetrical you probably haven't heard of them pabst direct trade post-ironic kitsch waistcoat blue bottle microdosing.",
     status: "published",
     location: "San Francisco, CA, United States",
-    duration: "2017-03-30",
+    duration: "2017-06-30",
     featured: true
   },{ user_id: 8,
     title: "Reaction",
@@ -222,7 +222,7 @@ campaigns = Campaign.create([
     campaign_pitch: "Banjo drinking vinegar 8-bit neutra, vape hexagon mixtape bitters fingerstache edison bulb. Direct trade master cleanse dreamcatcher, vinyl green juice selvage austin squid taxidermy. Pour-over lomo slow-carb iPhone actually thundercats food truck, hammock banh mi ramps disrupt williamsburg waistcoat. Bespoke typewriter wolf, vegan hella banh mi keffiyeh +1 slow-carb. Authentic cronut williamsburg, asymmetrical you probably haven't heard of them pabst direct trade post-ironic kitsch waistcoat blue bottle microdosing.",
     status: "published",
     location: "San Francisco, CA, United States",
-    duration: "2017-04-12",
+    duration: "2017-07-12",
     featured: true
   },{ user_id: 6,
     title: "InspHired",
@@ -236,7 +236,7 @@ campaigns = Campaign.create([
     campaign_pitch: "Banjo drinking vinegar 8-bit neutra, vape hexagon mixtape bitters fingerstache edison bulb. Direct trade master cleanse dreamcatcher, vinyl green juice selvage austin squid taxidermy. Pour-over lomo slow-carb iPhone actually thundercats food truck, hammock banh mi ramps disrupt williamsburg waistcoat. Bespoke typewriter wolf, vegan hella banh mi keffiyeh +1 slow-carb. Authentic cronut williamsburg, asymmetrical you probably haven't heard of them pabst direct trade post-ironic kitsch waistcoat blue bottle microdosing.",
     status: "published",
     location: "San Francisco, CA, United States",
-    duration: "2017-04-12",
+    duration: "2017-07-12",
     featured: true
   }
 ])
@@ -248,7 +248,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-06-02",
+    estimated_delivery: "2017-08-02",
     requires_shipping: true
   },{ campaign_id: 1,
     price: 80,
@@ -266,7 +266,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-07-24",
+    estimated_delivery: "2017-09-24",
     requires_shipping: true
   },{ campaign_id: 2,
     price: 100,
@@ -284,7 +284,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-08-10",
+    estimated_delivery: "2017-10-10",
     requires_shipping: true
   },{ campaign_id: 3,
     price: 80,
@@ -302,7 +302,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-06-18",
+    estimated_delivery: "2017-08-18",
     requires_shipping: true
   },{ campaign_id: 4,
     price: 450,
@@ -315,7 +315,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2018-06-04",
+    estimated_delivery: "2018-08-04",
     requires_shipping: true
   },{ campaign_id: 5,
     price: 80,
@@ -348,7 +348,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-07-18",
+    estimated_delivery: "2017-09-18",
     requires_shipping: true
   },{ campaign_id: 7,
     price: 450,
@@ -361,7 +361,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-06-24",
+    estimated_delivery: "2017-08-24",
     requires_shipping: true
   },{ campaign_id: 8,
     price: 250,
@@ -374,7 +374,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-06-18",
+    estimated_delivery: "2017-08-18",
     requires_shipping: true
   },{ campaign_id: 9,
     price: 450,
@@ -387,7 +387,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-06-24",
+    estimated_delivery: "2017-08-24",
     requires_shipping: true
   },{ campaign_id: 9,
     price: 800,
@@ -395,7 +395,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-06-18",
+    estimated_delivery: "2017-08-18",
     requires_shipping: true
   },{ campaign_id: 10,
     price: 650,
@@ -403,7 +403,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-06-24",
+    estimated_delivery: "2017-08-24",
     requires_shipping: true
   },{ campaign_id: 10,
     price: 800,
@@ -411,7 +411,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-06-18",
+    estimated_delivery: "2017-08-18",
     requires_shipping: true
   },{ campaign_id: 11,
     price: 400,
@@ -419,7 +419,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-06-18",
+    estimated_delivery: "2017-08-18",
     requires_shipping: true
   },{ campaign_id: 11,
     price: 650,
@@ -432,7 +432,7 @@ rewards = Reward.create([
     description: "Franzen man bun hammock subway tile, vinyl forage portland. Street art 8-bit artisan.",
     number_available: 30,
     inventory: 30,
-    estimated_delivery: "2017-06-18",
+    estimated_delivery: "2017-08-18",
     requires_shipping: true
   }
 ])
